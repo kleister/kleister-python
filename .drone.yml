@@ -1,0 +1,32 @@
+workspace:
+  base: /srv/app
+  path: src/github.com/kleister/kleister-python
+
+branches:
+  - master
+
+pipeline:
+  sdk-test:
+    image: webhippie/python:latest
+    pull: true
+    commands:
+      - pip3 install -r dev-requirements.txt
+      - flake8 setup.py kleister tests
+      - nosetests --with-coverage --cover-package kleister -v
+
+  # TODO: do some automated release upload
+  # upload-release:
+  #   image:
+  #   pull: true
+  #   when:
+  #     event: [ tag ]
+  #     branch: master
+
+  notify-matrix:
+    image: plugins/matrix:1
+    pull: true
+    secrets: [ matrix_roomid, matrix_username, matrix_password ]
+    when:
+      local: false
+      events: [ push, tag ]
+      status: [ changed, failure ]
