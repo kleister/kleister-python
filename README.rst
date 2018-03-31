@@ -45,7 +45,7 @@ Fork -> Patch -> Push -> Pull Request
 Authors
 -------
 
-* [Thomas Boerger](https://github.com/tboerger)
+* `Thomas Boerger <https://github.com/tboerger>`_
 
 
 License
