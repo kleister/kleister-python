@@ -4,18 +4,17 @@ Kleister: SDK for Python
 .. image:: http://github.dronehippie.de/api/badges/kleister/kleister-python/status.svg
     :target: http://github.dronehippie.de/kleister/kleister-python
 
-.. image:: https://api.codacy.com/project/badge/Grade/3b314b2be7ca4855978df1637bd61676
-    :target: https://www.codacy.com/app/tboerger/kleister-python?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kleister/kleister-python&amp;utm_campaign=Badge_Grade
+.. image:: https://badge.waffle.io/kleister/kleister-api.svg?label=ready&title=Ready
+    :target: http://waffle.io/kleister/kleister-api
 
 .. image:: https://img.shields.io/badge/matrix-%23kleister%3Amatrix.org-7bc9a4.svg
     :target: https://matrix.to/#/#kleister:matrix.org
 
-.. image:: https://badge.waffle.io/kleister/kleister-api.svg?label=ready&title=Ready
-    :target: http://waffle.io/kleister/kleister-api
+.. image:: https://api.codacy.com/project/badge/Grade/bcffce563f304d1ea64fdfd16e5e5e3f
+    :target: https://www.codacy.com/app/kleister/kleister-python?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kleister/kleister-python&amp;utm_campaign=Badge_Grade
 
-.. image:: https://img.shields.io/pypi/v/kleister.svg
-    :target: https://pypi.python.org/pypi/kleister
-
+.. image:: https://badge.fury.io/py/kleister.svg
+    :target: https://badge.fury.io/py/kleister
 
 **This project is under heavy development, it's not in a working state yet!**
 
