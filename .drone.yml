@@ -15,7 +15,7 @@ pipeline:
       - nosetests --with-coverage --cover-package kleister -v
 
   # TODO: do some automated release upload
-  # upload-release:
+  # sdk-release:
   #   image:
   #   pull: true
   #   when:
