@@ -1,8 +1,8 @@
 Kleister: SDK for Python
 ========================
 
-.. image:: http://github.dronehippie.de/api/badges/kleister/kleister-python/status.svg
-    :target: http://github.dronehippie.de/kleister/kleister-python
+.. image:: http://drone.kleister.tech/api/badges/kleister/kleister-python/status.svg
+    :target: http://drone.kleister.tech/kleister/kleister-python
 
 .. image:: https://badge.waffle.io/kleister/kleister-api.svg?label=ready&title=Ready
     :target: http://waffle.io/kleister/kleister-api
