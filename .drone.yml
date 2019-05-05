@@ -1,32 +1,72 @@
-workspace:
-  base: /srv/app
-  path: src/github.com/kleister/kleister-python
+---
+kind: pipeline
+name: testing
 
-branches:
-  - master
+platform:
+  os: linux
+  arch: amd64
 
-pipeline:
-  sdk-test:
-    image: webhippie/python:latest
-    pull: true
-    commands:
-      - pip3 install -r dev-requirements.txt
-      - flake8 setup.py kleister tests
-      - nosetests --with-coverage --cover-package kleister -v
+steps:
+- name: prepare
+  image: webhippie/python:latest
+  pull: always
+  commands:
+  - pip3 install -r dev-requirements.txt
 
-  # TODO: do some automated release upload
-  # sdk-release:
-  #   image:
-  #   pull: true
-  #   when:
-  #     event: [ tag ]
-  #     branch: master
+- name: flake
+  image: webhippie/python:latest
+  pull: always
+  commands:
+  - flake8 setup.py kleister tests
+  depends_on:
+  - prepare
 
-  notify-matrix:
-    image: plugins/matrix:1
-    pull: true
-    secrets: [ matrix_roomid, matrix_username, matrix_password ]
-    when:
-      local: false
-      event: [ push, tag ]
-      status: [ changed, failure ]
+- name: test
+  image: webhippie/python:latest
+  pull: always
+  commands:
+  - nosetests --with-coverage --cover-package kleister -v
+  depends_on:
+  - prepare
+
+- name: release
+  image: plugins/pypi:1
+  pull: always
+  settings:
+    username:
+      from_secret: pypi_username
+    password:
+      from_secret: pypi_password
+  when:
+    event:
+    - tag
+  depends_on:
+  - test
+
+- name: notify
+  image: plugins/matrix:1
+  pull: always
+  settings:
+    username:
+      from_secret: matrix_username
+    password:
+      from_secret: matrix_password
+    roomid:
+      from_secret: matrix_roomid
+  when:
+    event:
+    - push
+    - tag
+    status:
+    - failure
+  depends_on:
+  - prepare
+  - flake
+  - test
+  - release
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/tags/**
+  - refs/pull/**
