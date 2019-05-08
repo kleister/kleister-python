@@ -7,27 +7,13 @@ platform:
   arch: amd64
 
 steps:
-- name: prepare
-  image: webhippie/python:latest
-  pull: always
-  commands:
-  - pip3 install -r dev-requirements.txt
-
-- name: flake
-  image: webhippie/python:latest
-  pull: always
-  commands:
-  - flake8 setup.py kleister tests
-  depends_on:
-  - prepare
-
 - name: test
   image: webhippie/python:latest
   pull: always
   commands:
+  - pip3 install -r dev-requirements.txt
+  - flake8 setup.py kleister tests
   - nosetests --with-coverage --cover-package kleister -v
-  depends_on:
-  - prepare
 
 - name: release
   image: plugins/pypi:1
@@ -60,8 +46,6 @@ steps:
     status:
     - failure
   depends_on:
-  - prepare
-  - flake
   - test
   - release
 
