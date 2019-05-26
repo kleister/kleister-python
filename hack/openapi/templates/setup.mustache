@@ -1,0 +1,39 @@
+# coding: utf-8
+
+{{>partial_header}}
+from setuptools import setup, find_packages  # noqa: H301
+
+NAME = "{{{projectName}}}"
+VERSION = "{{packageVersion}}"
+{{#apiInfo}}
+{{#apis}}
+{{^hasMore}}
+
+setup(
+    name=NAME,
+    version=VERSION,
+    author='Thomas Boerger',
+    author_email='thomas@webhippie.de',
+    description='{{appName}}',
+    long_description='{{appDescription}}',  # noqa: E501
+    license='Apache License 2.0',
+    keywords=['openapi', 'openapi-generator', 'minecraft', 'technic'],
+    url='https://github.com/kleister/kleister-python',
+    install_requires=[],
+    entry_points={},
+    classifiers=[
+        'Development Status :: 2 - Pre-Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Apache Software License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
+    ],
+    packages=find_packages(exclude=['test']),
+    package_data={'': ['LICENSE', 'DCO', '*.md']},
+    tests_require=['nose'],
+    test_suite='nose.collector',
+)
+{{/hasMore}}
+{{/apis}}
+{{/apiInfo}}
