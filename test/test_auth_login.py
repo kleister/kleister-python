@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import kleister
-from kleister.models.inline_object import InlineObject  # noqa: E501
+from kleister.models.auth_login import AuthLogin  # noqa: E501
 from kleister.rest import ApiException
 
 
-class TestInlineObject(unittest.TestCase):
-    """InlineObject unit test stubs"""
+class TestAuthLogin(unittest.TestCase):
+    """AuthLogin unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestInlineObject(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testInlineObject(self):
-        """Test InlineObject"""
+    def testAuthLogin(self):
+        """Test AuthLogin"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kleister.models.inline_object.InlineObject()  # noqa: E501
+        # model = kleister.models.auth_login.AuthLogin()  # noqa: E501
         pass
 
 

@@ -1,6 +1,6 @@
 # kleister.TeamApi
 
-All URIs are relative to *http://http:/api/v1*
+All URIs are relative to *http://try.kleister.tech/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 
 # **append_team_to_mod**
-> object append_team_to_mod(team_id, params)
+> GeneralError append_team_to_mod(team_id, params)
 
 Assign a mod to team
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -73,7 +73,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_team_to_pack**
-> object append_team_to_pack(team_id, params)
+> GeneralError append_team_to_pack(team_id, params)
 
 Assign a pack to team
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -122,7 +122,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_team_to_user**
-> object append_team_to_user(team_id, params)
+> GeneralError append_team_to_user(team_id, params)
 
 Assign a user to team
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -218,7 +218,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_team**
-> object delete_team(team_id)
+> GeneralError delete_team(team_id)
 
 Delete a specific team
 
@@ -251,7 +251,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -265,7 +265,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_team_from_mod**
-> object delete_team_from_mod(team_id, params)
+> GeneralError delete_team_from_mod(team_id, params)
 
 Remove a mod from team
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -314,7 +314,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_team_from_pack**
-> object delete_team_from_pack(team_id, params)
+> GeneralError delete_team_from_pack(team_id, params)
 
 Remove a pack from team
 
@@ -349,7 +349,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -363,7 +363,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_team_from_user**
-> object delete_team_from_user(team_id, params)
+> GeneralError delete_team_from_user(team_id, params)
 
 Remove a user from team
 
@@ -398,7 +398,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -596,7 +596,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_team_mod**
-> object permit_team_mod(team_id, params)
+> GeneralError permit_team_mod(team_id, params)
 
 Update mod perms for team
 
@@ -631,7 +631,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -645,7 +645,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_team_pack**
-> object permit_team_pack(team_id, params)
+> GeneralError permit_team_pack(team_id, params)
 
 Update pack perms for team
 
@@ -680,7 +680,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -694,7 +694,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_team_user**
-> object permit_team_user(team_id, params)
+> GeneralError permit_team_user(team_id, params)
 
 Update user perms for team
 
@@ -729,7 +729,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 

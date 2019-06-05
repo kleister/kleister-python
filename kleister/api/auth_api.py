@@ -45,7 +45,7 @@ class AuthApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param InlineObject params: (required)
+        :param AuthLogin params: The credentials to authenticate (required)
         :return: AuthToken
                  If the method is called asynchronously,
                  returns the request thread.
@@ -66,7 +66,7 @@ class AuthApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param InlineObject params: (required)
+        :param AuthLogin params: The credentials to authenticate (required)
         :return: AuthToken
                  If the method is called asynchronously,
                  returns the request thread.

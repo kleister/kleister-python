@@ -63,7 +63,7 @@ from kleister.rest import ApiException
 
 
 api = kleister.AuthApi(kleister.ApiClient(configuration))
-params = kleister.InlineObject() # InlineObject | 
+params = kleister.AuthLogin() # AuthLogin | The credentials to authenticate
 
 try:
     # Authenticate an user by credentials
@@ -177,6 +177,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for models
 
+ - [AuthLogin](docs/AuthLogin.md)
  - [AuthToken](docs/AuthToken.md)
  - [AuthVerify](docs/AuthVerify.md)
  - [Build](docs/Build.md)
@@ -184,7 +185,7 @@ Class | Method | HTTP request | Description
  - [BuildVersionParams](docs/BuildVersionParams.md)
  - [Forge](docs/Forge.md)
  - [ForgeBuildParams](docs/ForgeBuildParams.md)
- - [InlineObject](docs/InlineObject.md)
+ - [GeneralError](docs/GeneralError.md)
  - [Minecraft](docs/Minecraft.md)
  - [MinecraftBuildParams](docs/MinecraftBuildParams.md)
  - [Mod](docs/Mod.md)
@@ -207,13 +208,26 @@ Class | Method | HTTP request | Description
  - [UserPack](docs/UserPack.md)
  - [UserPackParams](docs/UserPackParams.md)
  - [UserTeamParams](docs/UserTeamParams.md)
+ - [ValidationError](docs/ValidationError.md)
+ - [ValidationErrorErrors](docs/ValidationErrorErrors.md)
  - [Version](docs/Version.md)
  - [VersionBuildParams](docs/VersionBuildParams.md)
 
 
 ## Documentation For authorization
 
- All endpoints do not require authorization.
+
+## BasicAuth
+
+- **Type**: HTTP basic authentication
+
+
+## HeaderAuth
+
+- **Type**: API key
+- **API key parameter name**: X-API-Key
+- **Location**: HTTP header
+
 
 
 ## Security

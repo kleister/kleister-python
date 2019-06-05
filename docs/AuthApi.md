@@ -1,6 +1,6 @@
 # kleister.AuthApi
 
-All URIs are relative to *http://http:/api/v1*
+All URIs are relative to *http://try.kleister.tech/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -25,7 +25,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = kleister.AuthApi()
-params = kleister.InlineObject() # InlineObject | 
+params = kleister.AuthLogin() # AuthLogin | The credentials to authenticate
 
 try:
     # Authenticate an user by credentials
@@ -39,7 +39,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **params** | [**InlineObject**](InlineObject.md)|  | 
+ **params** | [**AuthLogin**](AuthLogin.md)| The credentials to authenticate | 
 
 ### Return type
 

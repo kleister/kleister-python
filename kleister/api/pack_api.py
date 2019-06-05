@@ -48,7 +48,7 @@ class PackApi(object):
         :param str pack_id: A pack UUID or slug (required)
         :param str build_id: A build UUID or slug (required)
         :param BuildVersionParams params: The version data to append to build (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -71,7 +71,7 @@ class PackApi(object):
         :param str pack_id: A pack UUID or slug (required)
         :param str build_id: A build UUID or slug (required)
         :param BuildVersionParams params: The version data to append to build (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -142,7 +142,7 @@ class PackApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -161,7 +161,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackTeamParams params: The pack team data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -183,7 +183,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackTeamParams params: The pack team data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -248,7 +248,7 @@ class PackApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -267,7 +267,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackUserParams params: The pack user data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -289,7 +289,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackUserParams params: The pack user data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -354,7 +354,7 @@ class PackApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -577,7 +577,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param str build_id: A build UUID or slug (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -599,7 +599,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param str build_id: A build UUID or slug (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -660,7 +660,7 @@ class PackApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -680,7 +680,7 @@ class PackApi(object):
         :param str pack_id: A pack UUID or slug (required)
         :param str build_id: A build UUID or slug (required)
         :param BuildVersionParams params: The version data to unlink from build (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -703,7 +703,7 @@ class PackApi(object):
         :param str pack_id: A pack UUID or slug (required)
         :param str build_id: A build UUID or slug (required)
         :param BuildVersionParams params: The version data to unlink from build (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -774,7 +774,7 @@ class PackApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -792,7 +792,7 @@ class PackApi(object):
 
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -813,7 +813,7 @@ class PackApi(object):
 
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -868,7 +868,7 @@ class PackApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -887,7 +887,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackTeamParams params: The pack team data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -909,7 +909,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackTeamParams params: The pack team data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -974,7 +974,7 @@ class PackApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -993,7 +993,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackUserParams params: The pack user data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1015,7 +1015,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackUserParams params: The pack user data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1080,7 +1080,7 @@ class PackApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -1569,7 +1569,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackTeamParams params: The pack team data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1591,7 +1591,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackTeamParams params: The pack team data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1656,7 +1656,7 @@ class PackApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -1675,7 +1675,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackUserParams params: The pack user data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1697,7 +1697,7 @@ class PackApi(object):
         :param async_req bool
         :param str pack_id: A pack UUID or slug (required)
         :param PackUserParams params: The pack user data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1762,7 +1762,7 @@ class PackApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501

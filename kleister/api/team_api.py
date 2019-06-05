@@ -47,7 +47,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamModParams params: The team mod data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -69,7 +69,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamModParams params: The team mod data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -134,7 +134,7 @@ class TeamApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -153,7 +153,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamPackParams params: The team pack data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -175,7 +175,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamPackParams params: The team pack data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -240,7 +240,7 @@ class TeamApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -259,7 +259,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamUserParams params: The team user data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -281,7 +281,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamUserParams params: The team user data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -346,7 +346,7 @@ class TeamApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -462,7 +462,7 @@ class TeamApi(object):
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -483,7 +483,7 @@ class TeamApi(object):
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -538,7 +538,7 @@ class TeamApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -557,7 +557,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamModParams params: The team mod data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -579,7 +579,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamModParams params: The team mod data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -644,7 +644,7 @@ class TeamApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -663,7 +663,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamPackParams params: The team pack data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -685,7 +685,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamPackParams params: The team pack data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -750,7 +750,7 @@ class TeamApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -769,7 +769,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamUserParams params: The team user data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -791,7 +791,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamUserParams params: The team user data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -856,7 +856,7 @@ class TeamApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -1243,7 +1243,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamModParams params: The team mod data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1265,7 +1265,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamModParams params: The team mod data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1330,7 +1330,7 @@ class TeamApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -1349,7 +1349,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamPackParams params: The team pack data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1371,7 +1371,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamPackParams params: The team pack data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1436,7 +1436,7 @@ class TeamApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -1455,7 +1455,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamUserParams params: The team user data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1477,7 +1477,7 @@ class TeamApi(object):
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
         :param TeamUserParams params: The team user data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1542,7 +1542,7 @@ class TeamApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501

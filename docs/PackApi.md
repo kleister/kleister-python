@@ -1,6 +1,6 @@
 # kleister.PackApi
 
-All URIs are relative to *http://http:/api/v1*
+All URIs are relative to *http://try.kleister.tech/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,7 +28,7 @@ Method | HTTP request | Description
 
 
 # **append_build_to_version**
-> object append_build_to_version(pack_id, build_id, params)
+> GeneralError append_build_to_version(pack_id, build_id, params)
 
 Assign a version to a build
 
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -79,7 +79,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_pack_to_team**
-> object append_pack_to_team(pack_id, params)
+> GeneralError append_pack_to_team(pack_id, params)
 
 Assign a team to pack
 
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -128,7 +128,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_pack_to_user**
-> object append_pack_to_user(pack_id, params)
+> GeneralError append_pack_to_user(pack_id, params)
 
 Assign a user to pack
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -273,7 +273,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_build**
-> object delete_build(pack_id, build_id)
+> GeneralError delete_build(pack_id, build_id)
 
 Delete a specific build for a pack
 
@@ -308,7 +308,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -322,7 +322,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_build_from_version**
-> object delete_build_from_version(pack_id, build_id, params)
+> GeneralError delete_build_from_version(pack_id, build_id, params)
 
 Unlink a version from a build
 
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -373,7 +373,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_pack**
-> object delete_pack(pack_id)
+> GeneralError delete_pack(pack_id)
 
 Delete a specific pack
 
@@ -406,7 +406,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -420,7 +420,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_pack_from_team**
-> object delete_pack_from_team(pack_id, params)
+> GeneralError delete_pack_from_team(pack_id, params)
 
 Remove a team from pack
 
@@ -455,7 +455,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -469,7 +469,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_pack_from_user**
-> object delete_pack_from_user(pack_id, params)
+> GeneralError delete_pack_from_user(pack_id, params)
 
 Remove a user from pack
 
@@ -504,7 +504,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -751,7 +751,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_pack_team**
-> object permit_pack_team(pack_id, params)
+> GeneralError permit_pack_team(pack_id, params)
 
 Update team perms for pack
 
@@ -786,7 +786,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -800,7 +800,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_pack_user**
-> object permit_pack_user(pack_id, params)
+> GeneralError permit_pack_user(pack_id, params)
 
 Update user perms for pack
 
@@ -835,7 +835,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 

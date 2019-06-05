@@ -35,6 +35,7 @@ from kleister.exceptions import ApiValueError
 from kleister.exceptions import ApiKeyError
 from kleister.exceptions import ApiException
 # import models into sdk package
+from kleister.models.auth_login import AuthLogin
 from kleister.models.auth_token import AuthToken
 from kleister.models.auth_verify import AuthVerify
 from kleister.models.build import Build
@@ -42,7 +43,7 @@ from kleister.models.build_version import BuildVersion
 from kleister.models.build_version_params import BuildVersionParams
 from kleister.models.forge import Forge
 from kleister.models.forge_build_params import ForgeBuildParams
-from kleister.models.inline_object import InlineObject
+from kleister.models.general_error import GeneralError
 from kleister.models.minecraft import Minecraft
 from kleister.models.minecraft_build_params import MinecraftBuildParams
 from kleister.models.mod import Mod
@@ -65,6 +66,8 @@ from kleister.models.user_mod_params import UserModParams
 from kleister.models.user_pack import UserPack
 from kleister.models.user_pack_params import UserPackParams
 from kleister.models.user_team_params import UserTeamParams
+from kleister.models.validation_error import ValidationError
+from kleister.models.validation_error_errors import ValidationErrorErrors
 from kleister.models.version import Version
 from kleister.models.version_build_params import VersionBuildParams
 

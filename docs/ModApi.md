@@ -1,6 +1,6 @@
 # kleister.ModApi
 
-All URIs are relative to *http://http:/api/v1*
+All URIs are relative to *http://try.kleister.tech/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,7 +28,7 @@ Method | HTTP request | Description
 
 
 # **append_mod_to_team**
-> object append_mod_to_team(mod_id, params)
+> GeneralError append_mod_to_team(mod_id, params)
 
 Assign a team to mod
 
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -77,7 +77,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_mod_to_user**
-> object append_mod_to_user(mod_id, params)
+> GeneralError append_mod_to_user(mod_id, params)
 
 Assign a user to mod
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -126,7 +126,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_version_to_build**
-> object append_version_to_build(mod_id, version_id, params)
+> GeneralError append_version_to_build(mod_id, version_id, params)
 
 Assign a build to a version
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -273,7 +273,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_mod**
-> object delete_mod(mod_id)
+> GeneralError delete_mod(mod_id)
 
 Delete a specific mod
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -320,7 +320,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_mod_from_team**
-> object delete_mod_from_team(mod_id, params)
+> GeneralError delete_mod_from_team(mod_id, params)
 
 Remove a team from mod
 
@@ -355,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -369,7 +369,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_mod_from_user**
-> object delete_mod_from_user(mod_id, params)
+> GeneralError delete_mod_from_user(mod_id, params)
 
 Remove a user from mod
 
@@ -404,7 +404,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -418,7 +418,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_version**
-> object delete_version(mod_id, version_id)
+> GeneralError delete_version(mod_id, version_id)
 
 Delete a specific version for a mod
 
@@ -453,7 +453,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -467,7 +467,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_version_from_build**
-> object delete_version_from_build(mod_id, version_id, params)
+> GeneralError delete_version_from_build(mod_id, version_id, params)
 
 Unlink a build from a version
 
@@ -504,7 +504,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -751,7 +751,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_mod_team**
-> object permit_mod_team(mod_id, params)
+> GeneralError permit_mod_team(mod_id, params)
 
 Update team perms for mod
 
@@ -786,7 +786,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 
@@ -800,7 +800,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_mod_user**
-> object permit_mod_user(mod_id, params)
+> GeneralError permit_mod_user(mod_id, params)
 
 Update user perms for mod
 
@@ -835,7 +835,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**GeneralError**](GeneralError.md)
 
 ### Authorization
 

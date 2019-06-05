@@ -47,7 +47,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModTeamParams params: The mod team data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -69,7 +69,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModTeamParams params: The mod team data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -134,7 +134,7 @@ class ModApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -153,7 +153,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModUserParams params: The mod user data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -175,7 +175,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModUserParams params: The mod user data to assign (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -240,7 +240,7 @@ class ModApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -260,7 +260,7 @@ class ModApi(object):
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
         :param VersionBuildParams params: The build data to append to version (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -283,7 +283,7 @@ class ModApi(object):
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
         :param VersionBuildParams params: The build data to append to version (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -354,7 +354,7 @@ class ModApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -576,7 +576,7 @@ class ModApi(object):
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -597,7 +597,7 @@ class ModApi(object):
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -652,7 +652,7 @@ class ModApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -671,7 +671,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModTeamParams params: The mod team data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -693,7 +693,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModTeamParams params: The mod team data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -758,7 +758,7 @@ class ModApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -777,7 +777,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModUserParams params: The mod user data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -799,7 +799,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModUserParams params: The mod user data to delete (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -864,7 +864,7 @@ class ModApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -883,7 +883,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -905,7 +905,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -966,7 +966,7 @@ class ModApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -986,7 +986,7 @@ class ModApi(object):
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
         :param VersionBuildParams params: The build data to unlink from version (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1009,7 +1009,7 @@ class ModApi(object):
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
         :param VersionBuildParams params: The build data to unlink from version (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1080,7 +1080,7 @@ class ModApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -1569,7 +1569,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModTeamParams params: The mod team data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1591,7 +1591,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModTeamParams params: The mod team data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1656,7 +1656,7 @@ class ModApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -1675,7 +1675,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModUserParams params: The mod user data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1697,7 +1697,7 @@ class ModApi(object):
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param ModUserParams params: The mod user data to update (required)
-        :return: object
+        :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1762,7 +1762,7 @@ class ModApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='GeneralError',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
