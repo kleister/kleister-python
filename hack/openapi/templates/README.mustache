@@ -1,7 +1,6 @@
 # Kleister: SDK for Python
 
-[![Build Status](http://cloud.drone.io/api/badges/kleister/kleister-python/status.svg)](http://cloud.drone.io/kleister/kleister-python)
-[![Stories in Ready](https://badge.waffle.io/kleister/kleister-api.svg?label=ready&title=Ready)](http://waffle.io/kleister/kleister-api)
+[![Build Status](https://cloud.drone.io/api/badges/kleister/kleister-python/status.svg)](https://cloud.drone.io/kleister/kleister-python)
 [![Join the Matrix chat at https://matrix.to/#/#kleister:matrix.org](https://img.shields.io/badge/matrix-%23kleister%3Amatrix.org-7bc9a4.svg)](https://matrix.to/#/#kleister:matrix.org)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bcffce563f304d1ea64fdfd16e5e5e3f)](https://www.codacy.com/app/kleister/kleister-python?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kleister/kleister-python&amp;utm_campaign=Badge_Grade)
 [![PyPI version](https://badge.fury.io/py/kleister.svg)](https://badge.fury.io/py/kleister)
