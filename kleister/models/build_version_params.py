@@ -31,78 +31,24 @@ class BuildVersionParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'pack': 'str',
-        'build': 'str',
         'mod': 'str',
         'version': 'str'
     }
 
     attribute_map = {
-        'pack': 'pack',
-        'build': 'build',
         'mod': 'mod',
         'version': 'version'
     }
 
-    def __init__(self, pack=None, build=None, mod=None, version=None):  # noqa: E501
+    def __init__(self, mod=None, version=None):  # noqa: E501
         """BuildVersionParams - a model defined in OpenAPI"""  # noqa: E501
 
-        self._pack = None
-        self._build = None
         self._mod = None
         self._version = None
         self.discriminator = None
 
-        self.pack = pack
-        self.build = build
         self.mod = mod
         self.version = version
-
-    @property
-    def pack(self):
-        """Gets the pack of this BuildVersionParams.  # noqa: E501
-
-
-        :return: The pack of this BuildVersionParams.  # noqa: E501
-        :rtype: str
-        """
-        return self._pack
-
-    @pack.setter
-    def pack(self, pack):
-        """Sets the pack of this BuildVersionParams.
-
-
-        :param pack: The pack of this BuildVersionParams.  # noqa: E501
-        :type: str
-        """
-        if pack is None:
-            raise ValueError("Invalid value for `pack`, must not be `None`")  # noqa: E501
-
-        self._pack = pack
-
-    @property
-    def build(self):
-        """Gets the build of this BuildVersionParams.  # noqa: E501
-
-
-        :return: The build of this BuildVersionParams.  # noqa: E501
-        :rtype: str
-        """
-        return self._build
-
-    @build.setter
-    def build(self, build):
-        """Sets the build of this BuildVersionParams.
-
-
-        :param build: The build of this BuildVersionParams.  # noqa: E501
-        :type: str
-        """
-        if build is None:
-            raise ValueError("Invalid value for `build`, must not be `None`")  # noqa: E501
-
-        self._build = build
 
     @property
     def mod(self):

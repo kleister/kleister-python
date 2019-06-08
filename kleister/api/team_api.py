@@ -36,39 +36,39 @@ class TeamApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def append_team_to_mod(self, team_id, params, **kwargs):  # noqa: E501
+    def append_team_to_mod(self, team_id, team_mod, **kwargs):  # noqa: E501
         """Assign a mod to team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_team_to_mod(team_id, params, async_req=True)
+        >>> thread = api.append_team_to_mod(team_id, team_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamModParams params: The team mod data to assign (required)
+        :param TeamModParams team_mod: The team mod data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.append_team_to_mod_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            return self.append_team_to_mod_with_http_info(team_id, team_mod, **kwargs)  # noqa: E501
         else:
-            (data) = self.append_team_to_mod_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            (data) = self.append_team_to_mod_with_http_info(team_id, team_mod, **kwargs)  # noqa: E501
             return data
 
-    def append_team_to_mod_with_http_info(self, team_id, params, **kwargs):  # noqa: E501
+    def append_team_to_mod_with_http_info(self, team_id, team_mod, **kwargs):  # noqa: E501
         """Assign a mod to team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_team_to_mod_with_http_info(team_id, params, async_req=True)
+        >>> thread = api.append_team_to_mod_with_http_info(team_id, team_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamModParams params: The team mod data to assign (required)
+        :param TeamModParams team_mod: The team mod data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -76,7 +76,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['team_id', 'params']  # noqa: E501
+        all_params = ['team_id', 'team_mod']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -94,10 +94,10 @@ class TeamApi(object):
         if ('team_id' not in local_var_params or
                 local_var_params['team_id'] is None):
             raise ApiValueError("Missing the required parameter `team_id` when calling `append_team_to_mod`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `append_team_to_mod`")  # noqa: E501
+        # verify the required parameter 'team_mod' is set
+        if ('team_mod' not in local_var_params or
+                local_var_params['team_mod'] is None):
+            raise ApiValueError("Missing the required parameter `team_mod` when calling `append_team_to_mod`")  # noqa: E501
 
         collection_formats = {}
 
@@ -113,8 +113,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team_mod' in local_var_params:
+            body_params = local_var_params['team_mod']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -142,39 +142,39 @@ class TeamApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def append_team_to_pack(self, team_id, params, **kwargs):  # noqa: E501
+    def append_team_to_pack(self, team_id, team_pack, **kwargs):  # noqa: E501
         """Assign a pack to team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_team_to_pack(team_id, params, async_req=True)
+        >>> thread = api.append_team_to_pack(team_id, team_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamPackParams params: The team pack data to assign (required)
+        :param TeamPackParams team_pack: The team pack data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.append_team_to_pack_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            return self.append_team_to_pack_with_http_info(team_id, team_pack, **kwargs)  # noqa: E501
         else:
-            (data) = self.append_team_to_pack_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            (data) = self.append_team_to_pack_with_http_info(team_id, team_pack, **kwargs)  # noqa: E501
             return data
 
-    def append_team_to_pack_with_http_info(self, team_id, params, **kwargs):  # noqa: E501
+    def append_team_to_pack_with_http_info(self, team_id, team_pack, **kwargs):  # noqa: E501
         """Assign a pack to team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_team_to_pack_with_http_info(team_id, params, async_req=True)
+        >>> thread = api.append_team_to_pack_with_http_info(team_id, team_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamPackParams params: The team pack data to assign (required)
+        :param TeamPackParams team_pack: The team pack data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -182,7 +182,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['team_id', 'params']  # noqa: E501
+        all_params = ['team_id', 'team_pack']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -200,10 +200,10 @@ class TeamApi(object):
         if ('team_id' not in local_var_params or
                 local_var_params['team_id'] is None):
             raise ApiValueError("Missing the required parameter `team_id` when calling `append_team_to_pack`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `append_team_to_pack`")  # noqa: E501
+        # verify the required parameter 'team_pack' is set
+        if ('team_pack' not in local_var_params or
+                local_var_params['team_pack'] is None):
+            raise ApiValueError("Missing the required parameter `team_pack` when calling `append_team_to_pack`")  # noqa: E501
 
         collection_formats = {}
 
@@ -219,8 +219,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team_pack' in local_var_params:
+            body_params = local_var_params['team_pack']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -248,39 +248,39 @@ class TeamApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def append_team_to_user(self, team_id, params, **kwargs):  # noqa: E501
+    def append_team_to_user(self, team_id, team_user, **kwargs):  # noqa: E501
         """Assign a user to team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_team_to_user(team_id, params, async_req=True)
+        >>> thread = api.append_team_to_user(team_id, team_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamUserParams params: The team user data to assign (required)
+        :param TeamUserParams team_user: The team user data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.append_team_to_user_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            return self.append_team_to_user_with_http_info(team_id, team_user, **kwargs)  # noqa: E501
         else:
-            (data) = self.append_team_to_user_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            (data) = self.append_team_to_user_with_http_info(team_id, team_user, **kwargs)  # noqa: E501
             return data
 
-    def append_team_to_user_with_http_info(self, team_id, params, **kwargs):  # noqa: E501
+    def append_team_to_user_with_http_info(self, team_id, team_user, **kwargs):  # noqa: E501
         """Assign a user to team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_team_to_user_with_http_info(team_id, params, async_req=True)
+        >>> thread = api.append_team_to_user_with_http_info(team_id, team_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamUserParams params: The team user data to assign (required)
+        :param TeamUserParams team_user: The team user data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -288,7 +288,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['team_id', 'params']  # noqa: E501
+        all_params = ['team_id', 'team_user']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -306,10 +306,10 @@ class TeamApi(object):
         if ('team_id' not in local_var_params or
                 local_var_params['team_id'] is None):
             raise ApiValueError("Missing the required parameter `team_id` when calling `append_team_to_user`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `append_team_to_user`")  # noqa: E501
+        # verify the required parameter 'team_user' is set
+        if ('team_user' not in local_var_params or
+                local_var_params['team_user'] is None):
+            raise ApiValueError("Missing the required parameter `team_user` when calling `append_team_to_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -325,8 +325,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team_user' in local_var_params:
+            body_params = local_var_params['team_user']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -354,37 +354,37 @@ class TeamApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def create_team(self, params, **kwargs):  # noqa: E501
+    def create_team(self, team, **kwargs):  # noqa: E501
         """Create a new team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_team(params, async_req=True)
+        >>> thread = api.create_team(team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param Team params: The team data to create (required)
+        :param Team team: The team data to create (required)
         :return: Team
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.create_team_with_http_info(params, **kwargs)  # noqa: E501
+            return self.create_team_with_http_info(team, **kwargs)  # noqa: E501
         else:
-            (data) = self.create_team_with_http_info(params, **kwargs)  # noqa: E501
+            (data) = self.create_team_with_http_info(team, **kwargs)  # noqa: E501
             return data
 
-    def create_team_with_http_info(self, params, **kwargs):  # noqa: E501
+    def create_team_with_http_info(self, team, **kwargs):  # noqa: E501
         """Create a new team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_team_with_http_info(params, async_req=True)
+        >>> thread = api.create_team_with_http_info(team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param Team params: The team data to create (required)
+        :param Team team: The team data to create (required)
         :return: Team
                  If the method is called asynchronously,
                  returns the request thread.
@@ -392,7 +392,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['params']  # noqa: E501
+        all_params = ['team']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -406,10 +406,10 @@ class TeamApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `create_team`")  # noqa: E501
+        # verify the required parameter 'team' is set
+        if ('team' not in local_var_params or
+                local_var_params['team'] is None):
+            raise ApiValueError("Missing the required parameter `team` when calling `create_team`")  # noqa: E501
 
         collection_formats = {}
 
@@ -423,8 +423,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team' in local_var_params:
+            body_params = local_var_params['team']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -546,39 +546,39 @@ class TeamApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_team_from_mod(self, team_id, params, **kwargs):  # noqa: E501
+    def delete_team_from_mod(self, team_id, team_mod, **kwargs):  # noqa: E501
         """Remove a mod from team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_team_from_mod(team_id, params, async_req=True)
+        >>> thread = api.delete_team_from_mod(team_id, team_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamModParams params: The team mod data to delete (required)
+        :param TeamModParams team_mod: The team mod data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_team_from_mod_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            return self.delete_team_from_mod_with_http_info(team_id, team_mod, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_team_from_mod_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            (data) = self.delete_team_from_mod_with_http_info(team_id, team_mod, **kwargs)  # noqa: E501
             return data
 
-    def delete_team_from_mod_with_http_info(self, team_id, params, **kwargs):  # noqa: E501
+    def delete_team_from_mod_with_http_info(self, team_id, team_mod, **kwargs):  # noqa: E501
         """Remove a mod from team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_team_from_mod_with_http_info(team_id, params, async_req=True)
+        >>> thread = api.delete_team_from_mod_with_http_info(team_id, team_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamModParams params: The team mod data to delete (required)
+        :param TeamModParams team_mod: The team mod data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -586,7 +586,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['team_id', 'params']  # noqa: E501
+        all_params = ['team_id', 'team_mod']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -604,10 +604,10 @@ class TeamApi(object):
         if ('team_id' not in local_var_params or
                 local_var_params['team_id'] is None):
             raise ApiValueError("Missing the required parameter `team_id` when calling `delete_team_from_mod`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `delete_team_from_mod`")  # noqa: E501
+        # verify the required parameter 'team_mod' is set
+        if ('team_mod' not in local_var_params or
+                local_var_params['team_mod'] is None):
+            raise ApiValueError("Missing the required parameter `team_mod` when calling `delete_team_from_mod`")  # noqa: E501
 
         collection_formats = {}
 
@@ -623,8 +623,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team_mod' in local_var_params:
+            body_params = local_var_params['team_mod']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -652,39 +652,39 @@ class TeamApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_team_from_pack(self, team_id, params, **kwargs):  # noqa: E501
+    def delete_team_from_pack(self, team_id, team_pack, **kwargs):  # noqa: E501
         """Remove a pack from team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_team_from_pack(team_id, params, async_req=True)
+        >>> thread = api.delete_team_from_pack(team_id, team_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamPackParams params: The team pack data to delete (required)
+        :param TeamPackParams team_pack: The team pack data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_team_from_pack_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            return self.delete_team_from_pack_with_http_info(team_id, team_pack, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_team_from_pack_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            (data) = self.delete_team_from_pack_with_http_info(team_id, team_pack, **kwargs)  # noqa: E501
             return data
 
-    def delete_team_from_pack_with_http_info(self, team_id, params, **kwargs):  # noqa: E501
+    def delete_team_from_pack_with_http_info(self, team_id, team_pack, **kwargs):  # noqa: E501
         """Remove a pack from team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_team_from_pack_with_http_info(team_id, params, async_req=True)
+        >>> thread = api.delete_team_from_pack_with_http_info(team_id, team_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamPackParams params: The team pack data to delete (required)
+        :param TeamPackParams team_pack: The team pack data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -692,7 +692,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['team_id', 'params']  # noqa: E501
+        all_params = ['team_id', 'team_pack']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -710,10 +710,10 @@ class TeamApi(object):
         if ('team_id' not in local_var_params or
                 local_var_params['team_id'] is None):
             raise ApiValueError("Missing the required parameter `team_id` when calling `delete_team_from_pack`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `delete_team_from_pack`")  # noqa: E501
+        # verify the required parameter 'team_pack' is set
+        if ('team_pack' not in local_var_params or
+                local_var_params['team_pack'] is None):
+            raise ApiValueError("Missing the required parameter `team_pack` when calling `delete_team_from_pack`")  # noqa: E501
 
         collection_formats = {}
 
@@ -729,8 +729,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team_pack' in local_var_params:
+            body_params = local_var_params['team_pack']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -758,39 +758,39 @@ class TeamApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_team_from_user(self, team_id, params, **kwargs):  # noqa: E501
+    def delete_team_from_user(self, team_id, team_user, **kwargs):  # noqa: E501
         """Remove a user from team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_team_from_user(team_id, params, async_req=True)
+        >>> thread = api.delete_team_from_user(team_id, team_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamUserParams params: The team user data to delete (required)
+        :param TeamUserParams team_user: The team user data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_team_from_user_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            return self.delete_team_from_user_with_http_info(team_id, team_user, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_team_from_user_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            (data) = self.delete_team_from_user_with_http_info(team_id, team_user, **kwargs)  # noqa: E501
             return data
 
-    def delete_team_from_user_with_http_info(self, team_id, params, **kwargs):  # noqa: E501
+    def delete_team_from_user_with_http_info(self, team_id, team_user, **kwargs):  # noqa: E501
         """Remove a user from team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_team_from_user_with_http_info(team_id, params, async_req=True)
+        >>> thread = api.delete_team_from_user_with_http_info(team_id, team_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamUserParams params: The team user data to delete (required)
+        :param TeamUserParams team_user: The team user data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -798,7 +798,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['team_id', 'params']  # noqa: E501
+        all_params = ['team_id', 'team_user']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -816,10 +816,10 @@ class TeamApi(object):
         if ('team_id' not in local_var_params or
                 local_var_params['team_id'] is None):
             raise ApiValueError("Missing the required parameter `team_id` when calling `delete_team_from_user`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `delete_team_from_user`")  # noqa: E501
+        # verify the required parameter 'team_user' is set
+        if ('team_user' not in local_var_params or
+                local_var_params['team_user'] is None):
+            raise ApiValueError("Missing the required parameter `team_user` when calling `delete_team_from_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -835,8 +835,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team_user' in local_var_params:
+            body_params = local_var_params['team_user']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1232,39 +1232,39 @@ class TeamApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def permit_team_mod(self, team_id, params, **kwargs):  # noqa: E501
+    def permit_team_mod(self, team_id, team_mod, **kwargs):  # noqa: E501
         """Update mod perms for team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_team_mod(team_id, params, async_req=True)
+        >>> thread = api.permit_team_mod(team_id, team_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamModParams params: The team mod data to update (required)
+        :param TeamModParams team_mod: The team mod data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.permit_team_mod_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            return self.permit_team_mod_with_http_info(team_id, team_mod, **kwargs)  # noqa: E501
         else:
-            (data) = self.permit_team_mod_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            (data) = self.permit_team_mod_with_http_info(team_id, team_mod, **kwargs)  # noqa: E501
             return data
 
-    def permit_team_mod_with_http_info(self, team_id, params, **kwargs):  # noqa: E501
+    def permit_team_mod_with_http_info(self, team_id, team_mod, **kwargs):  # noqa: E501
         """Update mod perms for team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_team_mod_with_http_info(team_id, params, async_req=True)
+        >>> thread = api.permit_team_mod_with_http_info(team_id, team_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamModParams params: The team mod data to update (required)
+        :param TeamModParams team_mod: The team mod data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1272,7 +1272,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['team_id', 'params']  # noqa: E501
+        all_params = ['team_id', 'team_mod']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1290,10 +1290,10 @@ class TeamApi(object):
         if ('team_id' not in local_var_params or
                 local_var_params['team_id'] is None):
             raise ApiValueError("Missing the required parameter `team_id` when calling `permit_team_mod`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `permit_team_mod`")  # noqa: E501
+        # verify the required parameter 'team_mod' is set
+        if ('team_mod' not in local_var_params or
+                local_var_params['team_mod'] is None):
+            raise ApiValueError("Missing the required parameter `team_mod` when calling `permit_team_mod`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1309,8 +1309,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team_mod' in local_var_params:
+            body_params = local_var_params['team_mod']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1338,39 +1338,39 @@ class TeamApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def permit_team_pack(self, team_id, params, **kwargs):  # noqa: E501
+    def permit_team_pack(self, team_id, team_pack, **kwargs):  # noqa: E501
         """Update pack perms for team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_team_pack(team_id, params, async_req=True)
+        >>> thread = api.permit_team_pack(team_id, team_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamPackParams params: The team pack data to update (required)
+        :param TeamPackParams team_pack: The team pack data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.permit_team_pack_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            return self.permit_team_pack_with_http_info(team_id, team_pack, **kwargs)  # noqa: E501
         else:
-            (data) = self.permit_team_pack_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            (data) = self.permit_team_pack_with_http_info(team_id, team_pack, **kwargs)  # noqa: E501
             return data
 
-    def permit_team_pack_with_http_info(self, team_id, params, **kwargs):  # noqa: E501
+    def permit_team_pack_with_http_info(self, team_id, team_pack, **kwargs):  # noqa: E501
         """Update pack perms for team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_team_pack_with_http_info(team_id, params, async_req=True)
+        >>> thread = api.permit_team_pack_with_http_info(team_id, team_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamPackParams params: The team pack data to update (required)
+        :param TeamPackParams team_pack: The team pack data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1378,7 +1378,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['team_id', 'params']  # noqa: E501
+        all_params = ['team_id', 'team_pack']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1396,10 +1396,10 @@ class TeamApi(object):
         if ('team_id' not in local_var_params or
                 local_var_params['team_id'] is None):
             raise ApiValueError("Missing the required parameter `team_id` when calling `permit_team_pack`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `permit_team_pack`")  # noqa: E501
+        # verify the required parameter 'team_pack' is set
+        if ('team_pack' not in local_var_params or
+                local_var_params['team_pack'] is None):
+            raise ApiValueError("Missing the required parameter `team_pack` when calling `permit_team_pack`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1415,8 +1415,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team_pack' in local_var_params:
+            body_params = local_var_params['team_pack']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1444,39 +1444,39 @@ class TeamApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def permit_team_user(self, team_id, params, **kwargs):  # noqa: E501
+    def permit_team_user(self, team_id, team_user, **kwargs):  # noqa: E501
         """Update user perms for team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_team_user(team_id, params, async_req=True)
+        >>> thread = api.permit_team_user(team_id, team_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamUserParams params: The team user data to update (required)
+        :param TeamUserParams team_user: The team user data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.permit_team_user_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            return self.permit_team_user_with_http_info(team_id, team_user, **kwargs)  # noqa: E501
         else:
-            (data) = self.permit_team_user_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            (data) = self.permit_team_user_with_http_info(team_id, team_user, **kwargs)  # noqa: E501
             return data
 
-    def permit_team_user_with_http_info(self, team_id, params, **kwargs):  # noqa: E501
+    def permit_team_user_with_http_info(self, team_id, team_user, **kwargs):  # noqa: E501
         """Update user perms for team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_team_user_with_http_info(team_id, params, async_req=True)
+        >>> thread = api.permit_team_user_with_http_info(team_id, team_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param TeamUserParams params: The team user data to update (required)
+        :param TeamUserParams team_user: The team user data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1484,7 +1484,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['team_id', 'params']  # noqa: E501
+        all_params = ['team_id', 'team_user']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1502,10 +1502,10 @@ class TeamApi(object):
         if ('team_id' not in local_var_params or
                 local_var_params['team_id'] is None):
             raise ApiValueError("Missing the required parameter `team_id` when calling `permit_team_user`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `permit_team_user`")  # noqa: E501
+        # verify the required parameter 'team_user' is set
+        if ('team_user' not in local_var_params or
+                local_var_params['team_user'] is None):
+            raise ApiValueError("Missing the required parameter `team_user` when calling `permit_team_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1521,8 +1521,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team_user' in local_var_params:
+            body_params = local_var_params['team_user']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1644,39 +1644,39 @@ class TeamApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def update_team(self, team_id, params, **kwargs):  # noqa: E501
+    def update_team(self, team_id, team, **kwargs):  # noqa: E501
         """Update a specific team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_team(team_id, params, async_req=True)
+        >>> thread = api.update_team(team_id, team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param Team params: The team data to update (required)
+        :param Team team: The team data to update (required)
         :return: Team
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.update_team_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            return self.update_team_with_http_info(team_id, team, **kwargs)  # noqa: E501
         else:
-            (data) = self.update_team_with_http_info(team_id, params, **kwargs)  # noqa: E501
+            (data) = self.update_team_with_http_info(team_id, team, **kwargs)  # noqa: E501
             return data
 
-    def update_team_with_http_info(self, team_id, params, **kwargs):  # noqa: E501
+    def update_team_with_http_info(self, team_id, team, **kwargs):  # noqa: E501
         """Update a specific team  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_team_with_http_info(team_id, params, async_req=True)
+        >>> thread = api.update_team_with_http_info(team_id, team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str team_id: A team UUID or slug (required)
-        :param Team params: The team data to update (required)
+        :param Team team: The team data to update (required)
         :return: Team
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1684,7 +1684,7 @@ class TeamApi(object):
 
         local_var_params = locals()
 
-        all_params = ['team_id', 'params']  # noqa: E501
+        all_params = ['team_id', 'team']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1702,10 +1702,10 @@ class TeamApi(object):
         if ('team_id' not in local_var_params or
                 local_var_params['team_id'] is None):
             raise ApiValueError("Missing the required parameter `team_id` when calling `update_team`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `update_team`")  # noqa: E501
+        # verify the required parameter 'team' is set
+        if ('team' not in local_var_params or
+                local_var_params['team'] is None):
+            raise ApiValueError("Missing the required parameter `team` when calling `update_team`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1721,8 +1721,8 @@ class TeamApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'team' in local_var_params:
+            body_params = local_var_params['team']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

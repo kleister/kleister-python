@@ -31,51 +31,24 @@ class UserPackParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'user': 'str',
         'pack': 'str',
         'perm': 'str'
     }
 
     attribute_map = {
-        'user': 'user',
         'pack': 'pack',
         'perm': 'perm'
     }
 
-    def __init__(self, user=None, pack=None, perm=None):  # noqa: E501
+    def __init__(self, pack=None, perm=None):  # noqa: E501
         """UserPackParams - a model defined in OpenAPI"""  # noqa: E501
 
-        self._user = None
         self._pack = None
         self._perm = None
         self.discriminator = None
 
-        self.user = user
         self.pack = pack
         self.perm = perm
-
-    @property
-    def user(self):
-        """Gets the user of this UserPackParams.  # noqa: E501
-
-
-        :return: The user of this UserPackParams.  # noqa: E501
-        :rtype: str
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this UserPackParams.
-
-
-        :param user: The user of this UserPackParams.  # noqa: E501
-        :type: str
-        """
-        if user is None:
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
-
-        self._user = user
 
     @property
     def pack(self):
@@ -120,6 +93,12 @@ class UserPackParams(object):
         """
         if perm is None:
             raise ValueError("Invalid value for `perm`, must not be `None`")  # noqa: E501
+        allowed_values = ["user", "admin", "owner"]  # noqa: E501
+        if perm not in allowed_values:
+            raise ValueError(
+                "Invalid value for `perm` ({0}), must be one of {1}"  # noqa: E501
+                .format(perm, allowed_values)
+            )
 
         self._perm = perm
 

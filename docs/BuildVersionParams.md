@@ -3,8 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pack** | **str** |  | 
-**build** | **str** |  | 
 **mod** | **str** |  | 
 **version** | **str** |  | 
 

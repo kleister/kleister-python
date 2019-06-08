@@ -36,39 +36,39 @@ class UserApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def append_user_to_mod(self, user_id, params, **kwargs):  # noqa: E501
+    def append_user_to_mod(self, user_id, user_mod, **kwargs):  # noqa: E501
         """Assign a mod to user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_user_to_mod(user_id, params, async_req=True)
+        >>> thread = api.append_user_to_mod(user_id, user_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserModParams params: The user mod data to assign (required)
+        :param UserModParams user_mod: The user mod data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.append_user_to_mod_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            return self.append_user_to_mod_with_http_info(user_id, user_mod, **kwargs)  # noqa: E501
         else:
-            (data) = self.append_user_to_mod_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            (data) = self.append_user_to_mod_with_http_info(user_id, user_mod, **kwargs)  # noqa: E501
             return data
 
-    def append_user_to_mod_with_http_info(self, user_id, params, **kwargs):  # noqa: E501
+    def append_user_to_mod_with_http_info(self, user_id, user_mod, **kwargs):  # noqa: E501
         """Assign a mod to user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_user_to_mod_with_http_info(user_id, params, async_req=True)
+        >>> thread = api.append_user_to_mod_with_http_info(user_id, user_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserModParams params: The user mod data to assign (required)
+        :param UserModParams user_mod: The user mod data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -76,7 +76,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['user_id', 'params']  # noqa: E501
+        all_params = ['user_id', 'user_mod']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -94,10 +94,10 @@ class UserApi(object):
         if ('user_id' not in local_var_params or
                 local_var_params['user_id'] is None):
             raise ApiValueError("Missing the required parameter `user_id` when calling `append_user_to_mod`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `append_user_to_mod`")  # noqa: E501
+        # verify the required parameter 'user_mod' is set
+        if ('user_mod' not in local_var_params or
+                local_var_params['user_mod'] is None):
+            raise ApiValueError("Missing the required parameter `user_mod` when calling `append_user_to_mod`")  # noqa: E501
 
         collection_formats = {}
 
@@ -113,8 +113,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user_mod' in local_var_params:
+            body_params = local_var_params['user_mod']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -142,39 +142,39 @@ class UserApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def append_user_to_pack(self, user_id, params, **kwargs):  # noqa: E501
+    def append_user_to_pack(self, user_id, user_pack, **kwargs):  # noqa: E501
         """Assign a pack to user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_user_to_pack(user_id, params, async_req=True)
+        >>> thread = api.append_user_to_pack(user_id, user_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserPackParams params: The user pack data to assign (required)
+        :param UserPackParams user_pack: The user pack data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.append_user_to_pack_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            return self.append_user_to_pack_with_http_info(user_id, user_pack, **kwargs)  # noqa: E501
         else:
-            (data) = self.append_user_to_pack_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            (data) = self.append_user_to_pack_with_http_info(user_id, user_pack, **kwargs)  # noqa: E501
             return data
 
-    def append_user_to_pack_with_http_info(self, user_id, params, **kwargs):  # noqa: E501
+    def append_user_to_pack_with_http_info(self, user_id, user_pack, **kwargs):  # noqa: E501
         """Assign a pack to user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_user_to_pack_with_http_info(user_id, params, async_req=True)
+        >>> thread = api.append_user_to_pack_with_http_info(user_id, user_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserPackParams params: The user pack data to assign (required)
+        :param UserPackParams user_pack: The user pack data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -182,7 +182,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['user_id', 'params']  # noqa: E501
+        all_params = ['user_id', 'user_pack']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -200,10 +200,10 @@ class UserApi(object):
         if ('user_id' not in local_var_params or
                 local_var_params['user_id'] is None):
             raise ApiValueError("Missing the required parameter `user_id` when calling `append_user_to_pack`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `append_user_to_pack`")  # noqa: E501
+        # verify the required parameter 'user_pack' is set
+        if ('user_pack' not in local_var_params or
+                local_var_params['user_pack'] is None):
+            raise ApiValueError("Missing the required parameter `user_pack` when calling `append_user_to_pack`")  # noqa: E501
 
         collection_formats = {}
 
@@ -219,8 +219,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user_pack' in local_var_params:
+            body_params = local_var_params['user_pack']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -248,39 +248,39 @@ class UserApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def append_user_to_team(self, user_id, params, **kwargs):  # noqa: E501
+    def append_user_to_team(self, user_id, user_team, **kwargs):  # noqa: E501
         """Assign a team to user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_user_to_team(user_id, params, async_req=True)
+        >>> thread = api.append_user_to_team(user_id, user_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserTeamParams params: The user team data to assign (required)
+        :param UserTeamParams user_team: The user team data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.append_user_to_team_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            return self.append_user_to_team_with_http_info(user_id, user_team, **kwargs)  # noqa: E501
         else:
-            (data) = self.append_user_to_team_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            (data) = self.append_user_to_team_with_http_info(user_id, user_team, **kwargs)  # noqa: E501
             return data
 
-    def append_user_to_team_with_http_info(self, user_id, params, **kwargs):  # noqa: E501
+    def append_user_to_team_with_http_info(self, user_id, user_team, **kwargs):  # noqa: E501
         """Assign a team to user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_user_to_team_with_http_info(user_id, params, async_req=True)
+        >>> thread = api.append_user_to_team_with_http_info(user_id, user_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserTeamParams params: The user team data to assign (required)
+        :param UserTeamParams user_team: The user team data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -288,7 +288,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['user_id', 'params']  # noqa: E501
+        all_params = ['user_id', 'user_team']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -306,10 +306,10 @@ class UserApi(object):
         if ('user_id' not in local_var_params or
                 local_var_params['user_id'] is None):
             raise ApiValueError("Missing the required parameter `user_id` when calling `append_user_to_team`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `append_user_to_team`")  # noqa: E501
+        # verify the required parameter 'user_team' is set
+        if ('user_team' not in local_var_params or
+                local_var_params['user_team'] is None):
+            raise ApiValueError("Missing the required parameter `user_team` when calling `append_user_to_team`")  # noqa: E501
 
         collection_formats = {}
 
@@ -325,8 +325,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user_team' in local_var_params:
+            body_params = local_var_params['user_team']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -354,37 +354,37 @@ class UserApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def create_user(self, params, **kwargs):  # noqa: E501
+    def create_user(self, user, **kwargs):  # noqa: E501
         """Create a new user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_user(params, async_req=True)
+        >>> thread = api.create_user(user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param User params: The user data to create (required)
+        :param User user: The user data to create (required)
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.create_user_with_http_info(params, **kwargs)  # noqa: E501
+            return self.create_user_with_http_info(user, **kwargs)  # noqa: E501
         else:
-            (data) = self.create_user_with_http_info(params, **kwargs)  # noqa: E501
+            (data) = self.create_user_with_http_info(user, **kwargs)  # noqa: E501
             return data
 
-    def create_user_with_http_info(self, params, **kwargs):  # noqa: E501
+    def create_user_with_http_info(self, user, **kwargs):  # noqa: E501
         """Create a new user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_user_with_http_info(params, async_req=True)
+        >>> thread = api.create_user_with_http_info(user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param User params: The user data to create (required)
+        :param User user: The user data to create (required)
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
@@ -392,7 +392,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['params']  # noqa: E501
+        all_params = ['user']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -406,10 +406,10 @@ class UserApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `create_user`")  # noqa: E501
+        # verify the required parameter 'user' is set
+        if ('user' not in local_var_params or
+                local_var_params['user'] is None):
+            raise ApiValueError("Missing the required parameter `user` when calling `create_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -423,8 +423,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user' in local_var_params:
+            body_params = local_var_params['user']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -546,39 +546,39 @@ class UserApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_user_from_mod(self, user_id, params, **kwargs):  # noqa: E501
+    def delete_user_from_mod(self, user_id, user_mod, **kwargs):  # noqa: E501
         """Remove a mod from user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_user_from_mod(user_id, params, async_req=True)
+        >>> thread = api.delete_user_from_mod(user_id, user_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserModParams params: The user mod data to delete (required)
+        :param UserModParams user_mod: The user mod data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_user_from_mod_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            return self.delete_user_from_mod_with_http_info(user_id, user_mod, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_user_from_mod_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            (data) = self.delete_user_from_mod_with_http_info(user_id, user_mod, **kwargs)  # noqa: E501
             return data
 
-    def delete_user_from_mod_with_http_info(self, user_id, params, **kwargs):  # noqa: E501
+    def delete_user_from_mod_with_http_info(self, user_id, user_mod, **kwargs):  # noqa: E501
         """Remove a mod from user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_user_from_mod_with_http_info(user_id, params, async_req=True)
+        >>> thread = api.delete_user_from_mod_with_http_info(user_id, user_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserModParams params: The user mod data to delete (required)
+        :param UserModParams user_mod: The user mod data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -586,7 +586,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['user_id', 'params']  # noqa: E501
+        all_params = ['user_id', 'user_mod']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -604,10 +604,10 @@ class UserApi(object):
         if ('user_id' not in local_var_params or
                 local_var_params['user_id'] is None):
             raise ApiValueError("Missing the required parameter `user_id` when calling `delete_user_from_mod`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `delete_user_from_mod`")  # noqa: E501
+        # verify the required parameter 'user_mod' is set
+        if ('user_mod' not in local_var_params or
+                local_var_params['user_mod'] is None):
+            raise ApiValueError("Missing the required parameter `user_mod` when calling `delete_user_from_mod`")  # noqa: E501
 
         collection_formats = {}
 
@@ -623,8 +623,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user_mod' in local_var_params:
+            body_params = local_var_params['user_mod']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -652,39 +652,39 @@ class UserApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_user_from_pack(self, user_id, params, **kwargs):  # noqa: E501
+    def delete_user_from_pack(self, user_id, user_pack, **kwargs):  # noqa: E501
         """Remove a pack from user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_user_from_pack(user_id, params, async_req=True)
+        >>> thread = api.delete_user_from_pack(user_id, user_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserPackParams params: The user pack data to delete (required)
+        :param UserPackParams user_pack: The user pack data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_user_from_pack_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            return self.delete_user_from_pack_with_http_info(user_id, user_pack, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_user_from_pack_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            (data) = self.delete_user_from_pack_with_http_info(user_id, user_pack, **kwargs)  # noqa: E501
             return data
 
-    def delete_user_from_pack_with_http_info(self, user_id, params, **kwargs):  # noqa: E501
+    def delete_user_from_pack_with_http_info(self, user_id, user_pack, **kwargs):  # noqa: E501
         """Remove a pack from user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_user_from_pack_with_http_info(user_id, params, async_req=True)
+        >>> thread = api.delete_user_from_pack_with_http_info(user_id, user_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserPackParams params: The user pack data to delete (required)
+        :param UserPackParams user_pack: The user pack data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -692,7 +692,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['user_id', 'params']  # noqa: E501
+        all_params = ['user_id', 'user_pack']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -710,10 +710,10 @@ class UserApi(object):
         if ('user_id' not in local_var_params or
                 local_var_params['user_id'] is None):
             raise ApiValueError("Missing the required parameter `user_id` when calling `delete_user_from_pack`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `delete_user_from_pack`")  # noqa: E501
+        # verify the required parameter 'user_pack' is set
+        if ('user_pack' not in local_var_params or
+                local_var_params['user_pack'] is None):
+            raise ApiValueError("Missing the required parameter `user_pack` when calling `delete_user_from_pack`")  # noqa: E501
 
         collection_formats = {}
 
@@ -729,8 +729,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user_pack' in local_var_params:
+            body_params = local_var_params['user_pack']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -758,39 +758,39 @@ class UserApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_user_from_team(self, user_id, params, **kwargs):  # noqa: E501
+    def delete_user_from_team(self, user_id, user_team, **kwargs):  # noqa: E501
         """Remove a team from user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_user_from_team(user_id, params, async_req=True)
+        >>> thread = api.delete_user_from_team(user_id, user_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserTeamParams params: The user team data to delete (required)
+        :param UserTeamParams user_team: The user team data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_user_from_team_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            return self.delete_user_from_team_with_http_info(user_id, user_team, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_user_from_team_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            (data) = self.delete_user_from_team_with_http_info(user_id, user_team, **kwargs)  # noqa: E501
             return data
 
-    def delete_user_from_team_with_http_info(self, user_id, params, **kwargs):  # noqa: E501
+    def delete_user_from_team_with_http_info(self, user_id, user_team, **kwargs):  # noqa: E501
         """Remove a team from user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_user_from_team_with_http_info(user_id, params, async_req=True)
+        >>> thread = api.delete_user_from_team_with_http_info(user_id, user_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserTeamParams params: The user team data to delete (required)
+        :param UserTeamParams user_team: The user team data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -798,7 +798,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['user_id', 'params']  # noqa: E501
+        all_params = ['user_id', 'user_team']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -816,10 +816,10 @@ class UserApi(object):
         if ('user_id' not in local_var_params or
                 local_var_params['user_id'] is None):
             raise ApiValueError("Missing the required parameter `user_id` when calling `delete_user_from_team`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `delete_user_from_team`")  # noqa: E501
+        # verify the required parameter 'user_team' is set
+        if ('user_team' not in local_var_params or
+                local_var_params['user_team'] is None):
+            raise ApiValueError("Missing the required parameter `user_team` when calling `delete_user_from_team`")  # noqa: E501
 
         collection_formats = {}
 
@@ -835,8 +835,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user_team' in local_var_params:
+            body_params = local_var_params['user_team']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1232,39 +1232,39 @@ class UserApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def permit_user_mod(self, user_id, params, **kwargs):  # noqa: E501
+    def permit_user_mod(self, user_id, user_mod, **kwargs):  # noqa: E501
         """Update mod perms for user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_user_mod(user_id, params, async_req=True)
+        >>> thread = api.permit_user_mod(user_id, user_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserModParams params: The user mod data to update (required)
+        :param UserModParams user_mod: The user mod data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.permit_user_mod_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            return self.permit_user_mod_with_http_info(user_id, user_mod, **kwargs)  # noqa: E501
         else:
-            (data) = self.permit_user_mod_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            (data) = self.permit_user_mod_with_http_info(user_id, user_mod, **kwargs)  # noqa: E501
             return data
 
-    def permit_user_mod_with_http_info(self, user_id, params, **kwargs):  # noqa: E501
+    def permit_user_mod_with_http_info(self, user_id, user_mod, **kwargs):  # noqa: E501
         """Update mod perms for user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_user_mod_with_http_info(user_id, params, async_req=True)
+        >>> thread = api.permit_user_mod_with_http_info(user_id, user_mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserModParams params: The user mod data to update (required)
+        :param UserModParams user_mod: The user mod data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1272,7 +1272,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['user_id', 'params']  # noqa: E501
+        all_params = ['user_id', 'user_mod']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1290,10 +1290,10 @@ class UserApi(object):
         if ('user_id' not in local_var_params or
                 local_var_params['user_id'] is None):
             raise ApiValueError("Missing the required parameter `user_id` when calling `permit_user_mod`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `permit_user_mod`")  # noqa: E501
+        # verify the required parameter 'user_mod' is set
+        if ('user_mod' not in local_var_params or
+                local_var_params['user_mod'] is None):
+            raise ApiValueError("Missing the required parameter `user_mod` when calling `permit_user_mod`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1309,8 +1309,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user_mod' in local_var_params:
+            body_params = local_var_params['user_mod']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1338,39 +1338,39 @@ class UserApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def permit_user_pack(self, user_id, params, **kwargs):  # noqa: E501
+    def permit_user_pack(self, user_id, user_pack, **kwargs):  # noqa: E501
         """Update pack perms for user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_user_pack(user_id, params, async_req=True)
+        >>> thread = api.permit_user_pack(user_id, user_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserPackParams params: The user pack data to update (required)
+        :param UserPackParams user_pack: The user pack data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.permit_user_pack_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            return self.permit_user_pack_with_http_info(user_id, user_pack, **kwargs)  # noqa: E501
         else:
-            (data) = self.permit_user_pack_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            (data) = self.permit_user_pack_with_http_info(user_id, user_pack, **kwargs)  # noqa: E501
             return data
 
-    def permit_user_pack_with_http_info(self, user_id, params, **kwargs):  # noqa: E501
+    def permit_user_pack_with_http_info(self, user_id, user_pack, **kwargs):  # noqa: E501
         """Update pack perms for user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_user_pack_with_http_info(user_id, params, async_req=True)
+        >>> thread = api.permit_user_pack_with_http_info(user_id, user_pack, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserPackParams params: The user pack data to update (required)
+        :param UserPackParams user_pack: The user pack data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1378,7 +1378,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['user_id', 'params']  # noqa: E501
+        all_params = ['user_id', 'user_pack']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1396,10 +1396,10 @@ class UserApi(object):
         if ('user_id' not in local_var_params or
                 local_var_params['user_id'] is None):
             raise ApiValueError("Missing the required parameter `user_id` when calling `permit_user_pack`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `permit_user_pack`")  # noqa: E501
+        # verify the required parameter 'user_pack' is set
+        if ('user_pack' not in local_var_params or
+                local_var_params['user_pack'] is None):
+            raise ApiValueError("Missing the required parameter `user_pack` when calling `permit_user_pack`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1415,8 +1415,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user_pack' in local_var_params:
+            body_params = local_var_params['user_pack']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1444,39 +1444,39 @@ class UserApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def permit_user_team(self, user_id, params, **kwargs):  # noqa: E501
+    def permit_user_team(self, user_id, user_team, **kwargs):  # noqa: E501
         """Update team perms for user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_user_team(user_id, params, async_req=True)
+        >>> thread = api.permit_user_team(user_id, user_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserTeamParams params: The user team data to update (required)
+        :param UserTeamParams user_team: The user team data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.permit_user_team_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            return self.permit_user_team_with_http_info(user_id, user_team, **kwargs)  # noqa: E501
         else:
-            (data) = self.permit_user_team_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            (data) = self.permit_user_team_with_http_info(user_id, user_team, **kwargs)  # noqa: E501
             return data
 
-    def permit_user_team_with_http_info(self, user_id, params, **kwargs):  # noqa: E501
+    def permit_user_team_with_http_info(self, user_id, user_team, **kwargs):  # noqa: E501
         """Update team perms for user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_user_team_with_http_info(user_id, params, async_req=True)
+        >>> thread = api.permit_user_team_with_http_info(user_id, user_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param UserTeamParams params: The user team data to update (required)
+        :param UserTeamParams user_team: The user team data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1484,7 +1484,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['user_id', 'params']  # noqa: E501
+        all_params = ['user_id', 'user_team']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1502,10 +1502,10 @@ class UserApi(object):
         if ('user_id' not in local_var_params or
                 local_var_params['user_id'] is None):
             raise ApiValueError("Missing the required parameter `user_id` when calling `permit_user_team`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `permit_user_team`")  # noqa: E501
+        # verify the required parameter 'user_team' is set
+        if ('user_team' not in local_var_params or
+                local_var_params['user_team'] is None):
+            raise ApiValueError("Missing the required parameter `user_team` when calling `permit_user_team`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1521,8 +1521,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user_team' in local_var_params:
+            body_params = local_var_params['user_team']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1644,39 +1644,39 @@ class UserApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def update_user(self, user_id, params, **kwargs):  # noqa: E501
+    def update_user(self, user_id, user, **kwargs):  # noqa: E501
         """Update a specific user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_user(user_id, params, async_req=True)
+        >>> thread = api.update_user(user_id, user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param User params: The user data to update (required)
+        :param User user: The user data to update (required)
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.update_user_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            return self.update_user_with_http_info(user_id, user, **kwargs)  # noqa: E501
         else:
-            (data) = self.update_user_with_http_info(user_id, params, **kwargs)  # noqa: E501
+            (data) = self.update_user_with_http_info(user_id, user, **kwargs)  # noqa: E501
             return data
 
-    def update_user_with_http_info(self, user_id, params, **kwargs):  # noqa: E501
+    def update_user_with_http_info(self, user_id, user, **kwargs):  # noqa: E501
         """Update a specific user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_user_with_http_info(user_id, params, async_req=True)
+        >>> thread = api.update_user_with_http_info(user_id, user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: A user UUID or slug (required)
-        :param User params: The user data to update (required)
+        :param User user: The user data to update (required)
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1684,7 +1684,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = ['user_id', 'params']  # noqa: E501
+        all_params = ['user_id', 'user']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1702,10 +1702,10 @@ class UserApi(object):
         if ('user_id' not in local_var_params or
                 local_var_params['user_id'] is None):
             raise ApiValueError("Missing the required parameter `user_id` when calling `update_user`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `update_user`")  # noqa: E501
+        # verify the required parameter 'user' is set
+        if ('user' not in local_var_params or
+                local_var_params['user'] is None):
+            raise ApiValueError("Missing the required parameter `user` when calling `update_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1721,8 +1721,8 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'user' in local_var_params:
+            body_params = local_var_params['user']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

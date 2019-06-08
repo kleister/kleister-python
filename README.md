@@ -62,11 +62,11 @@ from kleister.rest import ApiException
 
 
 api = kleister.AuthApi(kleister.ApiClient(configuration))
-params = kleister.AuthLogin() # AuthLogin | The credentials to authenticate
+auth_login = kleister.AuthLogin() # AuthLogin | The credentials to authenticate
 
 try:
     # Authenticate an user by credentials
-    resp = api.login_user(params)
+    resp = api.login_user(auth_login)
     pprint(resp)
 except ApiException as e:
     print("Exception when calling AuthApi->login_user: %s\n" % e)

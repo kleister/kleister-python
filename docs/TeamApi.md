@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 
 # **append_team_to_mod**
-> GeneralError append_team_to_mod(team_id, params)
+> GeneralError append_team_to_mod(team_id, team_mod)
 
 Assign a mod to team
 
@@ -40,11 +40,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.TeamApi()
 team_id = 'team_id_example' # str | A team UUID or slug
-params = kleister.TeamModParams() # TeamModParams | The team mod data to assign
+team_mod = kleister.TeamModParams() # TeamModParams | The team mod data to assign
 
 try:
     # Assign a mod to team
-    api_response = api_instance.append_team_to_mod(team_id, params)
+    api_response = api_instance.append_team_to_mod(team_id, team_mod)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->append_team_to_mod: %s\n" % e)
@@ -55,7 +55,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team UUID or slug | 
- **params** | [**TeamModParams**](TeamModParams.md)| The team mod data to assign | 
+ **team_mod** | [**TeamModParams**](TeamModParams.md)| The team mod data to assign | 
 
 ### Return type
 
@@ -73,7 +73,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_team_to_pack**
-> GeneralError append_team_to_pack(team_id, params)
+> GeneralError append_team_to_pack(team_id, team_pack)
 
 Assign a pack to team
 
@@ -89,11 +89,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.TeamApi()
 team_id = 'team_id_example' # str | A team UUID or slug
-params = kleister.TeamPackParams() # TeamPackParams | The team pack data to assign
+team_pack = kleister.TeamPackParams() # TeamPackParams | The team pack data to assign
 
 try:
     # Assign a pack to team
-    api_response = api_instance.append_team_to_pack(team_id, params)
+    api_response = api_instance.append_team_to_pack(team_id, team_pack)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->append_team_to_pack: %s\n" % e)
@@ -104,7 +104,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team UUID or slug | 
- **params** | [**TeamPackParams**](TeamPackParams.md)| The team pack data to assign | 
+ **team_pack** | [**TeamPackParams**](TeamPackParams.md)| The team pack data to assign | 
 
 ### Return type
 
@@ -122,7 +122,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_team_to_user**
-> GeneralError append_team_to_user(team_id, params)
+> GeneralError append_team_to_user(team_id, team_user)
 
 Assign a user to team
 
@@ -138,11 +138,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.TeamApi()
 team_id = 'team_id_example' # str | A team UUID or slug
-params = kleister.TeamUserParams() # TeamUserParams | The team user data to assign
+team_user = kleister.TeamUserParams() # TeamUserParams | The team user data to assign
 
 try:
     # Assign a user to team
-    api_response = api_instance.append_team_to_user(team_id, params)
+    api_response = api_instance.append_team_to_user(team_id, team_user)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->append_team_to_user: %s\n" % e)
@@ -153,7 +153,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team UUID or slug | 
- **params** | [**TeamUserParams**](TeamUserParams.md)| The team user data to assign | 
+ **team_user** | [**TeamUserParams**](TeamUserParams.md)| The team user data to assign | 
 
 ### Return type
 
@@ -171,7 +171,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_team**
-> Team create_team(params)
+> Team create_team(team)
 
 Create a new team
 
@@ -186,11 +186,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = kleister.TeamApi()
-params = kleister.Team() # Team | The team data to create
+team = kleister.Team() # Team | The team data to create
 
 try:
     # Create a new team
-    api_response = api_instance.create_team(params)
+    api_response = api_instance.create_team(team)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->create_team: %s\n" % e)
@@ -200,7 +200,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **params** | [**Team**](Team.md)| The team data to create | 
+ **team** | [**Team**](Team.md)| The team data to create | 
 
 ### Return type
 
@@ -265,7 +265,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_team_from_mod**
-> GeneralError delete_team_from_mod(team_id, params)
+> GeneralError delete_team_from_mod(team_id, team_mod)
 
 Remove a mod from team
 
@@ -281,11 +281,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.TeamApi()
 team_id = 'team_id_example' # str | A team UUID or slug
-params = kleister.TeamModParams() # TeamModParams | The team mod data to delete
+team_mod = kleister.TeamModParams() # TeamModParams | The team mod data to delete
 
 try:
     # Remove a mod from team
-    api_response = api_instance.delete_team_from_mod(team_id, params)
+    api_response = api_instance.delete_team_from_mod(team_id, team_mod)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->delete_team_from_mod: %s\n" % e)
@@ -296,7 +296,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team UUID or slug | 
- **params** | [**TeamModParams**](TeamModParams.md)| The team mod data to delete | 
+ **team_mod** | [**TeamModParams**](TeamModParams.md)| The team mod data to delete | 
 
 ### Return type
 
@@ -314,7 +314,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_team_from_pack**
-> GeneralError delete_team_from_pack(team_id, params)
+> GeneralError delete_team_from_pack(team_id, team_pack)
 
 Remove a pack from team
 
@@ -330,11 +330,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.TeamApi()
 team_id = 'team_id_example' # str | A team UUID or slug
-params = kleister.TeamPackParams() # TeamPackParams | The team pack data to delete
+team_pack = kleister.TeamPackParams() # TeamPackParams | The team pack data to delete
 
 try:
     # Remove a pack from team
-    api_response = api_instance.delete_team_from_pack(team_id, params)
+    api_response = api_instance.delete_team_from_pack(team_id, team_pack)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->delete_team_from_pack: %s\n" % e)
@@ -345,7 +345,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team UUID or slug | 
- **params** | [**TeamPackParams**](TeamPackParams.md)| The team pack data to delete | 
+ **team_pack** | [**TeamPackParams**](TeamPackParams.md)| The team pack data to delete | 
 
 ### Return type
 
@@ -363,7 +363,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_team_from_user**
-> GeneralError delete_team_from_user(team_id, params)
+> GeneralError delete_team_from_user(team_id, team_user)
 
 Remove a user from team
 
@@ -379,11 +379,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.TeamApi()
 team_id = 'team_id_example' # str | A team UUID or slug
-params = kleister.TeamUserParams() # TeamUserParams | The team user data to delete
+team_user = kleister.TeamUserParams() # TeamUserParams | The team user data to delete
 
 try:
     # Remove a user from team
-    api_response = api_instance.delete_team_from_user(team_id, params)
+    api_response = api_instance.delete_team_from_user(team_id, team_user)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->delete_team_from_user: %s\n" % e)
@@ -394,7 +394,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team UUID or slug | 
- **params** | [**TeamUserParams**](TeamUserParams.md)| The team user data to delete | 
+ **team_user** | [**TeamUserParams**](TeamUserParams.md)| The team user data to delete | 
 
 ### Return type
 
@@ -596,7 +596,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_team_mod**
-> GeneralError permit_team_mod(team_id, params)
+> GeneralError permit_team_mod(team_id, team_mod)
 
 Update mod perms for team
 
@@ -612,11 +612,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.TeamApi()
 team_id = 'team_id_example' # str | A team UUID or slug
-params = kleister.TeamModParams() # TeamModParams | The team mod data to update
+team_mod = kleister.TeamModParams() # TeamModParams | The team mod data to update
 
 try:
     # Update mod perms for team
-    api_response = api_instance.permit_team_mod(team_id, params)
+    api_response = api_instance.permit_team_mod(team_id, team_mod)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->permit_team_mod: %s\n" % e)
@@ -627,7 +627,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team UUID or slug | 
- **params** | [**TeamModParams**](TeamModParams.md)| The team mod data to update | 
+ **team_mod** | [**TeamModParams**](TeamModParams.md)| The team mod data to update | 
 
 ### Return type
 
@@ -645,7 +645,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_team_pack**
-> GeneralError permit_team_pack(team_id, params)
+> GeneralError permit_team_pack(team_id, team_pack)
 
 Update pack perms for team
 
@@ -661,11 +661,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.TeamApi()
 team_id = 'team_id_example' # str | A team UUID or slug
-params = kleister.TeamPackParams() # TeamPackParams | The team pack data to update
+team_pack = kleister.TeamPackParams() # TeamPackParams | The team pack data to update
 
 try:
     # Update pack perms for team
-    api_response = api_instance.permit_team_pack(team_id, params)
+    api_response = api_instance.permit_team_pack(team_id, team_pack)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->permit_team_pack: %s\n" % e)
@@ -676,7 +676,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team UUID or slug | 
- **params** | [**TeamPackParams**](TeamPackParams.md)| The team pack data to update | 
+ **team_pack** | [**TeamPackParams**](TeamPackParams.md)| The team pack data to update | 
 
 ### Return type
 
@@ -694,7 +694,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_team_user**
-> GeneralError permit_team_user(team_id, params)
+> GeneralError permit_team_user(team_id, team_user)
 
 Update user perms for team
 
@@ -710,11 +710,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.TeamApi()
 team_id = 'team_id_example' # str | A team UUID or slug
-params = kleister.TeamUserParams() # TeamUserParams | The team user data to update
+team_user = kleister.TeamUserParams() # TeamUserParams | The team user data to update
 
 try:
     # Update user perms for team
-    api_response = api_instance.permit_team_user(team_id, params)
+    api_response = api_instance.permit_team_user(team_id, team_user)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->permit_team_user: %s\n" % e)
@@ -725,7 +725,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team UUID or slug | 
- **params** | [**TeamUserParams**](TeamUserParams.md)| The team user data to update | 
+ **team_user** | [**TeamUserParams**](TeamUserParams.md)| The team user data to update | 
 
 ### Return type
 
@@ -790,7 +790,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_team**
-> Team update_team(team_id, params)
+> Team update_team(team_id, team)
 
 Update a specific team
 
@@ -806,11 +806,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.TeamApi()
 team_id = 'team_id_example' # str | A team UUID or slug
-params = kleister.Team() # Team | The team data to update
+team = kleister.Team() # Team | The team data to update
 
 try:
     # Update a specific team
-    api_response = api_instance.update_team(team_id, params)
+    api_response = api_instance.update_team(team_id, team)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TeamApi->update_team: %s\n" % e)
@@ -821,7 +821,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team UUID or slug | 
- **params** | [**Team**](Team.md)| The team data to update | 
+ **team** | [**Team**](Team.md)| The team data to update | 
 
 ### Return type
 

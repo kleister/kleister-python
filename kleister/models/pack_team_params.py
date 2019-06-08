@@ -31,51 +31,24 @@ class PackTeamParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'pack': 'str',
         'team': 'str',
         'perm': 'str'
     }
 
     attribute_map = {
-        'pack': 'pack',
         'team': 'team',
         'perm': 'perm'
     }
 
-    def __init__(self, pack=None, team=None, perm=None):  # noqa: E501
+    def __init__(self, team=None, perm=None):  # noqa: E501
         """PackTeamParams - a model defined in OpenAPI"""  # noqa: E501
 
-        self._pack = None
         self._team = None
         self._perm = None
         self.discriminator = None
 
-        self.pack = pack
         self.team = team
         self.perm = perm
-
-    @property
-    def pack(self):
-        """Gets the pack of this PackTeamParams.  # noqa: E501
-
-
-        :return: The pack of this PackTeamParams.  # noqa: E501
-        :rtype: str
-        """
-        return self._pack
-
-    @pack.setter
-    def pack(self, pack):
-        """Sets the pack of this PackTeamParams.
-
-
-        :param pack: The pack of this PackTeamParams.  # noqa: E501
-        :type: str
-        """
-        if pack is None:
-            raise ValueError("Invalid value for `pack`, must not be `None`")  # noqa: E501
-
-        self._pack = pack
 
     @property
     def team(self):
@@ -120,6 +93,12 @@ class PackTeamParams(object):
         """
         if perm is None:
             raise ValueError("Invalid value for `perm`, must not be `None`")  # noqa: E501
+        allowed_values = ["user", "admin", "owner"]  # noqa: E501
+        if perm not in allowed_values:
+            raise ValueError(
+                "Invalid value for `perm` ({0}), must be one of {1}"  # noqa: E501
+                .format(perm, allowed_values)
+            )
 
         self._perm = perm
 

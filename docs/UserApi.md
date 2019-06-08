@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 
 # **append_user_to_mod**
-> GeneralError append_user_to_mod(user_id, params)
+> GeneralError append_user_to_mod(user_id, user_mod)
 
 Assign a mod to user
 
@@ -40,11 +40,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.UserApi()
 user_id = 'user_id_example' # str | A user UUID or slug
-params = kleister.UserModParams() # UserModParams | The user mod data to assign
+user_mod = kleister.UserModParams() # UserModParams | The user mod data to assign
 
 try:
     # Assign a mod to user
-    api_response = api_instance.append_user_to_mod(user_id, params)
+    api_response = api_instance.append_user_to_mod(user_id, user_mod)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->append_user_to_mod: %s\n" % e)
@@ -55,7 +55,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user UUID or slug | 
- **params** | [**UserModParams**](UserModParams.md)| The user mod data to assign | 
+ **user_mod** | [**UserModParams**](UserModParams.md)| The user mod data to assign | 
 
 ### Return type
 
@@ -73,7 +73,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_user_to_pack**
-> GeneralError append_user_to_pack(user_id, params)
+> GeneralError append_user_to_pack(user_id, user_pack)
 
 Assign a pack to user
 
@@ -89,11 +89,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.UserApi()
 user_id = 'user_id_example' # str | A user UUID or slug
-params = kleister.UserPackParams() # UserPackParams | The user pack data to assign
+user_pack = kleister.UserPackParams() # UserPackParams | The user pack data to assign
 
 try:
     # Assign a pack to user
-    api_response = api_instance.append_user_to_pack(user_id, params)
+    api_response = api_instance.append_user_to_pack(user_id, user_pack)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->append_user_to_pack: %s\n" % e)
@@ -104,7 +104,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user UUID or slug | 
- **params** | [**UserPackParams**](UserPackParams.md)| The user pack data to assign | 
+ **user_pack** | [**UserPackParams**](UserPackParams.md)| The user pack data to assign | 
 
 ### Return type
 
@@ -122,7 +122,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_user_to_team**
-> GeneralError append_user_to_team(user_id, params)
+> GeneralError append_user_to_team(user_id, user_team)
 
 Assign a team to user
 
@@ -138,11 +138,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.UserApi()
 user_id = 'user_id_example' # str | A user UUID or slug
-params = kleister.UserTeamParams() # UserTeamParams | The user team data to assign
+user_team = kleister.UserTeamParams() # UserTeamParams | The user team data to assign
 
 try:
     # Assign a team to user
-    api_response = api_instance.append_user_to_team(user_id, params)
+    api_response = api_instance.append_user_to_team(user_id, user_team)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->append_user_to_team: %s\n" % e)
@@ -153,7 +153,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user UUID or slug | 
- **params** | [**UserTeamParams**](UserTeamParams.md)| The user team data to assign | 
+ **user_team** | [**UserTeamParams**](UserTeamParams.md)| The user team data to assign | 
 
 ### Return type
 
@@ -171,7 +171,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_user**
-> User create_user(params)
+> User create_user(user)
 
 Create a new user
 
@@ -186,11 +186,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = kleister.UserApi()
-params = kleister.User() # User | The user data to create
+user = kleister.User() # User | The user data to create
 
 try:
     # Create a new user
-    api_response = api_instance.create_user(params)
+    api_response = api_instance.create_user(user)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->create_user: %s\n" % e)
@@ -200,7 +200,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **params** | [**User**](User.md)| The user data to create | 
+ **user** | [**User**](User.md)| The user data to create | 
 
 ### Return type
 
@@ -265,7 +265,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_user_from_mod**
-> GeneralError delete_user_from_mod(user_id, params)
+> GeneralError delete_user_from_mod(user_id, user_mod)
 
 Remove a mod from user
 
@@ -281,11 +281,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.UserApi()
 user_id = 'user_id_example' # str | A user UUID or slug
-params = kleister.UserModParams() # UserModParams | The user mod data to delete
+user_mod = kleister.UserModParams() # UserModParams | The user mod data to delete
 
 try:
     # Remove a mod from user
-    api_response = api_instance.delete_user_from_mod(user_id, params)
+    api_response = api_instance.delete_user_from_mod(user_id, user_mod)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->delete_user_from_mod: %s\n" % e)
@@ -296,7 +296,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user UUID or slug | 
- **params** | [**UserModParams**](UserModParams.md)| The user mod data to delete | 
+ **user_mod** | [**UserModParams**](UserModParams.md)| The user mod data to delete | 
 
 ### Return type
 
@@ -314,7 +314,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_user_from_pack**
-> GeneralError delete_user_from_pack(user_id, params)
+> GeneralError delete_user_from_pack(user_id, user_pack)
 
 Remove a pack from user
 
@@ -330,11 +330,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.UserApi()
 user_id = 'user_id_example' # str | A user UUID or slug
-params = kleister.UserPackParams() # UserPackParams | The user pack data to delete
+user_pack = kleister.UserPackParams() # UserPackParams | The user pack data to delete
 
 try:
     # Remove a pack from user
-    api_response = api_instance.delete_user_from_pack(user_id, params)
+    api_response = api_instance.delete_user_from_pack(user_id, user_pack)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->delete_user_from_pack: %s\n" % e)
@@ -345,7 +345,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user UUID or slug | 
- **params** | [**UserPackParams**](UserPackParams.md)| The user pack data to delete | 
+ **user_pack** | [**UserPackParams**](UserPackParams.md)| The user pack data to delete | 
 
 ### Return type
 
@@ -363,7 +363,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_user_from_team**
-> GeneralError delete_user_from_team(user_id, params)
+> GeneralError delete_user_from_team(user_id, user_team)
 
 Remove a team from user
 
@@ -379,11 +379,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.UserApi()
 user_id = 'user_id_example' # str | A user UUID or slug
-params = kleister.UserTeamParams() # UserTeamParams | The user team data to delete
+user_team = kleister.UserTeamParams() # UserTeamParams | The user team data to delete
 
 try:
     # Remove a team from user
-    api_response = api_instance.delete_user_from_team(user_id, params)
+    api_response = api_instance.delete_user_from_team(user_id, user_team)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->delete_user_from_team: %s\n" % e)
@@ -394,7 +394,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user UUID or slug | 
- **params** | [**UserTeamParams**](UserTeamParams.md)| The user team data to delete | 
+ **user_team** | [**UserTeamParams**](UserTeamParams.md)| The user team data to delete | 
 
 ### Return type
 
@@ -596,7 +596,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_user_mod**
-> GeneralError permit_user_mod(user_id, params)
+> GeneralError permit_user_mod(user_id, user_mod)
 
 Update mod perms for user
 
@@ -612,11 +612,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.UserApi()
 user_id = 'user_id_example' # str | A user UUID or slug
-params = kleister.UserModParams() # UserModParams | The user mod data to update
+user_mod = kleister.UserModParams() # UserModParams | The user mod data to update
 
 try:
     # Update mod perms for user
-    api_response = api_instance.permit_user_mod(user_id, params)
+    api_response = api_instance.permit_user_mod(user_id, user_mod)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->permit_user_mod: %s\n" % e)
@@ -627,7 +627,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user UUID or slug | 
- **params** | [**UserModParams**](UserModParams.md)| The user mod data to update | 
+ **user_mod** | [**UserModParams**](UserModParams.md)| The user mod data to update | 
 
 ### Return type
 
@@ -645,7 +645,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_user_pack**
-> GeneralError permit_user_pack(user_id, params)
+> GeneralError permit_user_pack(user_id, user_pack)
 
 Update pack perms for user
 
@@ -661,11 +661,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.UserApi()
 user_id = 'user_id_example' # str | A user UUID or slug
-params = kleister.UserPackParams() # UserPackParams | The user pack data to update
+user_pack = kleister.UserPackParams() # UserPackParams | The user pack data to update
 
 try:
     # Update pack perms for user
-    api_response = api_instance.permit_user_pack(user_id, params)
+    api_response = api_instance.permit_user_pack(user_id, user_pack)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->permit_user_pack: %s\n" % e)
@@ -676,7 +676,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user UUID or slug | 
- **params** | [**UserPackParams**](UserPackParams.md)| The user pack data to update | 
+ **user_pack** | [**UserPackParams**](UserPackParams.md)| The user pack data to update | 
 
 ### Return type
 
@@ -694,7 +694,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_user_team**
-> GeneralError permit_user_team(user_id, params)
+> GeneralError permit_user_team(user_id, user_team)
 
 Update team perms for user
 
@@ -710,11 +710,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.UserApi()
 user_id = 'user_id_example' # str | A user UUID or slug
-params = kleister.UserTeamParams() # UserTeamParams | The user team data to update
+user_team = kleister.UserTeamParams() # UserTeamParams | The user team data to update
 
 try:
     # Update team perms for user
-    api_response = api_instance.permit_user_team(user_id, params)
+    api_response = api_instance.permit_user_team(user_id, user_team)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->permit_user_team: %s\n" % e)
@@ -725,7 +725,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user UUID or slug | 
- **params** | [**UserTeamParams**](UserTeamParams.md)| The user team data to update | 
+ **user_team** | [**UserTeamParams**](UserTeamParams.md)| The user team data to update | 
 
 ### Return type
 
@@ -790,7 +790,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_user**
-> User update_user(user_id, params)
+> User update_user(user_id, user)
 
 Update a specific user
 
@@ -806,11 +806,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.UserApi()
 user_id = 'user_id_example' # str | A user UUID or slug
-params = kleister.User() # User | The user data to update
+user = kleister.User() # User | The user data to update
 
 try:
     # Update a specific user
-    api_response = api_instance.update_user(user_id, params)
+    api_response = api_instance.update_user(user_id, user)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->update_user: %s\n" % e)
@@ -821,7 +821,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user UUID or slug | 
- **params** | [**User**](User.md)| The user data to update | 
+ **user** | [**User**](User.md)| The user data to update | 
 
 ### Return type
 

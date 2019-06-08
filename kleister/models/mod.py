@@ -174,6 +174,12 @@ class Mod(object):
         :param side: The side of this Mod.  # noqa: E501
         :type: str
         """
+        allowed_values = ["both", "server", "client"]  # noqa: E501
+        if side not in allowed_values:
+            raise ValueError(
+                "Invalid value for `side` ({0}), must be one of {1}"  # noqa: E501
+                .format(side, allowed_values)
+            )
 
         self._side = side
 

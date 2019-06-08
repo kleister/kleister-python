@@ -208,37 +208,37 @@ class ProfileApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def update_profile(self, params, **kwargs):  # noqa: E501
+    def update_profile(self, profile, **kwargs):  # noqa: E501
         """Retrieve an unlimited auth token  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_profile(params, async_req=True)
+        >>> thread = api.update_profile(profile, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param Profile params: The profile data to update (required)
+        :param Profile profile: The profile data to update (required)
         :return: Profile
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.update_profile_with_http_info(params, **kwargs)  # noqa: E501
+            return self.update_profile_with_http_info(profile, **kwargs)  # noqa: E501
         else:
-            (data) = self.update_profile_with_http_info(params, **kwargs)  # noqa: E501
+            (data) = self.update_profile_with_http_info(profile, **kwargs)  # noqa: E501
             return data
 
-    def update_profile_with_http_info(self, params, **kwargs):  # noqa: E501
+    def update_profile_with_http_info(self, profile, **kwargs):  # noqa: E501
         """Retrieve an unlimited auth token  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_profile_with_http_info(params, async_req=True)
+        >>> thread = api.update_profile_with_http_info(profile, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param Profile params: The profile data to update (required)
+        :param Profile profile: The profile data to update (required)
         :return: Profile
                  If the method is called asynchronously,
                  returns the request thread.
@@ -246,7 +246,7 @@ class ProfileApi(object):
 
         local_var_params = locals()
 
-        all_params = ['params']  # noqa: E501
+        all_params = ['profile']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -260,10 +260,10 @@ class ProfileApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `update_profile`")  # noqa: E501
+        # verify the required parameter 'profile' is set
+        if ('profile' not in local_var_params or
+                local_var_params['profile'] is None):
+            raise ApiValueError("Missing the required parameter `profile` when calling `update_profile`")  # noqa: E501
 
         collection_formats = {}
 
@@ -277,8 +277,8 @@ class ProfileApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'profile' in local_var_params:
+            body_params = local_var_params['profile']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

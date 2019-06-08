@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **append_forge_to_build**
-> list[Build] append_forge_to_build(forge_id, params)
+> list[Build] append_forge_to_build(forge_id, forge_build)
 
 Assign a build to a Forge version
 
@@ -29,11 +29,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.ForgeApi()
 forge_id = 'forge_id_example' # str | A forge UUID or slug
-params = kleister.ForgeBuildParams() # ForgeBuildParams | The build data to append
+forge_build = kleister.ForgeBuildParams() # ForgeBuildParams | The build data to append
 
 try:
     # Assign a build to a Forge version
-    api_response = api_instance.append_forge_to_build(forge_id, params)
+    api_response = api_instance.append_forge_to_build(forge_id, forge_build)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ForgeApi->append_forge_to_build: %s\n" % e)
@@ -44,7 +44,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **forge_id** | **str**| A forge UUID or slug | 
- **params** | [**ForgeBuildParams**](ForgeBuildParams.md)| The build data to append | 
+ **forge_build** | [**ForgeBuildParams**](ForgeBuildParams.md)| The build data to append | 
 
 ### Return type
 
@@ -62,7 +62,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_forge_from_build**
-> list[Build] delete_forge_from_build(forge_id, params)
+> list[Build] delete_forge_from_build(forge_id, forge_build)
 
 Unlink a build from a Forge version
 
@@ -78,11 +78,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.ForgeApi()
 forge_id = 'forge_id_example' # str | A forge UUID or slug
-params = kleister.ForgeBuildParams() # ForgeBuildParams | The build data to unlink
+forge_build = kleister.ForgeBuildParams() # ForgeBuildParams | The build data to unlink
 
 try:
     # Unlink a build from a Forge version
-    api_response = api_instance.delete_forge_from_build(forge_id, params)
+    api_response = api_instance.delete_forge_from_build(forge_id, forge_build)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ForgeApi->delete_forge_from_build: %s\n" % e)
@@ -93,7 +93,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **forge_id** | **str**| A forge UUID or slug | 
- **params** | [**ForgeBuildParams**](ForgeBuildParams.md)| The build data to unlink | 
+ **forge_build** | [**ForgeBuildParams**](ForgeBuildParams.md)| The build data to unlink | 
 
 ### Return type
 

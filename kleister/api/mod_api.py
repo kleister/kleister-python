@@ -36,39 +36,39 @@ class ModApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def append_mod_to_team(self, mod_id, params, **kwargs):  # noqa: E501
+    def append_mod_to_team(self, mod_id, mod_team, **kwargs):  # noqa: E501
         """Assign a team to mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_mod_to_team(mod_id, params, async_req=True)
+        >>> thread = api.append_mod_to_team(mod_id, mod_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams params: The mod team data to assign (required)
+        :param ModTeamParams mod_team: The mod team data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.append_mod_to_team_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            return self.append_mod_to_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
         else:
-            (data) = self.append_mod_to_team_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            (data) = self.append_mod_to_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
             return data
 
-    def append_mod_to_team_with_http_info(self, mod_id, params, **kwargs):  # noqa: E501
+    def append_mod_to_team_with_http_info(self, mod_id, mod_team, **kwargs):  # noqa: E501
         """Assign a team to mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_mod_to_team_with_http_info(mod_id, params, async_req=True)
+        >>> thread = api.append_mod_to_team_with_http_info(mod_id, mod_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams params: The mod team data to assign (required)
+        :param ModTeamParams mod_team: The mod team data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -76,7 +76,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'mod_team']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -94,10 +94,10 @@ class ModApi(object):
         if ('mod_id' not in local_var_params or
                 local_var_params['mod_id'] is None):
             raise ApiValueError("Missing the required parameter `mod_id` when calling `append_mod_to_team`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `append_mod_to_team`")  # noqa: E501
+        # verify the required parameter 'mod_team' is set
+        if ('mod_team' not in local_var_params or
+                local_var_params['mod_team'] is None):
+            raise ApiValueError("Missing the required parameter `mod_team` when calling `append_mod_to_team`")  # noqa: E501
 
         collection_formats = {}
 
@@ -113,8 +113,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'mod_team' in local_var_params:
+            body_params = local_var_params['mod_team']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -142,39 +142,39 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def append_mod_to_user(self, mod_id, params, **kwargs):  # noqa: E501
+    def append_mod_to_user(self, mod_id, mod_user, **kwargs):  # noqa: E501
         """Assign a user to mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_mod_to_user(mod_id, params, async_req=True)
+        >>> thread = api.append_mod_to_user(mod_id, mod_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams params: The mod user data to assign (required)
+        :param ModUserParams mod_user: The mod user data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.append_mod_to_user_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            return self.append_mod_to_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
         else:
-            (data) = self.append_mod_to_user_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            (data) = self.append_mod_to_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
             return data
 
-    def append_mod_to_user_with_http_info(self, mod_id, params, **kwargs):  # noqa: E501
+    def append_mod_to_user_with_http_info(self, mod_id, mod_user, **kwargs):  # noqa: E501
         """Assign a user to mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_mod_to_user_with_http_info(mod_id, params, async_req=True)
+        >>> thread = api.append_mod_to_user_with_http_info(mod_id, mod_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams params: The mod user data to assign (required)
+        :param ModUserParams mod_user: The mod user data to assign (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -182,7 +182,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'mod_user']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -200,10 +200,10 @@ class ModApi(object):
         if ('mod_id' not in local_var_params or
                 local_var_params['mod_id'] is None):
             raise ApiValueError("Missing the required parameter `mod_id` when calling `append_mod_to_user`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `append_mod_to_user`")  # noqa: E501
+        # verify the required parameter 'mod_user' is set
+        if ('mod_user' not in local_var_params or
+                local_var_params['mod_user'] is None):
+            raise ApiValueError("Missing the required parameter `mod_user` when calling `append_mod_to_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -219,8 +219,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'mod_user' in local_var_params:
+            body_params = local_var_params['mod_user']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -248,41 +248,41 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def append_version_to_build(self, mod_id, version_id, params, **kwargs):  # noqa: E501
+    def append_version_to_build(self, mod_id, version_id, version_build, **kwargs):  # noqa: E501
         """Assign a build to a version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_version_to_build(mod_id, version_id, params, async_req=True)
+        >>> thread = api.append_version_to_build(mod_id, version_id, version_build, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
-        :param VersionBuildParams params: The build data to append to version (required)
+        :param VersionBuildParams version_build: The build data to append to version (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.append_version_to_build_with_http_info(mod_id, version_id, params, **kwargs)  # noqa: E501
+            return self.append_version_to_build_with_http_info(mod_id, version_id, version_build, **kwargs)  # noqa: E501
         else:
-            (data) = self.append_version_to_build_with_http_info(mod_id, version_id, params, **kwargs)  # noqa: E501
+            (data) = self.append_version_to_build_with_http_info(mod_id, version_id, version_build, **kwargs)  # noqa: E501
             return data
 
-    def append_version_to_build_with_http_info(self, mod_id, version_id, params, **kwargs):  # noqa: E501
+    def append_version_to_build_with_http_info(self, mod_id, version_id, version_build, **kwargs):  # noqa: E501
         """Assign a build to a version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_version_to_build_with_http_info(mod_id, version_id, params, async_req=True)
+        >>> thread = api.append_version_to_build_with_http_info(mod_id, version_id, version_build, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
-        :param VersionBuildParams params: The build data to append to version (required)
+        :param VersionBuildParams version_build: The build data to append to version (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -290,7 +290,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'version_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'version_id', 'version_build']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -312,10 +312,10 @@ class ModApi(object):
         if ('version_id' not in local_var_params or
                 local_var_params['version_id'] is None):
             raise ApiValueError("Missing the required parameter `version_id` when calling `append_version_to_build`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `append_version_to_build`")  # noqa: E501
+        # verify the required parameter 'version_build' is set
+        if ('version_build' not in local_var_params or
+                local_var_params['version_build'] is None):
+            raise ApiValueError("Missing the required parameter `version_build` when calling `append_version_to_build`")  # noqa: E501
 
         collection_formats = {}
 
@@ -333,8 +333,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'version_build' in local_var_params:
+            body_params = local_var_params['version_build']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -362,37 +362,37 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def create_mod(self, params, **kwargs):  # noqa: E501
+    def create_mod(self, mod, **kwargs):  # noqa: E501
         """Create a new mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_mod(params, async_req=True)
+        >>> thread = api.create_mod(mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param Mod params: The mod data to create (required)
+        :param Mod mod: The mod data to create (required)
         :return: Mod
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.create_mod_with_http_info(params, **kwargs)  # noqa: E501
+            return self.create_mod_with_http_info(mod, **kwargs)  # noqa: E501
         else:
-            (data) = self.create_mod_with_http_info(params, **kwargs)  # noqa: E501
+            (data) = self.create_mod_with_http_info(mod, **kwargs)  # noqa: E501
             return data
 
-    def create_mod_with_http_info(self, params, **kwargs):  # noqa: E501
+    def create_mod_with_http_info(self, mod, **kwargs):  # noqa: E501
         """Create a new mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_mod_with_http_info(params, async_req=True)
+        >>> thread = api.create_mod_with_http_info(mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param Mod params: The mod data to create (required)
+        :param Mod mod: The mod data to create (required)
         :return: Mod
                  If the method is called asynchronously,
                  returns the request thread.
@@ -400,7 +400,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['params']  # noqa: E501
+        all_params = ['mod']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -414,10 +414,10 @@ class ModApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `create_mod`")  # noqa: E501
+        # verify the required parameter 'mod' is set
+        if ('mod' not in local_var_params or
+                local_var_params['mod'] is None):
+            raise ApiValueError("Missing the required parameter `mod` when calling `create_mod`")  # noqa: E501
 
         collection_formats = {}
 
@@ -431,8 +431,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'mod' in local_var_params:
+            body_params = local_var_params['mod']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -460,39 +460,39 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def create_version(self, mod_id, params, **kwargs):  # noqa: E501
+    def create_version(self, mod_id, version, **kwargs):  # noqa: E501
         """Create a new version for a mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_version(mod_id, params, async_req=True)
+        >>> thread = api.create_version(mod_id, version, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param Version params: The version data to create (required)
+        :param Version version: The version data to create (required)
         :return: Version
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.create_version_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            return self.create_version_with_http_info(mod_id, version, **kwargs)  # noqa: E501
         else:
-            (data) = self.create_version_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            (data) = self.create_version_with_http_info(mod_id, version, **kwargs)  # noqa: E501
             return data
 
-    def create_version_with_http_info(self, mod_id, params, **kwargs):  # noqa: E501
+    def create_version_with_http_info(self, mod_id, version, **kwargs):  # noqa: E501
         """Create a new version for a mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_version_with_http_info(mod_id, params, async_req=True)
+        >>> thread = api.create_version_with_http_info(mod_id, version, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param Version params: The version data to create (required)
+        :param Version version: The version data to create (required)
         :return: Version
                  If the method is called asynchronously,
                  returns the request thread.
@@ -500,7 +500,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'version']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -518,10 +518,10 @@ class ModApi(object):
         if ('mod_id' not in local_var_params or
                 local_var_params['mod_id'] is None):
             raise ApiValueError("Missing the required parameter `mod_id` when calling `create_version`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `create_version`")  # noqa: E501
+        # verify the required parameter 'version' is set
+        if ('version' not in local_var_params or
+                local_var_params['version'] is None):
+            raise ApiValueError("Missing the required parameter `version` when calling `create_version`")  # noqa: E501
 
         collection_formats = {}
 
@@ -537,8 +537,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'version' in local_var_params:
+            body_params = local_var_params['version']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -660,39 +660,39 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_mod_from_team(self, mod_id, params, **kwargs):  # noqa: E501
+    def delete_mod_from_team(self, mod_id, mod_team, **kwargs):  # noqa: E501
         """Remove a team from mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_mod_from_team(mod_id, params, async_req=True)
+        >>> thread = api.delete_mod_from_team(mod_id, mod_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams params: The mod team data to delete (required)
+        :param ModTeamParams mod_team: The mod team data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_mod_from_team_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            return self.delete_mod_from_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_mod_from_team_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            (data) = self.delete_mod_from_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
             return data
 
-    def delete_mod_from_team_with_http_info(self, mod_id, params, **kwargs):  # noqa: E501
+    def delete_mod_from_team_with_http_info(self, mod_id, mod_team, **kwargs):  # noqa: E501
         """Remove a team from mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_mod_from_team_with_http_info(mod_id, params, async_req=True)
+        >>> thread = api.delete_mod_from_team_with_http_info(mod_id, mod_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams params: The mod team data to delete (required)
+        :param ModTeamParams mod_team: The mod team data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -700,7 +700,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'mod_team']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -718,10 +718,10 @@ class ModApi(object):
         if ('mod_id' not in local_var_params or
                 local_var_params['mod_id'] is None):
             raise ApiValueError("Missing the required parameter `mod_id` when calling `delete_mod_from_team`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `delete_mod_from_team`")  # noqa: E501
+        # verify the required parameter 'mod_team' is set
+        if ('mod_team' not in local_var_params or
+                local_var_params['mod_team'] is None):
+            raise ApiValueError("Missing the required parameter `mod_team` when calling `delete_mod_from_team`")  # noqa: E501
 
         collection_formats = {}
 
@@ -737,8 +737,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'mod_team' in local_var_params:
+            body_params = local_var_params['mod_team']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -766,39 +766,39 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_mod_from_user(self, mod_id, params, **kwargs):  # noqa: E501
+    def delete_mod_from_user(self, mod_id, mod_user, **kwargs):  # noqa: E501
         """Remove a user from mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_mod_from_user(mod_id, params, async_req=True)
+        >>> thread = api.delete_mod_from_user(mod_id, mod_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams params: The mod user data to delete (required)
+        :param ModUserParams mod_user: The mod user data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_mod_from_user_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            return self.delete_mod_from_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_mod_from_user_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            (data) = self.delete_mod_from_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
             return data
 
-    def delete_mod_from_user_with_http_info(self, mod_id, params, **kwargs):  # noqa: E501
+    def delete_mod_from_user_with_http_info(self, mod_id, mod_user, **kwargs):  # noqa: E501
         """Remove a user from mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_mod_from_user_with_http_info(mod_id, params, async_req=True)
+        >>> thread = api.delete_mod_from_user_with_http_info(mod_id, mod_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams params: The mod user data to delete (required)
+        :param ModUserParams mod_user: The mod user data to delete (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -806,7 +806,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'mod_user']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -824,10 +824,10 @@ class ModApi(object):
         if ('mod_id' not in local_var_params or
                 local_var_params['mod_id'] is None):
             raise ApiValueError("Missing the required parameter `mod_id` when calling `delete_mod_from_user`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `delete_mod_from_user`")  # noqa: E501
+        # verify the required parameter 'mod_user' is set
+        if ('mod_user' not in local_var_params or
+                local_var_params['mod_user'] is None):
+            raise ApiValueError("Missing the required parameter `mod_user` when calling `delete_mod_from_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -843,8 +843,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'mod_user' in local_var_params:
+            body_params = local_var_params['mod_user']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -974,41 +974,41 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_version_from_build(self, mod_id, version_id, params, **kwargs):  # noqa: E501
+    def delete_version_from_build(self, mod_id, version_id, version_build, **kwargs):  # noqa: E501
         """Unlink a build from a version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_version_from_build(mod_id, version_id, params, async_req=True)
+        >>> thread = api.delete_version_from_build(mod_id, version_id, version_build, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
-        :param VersionBuildParams params: The build data to unlink from version (required)
+        :param VersionBuildParams version_build: The build data to unlink from version (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_version_from_build_with_http_info(mod_id, version_id, params, **kwargs)  # noqa: E501
+            return self.delete_version_from_build_with_http_info(mod_id, version_id, version_build, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_version_from_build_with_http_info(mod_id, version_id, params, **kwargs)  # noqa: E501
+            (data) = self.delete_version_from_build_with_http_info(mod_id, version_id, version_build, **kwargs)  # noqa: E501
             return data
 
-    def delete_version_from_build_with_http_info(self, mod_id, version_id, params, **kwargs):  # noqa: E501
+    def delete_version_from_build_with_http_info(self, mod_id, version_id, version_build, **kwargs):  # noqa: E501
         """Unlink a build from a version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_version_from_build_with_http_info(mod_id, version_id, params, async_req=True)
+        >>> thread = api.delete_version_from_build_with_http_info(mod_id, version_id, version_build, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
-        :param VersionBuildParams params: The build data to unlink from version (required)
+        :param VersionBuildParams version_build: The build data to unlink from version (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1016,7 +1016,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'version_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'version_id', 'version_build']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1038,10 +1038,10 @@ class ModApi(object):
         if ('version_id' not in local_var_params or
                 local_var_params['version_id'] is None):
             raise ApiValueError("Missing the required parameter `version_id` when calling `delete_version_from_build`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `delete_version_from_build`")  # noqa: E501
+        # verify the required parameter 'version_build' is set
+        if ('version_build' not in local_var_params or
+                local_var_params['version_build'] is None):
+            raise ApiValueError("Missing the required parameter `version_build` when calling `delete_version_from_build`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1059,8 +1059,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'version_build' in local_var_params:
+            body_params = local_var_params['version_build']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1558,39 +1558,39 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def permit_mod_team(self, mod_id, params, **kwargs):  # noqa: E501
+    def permit_mod_team(self, mod_id, mod_team, **kwargs):  # noqa: E501
         """Update team perms for mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_mod_team(mod_id, params, async_req=True)
+        >>> thread = api.permit_mod_team(mod_id, mod_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams params: The mod team data to update (required)
+        :param ModTeamParams mod_team: The mod team data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.permit_mod_team_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            return self.permit_mod_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
         else:
-            (data) = self.permit_mod_team_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            (data) = self.permit_mod_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
             return data
 
-    def permit_mod_team_with_http_info(self, mod_id, params, **kwargs):  # noqa: E501
+    def permit_mod_team_with_http_info(self, mod_id, mod_team, **kwargs):  # noqa: E501
         """Update team perms for mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_mod_team_with_http_info(mod_id, params, async_req=True)
+        >>> thread = api.permit_mod_team_with_http_info(mod_id, mod_team, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams params: The mod team data to update (required)
+        :param ModTeamParams mod_team: The mod team data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1598,7 +1598,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'mod_team']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1616,10 +1616,10 @@ class ModApi(object):
         if ('mod_id' not in local_var_params or
                 local_var_params['mod_id'] is None):
             raise ApiValueError("Missing the required parameter `mod_id` when calling `permit_mod_team`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `permit_mod_team`")  # noqa: E501
+        # verify the required parameter 'mod_team' is set
+        if ('mod_team' not in local_var_params or
+                local_var_params['mod_team'] is None):
+            raise ApiValueError("Missing the required parameter `mod_team` when calling `permit_mod_team`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1635,8 +1635,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'mod_team' in local_var_params:
+            body_params = local_var_params['mod_team']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1664,39 +1664,39 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def permit_mod_user(self, mod_id, params, **kwargs):  # noqa: E501
+    def permit_mod_user(self, mod_id, mod_user, **kwargs):  # noqa: E501
         """Update user perms for mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_mod_user(mod_id, params, async_req=True)
+        >>> thread = api.permit_mod_user(mod_id, mod_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams params: The mod user data to update (required)
+        :param ModUserParams mod_user: The mod user data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.permit_mod_user_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            return self.permit_mod_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
         else:
-            (data) = self.permit_mod_user_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            (data) = self.permit_mod_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
             return data
 
-    def permit_mod_user_with_http_info(self, mod_id, params, **kwargs):  # noqa: E501
+    def permit_mod_user_with_http_info(self, mod_id, mod_user, **kwargs):  # noqa: E501
         """Update user perms for mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_mod_user_with_http_info(mod_id, params, async_req=True)
+        >>> thread = api.permit_mod_user_with_http_info(mod_id, mod_user, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams params: The mod user data to update (required)
+        :param ModUserParams mod_user: The mod user data to update (required)
         :return: GeneralError
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1704,7 +1704,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'mod_user']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1722,10 +1722,10 @@ class ModApi(object):
         if ('mod_id' not in local_var_params or
                 local_var_params['mod_id'] is None):
             raise ApiValueError("Missing the required parameter `mod_id` when calling `permit_mod_user`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `permit_mod_user`")  # noqa: E501
+        # verify the required parameter 'mod_user' is set
+        if ('mod_user' not in local_var_params or
+                local_var_params['mod_user'] is None):
+            raise ApiValueError("Missing the required parameter `mod_user` when calling `permit_mod_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1741,8 +1741,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'mod_user' in local_var_params:
+            body_params = local_var_params['mod_user']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1966,39 +1966,39 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def update_mod(self, mod_id, params, **kwargs):  # noqa: E501
+    def update_mod(self, mod_id, mod, **kwargs):  # noqa: E501
         """Update a specific mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_mod(mod_id, params, async_req=True)
+        >>> thread = api.update_mod(mod_id, mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param Mod params: The mod data to update (required)
+        :param Mod mod: The mod data to update (required)
         :return: Mod
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.update_mod_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            return self.update_mod_with_http_info(mod_id, mod, **kwargs)  # noqa: E501
         else:
-            (data) = self.update_mod_with_http_info(mod_id, params, **kwargs)  # noqa: E501
+            (data) = self.update_mod_with_http_info(mod_id, mod, **kwargs)  # noqa: E501
             return data
 
-    def update_mod_with_http_info(self, mod_id, params, **kwargs):  # noqa: E501
+    def update_mod_with_http_info(self, mod_id, mod, **kwargs):  # noqa: E501
         """Update a specific mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_mod_with_http_info(mod_id, params, async_req=True)
+        >>> thread = api.update_mod_with_http_info(mod_id, mod, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
-        :param Mod params: The mod data to update (required)
+        :param Mod mod: The mod data to update (required)
         :return: Mod
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2006,7 +2006,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'mod']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -2024,10 +2024,10 @@ class ModApi(object):
         if ('mod_id' not in local_var_params or
                 local_var_params['mod_id'] is None):
             raise ApiValueError("Missing the required parameter `mod_id` when calling `update_mod`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `update_mod`")  # noqa: E501
+        # verify the required parameter 'mod' is set
+        if ('mod' not in local_var_params or
+                local_var_params['mod'] is None):
+            raise ApiValueError("Missing the required parameter `mod` when calling `update_mod`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2043,8 +2043,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'mod' in local_var_params:
+            body_params = local_var_params['mod']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -2072,41 +2072,41 @@ class ModApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def update_version(self, mod_id, version_id, params, **kwargs):  # noqa: E501
+    def update_version(self, mod_id, version_id, version, **kwargs):  # noqa: E501
         """Update a specific version for a mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_version(mod_id, version_id, params, async_req=True)
+        >>> thread = api.update_version(mod_id, version_id, version, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
-        :param Version params: The version data to update (required)
+        :param Version version: The version data to update (required)
         :return: Version
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.update_version_with_http_info(mod_id, version_id, params, **kwargs)  # noqa: E501
+            return self.update_version_with_http_info(mod_id, version_id, version, **kwargs)  # noqa: E501
         else:
-            (data) = self.update_version_with_http_info(mod_id, version_id, params, **kwargs)  # noqa: E501
+            (data) = self.update_version_with_http_info(mod_id, version_id, version, **kwargs)  # noqa: E501
             return data
 
-    def update_version_with_http_info(self, mod_id, version_id, params, **kwargs):  # noqa: E501
+    def update_version_with_http_info(self, mod_id, version_id, version, **kwargs):  # noqa: E501
         """Update a specific version for a mod  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_version_with_http_info(mod_id, version_id, params, async_req=True)
+        >>> thread = api.update_version_with_http_info(mod_id, version_id, version, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str mod_id: A mod UUID or slug (required)
         :param str version_id: A version UUID or slug (required)
-        :param Version params: The version data to update (required)
+        :param Version version: The version data to update (required)
         :return: Version
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2114,7 +2114,7 @@ class ModApi(object):
 
         local_var_params = locals()
 
-        all_params = ['mod_id', 'version_id', 'params']  # noqa: E501
+        all_params = ['mod_id', 'version_id', 'version']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -2136,10 +2136,10 @@ class ModApi(object):
         if ('version_id' not in local_var_params or
                 local_var_params['version_id'] is None):
             raise ApiValueError("Missing the required parameter `version_id` when calling `update_version`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `update_version`")  # noqa: E501
+        # verify the required parameter 'version' is set
+        if ('version' not in local_var_params or
+                local_var_params['version'] is None):
+            raise ApiValueError("Missing the required parameter `version` when calling `update_version`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2157,8 +2157,8 @@ class ModApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'version' in local_var_params:
+            body_params = local_var_params['version']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

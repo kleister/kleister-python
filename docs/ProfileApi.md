@@ -96,7 +96,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_profile**
-> Profile update_profile(params)
+> Profile update_profile(profile)
 
 Retrieve an unlimited auth token
 
@@ -111,11 +111,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = kleister.ProfileApi()
-params = kleister.Profile() # Profile | The profile data to update
+profile = kleister.Profile() # Profile | The profile data to update
 
 try:
     # Retrieve an unlimited auth token
-    api_response = api_instance.update_profile(params)
+    api_response = api_instance.update_profile(profile)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ProfileApi->update_profile: %s\n" % e)
@@ -125,7 +125,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **params** | [**Profile**](Profile.md)| The profile data to update | 
+ **profile** | [**Profile**](Profile.md)| The profile data to update | 
 
 ### Return type
 

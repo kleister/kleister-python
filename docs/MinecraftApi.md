@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **append_minecraft_to_build**
-> list[Build] append_minecraft_to_build(minecraft_id, params)
+> list[Build] append_minecraft_to_build(minecraft_id, minecraft_build)
 
 Assign a build to a Minecraft version
 
@@ -29,11 +29,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.MinecraftApi()
 minecraft_id = 'minecraft_id_example' # str | A minecraft UUID or slug
-params = kleister.MinecraftBuildParams() # MinecraftBuildParams | The build data to append
+minecraft_build = kleister.MinecraftBuildParams() # MinecraftBuildParams | The build data to append
 
 try:
     # Assign a build to a Minecraft version
-    api_response = api_instance.append_minecraft_to_build(minecraft_id, params)
+    api_response = api_instance.append_minecraft_to_build(minecraft_id, minecraft_build)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling MinecraftApi->append_minecraft_to_build: %s\n" % e)
@@ -44,7 +44,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **minecraft_id** | **str**| A minecraft UUID or slug | 
- **params** | [**MinecraftBuildParams**](MinecraftBuildParams.md)| The build data to append | 
+ **minecraft_build** | [**MinecraftBuildParams**](MinecraftBuildParams.md)| The build data to append | 
 
 ### Return type
 
@@ -62,7 +62,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_minecraft_from_build**
-> list[Build] delete_minecraft_from_build(minecraft_id, params)
+> list[Build] delete_minecraft_from_build(minecraft_id, minecraft_build)
 
 Unlink a build from a Minecraft version
 
@@ -78,11 +78,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.MinecraftApi()
 minecraft_id = 'minecraft_id_example' # str | A minecraft UUID or slug
-params = kleister.MinecraftBuildParams() # MinecraftBuildParams | The build data to unlink
+minecraft_build = kleister.MinecraftBuildParams() # MinecraftBuildParams | The build data to unlink
 
 try:
     # Unlink a build from a Minecraft version
-    api_response = api_instance.delete_minecraft_from_build(minecraft_id, params)
+    api_response = api_instance.delete_minecraft_from_build(minecraft_id, minecraft_build)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling MinecraftApi->delete_minecraft_from_build: %s\n" % e)
@@ -93,7 +93,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **minecraft_id** | **str**| A minecraft UUID or slug | 
- **params** | [**MinecraftBuildParams**](MinecraftBuildParams.md)| The build data to unlink | 
+ **minecraft_build** | [**MinecraftBuildParams**](MinecraftBuildParams.md)| The build data to unlink | 
 
 ### Return type
 

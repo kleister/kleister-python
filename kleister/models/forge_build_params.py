@@ -31,51 +31,24 @@ class ForgeBuildParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'forge': 'str',
         'pack': 'str',
         'build': 'str'
     }
 
     attribute_map = {
-        'forge': 'forge',
         'pack': 'pack',
         'build': 'build'
     }
 
-    def __init__(self, forge=None, pack=None, build=None):  # noqa: E501
+    def __init__(self, pack=None, build=None):  # noqa: E501
         """ForgeBuildParams - a model defined in OpenAPI"""  # noqa: E501
 
-        self._forge = None
         self._pack = None
         self._build = None
         self.discriminator = None
 
-        self.forge = forge
         self.pack = pack
         self.build = build
-
-    @property
-    def forge(self):
-        """Gets the forge of this ForgeBuildParams.  # noqa: E501
-
-
-        :return: The forge of this ForgeBuildParams.  # noqa: E501
-        :rtype: str
-        """
-        return self._forge
-
-    @forge.setter
-    def forge(self, forge):
-        """Sets the forge of this ForgeBuildParams.
-
-
-        :param forge: The forge of this ForgeBuildParams.  # noqa: E501
-        :type: str
-        """
-        if forge is None:
-            raise ValueError("Invalid value for `forge`, must not be `None`")  # noqa: E501
-
-        self._forge = forge
 
     @property
     def pack(self):

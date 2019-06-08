@@ -28,7 +28,7 @@ Method | HTTP request | Description
 
 
 # **append_mod_to_team**
-> GeneralError append_mod_to_team(mod_id, params)
+> GeneralError append_mod_to_team(mod_id, mod_team)
 
 Assign a team to mod
 
@@ -44,11 +44,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
-params = kleister.ModTeamParams() # ModTeamParams | The mod team data to assign
+mod_team = kleister.ModTeamParams() # ModTeamParams | The mod team data to assign
 
 try:
     # Assign a team to mod
-    api_response = api_instance.append_mod_to_team(mod_id, params)
+    api_response = api_instance.append_mod_to_team(mod_id, mod_team)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->append_mod_to_team: %s\n" % e)
@@ -59,7 +59,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
- **params** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to assign | 
+ **mod_team** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to assign | 
 
 ### Return type
 
@@ -77,7 +77,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_mod_to_user**
-> GeneralError append_mod_to_user(mod_id, params)
+> GeneralError append_mod_to_user(mod_id, mod_user)
 
 Assign a user to mod
 
@@ -93,11 +93,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
-params = kleister.ModUserParams() # ModUserParams | The mod user data to assign
+mod_user = kleister.ModUserParams() # ModUserParams | The mod user data to assign
 
 try:
     # Assign a user to mod
-    api_response = api_instance.append_mod_to_user(mod_id, params)
+    api_response = api_instance.append_mod_to_user(mod_id, mod_user)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->append_mod_to_user: %s\n" % e)
@@ -108,7 +108,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
- **params** | [**ModUserParams**](ModUserParams.md)| The mod user data to assign | 
+ **mod_user** | [**ModUserParams**](ModUserParams.md)| The mod user data to assign | 
 
 ### Return type
 
@@ -126,7 +126,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **append_version_to_build**
-> GeneralError append_version_to_build(mod_id, version_id, params)
+> GeneralError append_version_to_build(mod_id, version_id, version_build)
 
 Assign a build to a version
 
@@ -143,11 +143,11 @@ from pprint import pprint
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
 version_id = 'version_id_example' # str | A version UUID or slug
-params = kleister.VersionBuildParams() # VersionBuildParams | The build data to append to version
+version_build = kleister.VersionBuildParams() # VersionBuildParams | The build data to append to version
 
 try:
     # Assign a build to a version
-    api_response = api_instance.append_version_to_build(mod_id, version_id, params)
+    api_response = api_instance.append_version_to_build(mod_id, version_id, version_build)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->append_version_to_build: %s\n" % e)
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
  **version_id** | **str**| A version UUID or slug | 
- **params** | [**VersionBuildParams**](VersionBuildParams.md)| The build data to append to version | 
+ **version_build** | [**VersionBuildParams**](VersionBuildParams.md)| The build data to append to version | 
 
 ### Return type
 
@@ -177,7 +177,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_mod**
-> Mod create_mod(params)
+> Mod create_mod(mod)
 
 Create a new mod
 
@@ -192,11 +192,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = kleister.ModApi()
-params = kleister.Mod() # Mod | The mod data to create
+mod = kleister.Mod() # Mod | The mod data to create
 
 try:
     # Create a new mod
-    api_response = api_instance.create_mod(params)
+    api_response = api_instance.create_mod(mod)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->create_mod: %s\n" % e)
@@ -206,7 +206,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **params** | [**Mod**](Mod.md)| The mod data to create | 
+ **mod** | [**Mod**](Mod.md)| The mod data to create | 
 
 ### Return type
 
@@ -224,7 +224,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_version**
-> Version create_version(mod_id, params)
+> Version create_version(mod_id, version)
 
 Create a new version for a mod
 
@@ -240,11 +240,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
-params = kleister.Version() # Version | The version data to create
+version = kleister.Version() # Version | The version data to create
 
 try:
     # Create a new version for a mod
-    api_response = api_instance.create_version(mod_id, params)
+    api_response = api_instance.create_version(mod_id, version)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->create_version: %s\n" % e)
@@ -255,7 +255,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
- **params** | [**Version**](Version.md)| The version data to create | 
+ **version** | [**Version**](Version.md)| The version data to create | 
 
 ### Return type
 
@@ -320,7 +320,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_mod_from_team**
-> GeneralError delete_mod_from_team(mod_id, params)
+> GeneralError delete_mod_from_team(mod_id, mod_team)
 
 Remove a team from mod
 
@@ -336,11 +336,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
-params = kleister.ModTeamParams() # ModTeamParams | The mod team data to delete
+mod_team = kleister.ModTeamParams() # ModTeamParams | The mod team data to delete
 
 try:
     # Remove a team from mod
-    api_response = api_instance.delete_mod_from_team(mod_id, params)
+    api_response = api_instance.delete_mod_from_team(mod_id, mod_team)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->delete_mod_from_team: %s\n" % e)
@@ -351,7 +351,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
- **params** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to delete | 
+ **mod_team** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to delete | 
 
 ### Return type
 
@@ -369,7 +369,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_mod_from_user**
-> GeneralError delete_mod_from_user(mod_id, params)
+> GeneralError delete_mod_from_user(mod_id, mod_user)
 
 Remove a user from mod
 
@@ -385,11 +385,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
-params = kleister.ModUserParams() # ModUserParams | The mod user data to delete
+mod_user = kleister.ModUserParams() # ModUserParams | The mod user data to delete
 
 try:
     # Remove a user from mod
-    api_response = api_instance.delete_mod_from_user(mod_id, params)
+    api_response = api_instance.delete_mod_from_user(mod_id, mod_user)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->delete_mod_from_user: %s\n" % e)
@@ -400,7 +400,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
- **params** | [**ModUserParams**](ModUserParams.md)| The mod user data to delete | 
+ **mod_user** | [**ModUserParams**](ModUserParams.md)| The mod user data to delete | 
 
 ### Return type
 
@@ -467,7 +467,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_version_from_build**
-> GeneralError delete_version_from_build(mod_id, version_id, params)
+> GeneralError delete_version_from_build(mod_id, version_id, version_build)
 
 Unlink a build from a version
 
@@ -484,11 +484,11 @@ from pprint import pprint
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
 version_id = 'version_id_example' # str | A version UUID or slug
-params = kleister.VersionBuildParams() # VersionBuildParams | The build data to unlink from version
+version_build = kleister.VersionBuildParams() # VersionBuildParams | The build data to unlink from version
 
 try:
     # Unlink a build from a version
-    api_response = api_instance.delete_version_from_build(mod_id, version_id, params)
+    api_response = api_instance.delete_version_from_build(mod_id, version_id, version_build)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->delete_version_from_build: %s\n" % e)
@@ -500,7 +500,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
  **version_id** | **str**| A version UUID or slug | 
- **params** | [**VersionBuildParams**](VersionBuildParams.md)| The build data to unlink from version | 
+ **version_build** | [**VersionBuildParams**](VersionBuildParams.md)| The build data to unlink from version | 
 
 ### Return type
 
@@ -751,7 +751,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_mod_team**
-> GeneralError permit_mod_team(mod_id, params)
+> GeneralError permit_mod_team(mod_id, mod_team)
 
 Update team perms for mod
 
@@ -767,11 +767,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
-params = kleister.ModTeamParams() # ModTeamParams | The mod team data to update
+mod_team = kleister.ModTeamParams() # ModTeamParams | The mod team data to update
 
 try:
     # Update team perms for mod
-    api_response = api_instance.permit_mod_team(mod_id, params)
+    api_response = api_instance.permit_mod_team(mod_id, mod_team)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->permit_mod_team: %s\n" % e)
@@ -782,7 +782,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
- **params** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to update | 
+ **mod_team** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to update | 
 
 ### Return type
 
@@ -800,7 +800,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_mod_user**
-> GeneralError permit_mod_user(mod_id, params)
+> GeneralError permit_mod_user(mod_id, mod_user)
 
 Update user perms for mod
 
@@ -816,11 +816,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
-params = kleister.ModUserParams() # ModUserParams | The mod user data to update
+mod_user = kleister.ModUserParams() # ModUserParams | The mod user data to update
 
 try:
     # Update user perms for mod
-    api_response = api_instance.permit_mod_user(mod_id, params)
+    api_response = api_instance.permit_mod_user(mod_id, mod_user)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->permit_mod_user: %s\n" % e)
@@ -831,7 +831,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
- **params** | [**ModUserParams**](ModUserParams.md)| The mod user data to update | 
+ **mod_user** | [**ModUserParams**](ModUserParams.md)| The mod user data to update | 
 
 ### Return type
 
@@ -945,7 +945,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_mod**
-> Mod update_mod(mod_id, params)
+> Mod update_mod(mod_id, mod)
 
 Update a specific mod
 
@@ -961,11 +961,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
-params = kleister.Mod() # Mod | The mod data to update
+mod = kleister.Mod() # Mod | The mod data to update
 
 try:
     # Update a specific mod
-    api_response = api_instance.update_mod(mod_id, params)
+    api_response = api_instance.update_mod(mod_id, mod)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->update_mod: %s\n" % e)
@@ -976,7 +976,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
- **params** | [**Mod**](Mod.md)| The mod data to update | 
+ **mod** | [**Mod**](Mod.md)| The mod data to update | 
 
 ### Return type
 
@@ -994,7 +994,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_version**
-> Version update_version(mod_id, version_id, params)
+> Version update_version(mod_id, version_id, version)
 
 Update a specific version for a mod
 
@@ -1011,11 +1011,11 @@ from pprint import pprint
 api_instance = kleister.ModApi()
 mod_id = 'mod_id_example' # str | A mod UUID or slug
 version_id = 'version_id_example' # str | A version UUID or slug
-params = kleister.Version() # Version | The version data to update
+version = kleister.Version() # Version | The version data to update
 
 try:
     # Update a specific version for a mod
-    api_response = api_instance.update_version(mod_id, version_id, params)
+    api_response = api_instance.update_version(mod_id, version_id, version)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ModApi->update_version: %s\n" % e)
@@ -1027,7 +1027,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mod_id** | **str**| A mod UUID or slug | 
  **version_id** | **str**| A version UUID or slug | 
- **params** | [**Version**](Version.md)| The version data to update | 
+ **version** | [**Version**](Version.md)| The version data to update | 
 
 ### Return type
 

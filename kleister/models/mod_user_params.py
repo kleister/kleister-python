@@ -31,51 +31,24 @@ class ModUserParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'mod': 'str',
         'user': 'str',
         'perm': 'str'
     }
 
     attribute_map = {
-        'mod': 'mod',
         'user': 'user',
         'perm': 'perm'
     }
 
-    def __init__(self, mod=None, user=None, perm=None):  # noqa: E501
+    def __init__(self, user=None, perm=None):  # noqa: E501
         """ModUserParams - a model defined in OpenAPI"""  # noqa: E501
 
-        self._mod = None
         self._user = None
         self._perm = None
         self.discriminator = None
 
-        self.mod = mod
         self.user = user
         self.perm = perm
-
-    @property
-    def mod(self):
-        """Gets the mod of this ModUserParams.  # noqa: E501
-
-
-        :return: The mod of this ModUserParams.  # noqa: E501
-        :rtype: str
-        """
-        return self._mod
-
-    @mod.setter
-    def mod(self, mod):
-        """Sets the mod of this ModUserParams.
-
-
-        :param mod: The mod of this ModUserParams.  # noqa: E501
-        :type: str
-        """
-        if mod is None:
-            raise ValueError("Invalid value for `mod`, must not be `None`")  # noqa: E501
-
-        self._mod = mod
 
     @property
     def user(self):
@@ -120,6 +93,12 @@ class ModUserParams(object):
         """
         if perm is None:
             raise ValueError("Invalid value for `perm`, must not be `None`")  # noqa: E501
+        allowed_values = ["user", "admin", "owner"]  # noqa: E501
+        if perm not in allowed_values:
+            raise ValueError(
+                "Invalid value for `perm` ({0}), must be one of {1}"  # noqa: E501
+                .format(perm, allowed_values)
+            )
 
         self._perm = perm
 

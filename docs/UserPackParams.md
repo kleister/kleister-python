@@ -3,7 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | **str** |  | 
 **pack** | **str** |  | 
 **perm** | **str** |  | 
 

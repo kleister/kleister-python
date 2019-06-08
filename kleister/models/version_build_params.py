@@ -31,78 +31,24 @@ class VersionBuildParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'mod': 'str',
-        'version': 'str',
         'pack': 'str',
         'build': 'str'
     }
 
     attribute_map = {
-        'mod': 'mod',
-        'version': 'version',
         'pack': 'pack',
         'build': 'build'
     }
 
-    def __init__(self, mod=None, version=None, pack=None, build=None):  # noqa: E501
+    def __init__(self, pack=None, build=None):  # noqa: E501
         """VersionBuildParams - a model defined in OpenAPI"""  # noqa: E501
 
-        self._mod = None
-        self._version = None
         self._pack = None
         self._build = None
         self.discriminator = None
 
-        self.mod = mod
-        self.version = version
         self.pack = pack
         self.build = build
-
-    @property
-    def mod(self):
-        """Gets the mod of this VersionBuildParams.  # noqa: E501
-
-
-        :return: The mod of this VersionBuildParams.  # noqa: E501
-        :rtype: str
-        """
-        return self._mod
-
-    @mod.setter
-    def mod(self, mod):
-        """Sets the mod of this VersionBuildParams.
-
-
-        :param mod: The mod of this VersionBuildParams.  # noqa: E501
-        :type: str
-        """
-        if mod is None:
-            raise ValueError("Invalid value for `mod`, must not be `None`")  # noqa: E501
-
-        self._mod = mod
-
-    @property
-    def version(self):
-        """Gets the version of this VersionBuildParams.  # noqa: E501
-
-
-        :return: The version of this VersionBuildParams.  # noqa: E501
-        :rtype: str
-        """
-        return self._version
-
-    @version.setter
-    def version(self, version):
-        """Sets the version of this VersionBuildParams.
-
-
-        :param version: The version of this VersionBuildParams.  # noqa: E501
-        :type: str
-        """
-        if version is None:
-            raise ValueError("Invalid value for `version`, must not be `None`")  # noqa: E501
-
-        self._version = version
 
     @property
     def pack(self):

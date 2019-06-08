@@ -36,39 +36,39 @@ class MinecraftApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def append_minecraft_to_build(self, minecraft_id, params, **kwargs):  # noqa: E501
+    def append_minecraft_to_build(self, minecraft_id, minecraft_build, **kwargs):  # noqa: E501
         """Assign a build to a Minecraft version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_minecraft_to_build(minecraft_id, params, async_req=True)
+        >>> thread = api.append_minecraft_to_build(minecraft_id, minecraft_build, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str minecraft_id: A minecraft UUID or slug (required)
-        :param MinecraftBuildParams params: The build data to append (required)
+        :param MinecraftBuildParams minecraft_build: The build data to append (required)
         :return: list[Build]
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.append_minecraft_to_build_with_http_info(minecraft_id, params, **kwargs)  # noqa: E501
+            return self.append_minecraft_to_build_with_http_info(minecraft_id, minecraft_build, **kwargs)  # noqa: E501
         else:
-            (data) = self.append_minecraft_to_build_with_http_info(minecraft_id, params, **kwargs)  # noqa: E501
+            (data) = self.append_minecraft_to_build_with_http_info(minecraft_id, minecraft_build, **kwargs)  # noqa: E501
             return data
 
-    def append_minecraft_to_build_with_http_info(self, minecraft_id, params, **kwargs):  # noqa: E501
+    def append_minecraft_to_build_with_http_info(self, minecraft_id, minecraft_build, **kwargs):  # noqa: E501
         """Assign a build to a Minecraft version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_minecraft_to_build_with_http_info(minecraft_id, params, async_req=True)
+        >>> thread = api.append_minecraft_to_build_with_http_info(minecraft_id, minecraft_build, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str minecraft_id: A minecraft UUID or slug (required)
-        :param MinecraftBuildParams params: The build data to append (required)
+        :param MinecraftBuildParams minecraft_build: The build data to append (required)
         :return: list[Build]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -76,7 +76,7 @@ class MinecraftApi(object):
 
         local_var_params = locals()
 
-        all_params = ['minecraft_id', 'params']  # noqa: E501
+        all_params = ['minecraft_id', 'minecraft_build']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -94,10 +94,10 @@ class MinecraftApi(object):
         if ('minecraft_id' not in local_var_params or
                 local_var_params['minecraft_id'] is None):
             raise ApiValueError("Missing the required parameter `minecraft_id` when calling `append_minecraft_to_build`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `append_minecraft_to_build`")  # noqa: E501
+        # verify the required parameter 'minecraft_build' is set
+        if ('minecraft_build' not in local_var_params or
+                local_var_params['minecraft_build'] is None):
+            raise ApiValueError("Missing the required parameter `minecraft_build` when calling `append_minecraft_to_build`")  # noqa: E501
 
         collection_formats = {}
 
@@ -113,8 +113,8 @@ class MinecraftApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'minecraft_build' in local_var_params:
+            body_params = local_var_params['minecraft_build']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -142,39 +142,39 @@ class MinecraftApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_minecraft_from_build(self, minecraft_id, params, **kwargs):  # noqa: E501
+    def delete_minecraft_from_build(self, minecraft_id, minecraft_build, **kwargs):  # noqa: E501
         """Unlink a build from a Minecraft version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_minecraft_from_build(minecraft_id, params, async_req=True)
+        >>> thread = api.delete_minecraft_from_build(minecraft_id, minecraft_build, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str minecraft_id: A minecraft UUID or slug (required)
-        :param MinecraftBuildParams params: The build data to unlink (required)
+        :param MinecraftBuildParams minecraft_build: The build data to unlink (required)
         :return: list[Build]
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.delete_minecraft_from_build_with_http_info(minecraft_id, params, **kwargs)  # noqa: E501
+            return self.delete_minecraft_from_build_with_http_info(minecraft_id, minecraft_build, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_minecraft_from_build_with_http_info(minecraft_id, params, **kwargs)  # noqa: E501
+            (data) = self.delete_minecraft_from_build_with_http_info(minecraft_id, minecraft_build, **kwargs)  # noqa: E501
             return data
 
-    def delete_minecraft_from_build_with_http_info(self, minecraft_id, params, **kwargs):  # noqa: E501
+    def delete_minecraft_from_build_with_http_info(self, minecraft_id, minecraft_build, **kwargs):  # noqa: E501
         """Unlink a build from a Minecraft version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_minecraft_from_build_with_http_info(minecraft_id, params, async_req=True)
+        >>> thread = api.delete_minecraft_from_build_with_http_info(minecraft_id, minecraft_build, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str minecraft_id: A minecraft UUID or slug (required)
-        :param MinecraftBuildParams params: The build data to unlink (required)
+        :param MinecraftBuildParams minecraft_build: The build data to unlink (required)
         :return: list[Build]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -182,7 +182,7 @@ class MinecraftApi(object):
 
         local_var_params = locals()
 
-        all_params = ['minecraft_id', 'params']  # noqa: E501
+        all_params = ['minecraft_id', 'minecraft_build']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -200,10 +200,10 @@ class MinecraftApi(object):
         if ('minecraft_id' not in local_var_params or
                 local_var_params['minecraft_id'] is None):
             raise ApiValueError("Missing the required parameter `minecraft_id` when calling `delete_minecraft_from_build`")  # noqa: E501
-        # verify the required parameter 'params' is set
-        if ('params' not in local_var_params or
-                local_var_params['params'] is None):
-            raise ApiValueError("Missing the required parameter `params` when calling `delete_minecraft_from_build`")  # noqa: E501
+        # verify the required parameter 'minecraft_build' is set
+        if ('minecraft_build' not in local_var_params or
+                local_var_params['minecraft_build'] is None):
+            raise ApiValueError("Missing the required parameter `minecraft_build` when calling `delete_minecraft_from_build`")  # noqa: E501
 
         collection_formats = {}
 
@@ -219,8 +219,8 @@ class MinecraftApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'params' in local_var_params:
-            body_params = local_var_params['params']
+        if 'minecraft_build' in local_var_params:
+            body_params = local_var_params['minecraft_build']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

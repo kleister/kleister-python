@@ -31,51 +31,24 @@ class MinecraftBuildParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'minecraft': 'str',
         'pack': 'str',
         'build': 'str'
     }
 
     attribute_map = {
-        'minecraft': 'minecraft',
         'pack': 'pack',
         'build': 'build'
     }
 
-    def __init__(self, minecraft=None, pack=None, build=None):  # noqa: E501
+    def __init__(self, pack=None, build=None):  # noqa: E501
         """MinecraftBuildParams - a model defined in OpenAPI"""  # noqa: E501
 
-        self._minecraft = None
         self._pack = None
         self._build = None
         self.discriminator = None
 
-        self.minecraft = minecraft
         self.pack = pack
         self.build = build
-
-    @property
-    def minecraft(self):
-        """Gets the minecraft of this MinecraftBuildParams.  # noqa: E501
-
-
-        :return: The minecraft of this MinecraftBuildParams.  # noqa: E501
-        :rtype: str
-        """
-        return self._minecraft
-
-    @minecraft.setter
-    def minecraft(self, minecraft):
-        """Sets the minecraft of this MinecraftBuildParams.
-
-
-        :param minecraft: The minecraft of this MinecraftBuildParams.  # noqa: E501
-        :type: str
-        """
-        if minecraft is None:
-            raise ValueError("Invalid value for `minecraft`, must not be `None`")  # noqa: E501
-
-        self._minecraft = minecraft
 
     @property
     def pack(self):
