@@ -13,42 +13,57 @@ Method | HTTP request | Description
 
 
 # **append_forge_to_build**
-> list[Build] append_forge_to_build(forge_id, forge_build)
+> [Build] append_forge_to_build(forge_id, forge_build)
 
 Assign a build to a Forge version
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import forge_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build import Build
+from kleister.model.forge_build_params import ForgeBuildParams
+from kleister.model.validation_error import ValidationError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ForgeApi()
-forge_id = 'forge_id_example' # str | A forge UUID or slug
-forge_build = kleister.ForgeBuildParams() # ForgeBuildParams | The build data to append
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Assign a build to a Forge version
-    api_response = api_instance.append_forge_to_build(forge_id, forge_build)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ForgeApi->append_forge_to_build: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = forge_api.ForgeApi(api_client)
+    forge_id = "forge_id_example" # str | A forge UUID or slug
+    forge_build = ForgeBuildParams(
+        pack="pack_example",
+        build="build_example",
+    ) # ForgeBuildParams | The build data to append
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Assign a build to a Forge version
+        api_response = api_instance.append_forge_to_build(forge_id, forge_build)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ForgeApi->append_forge_to_build: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **forge_id** | **str**| A forge UUID or slug | 
- **forge_build** | [**ForgeBuildParams**](ForgeBuildParams.md)| The build data to append | 
+ **forge_id** | **str**| A forge UUID or slug |
+ **forge_build** | [**ForgeBuildParams**](ForgeBuildParams.md)| The build data to append |
 
 ### Return type
 
-[**list[Build]**](Build.md)
+[**[Build]**](Build.md)
 
 ### Authorization
 
@@ -59,45 +74,70 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of assigned builds |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Build is already appended |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_forge_from_build**
-> list[Build] delete_forge_from_build(forge_id, forge_build)
+> [Build] delete_forge_from_build(forge_id, forge_build)
 
 Unlink a build from a Forge version
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import forge_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build import Build
+from kleister.model.forge_build_params import ForgeBuildParams
+from kleister.model.validation_error import ValidationError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ForgeApi()
-forge_id = 'forge_id_example' # str | A forge UUID or slug
-forge_build = kleister.ForgeBuildParams() # ForgeBuildParams | The build data to unlink
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Unlink a build from a Forge version
-    api_response = api_instance.delete_forge_from_build(forge_id, forge_build)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ForgeApi->delete_forge_from_build: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = forge_api.ForgeApi(api_client)
+    forge_id = "forge_id_example" # str | A forge UUID or slug
+    forge_build = ForgeBuildParams(
+        pack="pack_example",
+        build="build_example",
+    ) # ForgeBuildParams | The build data to unlink
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Unlink a build from a Forge version
+        api_response = api_instance.delete_forge_from_build(forge_id, forge_build)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ForgeApi->delete_forge_from_build: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **forge_id** | **str**| A forge UUID or slug | 
- **forge_build** | [**ForgeBuildParams**](ForgeBuildParams.md)| The build data to unlink | 
+ **forge_id** | **str**| A forge UUID or slug |
+ **forge_build** | [**ForgeBuildParams**](ForgeBuildParams.md)| The build data to unlink |
 
 ### Return type
 
-[**list[Build]**](Build.md)
+[**[Build]**](Build.md)
 
 ### Authorization
 
@@ -108,43 +148,63 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of assigned builds |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Build is not assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_forge_builds**
-> list[Build] list_forge_builds(forge_id)
+> [Build] list_forge_builds(forge_id)
 
 Fetch the builds assigned to a Forge version
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import forge_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build import Build
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ForgeApi()
-forge_id = 'forge_id_example' # str | A forge UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch the builds assigned to a Forge version
-    api_response = api_instance.list_forge_builds(forge_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ForgeApi->list_forge_builds: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = forge_api.ForgeApi(api_client)
+    forge_id = "forge_id_example" # str | A forge UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch the builds assigned to a Forge version
+        api_response = api_instance.list_forge_builds(forge_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ForgeApi->list_forge_builds: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **forge_id** | **str**| A forge UUID or slug | 
+ **forge_id** | **str**| A forge UUID or slug |
 
 ### Return type
 
-[**list[Build]**](Build.md)
+[**[Build]**](Build.md)
 
 ### Authorization
 
@@ -155,39 +215,57 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of assigned builds |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_forges**
-> list[Forge] list_forges()
+> [Forge] list_forges()
 
 Fetch the available Forge versions
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import forge_api
+from kleister.model.general_error import GeneralError
+from kleister.model.forge import Forge
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ForgeApi()
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch the available Forge versions
-    api_response = api_instance.list_forges()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ForgeApi->list_forges: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = forge_api.ForgeApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Fetch the available Forge versions
+        api_response = api_instance.list_forges()
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ForgeApi->list_forges: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**list[Forge]**](Forge.md)
+[**[Forge]**](Forge.md)
 
 ### Authorization
 
@@ -198,43 +276,61 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of Forge versions |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **search_forges**
-> list[Forge] search_forges(forge_id)
+> [Forge] search_forges(forge_id)
 
 Search for available Forge versions
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import forge_api
+from kleister.model.general_error import GeneralError
+from kleister.model.forge import Forge
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ForgeApi()
-forge_id = 'forge_id_example' # str | A search token to search Forge versions
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Search for available Forge versions
-    api_response = api_instance.search_forges(forge_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ForgeApi->search_forges: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = forge_api.ForgeApi(api_client)
+    forge_id = "forge_id_example" # str | A search token to search Forge versions
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Search for available Forge versions
+        api_response = api_instance.search_forges(forge_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ForgeApi->search_forges: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **forge_id** | **str**| A search token to search Forge versions | 
+ **forge_id** | **str**| A search token to search Forge versions |
 
 ### Return type
 
-[**list[Forge]**](Forge.md)
+[**[Forge]**](Forge.md)
 
 ### Authorization
 
@@ -244,6 +340,14 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of Forge versions |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -255,22 +359,31 @@ Update the available Forge versions
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import forge_api
+from kleister.model.general_error import GeneralError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ForgeApi()
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Update the available Forge versions
-    api_response = api_instance.update_forge()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ForgeApi->update_forge: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = forge_api.ForgeApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Update the available Forge versions
+        api_response = api_instance.update_forge()
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ForgeApi->update_forge: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -287,6 +400,15 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**503** | If remote source is not available |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

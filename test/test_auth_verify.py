@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,13 +8,11 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
 
 import kleister
-from kleister.models.auth_verify import AuthVerify  # noqa: E501
-from kleister.rest import ApiException
+from kleister.model.auth_verify import AuthVerify
 
 
 class TestAuthVerify(unittest.TestCase):
@@ -31,9 +27,9 @@ class TestAuthVerify(unittest.TestCase):
     def testAuthVerify(self):
         """Test AuthVerify"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kleister.models.auth_verify.AuthVerify()  # noqa: E501
+        # model = AuthVerify()  # noqa: E501
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

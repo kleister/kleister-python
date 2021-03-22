@@ -2,10 +2,8 @@
 
 [![Build Status](https://cloud.drone.io/api/badges/kleister/kleister-python/status.svg)](https://cloud.drone.io/kleister/kleister-python)
 [![Join the Matrix chat at https://matrix.to/#/#kleister:matrix.org](https://img.shields.io/badge/matrix-%23kleister%3Amatrix.org-7bc9a4.svg)](https://matrix.to/#/#kleister:matrix.org)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bcffce563f304d1ea64fdfd16e5e5e3f)](https://www.codacy.com/app/kleister/kleister-python?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kleister/kleister-python&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/5a654ced79a54794bae7f25a8489aae1)](https://www.codacy.com/gh/kleister/kleister-python/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kleister/kleister-python&amp;utm_campaign=Badge_Grade)
 [![PyPI version](https://badge.fury.io/py/kleister.svg)](https://badge.fury.io/py/kleister)
-
-**This project is under heavy development, it's not in a working state yet!**
 
 Where does this name come from or what does it mean? It's quite simple, it's one german word for paste/glue, I thought it's a good match as it glues together the modpacks for Minecraft.
 
@@ -15,9 +13,11 @@ This repository provides a client SDK for Python. This SDK is automatically gene
 - Package version: 1.0.0-alpha1
 - Build package: org.openapitools.codegen.languages.PythonClientCodegen
 
+## Requirements
+
+Python >= 3.6
 
 ## Installation
-
 
 ### Install with `pip`
 
@@ -33,7 +33,6 @@ After the installation you can simply start to import the SDK:
 import kleister
 ```
 
-
 ### Install with `setuptools`
 
 If you want to install a unpublished version you can simply clone this repository and use `setuptools` to install the SDK:
@@ -48,31 +47,41 @@ After the installation you can simply start to import the SDK:
 import kleister
 ```
 
-
 ## Getting Started
 
 Please follow the [installation](#installation) instructions and then run the following code:
 
 ```python
-from __future__ import print_function
-from pprint import pprint
+
 import time
 import kleister
-from kleister.rest import ApiException
+from pprint import pprint
+from kleister.api import auth_api
+from kleister.model.auth_login import AuthLogin
+from kleister.model.auth_token import AuthToken
+from kleister.model.auth_verify import AuthVerify
+from kleister.model.general_error import GeneralError
+
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
 
-api = kleister.AuthApi(kleister.ApiClient(configuration))
-auth_login = kleister.AuthLogin() # AuthLogin | The credentials to authenticate
 
-try:
-    # Authenticate an user by credentials
-    resp = api.login_user(auth_login)
-    pprint(resp)
-except ApiException as e:
-    print("Exception when calling AuthApi->login_user: %s\n" % e)
+with kleister.ApiClient(configuration) as api_client:
+    api_instance = auth_api.AuthApi(api_client)
+    auth_login = AuthLogin(
+        username="username_example",
+        password="password_example",
+    ) # AuthLogin | The credentials to authenticate
 
+    try:
+        # Authenticate an user by credentials
+        api_response = api_instance.login_user(auth_login)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling AuthApi->login_user: %s\n" % e)
 ```
-
 
 ## Documentation for endpoints
 
@@ -213,7 +222,7 @@ Class | Method | HTTP request | Description
  - [VersionBuildParams](docs/VersionBuildParams.md)
 
 
-## Documentation For authorization
+## Documentation for authorization
 
 
 ## BasicAuth
@@ -228,30 +237,25 @@ Class | Method | HTTP request | Description
 - **Location**: HTTP header
 
 
-
 ## Security
 
 If you find a security issue please contact kleister@webhippie.de first.
-
 
 ## Contributing
 
 Fork -> Patch -> Push -> Pull Request
 
-
 ## Authors
 
-* [Thomas Boerger](https://github.com/tboerger)
-
+-   [Thomas Boerger](https://github.com/tboerger)
 
 ## License
 
 Apache-2.0
 
-
 ## Copyright
 
-```
+```console
 Copyright (c) 2018 Thomas Boerger <thomas@webhippie.de>
 ```
 

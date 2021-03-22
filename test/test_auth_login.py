@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,13 +8,11 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
 
 import kleister
-from kleister.models.auth_login import AuthLogin  # noqa: E501
-from kleister.rest import ApiException
+from kleister.model.auth_login import AuthLogin
 
 
 class TestAuthLogin(unittest.TestCase):
@@ -31,9 +27,9 @@ class TestAuthLogin(unittest.TestCase):
     def testAuthLogin(self):
         """Test AuthLogin"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kleister.models.auth_login.AuthLogin()  # noqa: E501
+        # model = AuthLogin()  # noqa: E501
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

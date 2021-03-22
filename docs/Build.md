@@ -1,14 +1,15 @@
 # Build
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
 **pack_id** | **str** |  | 
+**name** | **str** |  | 
+**id** | **str** |  | [optional] [readonly] 
 **minecraft_id** | **str** |  | [optional] 
 **forge_id** | **str** |  | [optional] 
 **slug** | **str** |  | [optional] 
-**name** | **str** |  | 
 **min_java** | **str** |  | [optional] 
 **min_memory** | **str** |  | [optional] 
 **published** | **bool** |  | [optional] 

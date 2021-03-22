@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,13 +8,11 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
 
 import kleister
-from kleister.models.validation_error_errors import ValidationErrorErrors  # noqa: E501
-from kleister.rest import ApiException
+from kleister.model.validation_error_errors import ValidationErrorErrors
 
 
 class TestValidationErrorErrors(unittest.TestCase):
@@ -31,9 +27,9 @@ class TestValidationErrorErrors(unittest.TestCase):
     def testValidationErrorErrors(self):
         """Test ValidationErrorErrors"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kleister.models.validation_error_errors.ValidationErrorErrors()  # noqa: E501
+        # model = ValidationErrorErrors()  # noqa: E501
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

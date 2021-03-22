@@ -1,5 +1,6 @@
 # MinecraftBuildParams
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

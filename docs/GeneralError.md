@@ -1,5 +1,7 @@
 # GeneralError
 
+General error for regular HTTP status codes
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -1,13 +1,14 @@
 # User
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
-**slug** | **str** |  | [optional] 
 **username** | **str** |  | 
-**password** | **str** |  | [optional] 
 **email** | **str** |  | 
+**id** | **str** |  | [optional] [readonly] 
+**slug** | **str** |  | [optional] 
+**password** | **str** |  | [optional] 
 **admin** | **bool** |  | [optional] 
 **active** | **bool** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 

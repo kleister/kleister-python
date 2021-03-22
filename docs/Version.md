@@ -1,12 +1,13 @@
 # Version
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
+**name** | **str** |  | 
+**id** | **str** |  | [optional] [readonly] 
 **mod_id** | **str** |  | [optional] 
 **slug** | **str** |  | [optional] 
-**name** | **str** |  | 
 **created_at** | **datetime** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 

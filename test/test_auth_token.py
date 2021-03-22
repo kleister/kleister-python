@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,13 +8,11 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
 
 import kleister
-from kleister.models.auth_token import AuthToken  # noqa: E501
-from kleister.rest import ApiException
+from kleister.model.auth_token import AuthToken
 
 
 class TestAuthToken(unittest.TestCase):
@@ -31,9 +27,9 @@ class TestAuthToken(unittest.TestCase):
     def testAuthToken(self):
         """Test AuthToken"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kleister.models.auth_token.AuthToken()  # noqa: E501
+        # model = AuthToken()  # noqa: E501
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -35,33 +35,47 @@ Assign a version to a build
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build_version_params import BuildVersionParams
+from kleister.model.validation_error import ValidationError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-build_id = 'build_id_example' # str | A build UUID or slug
-build_version = kleister.BuildVersionParams() # BuildVersionParams | The version data to append to build
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Assign a version to a build
-    api_response = api_instance.append_build_to_version(pack_id, build_id, build_version)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->append_build_to_version: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    build_id = "build_id_example" # str | A build UUID or slug
+    build_version = BuildVersionParams(
+        mod="mod_example",
+        version="version_example",
+    ) # BuildVersionParams | The version data to append to build
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Assign a version to a build
+        api_response = api_instance.append_build_to_version(pack_id, build_id, build_version)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->append_build_to_version: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **build_id** | **str**| A build UUID or slug | 
- **build_version** | [**BuildVersionParams**](BuildVersionParams.md)| The version data to append to build | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **build_id** | **str**| A build UUID or slug |
+ **build_version** | [**BuildVersionParams**](BuildVersionParams.md)| The version data to append to build |
 
 ### Return type
 
@@ -75,6 +89,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Version is already appended |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -86,31 +110,44 @@ Assign a team to pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.pack_team_params import PackTeamParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-pack_team = kleister.PackTeamParams() # PackTeamParams | The pack team data to assign
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Assign a team to pack
-    api_response = api_instance.append_pack_to_team(pack_id, pack_team)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->append_pack_to_team: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    pack_team = PackTeamParams(
+        team="team_example",
+        perm="user",
+    ) # PackTeamParams | The pack team data to assign
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Assign a team to pack
+        api_response = api_instance.append_pack_to_team(pack_id, pack_team)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->append_pack_to_team: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **pack_team** | [**PackTeamParams**](PackTeamParams.md)| The pack team data to assign | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **pack_team** | [**PackTeamParams**](PackTeamParams.md)| The pack team data to assign |
 
 ### Return type
 
@@ -124,6 +161,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Team is already assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -135,31 +182,44 @@ Assign a user to pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.pack_user_params import PackUserParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-pack_user = kleister.PackUserParams() # PackUserParams | The pack user data to assign
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Assign a user to pack
-    api_response = api_instance.append_pack_to_user(pack_id, pack_user)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->append_pack_to_user: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    pack_user = PackUserParams(
+        user="user_example",
+        perm="user",
+    ) # PackUserParams | The pack user data to assign
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Assign a user to pack
+        api_response = api_instance.append_pack_to_user(pack_id, pack_user)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->append_pack_to_user: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **pack_user** | [**PackUserParams**](PackUserParams.md)| The pack user data to assign | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **pack_user** | [**PackUserParams**](PackUserParams.md)| The pack user data to assign |
 
 ### Return type
 
@@ -173,6 +233,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | User is already assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -184,31 +254,57 @@ Create a new build for a pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build import Build
+from kleister.model.validation_error import ValidationError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-build = kleister.Build() # Build | The build data to create
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Create a new build for a pack
-    api_response = api_instance.create_build(pack_id, build)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->create_build: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    build = Build(
+        id="id_example",
+        pack_id="pack_id_example",
+        minecraft_id="minecraft_id_example",
+        forge_id="forge_id_example",
+        slug="slug_example",
+        name="name_example",
+        min_java="min_java_example",
+        min_memory="min_memory_example",
+        published=True,
+        hidden=True,
+        private=True,
+        public=True,
+        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+    ) # Build | The build data to create
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a new build for a pack
+        api_response = api_instance.create_build(pack_id, build)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->create_build: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **build** | [**Build**](Build.md)| The build data to create | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **build** | [**Build**](Build.md)| The build data to create |
 
 ### Return type
 
@@ -222,6 +318,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The created build data |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Failed to validate request |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -233,29 +339,53 @@ Create a new pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.pack import Pack
+from kleister.model.validation_error import ValidationError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack = kleister.Pack() # Pack | The pack data to create
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Create a new pack
-    api_response = api_instance.create_pack(pack)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->create_pack: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack = Pack(
+        id="id_example",
+        recommended_id="recommended_id_example",
+        latest_id="latest_id_example",
+        slug="slug_example",
+        name="name_example",
+        website="website_example",
+        published=True,
+        hidden=True,
+        private=True,
+        public=True,
+        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+    ) # Pack | The pack data to create
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a new pack
+        api_response = api_instance.create_pack(pack)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->create_pack: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack** | [**Pack**](Pack.md)| The pack data to create | 
+ **pack** | [**Pack**](Pack.md)| The pack data to create |
 
 ### Return type
 
@@ -269,6 +399,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The created pack data |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Failed to validate request |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -280,31 +420,40 @@ Delete a specific build for a pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-build_id = 'build_id_example' # str | A build UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Delete a specific build for a pack
-    api_response = api_instance.delete_build(pack_id, build_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->delete_build: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    build_id = "build_id_example" # str | A build UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Delete a specific build for a pack
+        api_response = api_instance.delete_build(pack_id, build_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->delete_build: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **build_id** | **str**| A build UUID or slug | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **build_id** | **str**| A build UUID or slug |
 
 ### Return type
 
@@ -318,6 +467,15 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**400** | Failed to delete the build |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -329,33 +487,46 @@ Unlink a version from a build
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build_version_params import BuildVersionParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-build_id = 'build_id_example' # str | A build UUID or slug
-build_version = kleister.BuildVersionParams() # BuildVersionParams | The version data to unlink from build
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Unlink a version from a build
-    api_response = api_instance.delete_build_from_version(pack_id, build_id, build_version)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->delete_build_from_version: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    build_id = "build_id_example" # str | A build UUID or slug
+    build_version = BuildVersionParams(
+        mod="mod_example",
+        version="version_example",
+    ) # BuildVersionParams | The version data to unlink from build
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Unlink a version from a build
+        api_response = api_instance.delete_build_from_version(pack_id, build_id, build_version)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->delete_build_from_version: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **build_id** | **str**| A build UUID or slug | 
- **build_version** | [**BuildVersionParams**](BuildVersionParams.md)| The version data to unlink from build | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **build_id** | **str**| A build UUID or slug |
+ **build_version** | [**BuildVersionParams**](BuildVersionParams.md)| The version data to unlink from build |
 
 ### Return type
 
@@ -369,6 +540,15 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**400** | Failed to unlink version |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -380,29 +560,38 @@ Delete a specific pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Delete a specific pack
-    api_response = api_instance.delete_pack(pack_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->delete_pack: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Delete a specific pack
+        api_response = api_instance.delete_pack(pack_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->delete_pack: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
+ **pack_id** | **str**| A pack UUID or slug |
 
 ### Return type
 
@@ -416,6 +605,15 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**400** | Failed to delete the pack |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -427,31 +625,44 @@ Remove a team from pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.pack_team_params import PackTeamParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-pack_team = kleister.PackTeamParams() # PackTeamParams | The pack team data to delete
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Remove a team from pack
-    api_response = api_instance.delete_pack_from_team(pack_id, pack_team)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->delete_pack_from_team: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    pack_team = PackTeamParams(
+        team="team_example",
+        perm="user",
+    ) # PackTeamParams | The pack team data to delete
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Remove a team from pack
+        api_response = api_instance.delete_pack_from_team(pack_id, pack_team)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->delete_pack_from_team: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **pack_team** | [**PackTeamParams**](PackTeamParams.md)| The pack team data to delete | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **pack_team** | [**PackTeamParams**](PackTeamParams.md)| The pack team data to delete |
 
 ### Return type
 
@@ -465,6 +676,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Team is not assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -476,31 +697,44 @@ Remove a user from pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.pack_user_params import PackUserParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-pack_user = kleister.PackUserParams() # PackUserParams | The pack user data to delete
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Remove a user from pack
-    api_response = api_instance.delete_pack_from_user(pack_id, pack_user)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->delete_pack_from_user: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    pack_user = PackUserParams(
+        user="user_example",
+        perm="user",
+    ) # PackUserParams | The pack user data to delete
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Remove a user from pack
+        api_response = api_instance.delete_pack_from_user(pack_id, pack_user)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->delete_pack_from_user: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **pack_user** | [**PackUserParams**](PackUserParams.md)| The pack user data to delete | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **pack_user** | [**PackUserParams**](PackUserParams.md)| The pack user data to delete |
 
 ### Return type
 
@@ -515,45 +749,65 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | User is not assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_build_versions**
-> list[BuildVersion] list_build_versions(pack_id, build_id)
+> [BuildVersion] list_build_versions(pack_id, build_id)
 
 Fetch all versions assigned to build
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build_version import BuildVersion
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-build_id = 'build_id_example' # str | A build UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch all versions assigned to build
-    api_response = api_instance.list_build_versions(pack_id, build_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->list_build_versions: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    build_id = "build_id_example" # str | A build UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch all versions assigned to build
+        api_response = api_instance.list_build_versions(pack_id, build_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->list_build_versions: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **build_id** | **str**| A build UUID or slug | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **build_id** | **str**| A build UUID or slug |
 
 ### Return type
 
-[**list[BuildVersion]**](BuildVersion.md)
+[**[BuildVersion]**](BuildVersion.md)
 
 ### Authorization
 
@@ -564,43 +818,61 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of build versions |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_builds**
-> list[Build] list_builds(pack_id)
+> [Build] list_builds(pack_id)
 
 Fetch all available builds for a pack
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build import Build
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch all available builds for a pack
-    api_response = api_instance.list_builds(pack_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->list_builds: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch all available builds for a pack
+        api_response = api_instance.list_builds(pack_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->list_builds: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
+ **pack_id** | **str**| A pack UUID or slug |
 
 ### Return type
 
-[**list[Build]**](Build.md)
+[**[Build]**](Build.md)
 
 ### Authorization
 
@@ -611,43 +883,61 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of builds |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_pack_teams**
-> list[TeamPack] list_pack_teams(pack_id)
+> [TeamPack] list_pack_teams(pack_id)
 
 Fetch all teams assigned to pack
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.team_pack import TeamPack
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch all teams assigned to pack
-    api_response = api_instance.list_pack_teams(pack_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->list_pack_teams: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch all teams assigned to pack
+        api_response = api_instance.list_pack_teams(pack_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->list_pack_teams: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
+ **pack_id** | **str**| A pack UUID or slug |
 
 ### Return type
 
-[**list[TeamPack]**](TeamPack.md)
+[**[TeamPack]**](TeamPack.md)
 
 ### Authorization
 
@@ -658,43 +948,61 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of pack teams |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_pack_users**
-> list[UserPack] list_pack_users(pack_id)
+> [UserPack] list_pack_users(pack_id)
 
 Fetch all users assigned to pack
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.user_pack import UserPack
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch all users assigned to pack
-    api_response = api_instance.list_pack_users(pack_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->list_pack_users: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch all users assigned to pack
+        api_response = api_instance.list_pack_users(pack_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->list_pack_users: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
+ **pack_id** | **str**| A pack UUID or slug |
 
 ### Return type
 
-[**list[UserPack]**](UserPack.md)
+[**[UserPack]**](UserPack.md)
 
 ### Authorization
 
@@ -705,39 +1013,57 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of pack users |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_packs**
-> list[Pack] list_packs()
+> [Pack] list_packs()
 
 Fetch all available packs
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.pack import Pack
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch all available packs
-    api_response = api_instance.list_packs()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->list_packs: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Fetch all available packs
+        api_response = api_instance.list_packs()
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->list_packs: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**list[Pack]**](Pack.md)
+[**[Pack]**](Pack.md)
 
 ### Authorization
 
@@ -747,6 +1073,14 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of packs |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -758,31 +1092,44 @@ Update team perms for pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.pack_team_params import PackTeamParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-pack_team = kleister.PackTeamParams() # PackTeamParams | The pack team data to update
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Update team perms for pack
-    api_response = api_instance.permit_pack_team(pack_id, pack_team)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->permit_pack_team: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    pack_team = PackTeamParams(
+        team="team_example",
+        perm="user",
+    ) # PackTeamParams | The pack team data to update
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update team perms for pack
+        api_response = api_instance.permit_pack_team(pack_id, pack_team)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->permit_pack_team: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **pack_team** | [**PackTeamParams**](PackTeamParams.md)| The pack team data to update | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **pack_team** | [**PackTeamParams**](PackTeamParams.md)| The pack team data to update |
 
 ### Return type
 
@@ -796,6 +1143,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Team is not assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -807,31 +1164,44 @@ Update user perms for pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.pack_user_params import PackUserParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-pack_user = kleister.PackUserParams() # PackUserParams | The pack user data to update
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Update user perms for pack
-    api_response = api_instance.permit_pack_user(pack_id, pack_user)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->permit_pack_user: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    pack_user = PackUserParams(
+        user="user_example",
+        perm="user",
+    ) # PackUserParams | The pack user data to update
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update user perms for pack
+        api_response = api_instance.permit_pack_user(pack_id, pack_user)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->permit_pack_user: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **pack_user** | [**PackUserParams**](PackUserParams.md)| The pack user data to update | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **pack_user** | [**PackUserParams**](PackUserParams.md)| The pack user data to update |
 
 ### Return type
 
@@ -846,6 +1216,16 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | User is not assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **show_build**
@@ -856,31 +1236,41 @@ Fetch a specific build for a pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build import Build
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-build_id = 'build_id_example' # str | A build UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch a specific build for a pack
-    api_response = api_instance.show_build(pack_id, build_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->show_build: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    build_id = "build_id_example" # str | A build UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch a specific build for a pack
+        api_response = api_instance.show_build(pack_id, build_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->show_build: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **build_id** | **str**| A build UUID or slug | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **build_id** | **str**| A build UUID or slug |
 
 ### Return type
 
@@ -894,6 +1284,14 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The fetched build details |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -905,29 +1303,39 @@ Fetch a specific pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.pack import Pack
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch a specific pack
-    api_response = api_instance.show_pack(pack_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->show_pack: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch a specific pack
+        api_response = api_instance.show_pack(pack_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->show_pack: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
+ **pack_id** | **str**| A pack UUID or slug |
 
 ### Return type
 
@@ -942,6 +1350,14 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The fetched pack details |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_build**
@@ -952,33 +1368,59 @@ Update a specific build for a pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build import Build
+from kleister.model.validation_error import ValidationError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-build_id = 'build_id_example' # str | A build UUID or slug
-build = kleister.Build() # Build | The build data to update
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Update a specific build for a pack
-    api_response = api_instance.update_build(pack_id, build_id, build)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->update_build: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    build_id = "build_id_example" # str | A build UUID or slug
+    build = Build(
+        id="id_example",
+        pack_id="pack_id_example",
+        minecraft_id="minecraft_id_example",
+        forge_id="forge_id_example",
+        slug="slug_example",
+        name="name_example",
+        min_java="min_java_example",
+        min_memory="min_memory_example",
+        published=True,
+        hidden=True,
+        private=True,
+        public=True,
+        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+    ) # Build | The build data to update
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update a specific build for a pack
+        api_response = api_instance.update_build(pack_id, build_id, build)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->update_build: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **build_id** | **str**| A build UUID or slug | 
- **build** | [**Build**](Build.md)| The build data to update | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **build_id** | **str**| A build UUID or slug |
+ **build** | [**Build**](Build.md)| The build data to update |
 
 ### Return type
 
@@ -993,6 +1435,16 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated build details |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Failed to validate request |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_pack**
@@ -1003,31 +1455,55 @@ Update a specific pack
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import pack_api
+from kleister.model.general_error import GeneralError
+from kleister.model.pack import Pack
+from kleister.model.validation_error import ValidationError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.PackApi()
-pack_id = 'pack_id_example' # str | A pack UUID or slug
-pack = kleister.Pack() # Pack | The pack data to update
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Update a specific pack
-    api_response = api_instance.update_pack(pack_id, pack)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PackApi->update_pack: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = pack_api.PackApi(api_client)
+    pack_id = "pack_id_example" # str | A pack UUID or slug
+    pack = Pack(
+        id="id_example",
+        recommended_id="recommended_id_example",
+        latest_id="latest_id_example",
+        slug="slug_example",
+        name="name_example",
+        website="website_example",
+        published=True,
+        hidden=True,
+        private=True,
+        public=True,
+        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+    ) # Pack | The pack data to update
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update a specific pack
+        api_response = api_instance.update_pack(pack_id, pack)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling PackApi->update_pack: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pack_id** | **str**| A pack UUID or slug | 
- **pack** | [**Pack**](Pack.md)| The pack data to update | 
+ **pack_id** | **str**| A pack UUID or slug |
+ **pack** | [**Pack**](Pack.md)| The pack data to update |
 
 ### Return type
 
@@ -1041,6 +1517,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated pack details |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Failed to validate request |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

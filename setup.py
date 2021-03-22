@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -14,6 +12,11 @@ from setuptools import setup, find_packages  # noqa: H301
 NAME = "kleister"
 VERSION = "1.0.0-alpha1"
 
+REQUIRES = [
+  "urllib3 >= 1.25.3",
+  "python-dateutil",
+]
+
 setup(
     name=NAME,
     version=VERSION,
@@ -22,20 +25,17 @@ setup(
     description='Kleister OpenAPI',
     long_description='API definition for Kleister, manage mod packs for Minecraft',  # noqa: E501
     license='Apache License 2.0',
-    keywords=['openapi', 'openapi-generator', 'minecraft', 'technic'],
+    keywords=['openapi', 'openapi-generator', 'minecraft'],
+    python_requires=">=3.6",
     url='https://github.com/kleister/kleister-python',
-    install_requires=[],
-    entry_points={},
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
     ],
-    packages=find_packages(exclude=['test']),
-    package_data={'': ['LICENSE', 'DCO', '*.md']},
-    tests_require=['nose'],
-    test_suite='nose.collector',
+    install_requires=REQUIRES,
+    packages=find_packages(exclude=["test", "tests"]),
+    include_package_data=True,
 )

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,18 +8,29 @@
 """
 
 
-from __future__ import absolute_import
-
 import re  # noqa: F401
+import sys  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
-from kleister.api_client import ApiClient
-from kleister.exceptions import (
-    ApiTypeError,
-    ApiValueError
+from kleister.api_client import ApiClient, Endpoint as _Endpoint
+from kleister.model_utils import (  # noqa: F401
+    check_allowed_values,
+    check_validations,
+    date,
+    datetime,
+    file_type,
+    none_type,
+    validate_and_convert_types
 )
+from kleister.model.build import Build
+from kleister.model.build_version import BuildVersion
+from kleister.model.build_version_params import BuildVersionParams
+from kleister.model.general_error import GeneralError
+from kleister.model.pack import Pack
+from kleister.model.pack_team_params import PackTeamParams
+from kleister.model.pack_user_params import PackUserParams
+from kleister.model.team_pack import TeamPack
+from kleister.model.user_pack import UserPack
+from kleister.model.validation_error import ValidationError
 
 
 class PackApi(object):
@@ -36,2152 +45,2608 @@ class PackApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def append_build_to_version(self, pack_id, build_id, build_version, **kwargs):  # noqa: E501
-        """Assign a version to a build  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_build_to_version(pack_id, build_id, build_version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :param BuildVersionParams build_version: The version data to append to build (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.append_build_to_version_with_http_info(pack_id, build_id, build_version, **kwargs)  # noqa: E501
-        else:
-            (data) = self.append_build_to_version_with_http_info(pack_id, build_id, build_version, **kwargs)  # noqa: E501
-            return data
-
-    def append_build_to_version_with_http_info(self, pack_id, build_id, build_version, **kwargs):  # noqa: E501
-        """Assign a version to a build  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_build_to_version_with_http_info(pack_id, build_id, build_version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :param BuildVersionParams build_version: The version data to append to build (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'build_id', 'build_version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method append_build_to_version" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `append_build_to_version`")  # noqa: E501
-        # verify the required parameter 'build_id' is set
-        if ('build_id' not in local_var_params or
-                local_var_params['build_id'] is None):
-            raise ApiValueError("Missing the required parameter `build_id` when calling `append_build_to_version`")  # noqa: E501
-        # verify the required parameter 'build_version' is set
-        if ('build_version' not in local_var_params or
-                local_var_params['build_version'] is None):
-            raise ApiValueError("Missing the required parameter `build_version` when calling `append_build_to_version`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-        if 'build_id' in local_var_params:
-            path_params['build_id'] = local_var_params['build_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'build_version' in local_var_params:
-            body_params = local_var_params['build_version']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/builds/{build_id}/versions', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def append_pack_to_team(self, pack_id, pack_team, **kwargs):  # noqa: E501
-        """Assign a team to pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_pack_to_team(pack_id, pack_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackTeamParams pack_team: The pack team data to assign (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.append_pack_to_team_with_http_info(pack_id, pack_team, **kwargs)  # noqa: E501
-        else:
-            (data) = self.append_pack_to_team_with_http_info(pack_id, pack_team, **kwargs)  # noqa: E501
-            return data
-
-    def append_pack_to_team_with_http_info(self, pack_id, pack_team, **kwargs):  # noqa: E501
-        """Assign a team to pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_pack_to_team_with_http_info(pack_id, pack_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackTeamParams pack_team: The pack team data to assign (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'pack_team']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method append_pack_to_team" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `append_pack_to_team`")  # noqa: E501
-        # verify the required parameter 'pack_team' is set
-        if ('pack_team' not in local_var_params or
-                local_var_params['pack_team'] is None):
-            raise ApiValueError("Missing the required parameter `pack_team` when calling `append_pack_to_team`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'pack_team' in local_var_params:
-            body_params = local_var_params['pack_team']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/teams', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def append_pack_to_user(self, pack_id, pack_user, **kwargs):  # noqa: E501
-        """Assign a user to pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_pack_to_user(pack_id, pack_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackUserParams pack_user: The pack user data to assign (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.append_pack_to_user_with_http_info(pack_id, pack_user, **kwargs)  # noqa: E501
-        else:
-            (data) = self.append_pack_to_user_with_http_info(pack_id, pack_user, **kwargs)  # noqa: E501
-            return data
-
-    def append_pack_to_user_with_http_info(self, pack_id, pack_user, **kwargs):  # noqa: E501
-        """Assign a user to pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_pack_to_user_with_http_info(pack_id, pack_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackUserParams pack_user: The pack user data to assign (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'pack_user']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method append_pack_to_user" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `append_pack_to_user`")  # noqa: E501
-        # verify the required parameter 'pack_user' is set
-        if ('pack_user' not in local_var_params or
-                local_var_params['pack_user'] is None):
-            raise ApiValueError("Missing the required parameter `pack_user` when calling `append_pack_to_user`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'pack_user' in local_var_params:
-            body_params = local_var_params['pack_user']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/users', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def create_build(self, pack_id, build, **kwargs):  # noqa: E501
-        """Create a new build for a pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_build(pack_id, build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param Build build: The build data to create (required)
-        :return: Build
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_build_with_http_info(pack_id, build, **kwargs)  # noqa: E501
-        else:
-            (data) = self.create_build_with_http_info(pack_id, build, **kwargs)  # noqa: E501
-            return data
-
-    def create_build_with_http_info(self, pack_id, build, **kwargs):  # noqa: E501
-        """Create a new build for a pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_build_with_http_info(pack_id, build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param Build build: The build data to create (required)
-        :return: Build
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'build']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_build" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `create_build`")  # noqa: E501
-        # verify the required parameter 'build' is set
-        if ('build' not in local_var_params or
-                local_var_params['build'] is None):
-            raise ApiValueError("Missing the required parameter `build` when calling `create_build`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'build' in local_var_params:
-            body_params = local_var_params['build']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/builds', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Build',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def create_pack(self, pack, **kwargs):  # noqa: E501
-        """Create a new pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_pack(pack, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param Pack pack: The pack data to create (required)
-        :return: Pack
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_pack_with_http_info(pack, **kwargs)  # noqa: E501
-        else:
-            (data) = self.create_pack_with_http_info(pack, **kwargs)  # noqa: E501
-            return data
-
-    def create_pack_with_http_info(self, pack, **kwargs):  # noqa: E501
-        """Create a new pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_pack_with_http_info(pack, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param Pack pack: The pack data to create (required)
-        :return: Pack
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_pack" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack' is set
-        if ('pack' not in local_var_params or
-                local_var_params['pack'] is None):
-            raise ApiValueError("Missing the required parameter `pack` when calling `create_pack`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'pack' in local_var_params:
-            body_params = local_var_params['pack']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Pack',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_build(self, pack_id, build_id, **kwargs):  # noqa: E501
-        """Delete a specific build for a pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_build(pack_id, build_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_build_with_http_info(pack_id, build_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_build_with_http_info(pack_id, build_id, **kwargs)  # noqa: E501
-            return data
-
-    def delete_build_with_http_info(self, pack_id, build_id, **kwargs):  # noqa: E501
-        """Delete a specific build for a pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_build_with_http_info(pack_id, build_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'build_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_build" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `delete_build`")  # noqa: E501
-        # verify the required parameter 'build_id' is set
-        if ('build_id' not in local_var_params or
-                local_var_params['build_id'] is None):
-            raise ApiValueError("Missing the required parameter `build_id` when calling `delete_build`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-        if 'build_id' in local_var_params:
-            path_params['build_id'] = local_var_params['build_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/builds/{build_id}', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_build_from_version(self, pack_id, build_id, build_version, **kwargs):  # noqa: E501
-        """Unlink a version from a build  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_build_from_version(pack_id, build_id, build_version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :param BuildVersionParams build_version: The version data to unlink from build (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_build_from_version_with_http_info(pack_id, build_id, build_version, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_build_from_version_with_http_info(pack_id, build_id, build_version, **kwargs)  # noqa: E501
-            return data
-
-    def delete_build_from_version_with_http_info(self, pack_id, build_id, build_version, **kwargs):  # noqa: E501
-        """Unlink a version from a build  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_build_from_version_with_http_info(pack_id, build_id, build_version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :param BuildVersionParams build_version: The version data to unlink from build (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'build_id', 'build_version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_build_from_version" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `delete_build_from_version`")  # noqa: E501
-        # verify the required parameter 'build_id' is set
-        if ('build_id' not in local_var_params or
-                local_var_params['build_id'] is None):
-            raise ApiValueError("Missing the required parameter `build_id` when calling `delete_build_from_version`")  # noqa: E501
-        # verify the required parameter 'build_version' is set
-        if ('build_version' not in local_var_params or
-                local_var_params['build_version'] is None):
-            raise ApiValueError("Missing the required parameter `build_version` when calling `delete_build_from_version`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-        if 'build_id' in local_var_params:
-            path_params['build_id'] = local_var_params['build_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'build_version' in local_var_params:
-            body_params = local_var_params['build_version']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/builds/{build_id}/versions', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_pack(self, pack_id, **kwargs):  # noqa: E501
-        """Delete a specific pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_pack(pack_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_pack_with_http_info(pack_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_pack_with_http_info(pack_id, **kwargs)  # noqa: E501
-            return data
-
-    def delete_pack_with_http_info(self, pack_id, **kwargs):  # noqa: E501
-        """Delete a specific pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_pack_with_http_info(pack_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_pack" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `delete_pack`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_pack_from_team(self, pack_id, pack_team, **kwargs):  # noqa: E501
-        """Remove a team from pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_pack_from_team(pack_id, pack_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackTeamParams pack_team: The pack team data to delete (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_pack_from_team_with_http_info(pack_id, pack_team, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_pack_from_team_with_http_info(pack_id, pack_team, **kwargs)  # noqa: E501
-            return data
-
-    def delete_pack_from_team_with_http_info(self, pack_id, pack_team, **kwargs):  # noqa: E501
-        """Remove a team from pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_pack_from_team_with_http_info(pack_id, pack_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackTeamParams pack_team: The pack team data to delete (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'pack_team']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_pack_from_team" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `delete_pack_from_team`")  # noqa: E501
-        # verify the required parameter 'pack_team' is set
-        if ('pack_team' not in local_var_params or
-                local_var_params['pack_team'] is None):
-            raise ApiValueError("Missing the required parameter `pack_team` when calling `delete_pack_from_team`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'pack_team' in local_var_params:
-            body_params = local_var_params['pack_team']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/teams', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_pack_from_user(self, pack_id, pack_user, **kwargs):  # noqa: E501
-        """Remove a user from pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_pack_from_user(pack_id, pack_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackUserParams pack_user: The pack user data to delete (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_pack_from_user_with_http_info(pack_id, pack_user, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_pack_from_user_with_http_info(pack_id, pack_user, **kwargs)  # noqa: E501
-            return data
-
-    def delete_pack_from_user_with_http_info(self, pack_id, pack_user, **kwargs):  # noqa: E501
-        """Remove a user from pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_pack_from_user_with_http_info(pack_id, pack_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackUserParams pack_user: The pack user data to delete (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'pack_user']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_pack_from_user" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `delete_pack_from_user`")  # noqa: E501
-        # verify the required parameter 'pack_user' is set
-        if ('pack_user' not in local_var_params or
-                local_var_params['pack_user'] is None):
-            raise ApiValueError("Missing the required parameter `pack_user` when calling `delete_pack_from_user`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'pack_user' in local_var_params:
-            body_params = local_var_params['pack_user']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/users', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_build_versions(self, pack_id, build_id, **kwargs):  # noqa: E501
-        """Fetch all versions assigned to build  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_build_versions(pack_id, build_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :return: list[BuildVersion]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_build_versions_with_http_info(pack_id, build_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.list_build_versions_with_http_info(pack_id, build_id, **kwargs)  # noqa: E501
-            return data
-
-    def list_build_versions_with_http_info(self, pack_id, build_id, **kwargs):  # noqa: E501
-        """Fetch all versions assigned to build  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_build_versions_with_http_info(pack_id, build_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :return: list[BuildVersion]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'build_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_build_versions" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `list_build_versions`")  # noqa: E501
-        # verify the required parameter 'build_id' is set
-        if ('build_id' not in local_var_params or
-                local_var_params['build_id'] is None):
-            raise ApiValueError("Missing the required parameter `build_id` when calling `list_build_versions`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-        if 'build_id' in local_var_params:
-            path_params['build_id'] = local_var_params['build_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/builds/{build_id}/versions', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[BuildVersion]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_builds(self, pack_id, **kwargs):  # noqa: E501
-        """Fetch all available builds for a pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_builds(pack_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :return: list[Build]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_builds_with_http_info(pack_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.list_builds_with_http_info(pack_id, **kwargs)  # noqa: E501
-            return data
-
-    def list_builds_with_http_info(self, pack_id, **kwargs):  # noqa: E501
-        """Fetch all available builds for a pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_builds_with_http_info(pack_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :return: list[Build]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_builds" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `list_builds`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/builds', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[Build]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_pack_teams(self, pack_id, **kwargs):  # noqa: E501
-        """Fetch all teams assigned to pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_pack_teams(pack_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :return: list[TeamPack]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_pack_teams_with_http_info(pack_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.list_pack_teams_with_http_info(pack_id, **kwargs)  # noqa: E501
-            return data
-
-    def list_pack_teams_with_http_info(self, pack_id, **kwargs):  # noqa: E501
-        """Fetch all teams assigned to pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_pack_teams_with_http_info(pack_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :return: list[TeamPack]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_pack_teams" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `list_pack_teams`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/teams', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[TeamPack]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_pack_users(self, pack_id, **kwargs):  # noqa: E501
-        """Fetch all users assigned to pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_pack_users(pack_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :return: list[UserPack]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_pack_users_with_http_info(pack_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.list_pack_users_with_http_info(pack_id, **kwargs)  # noqa: E501
-            return data
-
-    def list_pack_users_with_http_info(self, pack_id, **kwargs):  # noqa: E501
-        """Fetch all users assigned to pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_pack_users_with_http_info(pack_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :return: list[UserPack]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_pack_users" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `list_pack_users`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/users', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[UserPack]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_packs(self, **kwargs):  # noqa: E501
-        """Fetch all available packs  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_packs(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :return: list[Pack]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_packs_with_http_info(**kwargs)  # noqa: E501
-        else:
-            (data) = self.list_packs_with_http_info(**kwargs)  # noqa: E501
-            return data
-
-    def list_packs_with_http_info(self, **kwargs):  # noqa: E501
-        """Fetch all available packs  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_packs_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :return: list[Pack]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_packs" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[Pack]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def permit_pack_team(self, pack_id, pack_team, **kwargs):  # noqa: E501
-        """Update team perms for pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_pack_team(pack_id, pack_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackTeamParams pack_team: The pack team data to update (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.permit_pack_team_with_http_info(pack_id, pack_team, **kwargs)  # noqa: E501
-        else:
-            (data) = self.permit_pack_team_with_http_info(pack_id, pack_team, **kwargs)  # noqa: E501
-            return data
-
-    def permit_pack_team_with_http_info(self, pack_id, pack_team, **kwargs):  # noqa: E501
-        """Update team perms for pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_pack_team_with_http_info(pack_id, pack_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackTeamParams pack_team: The pack team data to update (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'pack_team']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method permit_pack_team" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `permit_pack_team`")  # noqa: E501
-        # verify the required parameter 'pack_team' is set
-        if ('pack_team' not in local_var_params or
-                local_var_params['pack_team'] is None):
-            raise ApiValueError("Missing the required parameter `pack_team` when calling `permit_pack_team`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'pack_team' in local_var_params:
-            body_params = local_var_params['pack_team']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/teams', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def permit_pack_user(self, pack_id, pack_user, **kwargs):  # noqa: E501
-        """Update user perms for pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_pack_user(pack_id, pack_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackUserParams pack_user: The pack user data to update (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.permit_pack_user_with_http_info(pack_id, pack_user, **kwargs)  # noqa: E501
-        else:
-            (data) = self.permit_pack_user_with_http_info(pack_id, pack_user, **kwargs)  # noqa: E501
-            return data
-
-    def permit_pack_user_with_http_info(self, pack_id, pack_user, **kwargs):  # noqa: E501
-        """Update user perms for pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_pack_user_with_http_info(pack_id, pack_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param PackUserParams pack_user: The pack user data to update (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'pack_user']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method permit_pack_user" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `permit_pack_user`")  # noqa: E501
-        # verify the required parameter 'pack_user' is set
-        if ('pack_user' not in local_var_params or
-                local_var_params['pack_user'] is None):
-            raise ApiValueError("Missing the required parameter `pack_user` when calling `permit_pack_user`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'pack_user' in local_var_params:
-            body_params = local_var_params['pack_user']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/users', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def show_build(self, pack_id, build_id, **kwargs):  # noqa: E501
-        """Fetch a specific build for a pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.show_build(pack_id, build_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :return: Build
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.show_build_with_http_info(pack_id, build_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.show_build_with_http_info(pack_id, build_id, **kwargs)  # noqa: E501
-            return data
-
-    def show_build_with_http_info(self, pack_id, build_id, **kwargs):  # noqa: E501
-        """Fetch a specific build for a pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.show_build_with_http_info(pack_id, build_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :return: Build
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'build_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method show_build" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `show_build`")  # noqa: E501
-        # verify the required parameter 'build_id' is set
-        if ('build_id' not in local_var_params or
-                local_var_params['build_id'] is None):
-            raise ApiValueError("Missing the required parameter `build_id` when calling `show_build`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-        if 'build_id' in local_var_params:
-            path_params['build_id'] = local_var_params['build_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/builds/{build_id}', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Build',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def show_pack(self, pack_id, **kwargs):  # noqa: E501
-        """Fetch a specific pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.show_pack(pack_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :return: Pack
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.show_pack_with_http_info(pack_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.show_pack_with_http_info(pack_id, **kwargs)  # noqa: E501
-            return data
-
-    def show_pack_with_http_info(self, pack_id, **kwargs):  # noqa: E501
-        """Fetch a specific pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.show_pack_with_http_info(pack_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :return: Pack
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method show_pack" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `show_pack`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Pack',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def update_build(self, pack_id, build_id, build, **kwargs):  # noqa: E501
-        """Update a specific build for a pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_build(pack_id, build_id, build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :param Build build: The build data to update (required)
-        :return: Build
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_build_with_http_info(pack_id, build_id, build, **kwargs)  # noqa: E501
-        else:
-            (data) = self.update_build_with_http_info(pack_id, build_id, build, **kwargs)  # noqa: E501
-            return data
-
-    def update_build_with_http_info(self, pack_id, build_id, build, **kwargs):  # noqa: E501
-        """Update a specific build for a pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_build_with_http_info(pack_id, build_id, build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param str build_id: A build UUID or slug (required)
-        :param Build build: The build data to update (required)
-        :return: Build
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'build_id', 'build']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method update_build" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `update_build`")  # noqa: E501
-        # verify the required parameter 'build_id' is set
-        if ('build_id' not in local_var_params or
-                local_var_params['build_id'] is None):
-            raise ApiValueError("Missing the required parameter `build_id` when calling `update_build`")  # noqa: E501
-        # verify the required parameter 'build' is set
-        if ('build' not in local_var_params or
-                local_var_params['build'] is None):
-            raise ApiValueError("Missing the required parameter `build` when calling `update_build`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-        if 'build_id' in local_var_params:
-            path_params['build_id'] = local_var_params['build_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'build' in local_var_params:
-            body_params = local_var_params['build']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}/builds/{build_id}', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Build',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def update_pack(self, pack_id, pack, **kwargs):  # noqa: E501
-        """Update a specific pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_pack(pack_id, pack, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param Pack pack: The pack data to update (required)
-        :return: Pack
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_pack_with_http_info(pack_id, pack, **kwargs)  # noqa: E501
-        else:
-            (data) = self.update_pack_with_http_info(pack_id, pack, **kwargs)  # noqa: E501
-            return data
-
-    def update_pack_with_http_info(self, pack_id, pack, **kwargs):  # noqa: E501
-        """Update a specific pack  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_pack_with_http_info(pack_id, pack, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str pack_id: A pack UUID or slug (required)
-        :param Pack pack: The pack data to update (required)
-        :return: Pack
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['pack_id', 'pack']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method update_pack" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'pack_id' is set
-        if ('pack_id' not in local_var_params or
-                local_var_params['pack_id'] is None):
-            raise ApiValueError("Missing the required parameter `pack_id` when calling `update_pack`")  # noqa: E501
-        # verify the required parameter 'pack' is set
-        if ('pack' not in local_var_params or
-                local_var_params['pack'] is None):
-            raise ApiValueError("Missing the required parameter `pack` when calling `update_pack`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'pack_id' in local_var_params:
-            path_params['pack_id'] = local_var_params['pack_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'pack' in local_var_params:
-            body_params = local_var_params['pack']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/packs/{pack_id}', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Pack',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+        def __append_build_to_version(
+            self,
+            pack_id,
+            build_id,
+            build_version,
+            **kwargs
+        ):
+            """Assign a version to a build  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.append_build_to_version(pack_id, build_id, build_version, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                build_id (str): A build UUID or slug
+                build_version (BuildVersionParams): The version data to append to build
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['build_id'] = \
+                build_id
+            kwargs['build_version'] = \
+                build_version
+            return self.call_with_http_info(**kwargs)
+
+        self.append_build_to_version = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/builds/{build_id}/versions',
+                'operation_id': 'append_build_to_version',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'build_id',
+                    'build_version',
+                ],
+                'required': [
+                    'pack_id',
+                    'build_id',
+                    'build_version',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'build_id':
+                        (str,),
+                    'build_version':
+                        (BuildVersionParams,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                    'build_id': 'build_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'build_id': 'path',
+                    'build_version': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__append_build_to_version
+        )
+
+        def __append_pack_to_team(
+            self,
+            pack_id,
+            pack_team,
+            **kwargs
+        ):
+            """Assign a team to pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.append_pack_to_team(pack_id, pack_team, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                pack_team (PackTeamParams): The pack team data to assign
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['pack_team'] = \
+                pack_team
+            return self.call_with_http_info(**kwargs)
+
+        self.append_pack_to_team = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/teams',
+                'operation_id': 'append_pack_to_team',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'pack_team',
+                ],
+                'required': [
+                    'pack_id',
+                    'pack_team',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'pack_team':
+                        (PackTeamParams,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'pack_team': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__append_pack_to_team
+        )
+
+        def __append_pack_to_user(
+            self,
+            pack_id,
+            pack_user,
+            **kwargs
+        ):
+            """Assign a user to pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.append_pack_to_user(pack_id, pack_user, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                pack_user (PackUserParams): The pack user data to assign
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['pack_user'] = \
+                pack_user
+            return self.call_with_http_info(**kwargs)
+
+        self.append_pack_to_user = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/users',
+                'operation_id': 'append_pack_to_user',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'pack_user',
+                ],
+                'required': [
+                    'pack_id',
+                    'pack_user',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'pack_user':
+                        (PackUserParams,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'pack_user': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__append_pack_to_user
+        )
+
+        def __create_build(
+            self,
+            pack_id,
+            build,
+            **kwargs
+        ):
+            """Create a new build for a pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.create_build(pack_id, build, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                build (Build): The build data to create
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Build
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['build'] = \
+                build
+            return self.call_with_http_info(**kwargs)
+
+        self.create_build = _Endpoint(
+            settings={
+                'response_type': (Build,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/builds',
+                'operation_id': 'create_build',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'build',
+                ],
+                'required': [
+                    'pack_id',
+                    'build',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'build':
+                        (Build,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'build': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__create_build
+        )
+
+        def __create_pack(
+            self,
+            pack,
+            **kwargs
+        ):
+            """Create a new pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.create_pack(pack, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack (Pack): The pack data to create
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Pack
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack'] = \
+                pack
+            return self.call_with_http_info(**kwargs)
+
+        self.create_pack = _Endpoint(
+            settings={
+                'response_type': (Pack,),
+                'auth': [],
+                'endpoint_path': '/packs',
+                'operation_id': 'create_pack',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack',
+                ],
+                'required': [
+                    'pack',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack':
+                        (Pack,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'pack': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__create_pack
+        )
+
+        def __delete_build(
+            self,
+            pack_id,
+            build_id,
+            **kwargs
+        ):
+            """Delete a specific build for a pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_build(pack_id, build_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                build_id (str): A build UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['build_id'] = \
+                build_id
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_build = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/builds/{build_id}',
+                'operation_id': 'delete_build',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'build_id',
+                ],
+                'required': [
+                    'pack_id',
+                    'build_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'build_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                    'build_id': 'build_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'build_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_build
+        )
+
+        def __delete_build_from_version(
+            self,
+            pack_id,
+            build_id,
+            build_version,
+            **kwargs
+        ):
+            """Unlink a version from a build  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_build_from_version(pack_id, build_id, build_version, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                build_id (str): A build UUID or slug
+                build_version (BuildVersionParams): The version data to unlink from build
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['build_id'] = \
+                build_id
+            kwargs['build_version'] = \
+                build_version
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_build_from_version = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/builds/{build_id}/versions',
+                'operation_id': 'delete_build_from_version',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'build_id',
+                    'build_version',
+                ],
+                'required': [
+                    'pack_id',
+                    'build_id',
+                    'build_version',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'build_id':
+                        (str,),
+                    'build_version':
+                        (BuildVersionParams,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                    'build_id': 'build_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'build_id': 'path',
+                    'build_version': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__delete_build_from_version
+        )
+
+        def __delete_pack(
+            self,
+            pack_id,
+            **kwargs
+        ):
+            """Delete a specific pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_pack(pack_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_pack = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}',
+                'operation_id': 'delete_pack',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                ],
+                'required': [
+                    'pack_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_pack
+        )
+
+        def __delete_pack_from_team(
+            self,
+            pack_id,
+            pack_team,
+            **kwargs
+        ):
+            """Remove a team from pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_pack_from_team(pack_id, pack_team, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                pack_team (PackTeamParams): The pack team data to delete
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['pack_team'] = \
+                pack_team
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_pack_from_team = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/teams',
+                'operation_id': 'delete_pack_from_team',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'pack_team',
+                ],
+                'required': [
+                    'pack_id',
+                    'pack_team',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'pack_team':
+                        (PackTeamParams,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'pack_team': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__delete_pack_from_team
+        )
+
+        def __delete_pack_from_user(
+            self,
+            pack_id,
+            pack_user,
+            **kwargs
+        ):
+            """Remove a user from pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_pack_from_user(pack_id, pack_user, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                pack_user (PackUserParams): The pack user data to delete
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['pack_user'] = \
+                pack_user
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_pack_from_user = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/users',
+                'operation_id': 'delete_pack_from_user',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'pack_user',
+                ],
+                'required': [
+                    'pack_id',
+                    'pack_user',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'pack_user':
+                        (PackUserParams,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'pack_user': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__delete_pack_from_user
+        )
+
+        def __list_build_versions(
+            self,
+            pack_id,
+            build_id,
+            **kwargs
+        ):
+            """Fetch all versions assigned to build  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_build_versions(pack_id, build_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                build_id (str): A build UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [BuildVersion]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['build_id'] = \
+                build_id
+            return self.call_with_http_info(**kwargs)
+
+        self.list_build_versions = _Endpoint(
+            settings={
+                'response_type': ([BuildVersion],),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/builds/{build_id}/versions',
+                'operation_id': 'list_build_versions',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'build_id',
+                ],
+                'required': [
+                    'pack_id',
+                    'build_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'build_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                    'build_id': 'build_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'build_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_build_versions
+        )
+
+        def __list_builds(
+            self,
+            pack_id,
+            **kwargs
+        ):
+            """Fetch all available builds for a pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_builds(pack_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [Build]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            return self.call_with_http_info(**kwargs)
+
+        self.list_builds = _Endpoint(
+            settings={
+                'response_type': ([Build],),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/builds',
+                'operation_id': 'list_builds',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                ],
+                'required': [
+                    'pack_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_builds
+        )
+
+        def __list_pack_teams(
+            self,
+            pack_id,
+            **kwargs
+        ):
+            """Fetch all teams assigned to pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_pack_teams(pack_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [TeamPack]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            return self.call_with_http_info(**kwargs)
+
+        self.list_pack_teams = _Endpoint(
+            settings={
+                'response_type': ([TeamPack],),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/teams',
+                'operation_id': 'list_pack_teams',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                ],
+                'required': [
+                    'pack_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_pack_teams
+        )
+
+        def __list_pack_users(
+            self,
+            pack_id,
+            **kwargs
+        ):
+            """Fetch all users assigned to pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_pack_users(pack_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [UserPack]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            return self.call_with_http_info(**kwargs)
+
+        self.list_pack_users = _Endpoint(
+            settings={
+                'response_type': ([UserPack],),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/users',
+                'operation_id': 'list_pack_users',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                ],
+                'required': [
+                    'pack_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_pack_users
+        )
+
+        def __list_packs(
+            self,
+            **kwargs
+        ):
+            """Fetch all available packs  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_packs(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [Pack]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.list_packs = _Endpoint(
+            settings={
+                'response_type': ([Pack],),
+                'auth': [],
+                'endpoint_path': '/packs',
+                'operation_id': 'list_packs',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_packs
+        )
+
+        def __permit_pack_team(
+            self,
+            pack_id,
+            pack_team,
+            **kwargs
+        ):
+            """Update team perms for pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.permit_pack_team(pack_id, pack_team, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                pack_team (PackTeamParams): The pack team data to update
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['pack_team'] = \
+                pack_team
+            return self.call_with_http_info(**kwargs)
+
+        self.permit_pack_team = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/teams',
+                'operation_id': 'permit_pack_team',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'pack_team',
+                ],
+                'required': [
+                    'pack_id',
+                    'pack_team',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'pack_team':
+                        (PackTeamParams,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'pack_team': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__permit_pack_team
+        )
+
+        def __permit_pack_user(
+            self,
+            pack_id,
+            pack_user,
+            **kwargs
+        ):
+            """Update user perms for pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.permit_pack_user(pack_id, pack_user, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                pack_user (PackUserParams): The pack user data to update
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['pack_user'] = \
+                pack_user
+            return self.call_with_http_info(**kwargs)
+
+        self.permit_pack_user = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/users',
+                'operation_id': 'permit_pack_user',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'pack_user',
+                ],
+                'required': [
+                    'pack_id',
+                    'pack_user',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'pack_user':
+                        (PackUserParams,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'pack_user': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__permit_pack_user
+        )
+
+        def __show_build(
+            self,
+            pack_id,
+            build_id,
+            **kwargs
+        ):
+            """Fetch a specific build for a pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.show_build(pack_id, build_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                build_id (str): A build UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Build
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['build_id'] = \
+                build_id
+            return self.call_with_http_info(**kwargs)
+
+        self.show_build = _Endpoint(
+            settings={
+                'response_type': (Build,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/builds/{build_id}',
+                'operation_id': 'show_build',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'build_id',
+                ],
+                'required': [
+                    'pack_id',
+                    'build_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'build_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                    'build_id': 'build_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'build_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__show_build
+        )
+
+        def __show_pack(
+            self,
+            pack_id,
+            **kwargs
+        ):
+            """Fetch a specific pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.show_pack(pack_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Pack
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            return self.call_with_http_info(**kwargs)
+
+        self.show_pack = _Endpoint(
+            settings={
+                'response_type': (Pack,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}',
+                'operation_id': 'show_pack',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                ],
+                'required': [
+                    'pack_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__show_pack
+        )
+
+        def __update_build(
+            self,
+            pack_id,
+            build_id,
+            build,
+            **kwargs
+        ):
+            """Update a specific build for a pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_build(pack_id, build_id, build, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                build_id (str): A build UUID or slug
+                build (Build): The build data to update
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Build
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['build_id'] = \
+                build_id
+            kwargs['build'] = \
+                build
+            return self.call_with_http_info(**kwargs)
+
+        self.update_build = _Endpoint(
+            settings={
+                'response_type': (Build,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}/builds/{build_id}',
+                'operation_id': 'update_build',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'build_id',
+                    'build',
+                ],
+                'required': [
+                    'pack_id',
+                    'build_id',
+                    'build',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'build_id':
+                        (str,),
+                    'build':
+                        (Build,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                    'build_id': 'build_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'build_id': 'path',
+                    'build': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_build
+        )
+
+        def __update_pack(
+            self,
+            pack_id,
+            pack,
+            **kwargs
+        ):
+            """Update a specific pack  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_pack(pack_id, pack, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                pack_id (str): A pack UUID or slug
+                pack (Pack): The pack data to update
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Pack
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['pack_id'] = \
+                pack_id
+            kwargs['pack'] = \
+                pack
+            return self.call_with_http_info(**kwargs)
+
+        self.update_pack = _Endpoint(
+            settings={
+                'response_type': (Pack,),
+                'auth': [],
+                'endpoint_path': '/packs/{pack_id}',
+                'operation_id': 'update_pack',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'pack_id',
+                    'pack',
+                ],
+                'required': [
+                    'pack_id',
+                    'pack',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'pack_id':
+                        (str,),
+                    'pack':
+                        (Pack,),
+                },
+                'attribute_map': {
+                    'pack_id': 'pack_id',
+                },
+                'location_map': {
+                    'pack_id': 'path',
+                    'pack': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_pack
+        )

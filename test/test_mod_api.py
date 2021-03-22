@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,20 +8,17 @@
 """
 
 
-from __future__ import absolute_import
-
 import unittest
 
 import kleister
 from kleister.api.mod_api import ModApi  # noqa: E501
-from kleister.rest import ApiException
 
 
 class TestModApi(unittest.TestCase):
     """ModApi unit test stubs"""
 
     def setUp(self):
-        self.api = kleister.api.mod_api.ModApi()  # noqa: E501
+        self.api = ModApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -176,5 +171,5 @@ class TestModApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

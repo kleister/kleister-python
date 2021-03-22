@@ -17,29 +17,43 @@ Authenticate an user by credentials
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import auth_api
+from kleister.model.auth_token import AuthToken
+from kleister.model.general_error import GeneralError
+from kleister.model.auth_login import AuthLogin
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.AuthApi()
-auth_login = kleister.AuthLogin() # AuthLogin | The credentials to authenticate
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Authenticate an user by credentials
-    api_response = api_instance.login_user(auth_login)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthApi->login_user: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = auth_api.AuthApi(api_client)
+    auth_login = AuthLogin(
+        username="username_example",
+        password="password_example",
+    ) # AuthLogin | The credentials to authenticate
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Authenticate an user by credentials
+        api_response = api_instance.login_user(auth_login)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling AuthApi->login_user: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **auth_login** | [**AuthLogin**](AuthLogin.md)| The credentials to authenticate | 
+ **auth_login** | [**AuthLogin**](AuthLogin.md)| The credentials to authenticate |
 
 ### Return type
 
@@ -54,6 +68,14 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A generated token with expire |  -  |
+**401** | Unauthorized if wrong credentials |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **refresh_auth**
@@ -64,22 +86,32 @@ Refresh an auth token before it expires
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import auth_api
+from kleister.model.auth_token import AuthToken
+from kleister.model.general_error import GeneralError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.AuthApi()
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Refresh an auth token before it expires
-    api_response = api_instance.refresh_auth()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthApi->refresh_auth: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = auth_api.AuthApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Refresh an auth token before it expires
+        api_response = api_instance.refresh_auth()
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling AuthApi->refresh_auth: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -97,6 +129,14 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A refreshed token with expire |  -  |
+**401** | Unauthorized if failed to generate |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **verify_auth**
@@ -107,29 +147,39 @@ Verify validity for an authentication token
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import auth_api
+from kleister.model.general_error import GeneralError
+from kleister.model.auth_verify import AuthVerify
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.AuthApi()
-token = 'token_example' # str | A token that have to be checked
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Verify validity for an authentication token
-    api_response = api_instance.verify_auth(token)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthApi->verify_auth: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = auth_api.AuthApi(api_client)
+    token = "token_example" # str | A token that have to be checked
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Verify validity for an authentication token
+        api_response = api_instance.verify_auth(token)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling AuthApi->verify_auth: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | **str**| A token that have to be checked | 
+ **token** | **str**| A token that have to be checked |
 
 ### Return type
 
@@ -143,6 +193,14 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Meta data of the provided token |  -  |
+**401** | Unauthorized if token is invalid |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

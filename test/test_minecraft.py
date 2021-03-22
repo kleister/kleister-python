@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,13 +8,11 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
 
 import kleister
-from kleister.models.minecraft import Minecraft  # noqa: E501
-from kleister.rest import ApiException
+from kleister.model.minecraft import Minecraft
 
 
 class TestMinecraft(unittest.TestCase):
@@ -31,9 +27,9 @@ class TestMinecraft(unittest.TestCase):
     def testMinecraft(self):
         """Test Minecraft"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kleister.models.minecraft.Minecraft()  # noqa: E501
+        # model = Minecraft()  # noqa: E501
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -1,12 +1,13 @@
 # Forge
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
-**slug** | **str** |  | [optional] 
 **name** | **str** |  | 
 **minecraft** | **str** |  | 
+**id** | **str** |  | [optional] [readonly] 
+**slug** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 

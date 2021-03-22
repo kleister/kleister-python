@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,13 +8,11 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
 
 import kleister
-from kleister.models.team_pack import TeamPack  # noqa: E501
-from kleister.rest import ApiException
+from kleister.model.team_pack import TeamPack
 
 
 class TestTeamPack(unittest.TestCase):
@@ -31,9 +27,9 @@ class TestTeamPack(unittest.TestCase):
     def testTeamPack(self):
         """Test TeamPack"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kleister.models.team_pack.TeamPack()  # noqa: E501
+        # model = TeamPack()  # noqa: E501
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

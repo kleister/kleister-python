@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,18 +8,24 @@
 """
 
 
-from __future__ import absolute_import
-
 import re  # noqa: F401
+import sys  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
-from kleister.api_client import ApiClient
-from kleister.exceptions import (
-    ApiTypeError,
-    ApiValueError
+from kleister.api_client import ApiClient, Endpoint as _Endpoint
+from kleister.model_utils import (  # noqa: F401
+    check_allowed_values,
+    check_validations,
+    date,
+    datetime,
+    file_type,
+    none_type,
+    validate_and_convert_types
 )
+from kleister.model.build import Build
+from kleister.model.general_error import GeneralError
+from kleister.model.minecraft import Minecraft
+from kleister.model.minecraft_build_params import MinecraftBuildParams
+from kleister.model.validation_error import ValidationError
 
 
 class MinecraftApi(object):
@@ -36,574 +40,696 @@ class MinecraftApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def append_minecraft_to_build(self, minecraft_id, minecraft_build, **kwargs):  # noqa: E501
-        """Assign a build to a Minecraft version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_minecraft_to_build(minecraft_id, minecraft_build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str minecraft_id: A minecraft UUID or slug (required)
-        :param MinecraftBuildParams minecraft_build: The build data to append (required)
-        :return: list[Build]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.append_minecraft_to_build_with_http_info(minecraft_id, minecraft_build, **kwargs)  # noqa: E501
-        else:
-            (data) = self.append_minecraft_to_build_with_http_info(minecraft_id, minecraft_build, **kwargs)  # noqa: E501
-            return data
-
-    def append_minecraft_to_build_with_http_info(self, minecraft_id, minecraft_build, **kwargs):  # noqa: E501
-        """Assign a build to a Minecraft version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_minecraft_to_build_with_http_info(minecraft_id, minecraft_build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str minecraft_id: A minecraft UUID or slug (required)
-        :param MinecraftBuildParams minecraft_build: The build data to append (required)
-        :return: list[Build]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['minecraft_id', 'minecraft_build']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method append_minecraft_to_build" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'minecraft_id' is set
-        if ('minecraft_id' not in local_var_params or
-                local_var_params['minecraft_id'] is None):
-            raise ApiValueError("Missing the required parameter `minecraft_id` when calling `append_minecraft_to_build`")  # noqa: E501
-        # verify the required parameter 'minecraft_build' is set
-        if ('minecraft_build' not in local_var_params or
-                local_var_params['minecraft_build'] is None):
-            raise ApiValueError("Missing the required parameter `minecraft_build` when calling `append_minecraft_to_build`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'minecraft_id' in local_var_params:
-            path_params['minecraft_id'] = local_var_params['minecraft_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'minecraft_build' in local_var_params:
-            body_params = local_var_params['minecraft_build']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/minecraft/{minecraft_id}/builds', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[Build]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_minecraft_from_build(self, minecraft_id, minecraft_build, **kwargs):  # noqa: E501
-        """Unlink a build from a Minecraft version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_minecraft_from_build(minecraft_id, minecraft_build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str minecraft_id: A minecraft UUID or slug (required)
-        :param MinecraftBuildParams minecraft_build: The build data to unlink (required)
-        :return: list[Build]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_minecraft_from_build_with_http_info(minecraft_id, minecraft_build, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_minecraft_from_build_with_http_info(minecraft_id, minecraft_build, **kwargs)  # noqa: E501
-            return data
-
-    def delete_minecraft_from_build_with_http_info(self, minecraft_id, minecraft_build, **kwargs):  # noqa: E501
-        """Unlink a build from a Minecraft version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_minecraft_from_build_with_http_info(minecraft_id, minecraft_build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str minecraft_id: A minecraft UUID or slug (required)
-        :param MinecraftBuildParams minecraft_build: The build data to unlink (required)
-        :return: list[Build]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['minecraft_id', 'minecraft_build']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_minecraft_from_build" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'minecraft_id' is set
-        if ('minecraft_id' not in local_var_params or
-                local_var_params['minecraft_id'] is None):
-            raise ApiValueError("Missing the required parameter `minecraft_id` when calling `delete_minecraft_from_build`")  # noqa: E501
-        # verify the required parameter 'minecraft_build' is set
-        if ('minecraft_build' not in local_var_params or
-                local_var_params['minecraft_build'] is None):
-            raise ApiValueError("Missing the required parameter `minecraft_build` when calling `delete_minecraft_from_build`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'minecraft_id' in local_var_params:
-            path_params['minecraft_id'] = local_var_params['minecraft_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'minecraft_build' in local_var_params:
-            body_params = local_var_params['minecraft_build']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/minecraft/{minecraft_id}/builds', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[Build]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_minecraft_builds(self, minecraft_id, **kwargs):  # noqa: E501
-        """Fetch the builds assigned to a Minecraft version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_minecraft_builds(minecraft_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str minecraft_id: A minecraft UUID or slug (required)
-        :return: list[Build]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_minecraft_builds_with_http_info(minecraft_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.list_minecraft_builds_with_http_info(minecraft_id, **kwargs)  # noqa: E501
-            return data
-
-    def list_minecraft_builds_with_http_info(self, minecraft_id, **kwargs):  # noqa: E501
-        """Fetch the builds assigned to a Minecraft version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_minecraft_builds_with_http_info(minecraft_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str minecraft_id: A minecraft UUID or slug (required)
-        :return: list[Build]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['minecraft_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_minecraft_builds" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'minecraft_id' is set
-        if ('minecraft_id' not in local_var_params or
-                local_var_params['minecraft_id'] is None):
-            raise ApiValueError("Missing the required parameter `minecraft_id` when calling `list_minecraft_builds`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'minecraft_id' in local_var_params:
-            path_params['minecraft_id'] = local_var_params['minecraft_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/minecraft/{minecraft_id}/builds', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[Build]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_minecrafts(self, **kwargs):  # noqa: E501
-        """Fetch the available Minecraft versions  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_minecrafts(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :return: list[Minecraft]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_minecrafts_with_http_info(**kwargs)  # noqa: E501
-        else:
-            (data) = self.list_minecrafts_with_http_info(**kwargs)  # noqa: E501
-            return data
-
-    def list_minecrafts_with_http_info(self, **kwargs):  # noqa: E501
-        """Fetch the available Minecraft versions  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_minecrafts_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :return: list[Minecraft]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_minecrafts" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/minecraft', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[Minecraft]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def search_minecrafts(self, minecraft_id, **kwargs):  # noqa: E501
-        """Search for available Minecraft versions  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.search_minecrafts(minecraft_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str minecraft_id: A search token to search Minecraft versions (required)
-        :return: list[Minecraft]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_minecrafts_with_http_info(minecraft_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.search_minecrafts_with_http_info(minecraft_id, **kwargs)  # noqa: E501
-            return data
-
-    def search_minecrafts_with_http_info(self, minecraft_id, **kwargs):  # noqa: E501
-        """Search for available Minecraft versions  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.search_minecrafts_with_http_info(minecraft_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str minecraft_id: A search token to search Minecraft versions (required)
-        :return: list[Minecraft]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['minecraft_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method search_minecrafts" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'minecraft_id' is set
-        if ('minecraft_id' not in local_var_params or
-                local_var_params['minecraft_id'] is None):
-            raise ApiValueError("Missing the required parameter `minecraft_id` when calling `search_minecrafts`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'minecraft_id' in local_var_params:
-            path_params['minecraft_id'] = local_var_params['minecraft_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/minecraft/{minecraft_id}', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[Minecraft]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def update_minecraft(self, **kwargs):  # noqa: E501
-        """Update the available Minecraft versions  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_minecraft(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_minecraft_with_http_info(**kwargs)  # noqa: E501
-        else:
-            (data) = self.update_minecraft_with_http_info(**kwargs)  # noqa: E501
-            return data
-
-    def update_minecraft_with_http_info(self, **kwargs):  # noqa: E501
-        """Update the available Minecraft versions  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_minecraft_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method update_minecraft" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/minecraft', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+        def __append_minecraft_to_build(
+            self,
+            minecraft_id,
+            minecraft_build,
+            **kwargs
+        ):
+            """Assign a build to a Minecraft version  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.append_minecraft_to_build(minecraft_id, minecraft_build, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                minecraft_id (str): A minecraft UUID or slug
+                minecraft_build (MinecraftBuildParams): The build data to append
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [Build]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['minecraft_id'] = \
+                minecraft_id
+            kwargs['minecraft_build'] = \
+                minecraft_build
+            return self.call_with_http_info(**kwargs)
+
+        self.append_minecraft_to_build = _Endpoint(
+            settings={
+                'response_type': ([Build],),
+                'auth': [],
+                'endpoint_path': '/minecraft/{minecraft_id}/builds',
+                'operation_id': 'append_minecraft_to_build',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'minecraft_id',
+                    'minecraft_build',
+                ],
+                'required': [
+                    'minecraft_id',
+                    'minecraft_build',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'minecraft_id':
+                        (str,),
+                    'minecraft_build':
+                        (MinecraftBuildParams,),
+                },
+                'attribute_map': {
+                    'minecraft_id': 'minecraft_id',
+                },
+                'location_map': {
+                    'minecraft_id': 'path',
+                    'minecraft_build': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__append_minecraft_to_build
+        )
+
+        def __delete_minecraft_from_build(
+            self,
+            minecraft_id,
+            minecraft_build,
+            **kwargs
+        ):
+            """Unlink a build from a Minecraft version  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_minecraft_from_build(minecraft_id, minecraft_build, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                minecraft_id (str): A minecraft UUID or slug
+                minecraft_build (MinecraftBuildParams): The build data to unlink
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [Build]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['minecraft_id'] = \
+                minecraft_id
+            kwargs['minecraft_build'] = \
+                minecraft_build
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_minecraft_from_build = _Endpoint(
+            settings={
+                'response_type': ([Build],),
+                'auth': [],
+                'endpoint_path': '/minecraft/{minecraft_id}/builds',
+                'operation_id': 'delete_minecraft_from_build',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'minecraft_id',
+                    'minecraft_build',
+                ],
+                'required': [
+                    'minecraft_id',
+                    'minecraft_build',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'minecraft_id':
+                        (str,),
+                    'minecraft_build':
+                        (MinecraftBuildParams,),
+                },
+                'attribute_map': {
+                    'minecraft_id': 'minecraft_id',
+                },
+                'location_map': {
+                    'minecraft_id': 'path',
+                    'minecraft_build': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__delete_minecraft_from_build
+        )
+
+        def __list_minecraft_builds(
+            self,
+            minecraft_id,
+            **kwargs
+        ):
+            """Fetch the builds assigned to a Minecraft version  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_minecraft_builds(minecraft_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                minecraft_id (str): A minecraft UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [Build]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['minecraft_id'] = \
+                minecraft_id
+            return self.call_with_http_info(**kwargs)
+
+        self.list_minecraft_builds = _Endpoint(
+            settings={
+                'response_type': ([Build],),
+                'auth': [],
+                'endpoint_path': '/minecraft/{minecraft_id}/builds',
+                'operation_id': 'list_minecraft_builds',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'minecraft_id',
+                ],
+                'required': [
+                    'minecraft_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'minecraft_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'minecraft_id': 'minecraft_id',
+                },
+                'location_map': {
+                    'minecraft_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_minecraft_builds
+        )
+
+        def __list_minecrafts(
+            self,
+            **kwargs
+        ):
+            """Fetch the available Minecraft versions  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_minecrafts(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [Minecraft]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.list_minecrafts = _Endpoint(
+            settings={
+                'response_type': ([Minecraft],),
+                'auth': [],
+                'endpoint_path': '/minecraft',
+                'operation_id': 'list_minecrafts',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_minecrafts
+        )
+
+        def __search_minecrafts(
+            self,
+            minecraft_id,
+            **kwargs
+        ):
+            """Search for available Minecraft versions  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.search_minecrafts(minecraft_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                minecraft_id (str): A search token to search Minecraft versions
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [Minecraft]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['minecraft_id'] = \
+                minecraft_id
+            return self.call_with_http_info(**kwargs)
+
+        self.search_minecrafts = _Endpoint(
+            settings={
+                'response_type': ([Minecraft],),
+                'auth': [],
+                'endpoint_path': '/minecraft/{minecraft_id}',
+                'operation_id': 'search_minecrafts',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'minecraft_id',
+                ],
+                'required': [
+                    'minecraft_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'minecraft_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'minecraft_id': 'minecraft_id',
+                },
+                'location_map': {
+                    'minecraft_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__search_minecrafts
+        )
+
+        def __update_minecraft(
+            self,
+            **kwargs
+        ):
+            """Update the available Minecraft versions  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_minecraft(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.update_minecraft = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/minecraft',
+                'operation_id': 'update_minecraft',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__update_minecraft
+        )

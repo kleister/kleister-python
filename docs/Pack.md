@@ -1,13 +1,14 @@
 # Pack
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
+**name** | **str** |  | 
+**id** | **str** |  | [optional] [readonly] 
 **recommended_id** | **str** |  | [optional] 
 **latest_id** | **str** |  | [optional] 
 **slug** | **str** |  | [optional] 
-**name** | **str** |  | 
 **website** | **str** |  | [optional] 
 **published** | **bool** |  | [optional] 
 **hidden** | **bool** |  | [optional] 

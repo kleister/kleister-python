@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,13 +8,11 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
 
 import kleister
-from kleister.models.version_build_params import VersionBuildParams  # noqa: E501
-from kleister.rest import ApiException
+from kleister.model.version_build_params import VersionBuildParams
 
 
 class TestVersionBuildParams(unittest.TestCase):
@@ -31,9 +27,9 @@ class TestVersionBuildParams(unittest.TestCase):
     def testVersionBuildParams(self):
         """Test VersionBuildParams"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kleister.models.version_build_params.VersionBuildParams()  # noqa: E501
+        # model = VersionBuildParams()  # noqa: E501
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

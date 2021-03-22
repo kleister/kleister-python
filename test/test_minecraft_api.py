@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,20 +8,17 @@
 """
 
 
-from __future__ import absolute_import
-
 import unittest
 
 import kleister
 from kleister.api.minecraft_api import MinecraftApi  # noqa: E501
-from kleister.rest import ApiException
 
 
 class TestMinecraftApi(unittest.TestCase):
     """MinecraftApi unit test stubs"""
 
     def setUp(self):
-        self.api = kleister.api.minecraft_api.MinecraftApi()  # noqa: E501
+        self.api = MinecraftApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -71,5 +66,5 @@ class TestMinecraftApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

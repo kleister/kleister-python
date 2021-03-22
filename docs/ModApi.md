@@ -35,31 +35,44 @@ Assign a team to mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.mod_team_params import ModTeamParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-mod_team = kleister.ModTeamParams() # ModTeamParams | The mod team data to assign
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Assign a team to mod
-    api_response = api_instance.append_mod_to_team(mod_id, mod_team)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->append_mod_to_team: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    mod_team = ModTeamParams(
+        team="team_example",
+        perm="user",
+    ) # ModTeamParams | The mod team data to assign
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Assign a team to mod
+        api_response = api_instance.append_mod_to_team(mod_id, mod_team)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->append_mod_to_team: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **mod_team** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to assign | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **mod_team** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to assign |
 
 ### Return type
 
@@ -73,6 +86,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Team is already assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -84,31 +107,44 @@ Assign a user to mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.mod_user_params import ModUserParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-mod_user = kleister.ModUserParams() # ModUserParams | The mod user data to assign
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Assign a user to mod
-    api_response = api_instance.append_mod_to_user(mod_id, mod_user)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->append_mod_to_user: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    mod_user = ModUserParams(
+        user="user_example",
+        perm="user",
+    ) # ModUserParams | The mod user data to assign
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Assign a user to mod
+        api_response = api_instance.append_mod_to_user(mod_id, mod_user)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->append_mod_to_user: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **mod_user** | [**ModUserParams**](ModUserParams.md)| The mod user data to assign | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **mod_user** | [**ModUserParams**](ModUserParams.md)| The mod user data to assign |
 
 ### Return type
 
@@ -122,6 +158,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | User is already assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -133,33 +179,47 @@ Assign a build to a version
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.validation_error import ValidationError
+from kleister.model.version_build_params import VersionBuildParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-version_id = 'version_id_example' # str | A version UUID or slug
-version_build = kleister.VersionBuildParams() # VersionBuildParams | The build data to append to version
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Assign a build to a version
-    api_response = api_instance.append_version_to_build(mod_id, version_id, version_build)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->append_version_to_build: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    version_id = "version_id_example" # str | A version UUID or slug
+    version_build = VersionBuildParams(
+        pack="pack_example",
+        build="build_example",
+    ) # VersionBuildParams | The build data to append to version
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Assign a build to a version
+        api_response = api_instance.append_version_to_build(mod_id, version_id, version_build)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->append_version_to_build: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **version_id** | **str**| A version UUID or slug | 
- **version_build** | [**VersionBuildParams**](VersionBuildParams.md)| The build data to append to version | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **version_id** | **str**| A version UUID or slug |
+ **version_build** | [**VersionBuildParams**](VersionBuildParams.md)| The build data to append to version |
 
 ### Return type
 
@@ -173,6 +233,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Build is already appended |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -184,29 +254,51 @@ Create a new mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.mod import Mod
+from kleister.model.validation_error import ValidationError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod = kleister.Mod() # Mod | The mod data to create
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Create a new mod
-    api_response = api_instance.create_mod(mod)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->create_mod: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod = Mod(
+        id="id_example",
+        slug="slug_example",
+        name="name_example",
+        side="both",
+        description="description_example",
+        author="author_example",
+        website="website_example",
+        donate="donate_example",
+        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+    ) # Mod | The mod data to create
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a new mod
+        api_response = api_instance.create_mod(mod)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->create_mod: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod** | [**Mod**](Mod.md)| The mod data to create | 
+ **mod** | [**Mod**](Mod.md)| The mod data to create |
 
 ### Return type
 
@@ -220,6 +312,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The created mod data |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Failed to validate request |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -231,31 +333,49 @@ Create a new version for a mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.validation_error import ValidationError
+from kleister.model.version import Version
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-version = kleister.Version() # Version | The version data to create
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Create a new version for a mod
-    api_response = api_instance.create_version(mod_id, version)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->create_version: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    version = Version(
+        id="id_example",
+        mod_id="mod_id_example",
+        slug="slug_example",
+        name="name_example",
+        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+    ) # Version | The version data to create
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a new version for a mod
+        api_response = api_instance.create_version(mod_id, version)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->create_version: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **version** | [**Version**](Version.md)| The version data to create | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **version** | [**Version**](Version.md)| The version data to create |
 
 ### Return type
 
@@ -269,6 +389,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The created version data |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Failed to validate request |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -280,29 +410,38 @@ Delete a specific mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Delete a specific mod
-    api_response = api_instance.delete_mod(mod_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->delete_mod: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Delete a specific mod
+        api_response = api_instance.delete_mod(mod_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->delete_mod: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
+ **mod_id** | **str**| A mod UUID or slug |
 
 ### Return type
 
@@ -316,6 +455,15 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**400** | Failed to delete the mod |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -327,31 +475,44 @@ Remove a team from mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.mod_team_params import ModTeamParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-mod_team = kleister.ModTeamParams() # ModTeamParams | The mod team data to delete
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Remove a team from mod
-    api_response = api_instance.delete_mod_from_team(mod_id, mod_team)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->delete_mod_from_team: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    mod_team = ModTeamParams(
+        team="team_example",
+        perm="user",
+    ) # ModTeamParams | The mod team data to delete
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Remove a team from mod
+        api_response = api_instance.delete_mod_from_team(mod_id, mod_team)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->delete_mod_from_team: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **mod_team** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to delete | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **mod_team** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to delete |
 
 ### Return type
 
@@ -365,6 +526,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Team is not assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -376,31 +547,44 @@ Remove a user from mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.mod_user_params import ModUserParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-mod_user = kleister.ModUserParams() # ModUserParams | The mod user data to delete
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Remove a user from mod
-    api_response = api_instance.delete_mod_from_user(mod_id, mod_user)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->delete_mod_from_user: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    mod_user = ModUserParams(
+        user="user_example",
+        perm="user",
+    ) # ModUserParams | The mod user data to delete
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Remove a user from mod
+        api_response = api_instance.delete_mod_from_user(mod_id, mod_user)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->delete_mod_from_user: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **mod_user** | [**ModUserParams**](ModUserParams.md)| The mod user data to delete | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **mod_user** | [**ModUserParams**](ModUserParams.md)| The mod user data to delete |
 
 ### Return type
 
@@ -414,6 +598,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | User is not assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -425,31 +619,40 @@ Delete a specific version for a mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-version_id = 'version_id_example' # str | A version UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Delete a specific version for a mod
-    api_response = api_instance.delete_version(mod_id, version_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->delete_version: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    version_id = "version_id_example" # str | A version UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Delete a specific version for a mod
+        api_response = api_instance.delete_version(mod_id, version_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->delete_version: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **version_id** | **str**| A version UUID or slug | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **version_id** | **str**| A version UUID or slug |
 
 ### Return type
 
@@ -463,6 +666,15 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**400** | Failed to delete the version |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -474,33 +686,46 @@ Unlink a build from a version
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.version_build_params import VersionBuildParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-version_id = 'version_id_example' # str | A version UUID or slug
-version_build = kleister.VersionBuildParams() # VersionBuildParams | The build data to unlink from version
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Unlink a build from a version
-    api_response = api_instance.delete_version_from_build(mod_id, version_id, version_build)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->delete_version_from_build: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    version_id = "version_id_example" # str | A version UUID or slug
+    version_build = VersionBuildParams(
+        pack="pack_example",
+        build="build_example",
+    ) # VersionBuildParams | The build data to unlink from version
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Unlink a build from a version
+        api_response = api_instance.delete_version_from_build(mod_id, version_id, version_build)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->delete_version_from_build: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **version_id** | **str**| A version UUID or slug | 
- **version_build** | [**VersionBuildParams**](VersionBuildParams.md)| The build data to unlink from version | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **version_id** | **str**| A version UUID or slug |
+ **version_build** | [**VersionBuildParams**](VersionBuildParams.md)| The build data to unlink from version |
 
 ### Return type
 
@@ -515,43 +740,62 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**400** | Failed to unlink build |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_mod_teams**
-> list[TeamMod] list_mod_teams(mod_id)
+> [TeamMod] list_mod_teams(mod_id)
 
 Fetch all teams assigned to mod
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.team_mod import TeamMod
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch all teams assigned to mod
-    api_response = api_instance.list_mod_teams(mod_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->list_mod_teams: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch all teams assigned to mod
+        api_response = api_instance.list_mod_teams(mod_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->list_mod_teams: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
+ **mod_id** | **str**| A mod UUID or slug |
 
 ### Return type
 
-[**list[TeamMod]**](TeamMod.md)
+[**[TeamMod]**](TeamMod.md)
 
 ### Authorization
 
@@ -562,43 +806,61 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of mod teams |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_mod_users**
-> list[UserMod] list_mod_users(mod_id)
+> [UserMod] list_mod_users(mod_id)
 
 Fetch all users assigned to mod
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.user_mod import UserMod
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch all users assigned to mod
-    api_response = api_instance.list_mod_users(mod_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->list_mod_users: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch all users assigned to mod
+        api_response = api_instance.list_mod_users(mod_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->list_mod_users: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
+ **mod_id** | **str**| A mod UUID or slug |
 
 ### Return type
 
-[**list[UserMod]**](UserMod.md)
+[**[UserMod]**](UserMod.md)
 
 ### Authorization
 
@@ -609,39 +871,57 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of mod users |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_mods**
-> list[Mod] list_mods()
+> [Mod] list_mods()
 
 Fetch all available mods
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.mod import Mod
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch all available mods
-    api_response = api_instance.list_mods()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->list_mods: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Fetch all available mods
+        api_response = api_instance.list_mods()
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->list_mods: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**list[Mod]**](Mod.md)
+[**[Mod]**](Mod.md)
 
 ### Authorization
 
@@ -652,45 +932,63 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of mods |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_version_builds**
-> list[BuildVersion] list_version_builds(mod_id, version_id)
+> [BuildVersion] list_version_builds(mod_id, version_id)
 
 Fetch all builds assigned to version
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.build_version import BuildVersion
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-version_id = 'version_id_example' # str | A version UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch all builds assigned to version
-    api_response = api_instance.list_version_builds(mod_id, version_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->list_version_builds: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    version_id = "version_id_example" # str | A version UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch all builds assigned to version
+        api_response = api_instance.list_version_builds(mod_id, version_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->list_version_builds: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **version_id** | **str**| A version UUID or slug | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **version_id** | **str**| A version UUID or slug |
 
 ### Return type
 
-[**list[BuildVersion]**](BuildVersion.md)
+[**[BuildVersion]**](BuildVersion.md)
 
 ### Authorization
 
@@ -701,43 +999,61 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of version builds |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_versions**
-> list[Version] list_versions(mod_id)
+> [Version] list_versions(mod_id)
 
 Fetch all available versions for a mod
 
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.version import Version
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch all available versions for a mod
-    api_response = api_instance.list_versions(mod_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->list_versions: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch all available versions for a mod
+        api_response = api_instance.list_versions(mod_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->list_versions: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
+ **mod_id** | **str**| A mod UUID or slug |
 
 ### Return type
 
-[**list[Version]**](Version.md)
+[**[Version]**](Version.md)
 
 ### Authorization
 
@@ -747,6 +1063,14 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of versions |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -758,31 +1082,44 @@ Update team perms for mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.mod_team_params import ModTeamParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-mod_team = kleister.ModTeamParams() # ModTeamParams | The mod team data to update
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Update team perms for mod
-    api_response = api_instance.permit_mod_team(mod_id, mod_team)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->permit_mod_team: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    mod_team = ModTeamParams(
+        team="team_example",
+        perm="user",
+    ) # ModTeamParams | The mod team data to update
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update team perms for mod
+        api_response = api_instance.permit_mod_team(mod_id, mod_team)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->permit_mod_team: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **mod_team** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to update | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **mod_team** | [**ModTeamParams**](ModTeamParams.md)| The mod team data to update |
 
 ### Return type
 
@@ -796,6 +1133,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Team is not assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -807,31 +1154,44 @@ Update user perms for mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.mod_user_params import ModUserParams
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-mod_user = kleister.ModUserParams() # ModUserParams | The mod user data to update
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Update user perms for mod
-    api_response = api_instance.permit_mod_user(mod_id, mod_user)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->permit_mod_user: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    mod_user = ModUserParams(
+        user="user_example",
+        perm="user",
+    ) # ModUserParams | The mod user data to update
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update user perms for mod
+        api_response = api_instance.permit_mod_user(mod_id, mod_user)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->permit_mod_user: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **mod_user** | [**ModUserParams**](ModUserParams.md)| The mod user data to update | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **mod_user** | [**ModUserParams**](ModUserParams.md)| The mod user data to update |
 
 ### Return type
 
@@ -846,6 +1206,16 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | User is not assigned |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **show_mod**
@@ -856,29 +1226,39 @@ Fetch a specific mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.mod import Mod
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch a specific mod
-    api_response = api_instance.show_mod(mod_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->show_mod: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch a specific mod
+        api_response = api_instance.show_mod(mod_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->show_mod: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
+ **mod_id** | **str**| A mod UUID or slug |
 
 ### Return type
 
@@ -892,6 +1272,14 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The fetched mod details |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -903,31 +1291,41 @@ Fetch a specific version for a mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.version import Version
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-version_id = 'version_id_example' # str | A version UUID or slug
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Fetch a specific version for a mod
-    api_response = api_instance.show_version(mod_id, version_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->show_version: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    version_id = "version_id_example" # str | A version UUID or slug
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Fetch a specific version for a mod
+        api_response = api_instance.show_version(mod_id, version_id)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->show_version: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **version_id** | **str**| A version UUID or slug | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **version_id** | **str**| A version UUID or slug |
 
 ### Return type
 
@@ -942,6 +1340,14 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The fetched version details |  -  |
+**403** | User is not authorized |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_mod**
@@ -952,31 +1358,53 @@ Update a specific mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.mod import Mod
+from kleister.model.validation_error import ValidationError
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-mod = kleister.Mod() # Mod | The mod data to update
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Update a specific mod
-    api_response = api_instance.update_mod(mod_id, mod)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->update_mod: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    mod = Mod(
+        id="id_example",
+        slug="slug_example",
+        name="name_example",
+        side="both",
+        description="description_example",
+        author="author_example",
+        website="website_example",
+        donate="donate_example",
+        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+    ) # Mod | The mod data to update
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update a specific mod
+        api_response = api_instance.update_mod(mod_id, mod)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->update_mod: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **mod** | [**Mod**](Mod.md)| The mod data to update | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **mod** | [**Mod**](Mod.md)| The mod data to update |
 
 ### Return type
 
@@ -991,6 +1419,16 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated mod details |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Failed to validate request |  -  |
+**0** | Some error unrelated to the handler |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_version**
@@ -1001,33 +1439,51 @@ Update a specific version for a mod
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import kleister
-from kleister.rest import ApiException
+from kleister.api import mod_api
+from kleister.model.general_error import GeneralError
+from kleister.model.validation_error import ValidationError
+from kleister.model.version import Version
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kleister.ModApi()
-mod_id = 'mod_id_example' # str | A mod UUID or slug
-version_id = 'version_id_example' # str | A version UUID or slug
-version = kleister.Version() # Version | The version data to update
+configuration = kleister.Configuration(
+    host = "http://try.kleister.tech/api/v1"
+)
 
-try:
-    # Update a specific version for a mod
-    api_response = api_instance.update_version(mod_id, version_id, version)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ModApi->update_version: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = mod_api.ModApi(api_client)
+    mod_id = "mod_id_example" # str | A mod UUID or slug
+    version_id = "version_id_example" # str | A version UUID or slug
+    version = Version(
+        id="id_example",
+        mod_id="mod_id_example",
+        slug="slug_example",
+        name="name_example",
+        created_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        updated_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+    ) # Version | The version data to update
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update a specific version for a mod
+        api_response = api_instance.update_version(mod_id, version_id, version)
+        pprint(api_response)
+    except kleister.ApiException as e:
+        print("Exception when calling ModApi->update_version: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mod_id** | **str**| A mod UUID or slug | 
- **version_id** | **str**| A version UUID or slug | 
- **version** | [**Version**](Version.md)| The version data to update | 
+ **mod_id** | **str**| A mod UUID or slug |
+ **version_id** | **str**| A version UUID or slug |
+ **version** | [**Version**](Version.md)| The version data to update |
 
 ### Return type
 
@@ -1041,6 +1497,16 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated version details |  -  |
+**403** | User is not authorized |  -  |
+**412** | Failed to parse request body |  -  |
+**422** | Failed to validate request |  -  |
+**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

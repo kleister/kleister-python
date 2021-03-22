@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,18 +8,29 @@
 """
 
 
-from __future__ import absolute_import
-
 import re  # noqa: F401
+import sys  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
-from kleister.api_client import ApiClient
-from kleister.exceptions import (
-    ApiTypeError,
-    ApiValueError
+from kleister.api_client import ApiClient, Endpoint as _Endpoint
+from kleister.model_utils import (  # noqa: F401
+    check_allowed_values,
+    check_validations,
+    date,
+    datetime,
+    file_type,
+    none_type,
+    validate_and_convert_types
 )
+from kleister.model.build_version import BuildVersion
+from kleister.model.general_error import GeneralError
+from kleister.model.mod import Mod
+from kleister.model.mod_team_params import ModTeamParams
+from kleister.model.mod_user_params import ModUserParams
+from kleister.model.team_mod import TeamMod
+from kleister.model.user_mod import UserMod
+from kleister.model.validation_error import ValidationError
+from kleister.model.version import Version
+from kleister.model.version_build_params import VersionBuildParams
 
 
 class ModApi(object):
@@ -36,2152 +45,2608 @@ class ModApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def append_mod_to_team(self, mod_id, mod_team, **kwargs):  # noqa: E501
-        """Assign a team to mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_mod_to_team(mod_id, mod_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams mod_team: The mod team data to assign (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.append_mod_to_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
-        else:
-            (data) = self.append_mod_to_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
-            return data
-
-    def append_mod_to_team_with_http_info(self, mod_id, mod_team, **kwargs):  # noqa: E501
-        """Assign a team to mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_mod_to_team_with_http_info(mod_id, mod_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams mod_team: The mod team data to assign (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'mod_team']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method append_mod_to_team" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `append_mod_to_team`")  # noqa: E501
-        # verify the required parameter 'mod_team' is set
-        if ('mod_team' not in local_var_params or
-                local_var_params['mod_team'] is None):
-            raise ApiValueError("Missing the required parameter `mod_team` when calling `append_mod_to_team`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'mod_team' in local_var_params:
-            body_params = local_var_params['mod_team']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/teams', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def append_mod_to_user(self, mod_id, mod_user, **kwargs):  # noqa: E501
-        """Assign a user to mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_mod_to_user(mod_id, mod_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams mod_user: The mod user data to assign (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.append_mod_to_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
-        else:
-            (data) = self.append_mod_to_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
-            return data
-
-    def append_mod_to_user_with_http_info(self, mod_id, mod_user, **kwargs):  # noqa: E501
-        """Assign a user to mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_mod_to_user_with_http_info(mod_id, mod_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams mod_user: The mod user data to assign (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'mod_user']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method append_mod_to_user" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `append_mod_to_user`")  # noqa: E501
-        # verify the required parameter 'mod_user' is set
-        if ('mod_user' not in local_var_params or
-                local_var_params['mod_user'] is None):
-            raise ApiValueError("Missing the required parameter `mod_user` when calling `append_mod_to_user`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'mod_user' in local_var_params:
-            body_params = local_var_params['mod_user']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/users', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def append_version_to_build(self, mod_id, version_id, version_build, **kwargs):  # noqa: E501
-        """Assign a build to a version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_version_to_build(mod_id, version_id, version_build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :param VersionBuildParams version_build: The build data to append to version (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.append_version_to_build_with_http_info(mod_id, version_id, version_build, **kwargs)  # noqa: E501
-        else:
-            (data) = self.append_version_to_build_with_http_info(mod_id, version_id, version_build, **kwargs)  # noqa: E501
-            return data
-
-    def append_version_to_build_with_http_info(self, mod_id, version_id, version_build, **kwargs):  # noqa: E501
-        """Assign a build to a version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.append_version_to_build_with_http_info(mod_id, version_id, version_build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :param VersionBuildParams version_build: The build data to append to version (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'version_id', 'version_build']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method append_version_to_build" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `append_version_to_build`")  # noqa: E501
-        # verify the required parameter 'version_id' is set
-        if ('version_id' not in local_var_params or
-                local_var_params['version_id'] is None):
-            raise ApiValueError("Missing the required parameter `version_id` when calling `append_version_to_build`")  # noqa: E501
-        # verify the required parameter 'version_build' is set
-        if ('version_build' not in local_var_params or
-                local_var_params['version_build'] is None):
-            raise ApiValueError("Missing the required parameter `version_build` when calling `append_version_to_build`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-        if 'version_id' in local_var_params:
-            path_params['version_id'] = local_var_params['version_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'version_build' in local_var_params:
-            body_params = local_var_params['version_build']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/versions/{version_id}/builds', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def create_mod(self, mod, **kwargs):  # noqa: E501
-        """Create a new mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_mod(mod, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param Mod mod: The mod data to create (required)
-        :return: Mod
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_mod_with_http_info(mod, **kwargs)  # noqa: E501
-        else:
-            (data) = self.create_mod_with_http_info(mod, **kwargs)  # noqa: E501
-            return data
-
-    def create_mod_with_http_info(self, mod, **kwargs):  # noqa: E501
-        """Create a new mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_mod_with_http_info(mod, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param Mod mod: The mod data to create (required)
-        :return: Mod
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_mod" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod' is set
-        if ('mod' not in local_var_params or
-                local_var_params['mod'] is None):
-            raise ApiValueError("Missing the required parameter `mod` when calling `create_mod`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'mod' in local_var_params:
-            body_params = local_var_params['mod']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Mod',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def create_version(self, mod_id, version, **kwargs):  # noqa: E501
-        """Create a new version for a mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_version(mod_id, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param Version version: The version data to create (required)
-        :return: Version
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_version_with_http_info(mod_id, version, **kwargs)  # noqa: E501
-        else:
-            (data) = self.create_version_with_http_info(mod_id, version, **kwargs)  # noqa: E501
-            return data
-
-    def create_version_with_http_info(self, mod_id, version, **kwargs):  # noqa: E501
-        """Create a new version for a mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_version_with_http_info(mod_id, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param Version version: The version data to create (required)
-        :return: Version
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_version" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `create_version`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if ('version' not in local_var_params or
-                local_var_params['version'] is None):
-            raise ApiValueError("Missing the required parameter `version` when calling `create_version`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'version' in local_var_params:
-            body_params = local_var_params['version']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/versions', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Version',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_mod(self, mod_id, **kwargs):  # noqa: E501
-        """Delete a specific mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_mod(mod_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_mod_with_http_info(mod_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_mod_with_http_info(mod_id, **kwargs)  # noqa: E501
-            return data
-
-    def delete_mod_with_http_info(self, mod_id, **kwargs):  # noqa: E501
-        """Delete a specific mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_mod_with_http_info(mod_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_mod" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `delete_mod`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_mod_from_team(self, mod_id, mod_team, **kwargs):  # noqa: E501
-        """Remove a team from mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_mod_from_team(mod_id, mod_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams mod_team: The mod team data to delete (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_mod_from_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_mod_from_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
-            return data
-
-    def delete_mod_from_team_with_http_info(self, mod_id, mod_team, **kwargs):  # noqa: E501
-        """Remove a team from mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_mod_from_team_with_http_info(mod_id, mod_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams mod_team: The mod team data to delete (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'mod_team']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_mod_from_team" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `delete_mod_from_team`")  # noqa: E501
-        # verify the required parameter 'mod_team' is set
-        if ('mod_team' not in local_var_params or
-                local_var_params['mod_team'] is None):
-            raise ApiValueError("Missing the required parameter `mod_team` when calling `delete_mod_from_team`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'mod_team' in local_var_params:
-            body_params = local_var_params['mod_team']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/teams', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_mod_from_user(self, mod_id, mod_user, **kwargs):  # noqa: E501
-        """Remove a user from mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_mod_from_user(mod_id, mod_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams mod_user: The mod user data to delete (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_mod_from_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_mod_from_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
-            return data
-
-    def delete_mod_from_user_with_http_info(self, mod_id, mod_user, **kwargs):  # noqa: E501
-        """Remove a user from mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_mod_from_user_with_http_info(mod_id, mod_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams mod_user: The mod user data to delete (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'mod_user']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_mod_from_user" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `delete_mod_from_user`")  # noqa: E501
-        # verify the required parameter 'mod_user' is set
-        if ('mod_user' not in local_var_params or
-                local_var_params['mod_user'] is None):
-            raise ApiValueError("Missing the required parameter `mod_user` when calling `delete_mod_from_user`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'mod_user' in local_var_params:
-            body_params = local_var_params['mod_user']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/users', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_version(self, mod_id, version_id, **kwargs):  # noqa: E501
-        """Delete a specific version for a mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_version(mod_id, version_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_version_with_http_info(mod_id, version_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_version_with_http_info(mod_id, version_id, **kwargs)  # noqa: E501
-            return data
-
-    def delete_version_with_http_info(self, mod_id, version_id, **kwargs):  # noqa: E501
-        """Delete a specific version for a mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_version_with_http_info(mod_id, version_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'version_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_version" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `delete_version`")  # noqa: E501
-        # verify the required parameter 'version_id' is set
-        if ('version_id' not in local_var_params or
-                local_var_params['version_id'] is None):
-            raise ApiValueError("Missing the required parameter `version_id` when calling `delete_version`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-        if 'version_id' in local_var_params:
-            path_params['version_id'] = local_var_params['version_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/versions/{version_id}', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def delete_version_from_build(self, mod_id, version_id, version_build, **kwargs):  # noqa: E501
-        """Unlink a build from a version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_version_from_build(mod_id, version_id, version_build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :param VersionBuildParams version_build: The build data to unlink from version (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_version_from_build_with_http_info(mod_id, version_id, version_build, **kwargs)  # noqa: E501
-        else:
-            (data) = self.delete_version_from_build_with_http_info(mod_id, version_id, version_build, **kwargs)  # noqa: E501
-            return data
-
-    def delete_version_from_build_with_http_info(self, mod_id, version_id, version_build, **kwargs):  # noqa: E501
-        """Unlink a build from a version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_version_from_build_with_http_info(mod_id, version_id, version_build, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :param VersionBuildParams version_build: The build data to unlink from version (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'version_id', 'version_build']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_version_from_build" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `delete_version_from_build`")  # noqa: E501
-        # verify the required parameter 'version_id' is set
-        if ('version_id' not in local_var_params or
-                local_var_params['version_id'] is None):
-            raise ApiValueError("Missing the required parameter `version_id` when calling `delete_version_from_build`")  # noqa: E501
-        # verify the required parameter 'version_build' is set
-        if ('version_build' not in local_var_params or
-                local_var_params['version_build'] is None):
-            raise ApiValueError("Missing the required parameter `version_build` when calling `delete_version_from_build`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-        if 'version_id' in local_var_params:
-            path_params['version_id'] = local_var_params['version_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'version_build' in local_var_params:
-            body_params = local_var_params['version_build']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/versions/{version_id}/builds', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_mod_teams(self, mod_id, **kwargs):  # noqa: E501
-        """Fetch all teams assigned to mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_mod_teams(mod_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :return: list[TeamMod]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_mod_teams_with_http_info(mod_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.list_mod_teams_with_http_info(mod_id, **kwargs)  # noqa: E501
-            return data
-
-    def list_mod_teams_with_http_info(self, mod_id, **kwargs):  # noqa: E501
-        """Fetch all teams assigned to mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_mod_teams_with_http_info(mod_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :return: list[TeamMod]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_mod_teams" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `list_mod_teams`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/teams', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[TeamMod]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_mod_users(self, mod_id, **kwargs):  # noqa: E501
-        """Fetch all users assigned to mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_mod_users(mod_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :return: list[UserMod]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_mod_users_with_http_info(mod_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.list_mod_users_with_http_info(mod_id, **kwargs)  # noqa: E501
-            return data
-
-    def list_mod_users_with_http_info(self, mod_id, **kwargs):  # noqa: E501
-        """Fetch all users assigned to mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_mod_users_with_http_info(mod_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :return: list[UserMod]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_mod_users" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `list_mod_users`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/users', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[UserMod]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_mods(self, **kwargs):  # noqa: E501
-        """Fetch all available mods  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_mods(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :return: list[Mod]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_mods_with_http_info(**kwargs)  # noqa: E501
-        else:
-            (data) = self.list_mods_with_http_info(**kwargs)  # noqa: E501
-            return data
-
-    def list_mods_with_http_info(self, **kwargs):  # noqa: E501
-        """Fetch all available mods  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_mods_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :return: list[Mod]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_mods" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[Mod]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_version_builds(self, mod_id, version_id, **kwargs):  # noqa: E501
-        """Fetch all builds assigned to version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_version_builds(mod_id, version_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :return: list[BuildVersion]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_version_builds_with_http_info(mod_id, version_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.list_version_builds_with_http_info(mod_id, version_id, **kwargs)  # noqa: E501
-            return data
-
-    def list_version_builds_with_http_info(self, mod_id, version_id, **kwargs):  # noqa: E501
-        """Fetch all builds assigned to version  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_version_builds_with_http_info(mod_id, version_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :return: list[BuildVersion]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'version_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_version_builds" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `list_version_builds`")  # noqa: E501
-        # verify the required parameter 'version_id' is set
-        if ('version_id' not in local_var_params or
-                local_var_params['version_id'] is None):
-            raise ApiValueError("Missing the required parameter `version_id` when calling `list_version_builds`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-        if 'version_id' in local_var_params:
-            path_params['version_id'] = local_var_params['version_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/versions/{version_id}/builds', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[BuildVersion]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def list_versions(self, mod_id, **kwargs):  # noqa: E501
-        """Fetch all available versions for a mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_versions(mod_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :return: list[Version]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_versions_with_http_info(mod_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.list_versions_with_http_info(mod_id, **kwargs)  # noqa: E501
-            return data
-
-    def list_versions_with_http_info(self, mod_id, **kwargs):  # noqa: E501
-        """Fetch all available versions for a mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.list_versions_with_http_info(mod_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :return: list[Version]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_versions" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `list_versions`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/versions', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='list[Version]',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def permit_mod_team(self, mod_id, mod_team, **kwargs):  # noqa: E501
-        """Update team perms for mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_mod_team(mod_id, mod_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams mod_team: The mod team data to update (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.permit_mod_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
-        else:
-            (data) = self.permit_mod_team_with_http_info(mod_id, mod_team, **kwargs)  # noqa: E501
-            return data
-
-    def permit_mod_team_with_http_info(self, mod_id, mod_team, **kwargs):  # noqa: E501
-        """Update team perms for mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_mod_team_with_http_info(mod_id, mod_team, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModTeamParams mod_team: The mod team data to update (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'mod_team']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method permit_mod_team" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `permit_mod_team`")  # noqa: E501
-        # verify the required parameter 'mod_team' is set
-        if ('mod_team' not in local_var_params or
-                local_var_params['mod_team'] is None):
-            raise ApiValueError("Missing the required parameter `mod_team` when calling `permit_mod_team`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'mod_team' in local_var_params:
-            body_params = local_var_params['mod_team']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/teams', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def permit_mod_user(self, mod_id, mod_user, **kwargs):  # noqa: E501
-        """Update user perms for mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_mod_user(mod_id, mod_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams mod_user: The mod user data to update (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.permit_mod_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
-        else:
-            (data) = self.permit_mod_user_with_http_info(mod_id, mod_user, **kwargs)  # noqa: E501
-            return data
-
-    def permit_mod_user_with_http_info(self, mod_id, mod_user, **kwargs):  # noqa: E501
-        """Update user perms for mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.permit_mod_user_with_http_info(mod_id, mod_user, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param ModUserParams mod_user: The mod user data to update (required)
-        :return: GeneralError
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'mod_user']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method permit_mod_user" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `permit_mod_user`")  # noqa: E501
-        # verify the required parameter 'mod_user' is set
-        if ('mod_user' not in local_var_params or
-                local_var_params['mod_user'] is None):
-            raise ApiValueError("Missing the required parameter `mod_user` when calling `permit_mod_user`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'mod_user' in local_var_params:
-            body_params = local_var_params['mod_user']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/users', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GeneralError',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def show_mod(self, mod_id, **kwargs):  # noqa: E501
-        """Fetch a specific mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.show_mod(mod_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :return: Mod
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.show_mod_with_http_info(mod_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.show_mod_with_http_info(mod_id, **kwargs)  # noqa: E501
-            return data
-
-    def show_mod_with_http_info(self, mod_id, **kwargs):  # noqa: E501
-        """Fetch a specific mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.show_mod_with_http_info(mod_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :return: Mod
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method show_mod" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `show_mod`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Mod',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def show_version(self, mod_id, version_id, **kwargs):  # noqa: E501
-        """Fetch a specific version for a mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.show_version(mod_id, version_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :return: Version
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.show_version_with_http_info(mod_id, version_id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.show_version_with_http_info(mod_id, version_id, **kwargs)  # noqa: E501
-            return data
-
-    def show_version_with_http_info(self, mod_id, version_id, **kwargs):  # noqa: E501
-        """Fetch a specific version for a mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.show_version_with_http_info(mod_id, version_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :return: Version
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'version_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method show_version" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `show_version`")  # noqa: E501
-        # verify the required parameter 'version_id' is set
-        if ('version_id' not in local_var_params or
-                local_var_params['version_id'] is None):
-            raise ApiValueError("Missing the required parameter `version_id` when calling `show_version`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-        if 'version_id' in local_var_params:
-            path_params['version_id'] = local_var_params['version_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/versions/{version_id}', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Version',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def update_mod(self, mod_id, mod, **kwargs):  # noqa: E501
-        """Update a specific mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_mod(mod_id, mod, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param Mod mod: The mod data to update (required)
-        :return: Mod
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_mod_with_http_info(mod_id, mod, **kwargs)  # noqa: E501
-        else:
-            (data) = self.update_mod_with_http_info(mod_id, mod, **kwargs)  # noqa: E501
-            return data
-
-    def update_mod_with_http_info(self, mod_id, mod, **kwargs):  # noqa: E501
-        """Update a specific mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_mod_with_http_info(mod_id, mod, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param Mod mod: The mod data to update (required)
-        :return: Mod
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'mod']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method update_mod" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `update_mod`")  # noqa: E501
-        # verify the required parameter 'mod' is set
-        if ('mod' not in local_var_params or
-                local_var_params['mod'] is None):
-            raise ApiValueError("Missing the required parameter `mod` when calling `update_mod`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'mod' in local_var_params:
-            body_params = local_var_params['mod']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Mod',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def update_version(self, mod_id, version_id, version, **kwargs):  # noqa: E501
-        """Update a specific version for a mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_version(mod_id, version_id, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :param Version version: The version data to update (required)
-        :return: Version
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_version_with_http_info(mod_id, version_id, version, **kwargs)  # noqa: E501
-        else:
-            (data) = self.update_version_with_http_info(mod_id, version_id, version, **kwargs)  # noqa: E501
-            return data
-
-    def update_version_with_http_info(self, mod_id, version_id, version, **kwargs):  # noqa: E501
-        """Update a specific version for a mod  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.update_version_with_http_info(mod_id, version_id, version, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str mod_id: A mod UUID or slug (required)
-        :param str version_id: A version UUID or slug (required)
-        :param Version version: The version data to update (required)
-        :return: Version
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['mod_id', 'version_id', 'version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method update_version" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'mod_id' is set
-        if ('mod_id' not in local_var_params or
-                local_var_params['mod_id'] is None):
-            raise ApiValueError("Missing the required parameter `mod_id` when calling `update_version`")  # noqa: E501
-        # verify the required parameter 'version_id' is set
-        if ('version_id' not in local_var_params or
-                local_var_params['version_id'] is None):
-            raise ApiValueError("Missing the required parameter `version_id` when calling `update_version`")  # noqa: E501
-        # verify the required parameter 'version' is set
-        if ('version' not in local_var_params or
-                local_var_params['version'] is None):
-            raise ApiValueError("Missing the required parameter `version` when calling `update_version`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'mod_id' in local_var_params:
-            path_params['mod_id'] = local_var_params['mod_id']  # noqa: E501
-        if 'version_id' in local_var_params:
-            path_params['version_id'] = local_var_params['version_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'version' in local_var_params:
-            body_params = local_var_params['version']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mods/{mod_id}/versions/{version_id}', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='Version',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+        def __append_mod_to_team(
+            self,
+            mod_id,
+            mod_team,
+            **kwargs
+        ):
+            """Assign a team to mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.append_mod_to_team(mod_id, mod_team, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                mod_team (ModTeamParams): The mod team data to assign
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['mod_team'] = \
+                mod_team
+            return self.call_with_http_info(**kwargs)
+
+        self.append_mod_to_team = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/teams',
+                'operation_id': 'append_mod_to_team',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'mod_team',
+                ],
+                'required': [
+                    'mod_id',
+                    'mod_team',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'mod_team':
+                        (ModTeamParams,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'mod_team': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__append_mod_to_team
+        )
+
+        def __append_mod_to_user(
+            self,
+            mod_id,
+            mod_user,
+            **kwargs
+        ):
+            """Assign a user to mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.append_mod_to_user(mod_id, mod_user, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                mod_user (ModUserParams): The mod user data to assign
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['mod_user'] = \
+                mod_user
+            return self.call_with_http_info(**kwargs)
+
+        self.append_mod_to_user = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/users',
+                'operation_id': 'append_mod_to_user',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'mod_user',
+                ],
+                'required': [
+                    'mod_id',
+                    'mod_user',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'mod_user':
+                        (ModUserParams,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'mod_user': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__append_mod_to_user
+        )
+
+        def __append_version_to_build(
+            self,
+            mod_id,
+            version_id,
+            version_build,
+            **kwargs
+        ):
+            """Assign a build to a version  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.append_version_to_build(mod_id, version_id, version_build, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                version_id (str): A version UUID or slug
+                version_build (VersionBuildParams): The build data to append to version
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['version_id'] = \
+                version_id
+            kwargs['version_build'] = \
+                version_build
+            return self.call_with_http_info(**kwargs)
+
+        self.append_version_to_build = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/versions/{version_id}/builds',
+                'operation_id': 'append_version_to_build',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'version_id',
+                    'version_build',
+                ],
+                'required': [
+                    'mod_id',
+                    'version_id',
+                    'version_build',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'version_id':
+                        (str,),
+                    'version_build':
+                        (VersionBuildParams,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                    'version_id': 'version_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'version_id': 'path',
+                    'version_build': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__append_version_to_build
+        )
+
+        def __create_mod(
+            self,
+            mod,
+            **kwargs
+        ):
+            """Create a new mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.create_mod(mod, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod (Mod): The mod data to create
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Mod
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod'] = \
+                mod
+            return self.call_with_http_info(**kwargs)
+
+        self.create_mod = _Endpoint(
+            settings={
+                'response_type': (Mod,),
+                'auth': [],
+                'endpoint_path': '/mods',
+                'operation_id': 'create_mod',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod',
+                ],
+                'required': [
+                    'mod',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod':
+                        (Mod,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'mod': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__create_mod
+        )
+
+        def __create_version(
+            self,
+            mod_id,
+            version,
+            **kwargs
+        ):
+            """Create a new version for a mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.create_version(mod_id, version, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                version (Version): The version data to create
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Version
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['version'] = \
+                version
+            return self.call_with_http_info(**kwargs)
+
+        self.create_version = _Endpoint(
+            settings={
+                'response_type': (Version,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/versions',
+                'operation_id': 'create_version',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'version',
+                ],
+                'required': [
+                    'mod_id',
+                    'version',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'version':
+                        (Version,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'version': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__create_version
+        )
+
+        def __delete_mod(
+            self,
+            mod_id,
+            **kwargs
+        ):
+            """Delete a specific mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_mod(mod_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_mod = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}',
+                'operation_id': 'delete_mod',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                ],
+                'required': [
+                    'mod_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_mod
+        )
+
+        def __delete_mod_from_team(
+            self,
+            mod_id,
+            mod_team,
+            **kwargs
+        ):
+            """Remove a team from mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_mod_from_team(mod_id, mod_team, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                mod_team (ModTeamParams): The mod team data to delete
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['mod_team'] = \
+                mod_team
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_mod_from_team = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/teams',
+                'operation_id': 'delete_mod_from_team',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'mod_team',
+                ],
+                'required': [
+                    'mod_id',
+                    'mod_team',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'mod_team':
+                        (ModTeamParams,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'mod_team': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__delete_mod_from_team
+        )
+
+        def __delete_mod_from_user(
+            self,
+            mod_id,
+            mod_user,
+            **kwargs
+        ):
+            """Remove a user from mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_mod_from_user(mod_id, mod_user, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                mod_user (ModUserParams): The mod user data to delete
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['mod_user'] = \
+                mod_user
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_mod_from_user = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/users',
+                'operation_id': 'delete_mod_from_user',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'mod_user',
+                ],
+                'required': [
+                    'mod_id',
+                    'mod_user',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'mod_user':
+                        (ModUserParams,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'mod_user': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__delete_mod_from_user
+        )
+
+        def __delete_version(
+            self,
+            mod_id,
+            version_id,
+            **kwargs
+        ):
+            """Delete a specific version for a mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_version(mod_id, version_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                version_id (str): A version UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['version_id'] = \
+                version_id
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_version = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/versions/{version_id}',
+                'operation_id': 'delete_version',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'version_id',
+                ],
+                'required': [
+                    'mod_id',
+                    'version_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'version_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                    'version_id': 'version_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'version_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_version
+        )
+
+        def __delete_version_from_build(
+            self,
+            mod_id,
+            version_id,
+            version_build,
+            **kwargs
+        ):
+            """Unlink a build from a version  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_version_from_build(mod_id, version_id, version_build, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                version_id (str): A version UUID or slug
+                version_build (VersionBuildParams): The build data to unlink from version
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['version_id'] = \
+                version_id
+            kwargs['version_build'] = \
+                version_build
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_version_from_build = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/versions/{version_id}/builds',
+                'operation_id': 'delete_version_from_build',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'version_id',
+                    'version_build',
+                ],
+                'required': [
+                    'mod_id',
+                    'version_id',
+                    'version_build',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'version_id':
+                        (str,),
+                    'version_build':
+                        (VersionBuildParams,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                    'version_id': 'version_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'version_id': 'path',
+                    'version_build': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__delete_version_from_build
+        )
+
+        def __list_mod_teams(
+            self,
+            mod_id,
+            **kwargs
+        ):
+            """Fetch all teams assigned to mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_mod_teams(mod_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [TeamMod]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            return self.call_with_http_info(**kwargs)
+
+        self.list_mod_teams = _Endpoint(
+            settings={
+                'response_type': ([TeamMod],),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/teams',
+                'operation_id': 'list_mod_teams',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                ],
+                'required': [
+                    'mod_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_mod_teams
+        )
+
+        def __list_mod_users(
+            self,
+            mod_id,
+            **kwargs
+        ):
+            """Fetch all users assigned to mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_mod_users(mod_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [UserMod]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            return self.call_with_http_info(**kwargs)
+
+        self.list_mod_users = _Endpoint(
+            settings={
+                'response_type': ([UserMod],),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/users',
+                'operation_id': 'list_mod_users',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                ],
+                'required': [
+                    'mod_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_mod_users
+        )
+
+        def __list_mods(
+            self,
+            **kwargs
+        ):
+            """Fetch all available mods  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_mods(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [Mod]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.list_mods = _Endpoint(
+            settings={
+                'response_type': ([Mod],),
+                'auth': [],
+                'endpoint_path': '/mods',
+                'operation_id': 'list_mods',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_mods
+        )
+
+        def __list_version_builds(
+            self,
+            mod_id,
+            version_id,
+            **kwargs
+        ):
+            """Fetch all builds assigned to version  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_version_builds(mod_id, version_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                version_id (str): A version UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [BuildVersion]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['version_id'] = \
+                version_id
+            return self.call_with_http_info(**kwargs)
+
+        self.list_version_builds = _Endpoint(
+            settings={
+                'response_type': ([BuildVersion],),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/versions/{version_id}/builds',
+                'operation_id': 'list_version_builds',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'version_id',
+                ],
+                'required': [
+                    'mod_id',
+                    'version_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'version_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                    'version_id': 'version_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'version_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_version_builds
+        )
+
+        def __list_versions(
+            self,
+            mod_id,
+            **kwargs
+        ):
+            """Fetch all available versions for a mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_versions(mod_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [Version]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            return self.call_with_http_info(**kwargs)
+
+        self.list_versions = _Endpoint(
+            settings={
+                'response_type': ([Version],),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/versions',
+                'operation_id': 'list_versions',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                ],
+                'required': [
+                    'mod_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_versions
+        )
+
+        def __permit_mod_team(
+            self,
+            mod_id,
+            mod_team,
+            **kwargs
+        ):
+            """Update team perms for mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.permit_mod_team(mod_id, mod_team, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                mod_team (ModTeamParams): The mod team data to update
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['mod_team'] = \
+                mod_team
+            return self.call_with_http_info(**kwargs)
+
+        self.permit_mod_team = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/teams',
+                'operation_id': 'permit_mod_team',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'mod_team',
+                ],
+                'required': [
+                    'mod_id',
+                    'mod_team',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'mod_team':
+                        (ModTeamParams,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'mod_team': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__permit_mod_team
+        )
+
+        def __permit_mod_user(
+            self,
+            mod_id,
+            mod_user,
+            **kwargs
+        ):
+            """Update user perms for mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.permit_mod_user(mod_id, mod_user, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                mod_user (ModUserParams): The mod user data to update
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GeneralError
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['mod_user'] = \
+                mod_user
+            return self.call_with_http_info(**kwargs)
+
+        self.permit_mod_user = _Endpoint(
+            settings={
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/users',
+                'operation_id': 'permit_mod_user',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'mod_user',
+                ],
+                'required': [
+                    'mod_id',
+                    'mod_user',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'mod_user':
+                        (ModUserParams,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'mod_user': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__permit_mod_user
+        )
+
+        def __show_mod(
+            self,
+            mod_id,
+            **kwargs
+        ):
+            """Fetch a specific mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.show_mod(mod_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Mod
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            return self.call_with_http_info(**kwargs)
+
+        self.show_mod = _Endpoint(
+            settings={
+                'response_type': (Mod,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}',
+                'operation_id': 'show_mod',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                ],
+                'required': [
+                    'mod_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__show_mod
+        )
+
+        def __show_version(
+            self,
+            mod_id,
+            version_id,
+            **kwargs
+        ):
+            """Fetch a specific version for a mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.show_version(mod_id, version_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                version_id (str): A version UUID or slug
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Version
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['version_id'] = \
+                version_id
+            return self.call_with_http_info(**kwargs)
+
+        self.show_version = _Endpoint(
+            settings={
+                'response_type': (Version,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/versions/{version_id}',
+                'operation_id': 'show_version',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'version_id',
+                ],
+                'required': [
+                    'mod_id',
+                    'version_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'version_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                    'version_id': 'version_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'version_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__show_version
+        )
+
+        def __update_mod(
+            self,
+            mod_id,
+            mod,
+            **kwargs
+        ):
+            """Update a specific mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_mod(mod_id, mod, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                mod (Mod): The mod data to update
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Mod
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['mod'] = \
+                mod
+            return self.call_with_http_info(**kwargs)
+
+        self.update_mod = _Endpoint(
+            settings={
+                'response_type': (Mod,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}',
+                'operation_id': 'update_mod',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'mod',
+                ],
+                'required': [
+                    'mod_id',
+                    'mod',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'mod':
+                        (Mod,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'mod': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_mod
+        )
+
+        def __update_version(
+            self,
+            mod_id,
+            version_id,
+            version,
+            **kwargs
+        ):
+            """Update a specific version for a mod  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_version(mod_id, version_id, version, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                mod_id (str): A mod UUID or slug
+                version_id (str): A version UUID or slug
+                version (Version): The version data to update
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Version
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['mod_id'] = \
+                mod_id
+            kwargs['version_id'] = \
+                version_id
+            kwargs['version'] = \
+                version
+            return self.call_with_http_info(**kwargs)
+
+        self.update_version = _Endpoint(
+            settings={
+                'response_type': (Version,),
+                'auth': [],
+                'endpoint_path': '/mods/{mod_id}/versions/{version_id}',
+                'operation_id': 'update_version',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mod_id',
+                    'version_id',
+                    'version',
+                ],
+                'required': [
+                    'mod_id',
+                    'version_id',
+                    'version',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mod_id':
+                        (str,),
+                    'version_id':
+                        (str,),
+                    'version':
+                        (Version,),
+                },
+                'attribute_map': {
+                    'mod_id': 'mod_id',
+                    'version_id': 'version_id',
+                },
+                'location_map': {
+                    'mod_id': 'path',
+                    'version_id': 'path',
+                    'version': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_version
+        )

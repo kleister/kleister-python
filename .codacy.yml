@@ -1,0 +1,10 @@
+---
+exclude_paths:
+  - .github/**
+  - changelog/**
+  - docs/**
+
+  - CHANGELOG.md
+  - README.md
+
+...

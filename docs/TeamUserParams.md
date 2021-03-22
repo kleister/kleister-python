@@ -1,5 +1,6 @@
 # TeamUserParams
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

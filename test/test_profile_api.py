@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,20 +8,17 @@
 """
 
 
-from __future__ import absolute_import
-
 import unittest
 
 import kleister
 from kleister.api.profile_api import ProfileApi  # noqa: E501
-from kleister.rest import ApiException
 
 
 class TestProfileApi(unittest.TestCase):
     """ProfileApi unit test stubs"""
 
     def setUp(self):
-        self.api = kleister.api.profile_api.ProfileApi()  # noqa: E501
+        self.api = ProfileApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -50,5 +45,5 @@ class TestProfileApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

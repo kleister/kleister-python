@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Kleister OpenAPI
 
@@ -10,13 +8,11 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
 
 import kleister
-from kleister.models.user_pack_params import UserPackParams  # noqa: E501
-from kleister.rest import ApiException
+from kleister.model.user_pack_params import UserPackParams
 
 
 class TestUserPackParams(unittest.TestCase):
@@ -31,9 +27,9 @@ class TestUserPackParams(unittest.TestCase):
     def testUserPackParams(self):
         """Test UserPackParams"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kleister.models.user_pack_params.UserPackParams()  # noqa: E501
+        # model = UserPackParams()  # noqa: E501
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
