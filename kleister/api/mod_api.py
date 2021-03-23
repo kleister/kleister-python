@@ -19,7 +19,7 @@ from kleister.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
 from kleister.model.build_version import BuildVersion
 from kleister.model.general_error import GeneralError
@@ -45,12 +45,7 @@ class ModApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-        def __append_mod_to_team(
-            self,
-            mod_id,
-            mod_team,
-            **kwargs
-        ):
+        def __append_mod_to_team(self, mod_id, mod_team, **kwargs):
             """Assign a team to mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -89,95 +84,66 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['mod_team'] = \
-                mod_team
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["mod_team"] = mod_team
             return self.call_with_http_info(**kwargs)
 
         self.append_mod_to_team = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/teams',
-                'operation_id': 'append_mod_to_team',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/teams",
+                "operation_id": "append_mod_to_team",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'mod_team',
+                "all": [
+                    "mod_id",
+                    "mod_team",
                 ],
-                'required': [
-                    'mod_id',
-                    'mod_team',
+                "required": [
+                    "mod_id",
+                    "mod_team",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "mod_team": (ModTeamParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'mod_team':
-                        (ModTeamParams,),
+                "location_map": {
+                    "mod_id": "path",
+                    "mod_team": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'mod_team': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__append_mod_to_team
+            callable=__append_mod_to_team,
         )
 
-        def __append_mod_to_user(
-            self,
-            mod_id,
-            mod_user,
-            **kwargs
-        ):
+        def __append_mod_to_user(self, mod_id, mod_user, **kwargs):
             """Assign a user to mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -216,95 +182,67 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['mod_user'] = \
-                mod_user
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["mod_user"] = mod_user
             return self.call_with_http_info(**kwargs)
 
         self.append_mod_to_user = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/users',
-                'operation_id': 'append_mod_to_user',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/users",
+                "operation_id": "append_mod_to_user",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'mod_user',
+                "all": [
+                    "mod_id",
+                    "mod_user",
                 ],
-                'required': [
-                    'mod_id',
-                    'mod_user',
+                "required": [
+                    "mod_id",
+                    "mod_user",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "mod_user": (ModUserParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'mod_user':
-                        (ModUserParams,),
+                "location_map": {
+                    "mod_id": "path",
+                    "mod_user": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'mod_user': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__append_mod_to_user
+            callable=__append_mod_to_user,
         )
 
         def __append_version_to_build(
-            self,
-            mod_id,
-            version_id,
-            version_build,
-            **kwargs
+            self, mod_id, version_id, version_build, **kwargs
         ):
             """Assign a build to a version  # noqa: E501
 
@@ -345,102 +283,72 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['version_id'] = \
-                version_id
-            kwargs['version_build'] = \
-                version_build
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["version_id"] = version_id
+            kwargs["version_build"] = version_build
             return self.call_with_http_info(**kwargs)
 
         self.append_version_to_build = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/versions/{version_id}/builds',
-                'operation_id': 'append_version_to_build',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/versions/{version_id}/builds",
+                "operation_id": "append_version_to_build",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'version_id',
-                    'version_build',
+                "all": [
+                    "mod_id",
+                    "version_id",
+                    "version_build",
                 ],
-                'required': [
-                    'mod_id',
-                    'version_id',
-                    'version_build',
+                "required": [
+                    "mod_id",
+                    "version_id",
+                    "version_build",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "version_id": (str,),
+                    "version_build": (VersionBuildParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
+                    "version_id": "version_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'version_id':
-                        (str,),
-                    'version_build':
-                        (VersionBuildParams,),
+                "location_map": {
+                    "mod_id": "path",
+                    "version_id": "path",
+                    "version_build": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                    'version_id': 'version_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'version_id': 'path',
-                    'version_build': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__append_version_to_build
+            callable=__append_version_to_build,
         )
 
-        def __create_mod(
-            self,
-            mod,
-            **kwargs
-        ):
+        def __create_mod(self, mod, **kwargs):
             """Create a new mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -478,87 +386,59 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod'] = \
-                mod
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod"] = mod
             return self.call_with_http_info(**kwargs)
 
         self.create_mod = _Endpoint(
             settings={
-                'response_type': (Mod,),
-                'auth': [],
-                'endpoint_path': '/mods',
-                'operation_id': 'create_mod',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (Mod,),
+                "auth": [],
+                "endpoint_path": "/mods",
+                "operation_id": "create_mod",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod',
+                "all": [
+                    "mod",
                 ],
-                'required': [
-                    'mod',
+                "required": [
+                    "mod",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod": (Mod,),
                 },
-                'allowed_values': {
+                "attribute_map": {},
+                "location_map": {
+                    "mod": "body",
                 },
-                'openapi_types': {
-                    'mod':
-                        (Mod,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'mod': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__create_mod
+            callable=__create_mod,
         )
 
-        def __create_version(
-            self,
-            mod_id,
-            version,
-            **kwargs
-        ):
+        def __create_version(self, mod_id, version, **kwargs):
             """Create a new version for a mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -597,94 +477,66 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['version'] = \
-                version
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["version"] = version
             return self.call_with_http_info(**kwargs)
 
         self.create_version = _Endpoint(
             settings={
-                'response_type': (Version,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/versions',
-                'operation_id': 'create_version',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (Version,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/versions",
+                "operation_id": "create_version",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'version',
+                "all": [
+                    "mod_id",
+                    "version",
                 ],
-                'required': [
-                    'mod_id',
-                    'version',
+                "required": [
+                    "mod_id",
+                    "version",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "version": (Version,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'version':
-                        (Version,),
+                "location_map": {
+                    "mod_id": "path",
+                    "version": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'version': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__create_version
+            callable=__create_version,
         )
 
-        def __delete_mod(
-            self,
-            mod_id,
-            **kwargs
-        ):
+        def __delete_mod(self, mod_id, **kwargs):
             """Delete a specific mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -722,86 +574,61 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
             return self.call_with_http_info(**kwargs)
 
         self.delete_mod = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}',
-                'operation_id': 'delete_mod',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}",
+                "operation_id": "delete_mod",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
+                "all": [
+                    "mod_id",
                 ],
-                'required': [
-                    'mod_id',
+                "required": [
+                    "mod_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
+                "location_map": {
+                    "mod_id": "path",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__delete_mod
+            callable=__delete_mod,
         )
 
-        def __delete_mod_from_team(
-            self,
-            mod_id,
-            mod_team,
-            **kwargs
-        ):
+        def __delete_mod_from_team(self, mod_id, mod_team, **kwargs):
             """Remove a team from mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -840,95 +667,66 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['mod_team'] = \
-                mod_team
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["mod_team"] = mod_team
             return self.call_with_http_info(**kwargs)
 
         self.delete_mod_from_team = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/teams',
-                'operation_id': 'delete_mod_from_team',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/teams",
+                "operation_id": "delete_mod_from_team",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'mod_team',
+                "all": [
+                    "mod_id",
+                    "mod_team",
                 ],
-                'required': [
-                    'mod_id',
-                    'mod_team',
+                "required": [
+                    "mod_id",
+                    "mod_team",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "mod_team": (ModTeamParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'mod_team':
-                        (ModTeamParams,),
+                "location_map": {
+                    "mod_id": "path",
+                    "mod_team": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'mod_team': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__delete_mod_from_team
+            callable=__delete_mod_from_team,
         )
 
-        def __delete_mod_from_user(
-            self,
-            mod_id,
-            mod_user,
-            **kwargs
-        ):
+        def __delete_mod_from_user(self, mod_id, mod_user, **kwargs):
             """Remove a user from mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -967,95 +765,66 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['mod_user'] = \
-                mod_user
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["mod_user"] = mod_user
             return self.call_with_http_info(**kwargs)
 
         self.delete_mod_from_user = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/users',
-                'operation_id': 'delete_mod_from_user',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/users",
+                "operation_id": "delete_mod_from_user",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'mod_user',
+                "all": [
+                    "mod_id",
+                    "mod_user",
                 ],
-                'required': [
-                    'mod_id',
-                    'mod_user',
+                "required": [
+                    "mod_id",
+                    "mod_user",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "mod_user": (ModUserParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'mod_user':
-                        (ModUserParams,),
+                "location_map": {
+                    "mod_id": "path",
+                    "mod_user": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'mod_user': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__delete_mod_from_user
+            callable=__delete_mod_from_user,
         )
 
-        def __delete_version(
-            self,
-            mod_id,
-            version_id,
-            **kwargs
-        ):
+        def __delete_version(self, mod_id, version_id, **kwargs):
             """Delete a specific version for a mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1094,94 +863,68 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['version_id'] = \
-                version_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["version_id"] = version_id
             return self.call_with_http_info(**kwargs)
 
         self.delete_version = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/versions/{version_id}',
-                'operation_id': 'delete_version',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/versions/{version_id}",
+                "operation_id": "delete_version",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'version_id',
+                "all": [
+                    "mod_id",
+                    "version_id",
                 ],
-                'required': [
-                    'mod_id',
-                    'version_id',
+                "required": [
+                    "mod_id",
+                    "version_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "version_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
+                    "version_id": "version_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'version_id':
-                        (str,),
+                "location_map": {
+                    "mod_id": "path",
+                    "version_id": "path",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                    'version_id': 'version_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'version_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__delete_version
+            callable=__delete_version,
         )
 
         def __delete_version_from_build(
-            self,
-            mod_id,
-            version_id,
-            version_build,
-            **kwargs
+            self, mod_id, version_id, version_build, **kwargs
         ):
             """Unlink a build from a version  # noqa: E501
 
@@ -1222,102 +965,72 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['version_id'] = \
-                version_id
-            kwargs['version_build'] = \
-                version_build
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["version_id"] = version_id
+            kwargs["version_build"] = version_build
             return self.call_with_http_info(**kwargs)
 
         self.delete_version_from_build = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/versions/{version_id}/builds',
-                'operation_id': 'delete_version_from_build',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/versions/{version_id}/builds",
+                "operation_id": "delete_version_from_build",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'version_id',
-                    'version_build',
+                "all": [
+                    "mod_id",
+                    "version_id",
+                    "version_build",
                 ],
-                'required': [
-                    'mod_id',
-                    'version_id',
-                    'version_build',
+                "required": [
+                    "mod_id",
+                    "version_id",
+                    "version_build",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "version_id": (str,),
+                    "version_build": (VersionBuildParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
+                    "version_id": "version_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'version_id':
-                        (str,),
-                    'version_build':
-                        (VersionBuildParams,),
+                "location_map": {
+                    "mod_id": "path",
+                    "version_id": "path",
+                    "version_build": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                    'version_id': 'version_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'version_id': 'path',
-                    'version_build': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__delete_version_from_build
+            callable=__delete_version_from_build,
         )
 
-        def __list_mod_teams(
-            self,
-            mod_id,
-            **kwargs
-        ):
+        def __list_mod_teams(self, mod_id, **kwargs):
             """Fetch all teams assigned to mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1355,85 +1068,61 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
             return self.call_with_http_info(**kwargs)
 
         self.list_mod_teams = _Endpoint(
             settings={
-                'response_type': ([TeamMod],),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/teams',
-                'operation_id': 'list_mod_teams',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([TeamMod],),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/teams",
+                "operation_id": "list_mod_teams",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
+                "all": [
+                    "mod_id",
                 ],
-                'required': [
-                    'mod_id',
+                "required": [
+                    "mod_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
+                "location_map": {
+                    "mod_id": "path",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_mod_teams
+            callable=__list_mod_teams,
         )
 
-        def __list_mod_users(
-            self,
-            mod_id,
-            **kwargs
-        ):
+        def __list_mod_users(self, mod_id, **kwargs):
             """Fetch all users assigned to mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1471,84 +1160,61 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
             return self.call_with_http_info(**kwargs)
 
         self.list_mod_users = _Endpoint(
             settings={
-                'response_type': ([UserMod],),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/users',
-                'operation_id': 'list_mod_users',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([UserMod],),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/users",
+                "operation_id": "list_mod_users",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
+                "all": [
+                    "mod_id",
                 ],
-                'required': [
-                    'mod_id',
+                "required": [
+                    "mod_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
+                "location_map": {
+                    "mod_id": "path",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_mod_users
+            callable=__list_mod_users,
         )
 
-        def __list_mods(
-            self,
-            **kwargs
-        ):
+        def __list_mods(self, **kwargs):
             """Fetch all available mods  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1584,77 +1250,50 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
             return self.call_with_http_info(**kwargs)
 
         self.list_mods = _Endpoint(
             settings={
-                'response_type': ([Mod],),
-                'auth': [],
-                'endpoint_path': '/mods',
-                'operation_id': 'list_mods',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([Mod],),
+                "auth": [],
+                "endpoint_path": "/mods",
+                "operation_id": "list_mods",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_mods
+            callable=__list_mods,
         )
 
-        def __list_version_builds(
-            self,
-            mod_id,
-            version_id,
-            **kwargs
-        ):
+        def __list_version_builds(self, mod_id, version_id, **kwargs):
             """Fetch all builds assigned to version  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1693,93 +1332,67 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['version_id'] = \
-                version_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["version_id"] = version_id
             return self.call_with_http_info(**kwargs)
 
         self.list_version_builds = _Endpoint(
             settings={
-                'response_type': ([BuildVersion],),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/versions/{version_id}/builds',
-                'operation_id': 'list_version_builds',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([BuildVersion],),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/versions/{version_id}/builds",
+                "operation_id": "list_version_builds",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'version_id',
+                "all": [
+                    "mod_id",
+                    "version_id",
                 ],
-                'required': [
-                    'mod_id',
-                    'version_id',
+                "required": [
+                    "mod_id",
+                    "version_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "version_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
+                    "version_id": "version_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'version_id':
-                        (str,),
+                "location_map": {
+                    "mod_id": "path",
+                    "version_id": "path",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                    'version_id': 'version_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'version_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_version_builds
+            callable=__list_version_builds,
         )
 
-        def __list_versions(
-            self,
-            mod_id,
-            **kwargs
-        ):
+        def __list_versions(self, mod_id, **kwargs):
             """Fetch all available versions for a mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1817,86 +1430,61 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
             return self.call_with_http_info(**kwargs)
 
         self.list_versions = _Endpoint(
             settings={
-                'response_type': ([Version],),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/versions',
-                'operation_id': 'list_versions',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([Version],),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/versions",
+                "operation_id": "list_versions",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
+                "all": [
+                    "mod_id",
                 ],
-                'required': [
-                    'mod_id',
+                "required": [
+                    "mod_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
+                "location_map": {
+                    "mod_id": "path",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_versions
+            callable=__list_versions,
         )
 
-        def __permit_mod_team(
-            self,
-            mod_id,
-            mod_team,
-            **kwargs
-        ):
+        def __permit_mod_team(self, mod_id, mod_team, **kwargs):
             """Update team perms for mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1935,95 +1523,66 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['mod_team'] = \
-                mod_team
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["mod_team"] = mod_team
             return self.call_with_http_info(**kwargs)
 
         self.permit_mod_team = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/teams',
-                'operation_id': 'permit_mod_team',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/teams",
+                "operation_id": "permit_mod_team",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'mod_team',
+                "all": [
+                    "mod_id",
+                    "mod_team",
                 ],
-                'required': [
-                    'mod_id',
-                    'mod_team',
+                "required": [
+                    "mod_id",
+                    "mod_team",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "mod_team": (ModTeamParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'mod_team':
-                        (ModTeamParams,),
+                "location_map": {
+                    "mod_id": "path",
+                    "mod_team": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'mod_team': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__permit_mod_team
+            callable=__permit_mod_team,
         )
 
-        def __permit_mod_user(
-            self,
-            mod_id,
-            mod_user,
-            **kwargs
-        ):
+        def __permit_mod_user(self, mod_id, mod_user, **kwargs):
             """Update user perms for mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2062,94 +1621,66 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['mod_user'] = \
-                mod_user
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["mod_user"] = mod_user
             return self.call_with_http_info(**kwargs)
 
         self.permit_mod_user = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/users',
-                'operation_id': 'permit_mod_user',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/users",
+                "operation_id": "permit_mod_user",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'mod_user',
+                "all": [
+                    "mod_id",
+                    "mod_user",
                 ],
-                'required': [
-                    'mod_id',
-                    'mod_user',
+                "required": [
+                    "mod_id",
+                    "mod_user",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "mod_user": (ModUserParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'mod_user':
-                        (ModUserParams,),
+                "location_map": {
+                    "mod_id": "path",
+                    "mod_user": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'mod_user': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__permit_mod_user
+            callable=__permit_mod_user,
         )
 
-        def __show_mod(
-            self,
-            mod_id,
-            **kwargs
-        ):
+        def __show_mod(self, mod_id, **kwargs):
             """Fetch a specific mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2187,86 +1718,61 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
             return self.call_with_http_info(**kwargs)
 
         self.show_mod = _Endpoint(
             settings={
-                'response_type': (Mod,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}',
-                'operation_id': 'show_mod',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (Mod,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}",
+                "operation_id": "show_mod",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
+                "all": [
+                    "mod_id",
                 ],
-                'required': [
-                    'mod_id',
+                "required": [
+                    "mod_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
+                "location_map": {
+                    "mod_id": "path",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__show_mod
+            callable=__show_mod,
         )
 
-        def __show_version(
-            self,
-            mod_id,
-            version_id,
-            **kwargs
-        ):
+        def __show_version(self, mod_id, version_id, **kwargs):
             """Fetch a specific version for a mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2305,94 +1811,67 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['version_id'] = \
-                version_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["version_id"] = version_id
             return self.call_with_http_info(**kwargs)
 
         self.show_version = _Endpoint(
             settings={
-                'response_type': (Version,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/versions/{version_id}',
-                'operation_id': 'show_version',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (Version,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/versions/{version_id}",
+                "operation_id": "show_version",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'version_id',
+                "all": [
+                    "mod_id",
+                    "version_id",
                 ],
-                'required': [
-                    'mod_id',
-                    'version_id',
+                "required": [
+                    "mod_id",
+                    "version_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "version_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
+                    "version_id": "version_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'version_id':
-                        (str,),
+                "location_map": {
+                    "mod_id": "path",
+                    "version_id": "path",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                    'version_id': 'version_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'version_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__show_version
+            callable=__show_version,
         )
 
-        def __update_mod(
-            self,
-            mod_id,
-            mod,
-            **kwargs
-        ):
+        def __update_mod(self, mod_id, mod, **kwargs):
             """Update a specific mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2431,96 +1910,66 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['mod'] = \
-                mod
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["mod"] = mod
             return self.call_with_http_info(**kwargs)
 
         self.update_mod = _Endpoint(
             settings={
-                'response_type': (Mod,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}',
-                'operation_id': 'update_mod',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (Mod,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}",
+                "operation_id": "update_mod",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'mod',
+                "all": [
+                    "mod_id",
+                    "mod",
                 ],
-                'required': [
-                    'mod_id',
-                    'mod',
+                "required": [
+                    "mod_id",
+                    "mod",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "mod": (Mod,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'mod':
-                        (Mod,),
+                "location_map": {
+                    "mod_id": "path",
+                    "mod": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'mod': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__update_mod
+            callable=__update_mod,
         )
 
-        def __update_version(
-            self,
-            mod_id,
-            version_id,
-            version,
-            **kwargs
-        ):
+        def __update_version(self, mod_id, version_id, version, **kwargs):
             """Update a specific version for a mod  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2560,93 +2009,67 @@ class ModApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['mod_id'] = \
-                mod_id
-            kwargs['version_id'] = \
-                version_id
-            kwargs['version'] = \
-                version
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["mod_id"] = mod_id
+            kwargs["version_id"] = version_id
+            kwargs["version"] = version
             return self.call_with_http_info(**kwargs)
 
         self.update_version = _Endpoint(
             settings={
-                'response_type': (Version,),
-                'auth': [],
-                'endpoint_path': '/mods/{mod_id}/versions/{version_id}',
-                'operation_id': 'update_version',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (Version,),
+                "auth": [],
+                "endpoint_path": "/mods/{mod_id}/versions/{version_id}",
+                "operation_id": "update_version",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'mod_id',
-                    'version_id',
-                    'version',
+                "all": [
+                    "mod_id",
+                    "version_id",
+                    "version",
                 ],
-                'required': [
-                    'mod_id',
-                    'version_id',
-                    'version',
+                "required": [
+                    "mod_id",
+                    "version_id",
+                    "version",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "mod_id": (str,),
+                    "version_id": (str,),
+                    "version": (Version,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "mod_id": "mod_id",
+                    "version_id": "version_id",
                 },
-                'openapi_types': {
-                    'mod_id':
-                        (str,),
-                    'version_id':
-                        (str,),
-                    'version':
-                        (Version,),
+                "location_map": {
+                    "mod_id": "path",
+                    "version_id": "path",
+                    "version": "body",
                 },
-                'attribute_map': {
-                    'mod_id': 'mod_id',
-                    'version_id': 'version_id',
-                },
-                'location_map': {
-                    'mod_id': 'path',
-                    'version_id': 'path',
-                    'version': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__update_version
+            callable=__update_version,
         )

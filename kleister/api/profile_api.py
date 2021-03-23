@@ -19,7 +19,7 @@ from kleister.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
 from kleister.model.auth_token import AuthToken
 from kleister.model.general_error import GeneralError
@@ -39,10 +39,7 @@ class ProfileApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-        def __show_profile(
-            self,
-            **kwargs
-        ):
+        def __show_profile(self, **kwargs):
             """Retrieve an unlimited auth token  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -78,75 +75,50 @@ class ProfileApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
             return self.call_with_http_info(**kwargs)
 
         self.show_profile = _Endpoint(
             settings={
-                'response_type': (Profile,),
-                'auth': [],
-                'endpoint_path': '/profile/self',
-                'operation_id': 'show_profile',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (Profile,),
+                "auth": [],
+                "endpoint_path": "/profile/self",
+                "operation_id": "show_profile",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__show_profile
+            callable=__show_profile,
         )
 
-        def __token_profile(
-            self,
-            **kwargs
-        ):
+        def __token_profile(self, **kwargs):
             """Retrieve an unlimited auth token  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -182,76 +154,50 @@ class ProfileApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
             return self.call_with_http_info(**kwargs)
 
         self.token_profile = _Endpoint(
             settings={
-                'response_type': (AuthToken,),
-                'auth': [],
-                'endpoint_path': '/profile/token',
-                'operation_id': 'token_profile',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (AuthToken,),
+                "auth": [],
+                "endpoint_path": "/profile/token",
+                "operation_id": "token_profile",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__token_profile
+            callable=__token_profile,
         )
 
-        def __update_profile(
-            self,
-            profile,
-            **kwargs
-        ):
+        def __update_profile(self, profile, **kwargs):
             """Retrieve an unlimited auth token  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -289,77 +235,54 @@ class ProfileApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['profile'] = \
-                profile
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["profile"] = profile
             return self.call_with_http_info(**kwargs)
 
         self.update_profile = _Endpoint(
             settings={
-                'response_type': (Profile,),
-                'auth': [],
-                'endpoint_path': '/profile/self',
-                'operation_id': 'update_profile',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (Profile,),
+                "auth": [],
+                "endpoint_path": "/profile/self",
+                "operation_id": "update_profile",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'profile',
+                "all": [
+                    "profile",
                 ],
-                'required': [
-                    'profile',
+                "required": [
+                    "profile",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "profile": (Profile,),
                 },
-                'allowed_values': {
+                "attribute_map": {},
+                "location_map": {
+                    "profile": "body",
                 },
-                'openapi_types': {
-                    'profile':
-                        (Profile,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'profile': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__update_profile
+            callable=__update_profile,
         )

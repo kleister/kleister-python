@@ -19,7 +19,7 @@ from kleister.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
 from kleister.model.build import Build
 from kleister.model.build_version import BuildVersion
@@ -45,13 +45,7 @@ class PackApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-        def __append_build_to_version(
-            self,
-            pack_id,
-            build_id,
-            build_version,
-            **kwargs
-        ):
+        def __append_build_to_version(self, pack_id, build_id, build_version, **kwargs):
             """Assign a version to a build  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -91,103 +85,72 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['build_id'] = \
-                build_id
-            kwargs['build_version'] = \
-                build_version
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["build_id"] = build_id
+            kwargs["build_version"] = build_version
             return self.call_with_http_info(**kwargs)
 
         self.append_build_to_version = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/builds/{build_id}/versions',
-                'operation_id': 'append_build_to_version',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/builds/{build_id}/versions",
+                "operation_id": "append_build_to_version",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'build_id',
-                    'build_version',
+                "all": [
+                    "pack_id",
+                    "build_id",
+                    "build_version",
                 ],
-                'required': [
-                    'pack_id',
-                    'build_id',
-                    'build_version',
+                "required": [
+                    "pack_id",
+                    "build_id",
+                    "build_version",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "build_id": (str,),
+                    "build_version": (BuildVersionParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
+                    "build_id": "build_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'build_id':
-                        (str,),
-                    'build_version':
-                        (BuildVersionParams,),
+                "location_map": {
+                    "pack_id": "path",
+                    "build_id": "path",
+                    "build_version": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                    'build_id': 'build_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'build_id': 'path',
-                    'build_version': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__append_build_to_version
+            callable=__append_build_to_version,
         )
 
-        def __append_pack_to_team(
-            self,
-            pack_id,
-            pack_team,
-            **kwargs
-        ):
+        def __append_pack_to_team(self, pack_id, pack_team, **kwargs):
             """Assign a team to pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -226,95 +189,66 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['pack_team'] = \
-                pack_team
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["pack_team"] = pack_team
             return self.call_with_http_info(**kwargs)
 
         self.append_pack_to_team = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/teams',
-                'operation_id': 'append_pack_to_team',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/teams",
+                "operation_id": "append_pack_to_team",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'pack_team',
+                "all": [
+                    "pack_id",
+                    "pack_team",
                 ],
-                'required': [
-                    'pack_id',
-                    'pack_team',
+                "required": [
+                    "pack_id",
+                    "pack_team",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "pack_team": (PackTeamParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'pack_team':
-                        (PackTeamParams,),
+                "location_map": {
+                    "pack_id": "path",
+                    "pack_team": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'pack_team': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__append_pack_to_team
+            callable=__append_pack_to_team,
         )
 
-        def __append_pack_to_user(
-            self,
-            pack_id,
-            pack_user,
-            **kwargs
-        ):
+        def __append_pack_to_user(self, pack_id, pack_user, **kwargs):
             """Assign a user to pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -353,95 +287,66 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['pack_user'] = \
-                pack_user
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["pack_user"] = pack_user
             return self.call_with_http_info(**kwargs)
 
         self.append_pack_to_user = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/users',
-                'operation_id': 'append_pack_to_user',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/users",
+                "operation_id": "append_pack_to_user",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'pack_user',
+                "all": [
+                    "pack_id",
+                    "pack_user",
                 ],
-                'required': [
-                    'pack_id',
-                    'pack_user',
+                "required": [
+                    "pack_id",
+                    "pack_user",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "pack_user": (PackUserParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'pack_user':
-                        (PackUserParams,),
+                "location_map": {
+                    "pack_id": "path",
+                    "pack_user": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'pack_user': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__append_pack_to_user
+            callable=__append_pack_to_user,
         )
 
-        def __create_build(
-            self,
-            pack_id,
-            build,
-            **kwargs
-        ):
+        def __create_build(self, pack_id, build, **kwargs):
             """Create a new build for a pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -480,94 +385,66 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['build'] = \
-                build
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["build"] = build
             return self.call_with_http_info(**kwargs)
 
         self.create_build = _Endpoint(
             settings={
-                'response_type': (Build,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/builds',
-                'operation_id': 'create_build',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (Build,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/builds",
+                "operation_id": "create_build",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'build',
+                "all": [
+                    "pack_id",
+                    "build",
                 ],
-                'required': [
-                    'pack_id',
-                    'build',
+                "required": [
+                    "pack_id",
+                    "build",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "build": (Build,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'build':
-                        (Build,),
+                "location_map": {
+                    "pack_id": "path",
+                    "build": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'build': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__create_build
+            callable=__create_build,
         )
 
-        def __create_pack(
-            self,
-            pack,
-            **kwargs
-        ):
+        def __create_pack(self, pack, **kwargs):
             """Create a new pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -605,87 +482,59 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack'] = \
-                pack
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack"] = pack
             return self.call_with_http_info(**kwargs)
 
         self.create_pack = _Endpoint(
             settings={
-                'response_type': (Pack,),
-                'auth': [],
-                'endpoint_path': '/packs',
-                'operation_id': 'create_pack',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (Pack,),
+                "auth": [],
+                "endpoint_path": "/packs",
+                "operation_id": "create_pack",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack',
+                "all": [
+                    "pack",
                 ],
-                'required': [
-                    'pack',
+                "required": [
+                    "pack",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack": (Pack,),
                 },
-                'allowed_values': {
+                "attribute_map": {},
+                "location_map": {
+                    "pack": "body",
                 },
-                'openapi_types': {
-                    'pack':
-                        (Pack,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'pack': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__create_pack
+            callable=__create_pack,
         )
 
-        def __delete_build(
-            self,
-            pack_id,
-            build_id,
-            **kwargs
-        ):
+        def __delete_build(self, pack_id, build_id, **kwargs):
             """Delete a specific build for a pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -724,94 +573,68 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['build_id'] = \
-                build_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["build_id"] = build_id
             return self.call_with_http_info(**kwargs)
 
         self.delete_build = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/builds/{build_id}',
-                'operation_id': 'delete_build',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/builds/{build_id}",
+                "operation_id": "delete_build",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'build_id',
+                "all": [
+                    "pack_id",
+                    "build_id",
                 ],
-                'required': [
-                    'pack_id',
-                    'build_id',
+                "required": [
+                    "pack_id",
+                    "build_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "build_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
+                    "build_id": "build_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'build_id':
-                        (str,),
+                "location_map": {
+                    "pack_id": "path",
+                    "build_id": "path",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                    'build_id': 'build_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'build_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__delete_build
+            callable=__delete_build,
         )
 
         def __delete_build_from_version(
-            self,
-            pack_id,
-            build_id,
-            build_version,
-            **kwargs
+            self, pack_id, build_id, build_version, **kwargs
         ):
             """Unlink a version from a build  # noqa: E501
 
@@ -852,102 +675,72 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['build_id'] = \
-                build_id
-            kwargs['build_version'] = \
-                build_version
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["build_id"] = build_id
+            kwargs["build_version"] = build_version
             return self.call_with_http_info(**kwargs)
 
         self.delete_build_from_version = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/builds/{build_id}/versions',
-                'operation_id': 'delete_build_from_version',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/builds/{build_id}/versions",
+                "operation_id": "delete_build_from_version",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'build_id',
-                    'build_version',
+                "all": [
+                    "pack_id",
+                    "build_id",
+                    "build_version",
                 ],
-                'required': [
-                    'pack_id',
-                    'build_id',
-                    'build_version',
+                "required": [
+                    "pack_id",
+                    "build_id",
+                    "build_version",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "build_id": (str,),
+                    "build_version": (BuildVersionParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
+                    "build_id": "build_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'build_id':
-                        (str,),
-                    'build_version':
-                        (BuildVersionParams,),
+                "location_map": {
+                    "pack_id": "path",
+                    "build_id": "path",
+                    "build_version": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                    'build_id': 'build_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'build_id': 'path',
-                    'build_version': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__delete_build_from_version
+            callable=__delete_build_from_version,
         )
 
-        def __delete_pack(
-            self,
-            pack_id,
-            **kwargs
-        ):
+        def __delete_pack(self, pack_id, **kwargs):
             """Delete a specific pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -985,86 +778,61 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
             return self.call_with_http_info(**kwargs)
 
         self.delete_pack = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}',
-                'operation_id': 'delete_pack',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}",
+                "operation_id": "delete_pack",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
+                "all": [
+                    "pack_id",
                 ],
-                'required': [
-                    'pack_id',
+                "required": [
+                    "pack_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
+                "location_map": {
+                    "pack_id": "path",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__delete_pack
+            callable=__delete_pack,
         )
 
-        def __delete_pack_from_team(
-            self,
-            pack_id,
-            pack_team,
-            **kwargs
-        ):
+        def __delete_pack_from_team(self, pack_id, pack_team, **kwargs):
             """Remove a team from pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1103,95 +871,66 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['pack_team'] = \
-                pack_team
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["pack_team"] = pack_team
             return self.call_with_http_info(**kwargs)
 
         self.delete_pack_from_team = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/teams',
-                'operation_id': 'delete_pack_from_team',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/teams",
+                "operation_id": "delete_pack_from_team",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'pack_team',
+                "all": [
+                    "pack_id",
+                    "pack_team",
                 ],
-                'required': [
-                    'pack_id',
-                    'pack_team',
+                "required": [
+                    "pack_id",
+                    "pack_team",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "pack_team": (PackTeamParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'pack_team':
-                        (PackTeamParams,),
+                "location_map": {
+                    "pack_id": "path",
+                    "pack_team": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'pack_team': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__delete_pack_from_team
+            callable=__delete_pack_from_team,
         )
 
-        def __delete_pack_from_user(
-            self,
-            pack_id,
-            pack_user,
-            **kwargs
-        ):
+        def __delete_pack_from_user(self, pack_id, pack_user, **kwargs):
             """Remove a user from pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1230,95 +969,66 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['pack_user'] = \
-                pack_user
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["pack_user"] = pack_user
             return self.call_with_http_info(**kwargs)
 
         self.delete_pack_from_user = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/users',
-                'operation_id': 'delete_pack_from_user',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/users",
+                "operation_id": "delete_pack_from_user",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'pack_user',
+                "all": [
+                    "pack_id",
+                    "pack_user",
                 ],
-                'required': [
-                    'pack_id',
-                    'pack_user',
+                "required": [
+                    "pack_id",
+                    "pack_user",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "pack_user": (PackUserParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'pack_user':
-                        (PackUserParams,),
+                "location_map": {
+                    "pack_id": "path",
+                    "pack_user": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'pack_user': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__delete_pack_from_user
+            callable=__delete_pack_from_user,
         )
 
-        def __list_build_versions(
-            self,
-            pack_id,
-            build_id,
-            **kwargs
-        ):
+        def __list_build_versions(self, pack_id, build_id, **kwargs):
             """Fetch all versions assigned to build  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1357,93 +1067,67 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['build_id'] = \
-                build_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["build_id"] = build_id
             return self.call_with_http_info(**kwargs)
 
         self.list_build_versions = _Endpoint(
             settings={
-                'response_type': ([BuildVersion],),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/builds/{build_id}/versions',
-                'operation_id': 'list_build_versions',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([BuildVersion],),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/builds/{build_id}/versions",
+                "operation_id": "list_build_versions",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'build_id',
+                "all": [
+                    "pack_id",
+                    "build_id",
                 ],
-                'required': [
-                    'pack_id',
-                    'build_id',
+                "required": [
+                    "pack_id",
+                    "build_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "build_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
+                    "build_id": "build_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'build_id':
-                        (str,),
+                "location_map": {
+                    "pack_id": "path",
+                    "build_id": "path",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                    'build_id': 'build_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'build_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_build_versions
+            callable=__list_build_versions,
         )
 
-        def __list_builds(
-            self,
-            pack_id,
-            **kwargs
-        ):
+        def __list_builds(self, pack_id, **kwargs):
             """Fetch all available builds for a pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1481,85 +1165,61 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
             return self.call_with_http_info(**kwargs)
 
         self.list_builds = _Endpoint(
             settings={
-                'response_type': ([Build],),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/builds',
-                'operation_id': 'list_builds',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([Build],),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/builds",
+                "operation_id": "list_builds",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
+                "all": [
+                    "pack_id",
                 ],
-                'required': [
-                    'pack_id',
+                "required": [
+                    "pack_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
+                "location_map": {
+                    "pack_id": "path",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_builds
+            callable=__list_builds,
         )
 
-        def __list_pack_teams(
-            self,
-            pack_id,
-            **kwargs
-        ):
+        def __list_pack_teams(self, pack_id, **kwargs):
             """Fetch all teams assigned to pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1597,85 +1257,61 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
             return self.call_with_http_info(**kwargs)
 
         self.list_pack_teams = _Endpoint(
             settings={
-                'response_type': ([TeamPack],),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/teams',
-                'operation_id': 'list_pack_teams',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([TeamPack],),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/teams",
+                "operation_id": "list_pack_teams",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
+                "all": [
+                    "pack_id",
                 ],
-                'required': [
-                    'pack_id',
+                "required": [
+                    "pack_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
+                "location_map": {
+                    "pack_id": "path",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_pack_teams
+            callable=__list_pack_teams,
         )
 
-        def __list_pack_users(
-            self,
-            pack_id,
-            **kwargs
-        ):
+        def __list_pack_users(self, pack_id, **kwargs):
             """Fetch all users assigned to pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1713,84 +1349,61 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
             return self.call_with_http_info(**kwargs)
 
         self.list_pack_users = _Endpoint(
             settings={
-                'response_type': ([UserPack],),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/users',
-                'operation_id': 'list_pack_users',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([UserPack],),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/users",
+                "operation_id": "list_pack_users",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
+                "all": [
+                    "pack_id",
                 ],
-                'required': [
-                    'pack_id',
+                "required": [
+                    "pack_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
+                "location_map": {
+                    "pack_id": "path",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_pack_users
+            callable=__list_pack_users,
         )
 
-        def __list_packs(
-            self,
-            **kwargs
-        ):
+        def __list_packs(self, **kwargs):
             """Fetch all available packs  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1826,77 +1439,50 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
             return self.call_with_http_info(**kwargs)
 
         self.list_packs = _Endpoint(
             settings={
-                'response_type': ([Pack],),
-                'auth': [],
-                'endpoint_path': '/packs',
-                'operation_id': 'list_packs',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([Pack],),
+                "auth": [],
+                "endpoint_path": "/packs",
+                "operation_id": "list_packs",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_packs
+            callable=__list_packs,
         )
 
-        def __permit_pack_team(
-            self,
-            pack_id,
-            pack_team,
-            **kwargs
-        ):
+        def __permit_pack_team(self, pack_id, pack_team, **kwargs):
             """Update team perms for pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1935,95 +1521,66 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['pack_team'] = \
-                pack_team
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["pack_team"] = pack_team
             return self.call_with_http_info(**kwargs)
 
         self.permit_pack_team = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/teams',
-                'operation_id': 'permit_pack_team',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/teams",
+                "operation_id": "permit_pack_team",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'pack_team',
+                "all": [
+                    "pack_id",
+                    "pack_team",
                 ],
-                'required': [
-                    'pack_id',
-                    'pack_team',
+                "required": [
+                    "pack_id",
+                    "pack_team",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "pack_team": (PackTeamParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'pack_team':
-                        (PackTeamParams,),
+                "location_map": {
+                    "pack_id": "path",
+                    "pack_team": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'pack_team': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__permit_pack_team
+            callable=__permit_pack_team,
         )
 
-        def __permit_pack_user(
-            self,
-            pack_id,
-            pack_user,
-            **kwargs
-        ):
+        def __permit_pack_user(self, pack_id, pack_user, **kwargs):
             """Update user perms for pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2062,95 +1619,66 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['pack_user'] = \
-                pack_user
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["pack_user"] = pack_user
             return self.call_with_http_info(**kwargs)
 
         self.permit_pack_user = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/users',
-                'operation_id': 'permit_pack_user',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/users",
+                "operation_id": "permit_pack_user",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'pack_user',
+                "all": [
+                    "pack_id",
+                    "pack_user",
                 ],
-                'required': [
-                    'pack_id',
-                    'pack_user',
+                "required": [
+                    "pack_id",
+                    "pack_user",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "pack_user": (PackUserParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'pack_user':
-                        (PackUserParams,),
+                "location_map": {
+                    "pack_id": "path",
+                    "pack_user": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'pack_user': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__permit_pack_user
+            callable=__permit_pack_user,
         )
 
-        def __show_build(
-            self,
-            pack_id,
-            build_id,
-            **kwargs
-        ):
+        def __show_build(self, pack_id, build_id, **kwargs):
             """Fetch a specific build for a pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2189,93 +1717,67 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['build_id'] = \
-                build_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["build_id"] = build_id
             return self.call_with_http_info(**kwargs)
 
         self.show_build = _Endpoint(
             settings={
-                'response_type': (Build,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/builds/{build_id}',
-                'operation_id': 'show_build',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (Build,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/builds/{build_id}",
+                "operation_id": "show_build",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'build_id',
+                "all": [
+                    "pack_id",
+                    "build_id",
                 ],
-                'required': [
-                    'pack_id',
-                    'build_id',
+                "required": [
+                    "pack_id",
+                    "build_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "build_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
+                    "build_id": "build_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'build_id':
-                        (str,),
+                "location_map": {
+                    "pack_id": "path",
+                    "build_id": "path",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                    'build_id': 'build_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'build_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__show_build
+            callable=__show_build,
         )
 
-        def __show_pack(
-            self,
-            pack_id,
-            **kwargs
-        ):
+        def __show_pack(self, pack_id, **kwargs):
             """Fetch a specific pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2313,87 +1815,61 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
             return self.call_with_http_info(**kwargs)
 
         self.show_pack = _Endpoint(
             settings={
-                'response_type': (Pack,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}',
-                'operation_id': 'show_pack',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (Pack,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}",
+                "operation_id": "show_pack",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
+                "all": [
+                    "pack_id",
                 ],
-                'required': [
-                    'pack_id',
+                "required": [
+                    "pack_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
+                "location_map": {
+                    "pack_id": "path",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__show_pack
+            callable=__show_pack,
         )
 
-        def __update_build(
-            self,
-            pack_id,
-            build_id,
-            build,
-            **kwargs
-        ):
+        def __update_build(self, pack_id, build_id, build, **kwargs):
             """Update a specific build for a pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2433,103 +1909,72 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['build_id'] = \
-                build_id
-            kwargs['build'] = \
-                build
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["build_id"] = build_id
+            kwargs["build"] = build
             return self.call_with_http_info(**kwargs)
 
         self.update_build = _Endpoint(
             settings={
-                'response_type': (Build,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}/builds/{build_id}',
-                'operation_id': 'update_build',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (Build,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}/builds/{build_id}",
+                "operation_id": "update_build",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'build_id',
-                    'build',
+                "all": [
+                    "pack_id",
+                    "build_id",
+                    "build",
                 ],
-                'required': [
-                    'pack_id',
-                    'build_id',
-                    'build',
+                "required": [
+                    "pack_id",
+                    "build_id",
+                    "build",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "build_id": (str,),
+                    "build": (Build,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
+                    "build_id": "build_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'build_id':
-                        (str,),
-                    'build':
-                        (Build,),
+                "location_map": {
+                    "pack_id": "path",
+                    "build_id": "path",
+                    "build": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                    'build_id': 'build_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'build_id': 'path',
-                    'build': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__update_build
+            callable=__update_build,
         )
 
-        def __update_pack(
-            self,
-            pack_id,
-            pack,
-            **kwargs
-        ):
+        def __update_pack(self, pack_id, pack, **kwargs):
             """Update a specific pack  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2568,85 +2013,61 @@ class PackApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['pack_id'] = \
-                pack_id
-            kwargs['pack'] = \
-                pack
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["pack_id"] = pack_id
+            kwargs["pack"] = pack
             return self.call_with_http_info(**kwargs)
 
         self.update_pack = _Endpoint(
             settings={
-                'response_type': (Pack,),
-                'auth': [],
-                'endpoint_path': '/packs/{pack_id}',
-                'operation_id': 'update_pack',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (Pack,),
+                "auth": [],
+                "endpoint_path": "/packs/{pack_id}",
+                "operation_id": "update_pack",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'pack_id',
-                    'pack',
+                "all": [
+                    "pack_id",
+                    "pack",
                 ],
-                'required': [
-                    'pack_id',
-                    'pack',
+                "required": [
+                    "pack_id",
+                    "pack",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "pack_id": (str,),
+                    "pack": (Pack,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "pack_id": "pack_id",
                 },
-                'openapi_types': {
-                    'pack_id':
-                        (str,),
-                    'pack':
-                        (Pack,),
+                "location_map": {
+                    "pack_id": "path",
+                    "pack": "body",
                 },
-                'attribute_map': {
-                    'pack_id': 'pack_id',
-                },
-                'location_map': {
-                    'pack_id': 'path',
-                    'pack': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__update_pack
+            callable=__update_pack,
         )

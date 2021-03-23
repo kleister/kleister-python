@@ -19,7 +19,7 @@ from kleister.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
 from kleister.model.auth_login import AuthLogin
 from kleister.model.auth_token import AuthToken
@@ -39,11 +39,7 @@ class AuthApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-        def __login_user(
-            self,
-            auth_login,
-            **kwargs
-        ):
+        def __login_user(self, auth_login, **kwargs):
             """Authenticate an user by credentials  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -81,85 +77,59 @@ class AuthApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['auth_login'] = \
-                auth_login
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["auth_login"] = auth_login
             return self.call_with_http_info(**kwargs)
 
         self.login_user = _Endpoint(
             settings={
-                'response_type': (AuthToken,),
-                'auth': [],
-                'endpoint_path': '/auth/login',
-                'operation_id': 'login_user',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (AuthToken,),
+                "auth": [],
+                "endpoint_path": "/auth/login",
+                "operation_id": "login_user",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'auth_login',
+                "all": [
+                    "auth_login",
                 ],
-                'required': [
-                    'auth_login',
+                "required": [
+                    "auth_login",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "auth_login": (AuthLogin,),
                 },
-                'allowed_values': {
+                "attribute_map": {},
+                "location_map": {
+                    "auth_login": "body",
                 },
-                'openapi_types': {
-                    'auth_login':
-                        (AuthLogin,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'auth_login': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__login_user
+            callable=__login_user,
         )
 
-        def __refresh_auth(
-            self,
-            **kwargs
-        ):
+        def __refresh_auth(self, **kwargs):
             """Refresh an auth token before it expires  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -195,76 +165,50 @@ class AuthApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
             return self.call_with_http_info(**kwargs)
 
         self.refresh_auth = _Endpoint(
             settings={
-                'response_type': (AuthToken,),
-                'auth': [],
-                'endpoint_path': '/auth/refresh',
-                'operation_id': 'refresh_auth',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (AuthToken,),
+                "auth": [],
+                "endpoint_path": "/auth/refresh",
+                "operation_id": "refresh_auth",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__refresh_auth
+            callable=__refresh_auth,
         )
 
-        def __verify_auth(
-            self,
-            token,
-            **kwargs
-        ):
+        def __verify_auth(self, token, **kwargs):
             """Verify validity for an authentication token  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -302,76 +246,56 @@ class AuthApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['token'] = \
-                token
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["token"] = token
             return self.call_with_http_info(**kwargs)
 
         self.verify_auth = _Endpoint(
             settings={
-                'response_type': (AuthVerify,),
-                'auth': [],
-                'endpoint_path': '/auth/verify/{token}',
-                'operation_id': 'verify_auth',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (AuthVerify,),
+                "auth": [],
+                "endpoint_path": "/auth/verify/{token}",
+                "operation_id": "verify_auth",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'token',
+                "all": [
+                    "token",
                 ],
-                'required': [
-                    'token',
+                "required": [
+                    "token",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "token": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "token": "token",
                 },
-                'openapi_types': {
-                    'token':
-                        (str,),
+                "location_map": {
+                    "token": "path",
                 },
-                'attribute_map': {
-                    'token': 'token',
-                },
-                'location_map': {
-                    'token': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__verify_auth
+            callable=__verify_auth,
         )

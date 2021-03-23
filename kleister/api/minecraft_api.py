@@ -19,7 +19,7 @@ from kleister.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
 from kleister.model.build import Build
 from kleister.model.general_error import GeneralError
@@ -40,12 +40,7 @@ class MinecraftApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-        def __append_minecraft_to_build(
-            self,
-            minecraft_id,
-            minecraft_build,
-            **kwargs
-        ):
+        def __append_minecraft_to_build(self, minecraft_id, minecraft_build, **kwargs):
             """Assign a build to a Minecraft version  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -84,94 +79,67 @@ class MinecraftApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['minecraft_id'] = \
-                minecraft_id
-            kwargs['minecraft_build'] = \
-                minecraft_build
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["minecraft_id"] = minecraft_id
+            kwargs["minecraft_build"] = minecraft_build
             return self.call_with_http_info(**kwargs)
 
         self.append_minecraft_to_build = _Endpoint(
             settings={
-                'response_type': ([Build],),
-                'auth': [],
-                'endpoint_path': '/minecraft/{minecraft_id}/builds',
-                'operation_id': 'append_minecraft_to_build',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": ([Build],),
+                "auth": [],
+                "endpoint_path": "/minecraft/{minecraft_id}/builds",
+                "operation_id": "append_minecraft_to_build",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'minecraft_id',
-                    'minecraft_build',
+                "all": [
+                    "minecraft_id",
+                    "minecraft_build",
                 ],
-                'required': [
-                    'minecraft_id',
-                    'minecraft_build',
+                "required": [
+                    "minecraft_id",
+                    "minecraft_build",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "minecraft_id": (str,),
+                    "minecraft_build": (MinecraftBuildParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "minecraft_id": "minecraft_id",
                 },
-                'openapi_types': {
-                    'minecraft_id':
-                        (str,),
-                    'minecraft_build':
-                        (MinecraftBuildParams,),
+                "location_map": {
+                    "minecraft_id": "path",
+                    "minecraft_build": "body",
                 },
-                'attribute_map': {
-                    'minecraft_id': 'minecraft_id',
-                },
-                'location_map': {
-                    'minecraft_id': 'path',
-                    'minecraft_build': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__append_minecraft_to_build
+            callable=__append_minecraft_to_build,
         )
 
         def __delete_minecraft_from_build(
-            self,
-            minecraft_id,
-            minecraft_build,
-            **kwargs
+            self, minecraft_id, minecraft_build, **kwargs
         ):
             """Unlink a build from a Minecraft version  # noqa: E501
 
@@ -211,94 +179,66 @@ class MinecraftApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['minecraft_id'] = \
-                minecraft_id
-            kwargs['minecraft_build'] = \
-                minecraft_build
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["minecraft_id"] = minecraft_id
+            kwargs["minecraft_build"] = minecraft_build
             return self.call_with_http_info(**kwargs)
 
         self.delete_minecraft_from_build = _Endpoint(
             settings={
-                'response_type': ([Build],),
-                'auth': [],
-                'endpoint_path': '/minecraft/{minecraft_id}/builds',
-                'operation_id': 'delete_minecraft_from_build',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": ([Build],),
+                "auth": [],
+                "endpoint_path": "/minecraft/{minecraft_id}/builds",
+                "operation_id": "delete_minecraft_from_build",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'minecraft_id',
-                    'minecraft_build',
+                "all": [
+                    "minecraft_id",
+                    "minecraft_build",
                 ],
-                'required': [
-                    'minecraft_id',
-                    'minecraft_build',
+                "required": [
+                    "minecraft_id",
+                    "minecraft_build",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "minecraft_id": (str,),
+                    "minecraft_build": (MinecraftBuildParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "minecraft_id": "minecraft_id",
                 },
-                'openapi_types': {
-                    'minecraft_id':
-                        (str,),
-                    'minecraft_build':
-                        (MinecraftBuildParams,),
+                "location_map": {
+                    "minecraft_id": "path",
+                    "minecraft_build": "body",
                 },
-                'attribute_map': {
-                    'minecraft_id': 'minecraft_id',
-                },
-                'location_map': {
-                    'minecraft_id': 'path',
-                    'minecraft_build': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__delete_minecraft_from_build
+            callable=__delete_minecraft_from_build,
         )
 
-        def __list_minecraft_builds(
-            self,
-            minecraft_id,
-            **kwargs
-        ):
+        def __list_minecraft_builds(self, minecraft_id, **kwargs):
             """Fetch the builds assigned to a Minecraft version  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -336,84 +276,61 @@ class MinecraftApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['minecraft_id'] = \
-                minecraft_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["minecraft_id"] = minecraft_id
             return self.call_with_http_info(**kwargs)
 
         self.list_minecraft_builds = _Endpoint(
             settings={
-                'response_type': ([Build],),
-                'auth': [],
-                'endpoint_path': '/minecraft/{minecraft_id}/builds',
-                'operation_id': 'list_minecraft_builds',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([Build],),
+                "auth": [],
+                "endpoint_path": "/minecraft/{minecraft_id}/builds",
+                "operation_id": "list_minecraft_builds",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'minecraft_id',
+                "all": [
+                    "minecraft_id",
                 ],
-                'required': [
-                    'minecraft_id',
+                "required": [
+                    "minecraft_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "minecraft_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "minecraft_id": "minecraft_id",
                 },
-                'openapi_types': {
-                    'minecraft_id':
-                        (str,),
+                "location_map": {
+                    "minecraft_id": "path",
                 },
-                'attribute_map': {
-                    'minecraft_id': 'minecraft_id',
-                },
-                'location_map': {
-                    'minecraft_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_minecraft_builds
+            callable=__list_minecraft_builds,
         )
 
-        def __list_minecrafts(
-            self,
-            **kwargs
-        ):
+        def __list_minecrafts(self, **kwargs):
             """Fetch the available Minecraft versions  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -449,76 +366,50 @@ class MinecraftApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
             return self.call_with_http_info(**kwargs)
 
         self.list_minecrafts = _Endpoint(
             settings={
-                'response_type': ([Minecraft],),
-                'auth': [],
-                'endpoint_path': '/minecraft',
-                'operation_id': 'list_minecrafts',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([Minecraft],),
+                "auth": [],
+                "endpoint_path": "/minecraft",
+                "operation_id": "list_minecrafts",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_minecrafts
+            callable=__list_minecrafts,
         )
 
-        def __search_minecrafts(
-            self,
-            minecraft_id,
-            **kwargs
-        ):
+        def __search_minecrafts(self, minecraft_id, **kwargs):
             """Search for available Minecraft versions  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -556,84 +447,61 @@ class MinecraftApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['minecraft_id'] = \
-                minecraft_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["minecraft_id"] = minecraft_id
             return self.call_with_http_info(**kwargs)
 
         self.search_minecrafts = _Endpoint(
             settings={
-                'response_type': ([Minecraft],),
-                'auth': [],
-                'endpoint_path': '/minecraft/{minecraft_id}',
-                'operation_id': 'search_minecrafts',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([Minecraft],),
+                "auth": [],
+                "endpoint_path": "/minecraft/{minecraft_id}",
+                "operation_id": "search_minecrafts",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'minecraft_id',
+                "all": [
+                    "minecraft_id",
                 ],
-                'required': [
-                    'minecraft_id',
+                "required": [
+                    "minecraft_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "minecraft_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "minecraft_id": "minecraft_id",
                 },
-                'openapi_types': {
-                    'minecraft_id':
-                        (str,),
+                "location_map": {
+                    "minecraft_id": "path",
                 },
-                'attribute_map': {
-                    'minecraft_id': 'minecraft_id',
-                },
-                'location_map': {
-                    'minecraft_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__search_minecrafts
+            callable=__search_minecrafts,
         )
 
-        def __update_minecraft(
-            self,
-            **kwargs
-        ):
+        def __update_minecraft(self, **kwargs):
             """Update the available Minecraft versions  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -669,67 +537,45 @@ class MinecraftApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
             return self.call_with_http_info(**kwargs)
 
         self.update_minecraft = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/minecraft',
-                'operation_id': 'update_minecraft',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/minecraft",
+                "operation_id": "update_minecraft",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__update_minecraft
+            callable=__update_minecraft,
         )

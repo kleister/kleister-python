@@ -19,7 +19,7 @@ from kleister.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
 from kleister.model.general_error import GeneralError
 from kleister.model.team_user import TeamUser
@@ -44,12 +44,7 @@ class UserApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-        def __append_user_to_mod(
-            self,
-            user_id,
-            user_mod,
-            **kwargs
-        ):
+        def __append_user_to_mod(self, user_id, user_mod, **kwargs):
             """Assign a mod to user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -88,95 +83,66 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
-            kwargs['user_mod'] = \
-                user_mod
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
+            kwargs["user_mod"] = user_mod
             return self.call_with_http_info(**kwargs)
 
         self.append_user_to_mod = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/mods',
-                'operation_id': 'append_user_to_mod',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/mods",
+                "operation_id": "append_user_to_mod",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
-                    'user_mod',
+                "all": [
+                    "user_id",
+                    "user_mod",
                 ],
-                'required': [
-                    'user_id',
-                    'user_mod',
+                "required": [
+                    "user_id",
+                    "user_mod",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
+                    "user_mod": (UserModParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
-                    'user_mod':
-                        (UserModParams,),
+                "location_map": {
+                    "user_id": "path",
+                    "user_mod": "body",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                    'user_mod': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__append_user_to_mod
+            callable=__append_user_to_mod,
         )
 
-        def __append_user_to_pack(
-            self,
-            user_id,
-            user_pack,
-            **kwargs
-        ):
+        def __append_user_to_pack(self, user_id, user_pack, **kwargs):
             """Assign a pack to user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -215,95 +181,66 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
-            kwargs['user_pack'] = \
-                user_pack
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
+            kwargs["user_pack"] = user_pack
             return self.call_with_http_info(**kwargs)
 
         self.append_user_to_pack = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/packs',
-                'operation_id': 'append_user_to_pack',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/packs",
+                "operation_id": "append_user_to_pack",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
-                    'user_pack',
+                "all": [
+                    "user_id",
+                    "user_pack",
                 ],
-                'required': [
-                    'user_id',
-                    'user_pack',
+                "required": [
+                    "user_id",
+                    "user_pack",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
+                    "user_pack": (UserPackParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
-                    'user_pack':
-                        (UserPackParams,),
+                "location_map": {
+                    "user_id": "path",
+                    "user_pack": "body",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                    'user_pack': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__append_user_to_pack
+            callable=__append_user_to_pack,
         )
 
-        def __append_user_to_team(
-            self,
-            user_id,
-            user_team,
-            **kwargs
-        ):
+        def __append_user_to_team(self, user_id, user_team, **kwargs):
             """Assign a team to user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -342,94 +279,66 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
-            kwargs['user_team'] = \
-                user_team
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
+            kwargs["user_team"] = user_team
             return self.call_with_http_info(**kwargs)
 
         self.append_user_to_team = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/teams',
-                'operation_id': 'append_user_to_team',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/teams",
+                "operation_id": "append_user_to_team",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
-                    'user_team',
+                "all": [
+                    "user_id",
+                    "user_team",
                 ],
-                'required': [
-                    'user_id',
-                    'user_team',
+                "required": [
+                    "user_id",
+                    "user_team",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
+                    "user_team": (UserTeamParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
-                    'user_team':
-                        (UserTeamParams,),
+                "location_map": {
+                    "user_id": "path",
+                    "user_team": "body",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                    'user_team': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__append_user_to_team
+            callable=__append_user_to_team,
         )
 
-        def __create_user(
-            self,
-            user,
-            **kwargs
-        ):
+        def __create_user(self, user, **kwargs):
             """Create a new user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -467,86 +376,59 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user'] = \
-                user
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user"] = user
             return self.call_with_http_info(**kwargs)
 
         self.create_user = _Endpoint(
             settings={
-                'response_type': (User,),
-                'auth': [],
-                'endpoint_path': '/users',
-                'operation_id': 'create_user',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (User,),
+                "auth": [],
+                "endpoint_path": "/users",
+                "operation_id": "create_user",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user',
+                "all": [
+                    "user",
                 ],
-                'required': [
-                    'user',
+                "required": [
+                    "user",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user": (User,),
                 },
-                'allowed_values': {
+                "attribute_map": {},
+                "location_map": {
+                    "user": "body",
                 },
-                'openapi_types': {
-                    'user':
-                        (User,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'user': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__create_user
+            callable=__create_user,
         )
 
-        def __delete_user(
-            self,
-            user_id,
-            **kwargs
-        ):
+        def __delete_user(self, user_id, **kwargs):
             """Delete a specific user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -584,86 +466,61 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
             return self.call_with_http_info(**kwargs)
 
         self.delete_user = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}',
-                'operation_id': 'delete_user',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}",
+                "operation_id": "delete_user",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
+                "all": [
+                    "user_id",
                 ],
-                'required': [
-                    'user_id',
+                "required": [
+                    "user_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
+                "location_map": {
+                    "user_id": "path",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__delete_user
+            callable=__delete_user,
         )
 
-        def __delete_user_from_mod(
-            self,
-            user_id,
-            user_mod,
-            **kwargs
-        ):
+        def __delete_user_from_mod(self, user_id, user_mod, **kwargs):
             """Remove a mod from user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -702,95 +559,66 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
-            kwargs['user_mod'] = \
-                user_mod
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
+            kwargs["user_mod"] = user_mod
             return self.call_with_http_info(**kwargs)
 
         self.delete_user_from_mod = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/mods',
-                'operation_id': 'delete_user_from_mod',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/mods",
+                "operation_id": "delete_user_from_mod",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
-                    'user_mod',
+                "all": [
+                    "user_id",
+                    "user_mod",
                 ],
-                'required': [
-                    'user_id',
-                    'user_mod',
+                "required": [
+                    "user_id",
+                    "user_mod",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
+                    "user_mod": (UserModParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
-                    'user_mod':
-                        (UserModParams,),
+                "location_map": {
+                    "user_id": "path",
+                    "user_mod": "body",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                    'user_mod': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__delete_user_from_mod
+            callable=__delete_user_from_mod,
         )
 
-        def __delete_user_from_pack(
-            self,
-            user_id,
-            user_pack,
-            **kwargs
-        ):
+        def __delete_user_from_pack(self, user_id, user_pack, **kwargs):
             """Remove a pack from user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -829,95 +657,66 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
-            kwargs['user_pack'] = \
-                user_pack
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
+            kwargs["user_pack"] = user_pack
             return self.call_with_http_info(**kwargs)
 
         self.delete_user_from_pack = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/packs',
-                'operation_id': 'delete_user_from_pack',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/packs",
+                "operation_id": "delete_user_from_pack",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
-                    'user_pack',
+                "all": [
+                    "user_id",
+                    "user_pack",
                 ],
-                'required': [
-                    'user_id',
-                    'user_pack',
+                "required": [
+                    "user_id",
+                    "user_pack",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
+                    "user_pack": (UserPackParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
-                    'user_pack':
-                        (UserPackParams,),
+                "location_map": {
+                    "user_id": "path",
+                    "user_pack": "body",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                    'user_pack': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__delete_user_from_pack
+            callable=__delete_user_from_pack,
         )
 
-        def __delete_user_from_team(
-            self,
-            user_id,
-            user_team,
-            **kwargs
-        ):
+        def __delete_user_from_team(self, user_id, user_team, **kwargs):
             """Remove a team from user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -956,94 +755,66 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
-            kwargs['user_team'] = \
-                user_team
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
+            kwargs["user_team"] = user_team
             return self.call_with_http_info(**kwargs)
 
         self.delete_user_from_team = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/teams',
-                'operation_id': 'delete_user_from_team',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/teams",
+                "operation_id": "delete_user_from_team",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
-                    'user_team',
+                "all": [
+                    "user_id",
+                    "user_team",
                 ],
-                'required': [
-                    'user_id',
-                    'user_team',
+                "required": [
+                    "user_id",
+                    "user_team",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
+                    "user_team": (UserTeamParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
-                    'user_team':
-                        (UserTeamParams,),
+                "location_map": {
+                    "user_id": "path",
+                    "user_team": "body",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                    'user_team': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__delete_user_from_team
+            callable=__delete_user_from_team,
         )
 
-        def __list_user_mods(
-            self,
-            user_id,
-            **kwargs
-        ):
+        def __list_user_mods(self, user_id, **kwargs):
             """Fetch all mods assigned to user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1081,85 +852,61 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
             return self.call_with_http_info(**kwargs)
 
         self.list_user_mods = _Endpoint(
             settings={
-                'response_type': ([UserMod],),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/mods',
-                'operation_id': 'list_user_mods',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([UserMod],),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/mods",
+                "operation_id": "list_user_mods",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
+                "all": [
+                    "user_id",
                 ],
-                'required': [
-                    'user_id',
+                "required": [
+                    "user_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
+                "location_map": {
+                    "user_id": "path",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_user_mods
+            callable=__list_user_mods,
         )
 
-        def __list_user_packs(
-            self,
-            user_id,
-            **kwargs
-        ):
+        def __list_user_packs(self, user_id, **kwargs):
             """Fetch all packs assigned to user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1197,85 +944,61 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
             return self.call_with_http_info(**kwargs)
 
         self.list_user_packs = _Endpoint(
             settings={
-                'response_type': ([UserPack],),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/packs',
-                'operation_id': 'list_user_packs',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([UserPack],),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/packs",
+                "operation_id": "list_user_packs",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
+                "all": [
+                    "user_id",
                 ],
-                'required': [
-                    'user_id',
+                "required": [
+                    "user_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
+                "location_map": {
+                    "user_id": "path",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_user_packs
+            callable=__list_user_packs,
         )
 
-        def __list_user_teams(
-            self,
-            user_id,
-            **kwargs
-        ):
+        def __list_user_teams(self, user_id, **kwargs):
             """Fetch all teams assigned to user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1313,84 +1036,61 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
             return self.call_with_http_info(**kwargs)
 
         self.list_user_teams = _Endpoint(
             settings={
-                'response_type': ([TeamUser],),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/teams',
-                'operation_id': 'list_user_teams',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([TeamUser],),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/teams",
+                "operation_id": "list_user_teams",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
+                "all": [
+                    "user_id",
                 ],
-                'required': [
-                    'user_id',
+                "required": [
+                    "user_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
+                "location_map": {
+                    "user_id": "path",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_user_teams
+            callable=__list_user_teams,
         )
 
-        def __list_users(
-            self,
-            **kwargs
-        ):
+        def __list_users(self, **kwargs):
             """Fetch all available users  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1426,77 +1126,50 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
             return self.call_with_http_info(**kwargs)
 
         self.list_users = _Endpoint(
             settings={
-                'response_type': ([User],),
-                'auth': [],
-                'endpoint_path': '/users',
-                'operation_id': 'list_users',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": ([User],),
+                "auth": [],
+                "endpoint_path": "/users",
+                "operation_id": "list_users",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__list_users
+            callable=__list_users,
         )
 
-        def __permit_user_mod(
-            self,
-            user_id,
-            user_mod,
-            **kwargs
-        ):
+        def __permit_user_mod(self, user_id, user_mod, **kwargs):
             """Update mod perms for user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1535,95 +1208,66 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
-            kwargs['user_mod'] = \
-                user_mod
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
+            kwargs["user_mod"] = user_mod
             return self.call_with_http_info(**kwargs)
 
         self.permit_user_mod = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/mods',
-                'operation_id': 'permit_user_mod',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/mods",
+                "operation_id": "permit_user_mod",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
-                    'user_mod',
+                "all": [
+                    "user_id",
+                    "user_mod",
                 ],
-                'required': [
-                    'user_id',
-                    'user_mod',
+                "required": [
+                    "user_id",
+                    "user_mod",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
+                    "user_mod": (UserModParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
-                    'user_mod':
-                        (UserModParams,),
+                "location_map": {
+                    "user_id": "path",
+                    "user_mod": "body",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                    'user_mod': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__permit_user_mod
+            callable=__permit_user_mod,
         )
 
-        def __permit_user_pack(
-            self,
-            user_id,
-            user_pack,
-            **kwargs
-        ):
+        def __permit_user_pack(self, user_id, user_pack, **kwargs):
             """Update pack perms for user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1662,95 +1306,66 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
-            kwargs['user_pack'] = \
-                user_pack
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
+            kwargs["user_pack"] = user_pack
             return self.call_with_http_info(**kwargs)
 
         self.permit_user_pack = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/packs',
-                'operation_id': 'permit_user_pack',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/packs",
+                "operation_id": "permit_user_pack",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
-                    'user_pack',
+                "all": [
+                    "user_id",
+                    "user_pack",
                 ],
-                'required': [
-                    'user_id',
-                    'user_pack',
+                "required": [
+                    "user_id",
+                    "user_pack",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
+                    "user_pack": (UserPackParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
-                    'user_pack':
-                        (UserPackParams,),
+                "location_map": {
+                    "user_id": "path",
+                    "user_pack": "body",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                    'user_pack': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__permit_user_pack
+            callable=__permit_user_pack,
         )
 
-        def __permit_user_team(
-            self,
-            user_id,
-            user_team,
-            **kwargs
-        ):
+        def __permit_user_team(self, user_id, user_team, **kwargs):
             """Update team perms for user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1789,94 +1404,66 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
-            kwargs['user_team'] = \
-                user_team
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
+            kwargs["user_team"] = user_team
             return self.call_with_http_info(**kwargs)
 
         self.permit_user_team = _Endpoint(
             settings={
-                'response_type': (GeneralError,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}/teams',
-                'operation_id': 'permit_user_team',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (GeneralError,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}/teams",
+                "operation_id": "permit_user_team",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
-                    'user_team',
+                "all": [
+                    "user_id",
+                    "user_team",
                 ],
-                'required': [
-                    'user_id',
-                    'user_team',
+                "required": [
+                    "user_id",
+                    "user_team",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
+                    "user_team": (UserTeamParams,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
-                    'user_team':
-                        (UserTeamParams,),
+                "location_map": {
+                    "user_id": "path",
+                    "user_team": "body",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                    'user_team': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__permit_user_team
+            callable=__permit_user_team,
         )
 
-        def __show_user(
-            self,
-            user_id,
-            **kwargs
-        ):
+        def __show_user(self, user_id, **kwargs):
             """Fetch a specific user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -1914,86 +1501,61 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
             return self.call_with_http_info(**kwargs)
 
         self.show_user = _Endpoint(
             settings={
-                'response_type': (User,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}',
-                'operation_id': 'show_user',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (User,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}",
+                "operation_id": "show_user",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
+                "all": [
+                    "user_id",
                 ],
-                'required': [
-                    'user_id',
+                "required": [
+                    "user_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
+                "location_map": {
+                    "user_id": "path",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
             api_client=api_client,
-            callable=__show_user
+            callable=__show_user,
         )
 
-        def __update_user(
-            self,
-            user_id,
-            user,
-            **kwargs
-        ):
+        def __update_user(self, user_id, user, **kwargs):
             """Update a specific user  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
@@ -2032,85 +1594,61 @@ class UserApi(object):
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
+            kwargs["async_req"] = kwargs.get("async_req", False)
+            kwargs["_return_http_data_only"] = kwargs.get(
+                "_return_http_data_only", True
             )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['user_id'] = \
-                user_id
-            kwargs['user'] = \
-                user
+            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+            kwargs["_host_index"] = kwargs.get("_host_index")
+            kwargs["user_id"] = user_id
+            kwargs["user"] = user
             return self.call_with_http_info(**kwargs)
 
         self.update_user = _Endpoint(
             settings={
-                'response_type': (User,),
-                'auth': [],
-                'endpoint_path': '/users/{user_id}',
-                'operation_id': 'update_user',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (User,),
+                "auth": [],
+                "endpoint_path": "/users/{user_id}",
+                "operation_id": "update_user",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'user_id',
-                    'user',
+                "all": [
+                    "user_id",
+                    "user",
                 ],
-                'required': [
-                    'user_id',
-                    'user',
+                "required": [
+                    "user_id",
+                    "user",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "user_id": (str,),
+                    "user": (User,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "user_id": "user_id",
                 },
-                'openapi_types': {
-                    'user_id':
-                        (str,),
-                    'user':
-                        (User,),
+                "location_map": {
+                    "user_id": "path",
+                    "user": "body",
                 },
-                'attribute_map': {
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'user_id': 'path',
-                    'user': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
             api_client=api_client,
-            callable=__update_user
+            callable=__update_user,
         )
