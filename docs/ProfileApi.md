@@ -16,6 +16,7 @@ Retrieve an unlimited auth token
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -23,7 +24,8 @@ from kleister.api import profile_api
 from kleister.model.general_error import GeneralError
 from kleister.model.profile import Profile
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -62,6 +64,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The current profile data |  -  |
@@ -77,6 +80,7 @@ Retrieve an unlimited auth token
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -84,7 +88,8 @@ from kleister.api import profile_api
 from kleister.model.auth_token import AuthToken
 from kleister.model.general_error import GeneralError
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -123,6 +128,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The unlimited auth token |  -  |
@@ -139,6 +145,7 @@ Retrieve an unlimited auth token
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -147,7 +154,8 @@ from kleister.model.general_error import GeneralError
 from kleister.model.validation_error import ValidationError
 from kleister.model.profile import Profile
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -158,7 +166,6 @@ with kleister.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = profile_api.ProfileApi(api_client)
     profile = Profile(
-        id="id_example",
         slug="slug_example",
         username="username_example",
         password="password_example",
@@ -200,6 +207,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The updated profile data |  -  |

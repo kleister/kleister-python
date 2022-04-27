@@ -19,7 +19,7 @@ from kleister.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types,
+    validate_and_convert_types
 )
 from kleister.model.general_error import GeneralError
 from kleister.model.team import Team
@@ -43,1612 +43,2245 @@ class TeamApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-
-        def __append_team_to_mod(self, team_id, team_mod, **kwargs):
-            """Assign a mod to team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.append_team_to_mod(team_id, team_mod, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-                team_mod (TeamModParams): The team mod data to assign
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            kwargs["team_mod"] = team_mod
-            return self.call_with_http_info(**kwargs)
-
-        self.append_team_to_mod = _Endpoint(
+        self.append_team_to_mod_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/mods",
-                "operation_id": "append_team_to_mod",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/mods',
+                'operation_id': 'append_team_to_mod',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
-                    "team_mod",
+                'all': [
+                    'team_id',
+                    'team_mod',
                 ],
-                "required": [
-                    "team_id",
-                    "team_mod",
+                'required': [
+                    'team_id',
+                    'team_mod',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
-                    "team_mod": (TeamModParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
-                    "team_mod": "body",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
+                    'team_mod':
+                        (TeamModParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                    'team_mod': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__append_team_to_mod,
+            api_client=api_client
         )
-
-        def __append_team_to_pack(self, team_id, team_pack, **kwargs):
-            """Assign a pack to team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.append_team_to_pack(team_id, team_pack, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-                team_pack (TeamPackParams): The team pack data to assign
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            kwargs["team_pack"] = team_pack
-            return self.call_with_http_info(**kwargs)
-
-        self.append_team_to_pack = _Endpoint(
+        self.append_team_to_pack_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/packs",
-                "operation_id": "append_team_to_pack",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/packs',
+                'operation_id': 'append_team_to_pack',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
-                    "team_pack",
+                'all': [
+                    'team_id',
+                    'team_pack',
                 ],
-                "required": [
-                    "team_id",
-                    "team_pack",
+                'required': [
+                    'team_id',
+                    'team_pack',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
-                    "team_pack": (TeamPackParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
-                    "team_pack": "body",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
+                    'team_pack':
+                        (TeamPackParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                    'team_pack': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__append_team_to_pack,
+            api_client=api_client
         )
-
-        def __append_team_to_user(self, team_id, team_user, **kwargs):
-            """Assign a user to team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.append_team_to_user(team_id, team_user, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-                team_user (TeamUserParams): The team user data to assign
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            kwargs["team_user"] = team_user
-            return self.call_with_http_info(**kwargs)
-
-        self.append_team_to_user = _Endpoint(
+        self.append_team_to_user_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/users",
-                "operation_id": "append_team_to_user",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/users',
+                'operation_id': 'append_team_to_user',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
-                    "team_user",
+                'all': [
+                    'team_id',
+                    'team_user',
                 ],
-                "required": [
-                    "team_id",
-                    "team_user",
+                'required': [
+                    'team_id',
+                    'team_user',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
-                    "team_user": (TeamUserParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
-                    "team_user": "body",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
+                    'team_user':
+                        (TeamUserParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                    'team_user': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__append_team_to_user,
+            api_client=api_client
         )
-
-        def __create_team(self, team, **kwargs):
-            """Create a new team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.create_team(team, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team (Team): The team data to create
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                Team
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team"] = team
-            return self.call_with_http_info(**kwargs)
-
-        self.create_team = _Endpoint(
+        self.create_team_endpoint = _Endpoint(
             settings={
-                "response_type": (Team,),
-                "auth": [],
-                "endpoint_path": "/teams",
-                "operation_id": "create_team",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (Team,),
+                'auth': [],
+                'endpoint_path': '/teams',
+                'operation_id': 'create_team',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team",
+                'all': [
+                    'team',
                 ],
-                "required": [
-                    "team",
+                'required': [
+                    'team',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team": (Team,),
+                'validations': {
                 },
-                "attribute_map": {},
-                "location_map": {
-                    "team": "body",
+                'allowed_values': {
                 },
-                "collection_format_map": {},
+                'openapi_types': {
+                    'team':
+                        (Team,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'team': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__create_team,
+            api_client=api_client
         )
-
-        def __delete_team(self, team_id, **kwargs):
-            """Delete a specific team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_team(team_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_team = _Endpoint(
+        self.delete_team_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}",
-                "operation_id": "delete_team",
-                "http_method": "DELETE",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}',
+                'operation_id': 'delete_team',
+                'http_method': 'DELETE',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
+                'all': [
+                    'team_id',
                 ],
-                "required": [
-                    "team_id",
+                'required': [
+                    'team_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__delete_team,
+            api_client=api_client
         )
-
-        def __delete_team_from_mod(self, team_id, team_mod, **kwargs):
-            """Remove a mod from team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_team_from_mod(team_id, team_mod, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-                team_mod (TeamModParams): The team mod data to delete
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            kwargs["team_mod"] = team_mod
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_team_from_mod = _Endpoint(
+        self.delete_team_from_mod_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/mods",
-                "operation_id": "delete_team_from_mod",
-                "http_method": "DELETE",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/mods',
+                'operation_id': 'delete_team_from_mod',
+                'http_method': 'DELETE',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
-                    "team_mod",
+                'all': [
+                    'team_id',
+                    'team_mod',
                 ],
-                "required": [
-                    "team_id",
-                    "team_mod",
+                'required': [
+                    'team_id',
+                    'team_mod',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
-                    "team_mod": (TeamModParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
-                    "team_mod": "body",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
+                    'team_mod':
+                        (TeamModParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                    'team_mod': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__delete_team_from_mod,
+            api_client=api_client
         )
-
-        def __delete_team_from_pack(self, team_id, team_pack, **kwargs):
-            """Remove a pack from team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_team_from_pack(team_id, team_pack, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-                team_pack (TeamPackParams): The team pack data to delete
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            kwargs["team_pack"] = team_pack
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_team_from_pack = _Endpoint(
+        self.delete_team_from_pack_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/packs",
-                "operation_id": "delete_team_from_pack",
-                "http_method": "DELETE",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/packs',
+                'operation_id': 'delete_team_from_pack',
+                'http_method': 'DELETE',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
-                    "team_pack",
+                'all': [
+                    'team_id',
+                    'team_pack',
                 ],
-                "required": [
-                    "team_id",
-                    "team_pack",
+                'required': [
+                    'team_id',
+                    'team_pack',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
-                    "team_pack": (TeamPackParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
-                    "team_pack": "body",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
+                    'team_pack':
+                        (TeamPackParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                    'team_pack': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__delete_team_from_pack,
+            api_client=api_client
         )
-
-        def __delete_team_from_user(self, team_id, team_user, **kwargs):
-            """Remove a user from team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_team_from_user(team_id, team_user, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-                team_user (TeamUserParams): The team user data to delete
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            kwargs["team_user"] = team_user
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_team_from_user = _Endpoint(
+        self.delete_team_from_user_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/users",
-                "operation_id": "delete_team_from_user",
-                "http_method": "DELETE",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/users',
+                'operation_id': 'delete_team_from_user',
+                'http_method': 'DELETE',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
-                    "team_user",
+                'all': [
+                    'team_id',
+                    'team_user',
                 ],
-                "required": [
-                    "team_id",
-                    "team_user",
+                'required': [
+                    'team_id',
+                    'team_user',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
-                    "team_user": (TeamUserParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
-                    "team_user": "body",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
+                    'team_user':
+                        (TeamUserParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                    'team_user': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__delete_team_from_user,
+            api_client=api_client
         )
-
-        def __list_team_mods(self, team_id, **kwargs):
-            """Fetch all mods assigned to team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.list_team_mods(team_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [TeamMod]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            return self.call_with_http_info(**kwargs)
-
-        self.list_team_mods = _Endpoint(
+        self.list_team_mods_endpoint = _Endpoint(
             settings={
-                "response_type": ([TeamMod],),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/mods",
-                "operation_id": "list_team_mods",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': ([TeamMod],),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/mods',
+                'operation_id': 'list_team_mods',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
+                'all': [
+                    'team_id',
                 ],
-                "required": [
-                    "team_id",
+                'required': [
+                    'team_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__list_team_mods,
+            api_client=api_client
         )
-
-        def __list_team_packs(self, team_id, **kwargs):
-            """Fetch all packs assigned to team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.list_team_packs(team_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [TeamPack]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            return self.call_with_http_info(**kwargs)
-
-        self.list_team_packs = _Endpoint(
+        self.list_team_packs_endpoint = _Endpoint(
             settings={
-                "response_type": ([TeamPack],),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/packs",
-                "operation_id": "list_team_packs",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': ([TeamPack],),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/packs',
+                'operation_id': 'list_team_packs',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
+                'all': [
+                    'team_id',
                 ],
-                "required": [
-                    "team_id",
+                'required': [
+                    'team_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__list_team_packs,
+            api_client=api_client
         )
-
-        def __list_team_users(self, team_id, **kwargs):
-            """Fetch all users assigned to team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.list_team_users(team_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [TeamUser]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            return self.call_with_http_info(**kwargs)
-
-        self.list_team_users = _Endpoint(
+        self.list_team_users_endpoint = _Endpoint(
             settings={
-                "response_type": ([TeamUser],),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/users",
-                "operation_id": "list_team_users",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': ([TeamUser],),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/users',
+                'operation_id': 'list_team_users',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
+                'all': [
+                    'team_id',
                 ],
-                "required": [
-                    "team_id",
+                'required': [
+                    'team_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__list_team_users,
+            api_client=api_client
         )
-
-        def __list_teams(self, **kwargs):
-            """Fetch all available teams  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.list_teams(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [Team]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            return self.call_with_http_info(**kwargs)
-
-        self.list_teams = _Endpoint(
+        self.list_teams_endpoint = _Endpoint(
             settings={
-                "response_type": ([Team],),
-                "auth": [],
-                "endpoint_path": "/teams",
-                "operation_id": "list_teams",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': ([Team],),
+                'auth': [],
+                'endpoint_path': '/teams',
+                'operation_id': 'list_teams',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [],
-                "required": [],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {},
-                "attribute_map": {},
-                "location_map": {},
-                "collection_format_map": {},
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__list_teams,
+            api_client=api_client
         )
-
-        def __permit_team_mod(self, team_id, team_mod, **kwargs):
-            """Update mod perms for team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.permit_team_mod(team_id, team_mod, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-                team_mod (TeamModParams): The team mod data to update
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            kwargs["team_mod"] = team_mod
-            return self.call_with_http_info(**kwargs)
-
-        self.permit_team_mod = _Endpoint(
+        self.permit_team_mod_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/mods",
-                "operation_id": "permit_team_mod",
-                "http_method": "PUT",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/mods',
+                'operation_id': 'permit_team_mod',
+                'http_method': 'PUT',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
-                    "team_mod",
+                'all': [
+                    'team_id',
+                    'team_mod',
                 ],
-                "required": [
-                    "team_id",
-                    "team_mod",
+                'required': [
+                    'team_id',
+                    'team_mod',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
-                    "team_mod": (TeamModParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
-                    "team_mod": "body",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
+                    'team_mod':
+                        (TeamModParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                    'team_mod': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__permit_team_mod,
+            api_client=api_client
         )
-
-        def __permit_team_pack(self, team_id, team_pack, **kwargs):
-            """Update pack perms for team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.permit_team_pack(team_id, team_pack, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-                team_pack (TeamPackParams): The team pack data to update
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            kwargs["team_pack"] = team_pack
-            return self.call_with_http_info(**kwargs)
-
-        self.permit_team_pack = _Endpoint(
+        self.permit_team_pack_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/packs",
-                "operation_id": "permit_team_pack",
-                "http_method": "PUT",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/packs',
+                'operation_id': 'permit_team_pack',
+                'http_method': 'PUT',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
-                    "team_pack",
+                'all': [
+                    'team_id',
+                    'team_pack',
                 ],
-                "required": [
-                    "team_id",
-                    "team_pack",
+                'required': [
+                    'team_id',
+                    'team_pack',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
-                    "team_pack": (TeamPackParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
-                    "team_pack": "body",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
+                    'team_pack':
+                        (TeamPackParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                    'team_pack': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__permit_team_pack,
+            api_client=api_client
         )
-
-        def __permit_team_user(self, team_id, team_user, **kwargs):
-            """Update user perms for team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.permit_team_user(team_id, team_user, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-                team_user (TeamUserParams): The team user data to update
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            kwargs["team_user"] = team_user
-            return self.call_with_http_info(**kwargs)
-
-        self.permit_team_user = _Endpoint(
+        self.permit_team_user_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}/users",
-                "operation_id": "permit_team_user",
-                "http_method": "PUT",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}/users',
+                'operation_id': 'permit_team_user',
+                'http_method': 'PUT',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
-                    "team_user",
+                'all': [
+                    'team_id',
+                    'team_user',
                 ],
-                "required": [
-                    "team_id",
-                    "team_user",
+                'required': [
+                    'team_id',
+                    'team_user',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
-                    "team_user": (TeamUserParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
-                    "team_user": "body",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
+                    'team_user':
+                        (TeamUserParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                    'team_user': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__permit_team_user,
+            api_client=api_client
         )
-
-        def __show_team(self, team_id, **kwargs):
-            """Fetch a specific team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.show_team(team_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                Team
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            return self.call_with_http_info(**kwargs)
-
-        self.show_team = _Endpoint(
+        self.show_team_endpoint = _Endpoint(
             settings={
-                "response_type": (Team,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}",
-                "operation_id": "show_team",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': (Team,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}',
+                'operation_id': 'show_team',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
+                'all': [
+                    'team_id',
                 ],
-                "required": [
-                    "team_id",
+                'required': [
+                    'team_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__show_team,
+            api_client=api_client
         )
-
-        def __update_team(self, team_id, team, **kwargs):
-            """Update a specific team  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.update_team(team_id, team, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                team_id (str): A team UUID or slug
-                team (Team): The team data to update
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                Team
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["team_id"] = team_id
-            kwargs["team"] = team
-            return self.call_with_http_info(**kwargs)
-
-        self.update_team = _Endpoint(
+        self.update_team_endpoint = _Endpoint(
             settings={
-                "response_type": (Team,),
-                "auth": [],
-                "endpoint_path": "/teams/{team_id}",
-                "operation_id": "update_team",
-                "http_method": "PUT",
-                "servers": None,
+                'response_type': (Team,),
+                'auth': [],
+                'endpoint_path': '/teams/{team_id}',
+                'operation_id': 'update_team',
+                'http_method': 'PUT',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "team_id",
-                    "team",
+                'all': [
+                    'team_id',
+                    'team',
                 ],
-                "required": [
-                    "team_id",
-                    "team",
+                'required': [
+                    'team_id',
+                    'team',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "team_id": (str,),
-                    "team": (Team,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "team_id": "team_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "team_id": "path",
-                    "team": "body",
+                'openapi_types': {
+                    'team_id':
+                        (str,),
+                    'team':
+                        (Team,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'team_id': 'team_id',
+                },
+                'location_map': {
+                    'team_id': 'path',
+                    'team': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__update_team,
+            api_client=api_client
         )
+
+    def append_team_to_mod(
+        self,
+        team_id,
+        team_mod,
+        **kwargs
+    ):
+        """Assign a mod to team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.append_team_to_mod(team_id, team_mod, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+            team_mod (TeamModParams): The team mod data to assign
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        kwargs['team_mod'] = \
+            team_mod
+        return self.append_team_to_mod_endpoint.call_with_http_info(**kwargs)
+
+    def append_team_to_pack(
+        self,
+        team_id,
+        team_pack,
+        **kwargs
+    ):
+        """Assign a pack to team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.append_team_to_pack(team_id, team_pack, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+            team_pack (TeamPackParams): The team pack data to assign
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        kwargs['team_pack'] = \
+            team_pack
+        return self.append_team_to_pack_endpoint.call_with_http_info(**kwargs)
+
+    def append_team_to_user(
+        self,
+        team_id,
+        team_user,
+        **kwargs
+    ):
+        """Assign a user to team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.append_team_to_user(team_id, team_user, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+            team_user (TeamUserParams): The team user data to assign
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        kwargs['team_user'] = \
+            team_user
+        return self.append_team_to_user_endpoint.call_with_http_info(**kwargs)
+
+    def create_team(
+        self,
+        team,
+        **kwargs
+    ):
+        """Create a new team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_team(team, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team (Team): The team data to create
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Team
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team'] = \
+            team
+        return self.create_team_endpoint.call_with_http_info(**kwargs)
+
+    def delete_team(
+        self,
+        team_id,
+        **kwargs
+    ):
+        """Delete a specific team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_team(team_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        return self.delete_team_endpoint.call_with_http_info(**kwargs)
+
+    def delete_team_from_mod(
+        self,
+        team_id,
+        team_mod,
+        **kwargs
+    ):
+        """Remove a mod from team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_team_from_mod(team_id, team_mod, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+            team_mod (TeamModParams): The team mod data to delete
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        kwargs['team_mod'] = \
+            team_mod
+        return self.delete_team_from_mod_endpoint.call_with_http_info(**kwargs)
+
+    def delete_team_from_pack(
+        self,
+        team_id,
+        team_pack,
+        **kwargs
+    ):
+        """Remove a pack from team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_team_from_pack(team_id, team_pack, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+            team_pack (TeamPackParams): The team pack data to delete
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        kwargs['team_pack'] = \
+            team_pack
+        return self.delete_team_from_pack_endpoint.call_with_http_info(**kwargs)
+
+    def delete_team_from_user(
+        self,
+        team_id,
+        team_user,
+        **kwargs
+    ):
+        """Remove a user from team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_team_from_user(team_id, team_user, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+            team_user (TeamUserParams): The team user data to delete
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        kwargs['team_user'] = \
+            team_user
+        return self.delete_team_from_user_endpoint.call_with_http_info(**kwargs)
+
+    def list_team_mods(
+        self,
+        team_id,
+        **kwargs
+    ):
+        """Fetch all mods assigned to team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_team_mods(team_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [TeamMod]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        return self.list_team_mods_endpoint.call_with_http_info(**kwargs)
+
+    def list_team_packs(
+        self,
+        team_id,
+        **kwargs
+    ):
+        """Fetch all packs assigned to team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_team_packs(team_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [TeamPack]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        return self.list_team_packs_endpoint.call_with_http_info(**kwargs)
+
+    def list_team_users(
+        self,
+        team_id,
+        **kwargs
+    ):
+        """Fetch all users assigned to team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_team_users(team_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [TeamUser]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        return self.list_team_users_endpoint.call_with_http_info(**kwargs)
+
+    def list_teams(
+        self,
+        **kwargs
+    ):
+        """Fetch all available teams  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_teams(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [Team]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        return self.list_teams_endpoint.call_with_http_info(**kwargs)
+
+    def permit_team_mod(
+        self,
+        team_id,
+        team_mod,
+        **kwargs
+    ):
+        """Update mod perms for team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.permit_team_mod(team_id, team_mod, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+            team_mod (TeamModParams): The team mod data to update
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        kwargs['team_mod'] = \
+            team_mod
+        return self.permit_team_mod_endpoint.call_with_http_info(**kwargs)
+
+    def permit_team_pack(
+        self,
+        team_id,
+        team_pack,
+        **kwargs
+    ):
+        """Update pack perms for team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.permit_team_pack(team_id, team_pack, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+            team_pack (TeamPackParams): The team pack data to update
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        kwargs['team_pack'] = \
+            team_pack
+        return self.permit_team_pack_endpoint.call_with_http_info(**kwargs)
+
+    def permit_team_user(
+        self,
+        team_id,
+        team_user,
+        **kwargs
+    ):
+        """Update user perms for team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.permit_team_user(team_id, team_user, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+            team_user (TeamUserParams): The team user data to update
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        kwargs['team_user'] = \
+            team_user
+        return self.permit_team_user_endpoint.call_with_http_info(**kwargs)
+
+    def show_team(
+        self,
+        team_id,
+        **kwargs
+    ):
+        """Fetch a specific team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.show_team(team_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Team
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        return self.show_team_endpoint.call_with_http_info(**kwargs)
+
+    def update_team(
+        self,
+        team_id,
+        team,
+        **kwargs
+    ):
+        """Update a specific team  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_team(team_id, team, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            team_id (str): A team UUID or slug
+            team (Team): The team data to update
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Team
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['team_id'] = \
+            team_id
+        kwargs['team'] = \
+            team
+        return self.update_team_endpoint.call_with_http_info(**kwargs)
+

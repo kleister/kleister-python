@@ -30,6 +30,7 @@ Assign a mod to user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -37,7 +38,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_mod_params import UserModParams
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -85,6 +87,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
@@ -102,6 +105,7 @@ Assign a pack to user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -109,7 +113,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_pack_params import UserPackParams
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -157,6 +162,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
@@ -174,6 +180,7 @@ Assign a team to user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -181,7 +188,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_team_params import UserTeamParams
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -229,6 +237,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
@@ -246,6 +255,7 @@ Create a new user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -254,7 +264,8 @@ from kleister.model.general_error import GeneralError
 from kleister.model.user import User
 from kleister.model.validation_error import ValidationError
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -265,7 +276,6 @@ with kleister.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = user_api.UserApi(api_client)
     user = User(
-        id="id_example",
         slug="slug_example",
         username="username_example",
         password="password_example",
@@ -307,6 +317,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The created user data |  -  |
@@ -324,13 +335,15 @@ Delete a specific user
 
 ### Example
 
+
 ```python
 import time
 import kleister
 from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -373,6 +386,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
@@ -389,6 +403,7 @@ Remove a mod from user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -396,7 +411,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_mod_params import UserModParams
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -444,6 +460,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
@@ -461,6 +478,7 @@ Remove a pack from user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -468,7 +486,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_pack_params import UserPackParams
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -516,6 +535,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
@@ -533,6 +553,7 @@ Remove a team from user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -540,7 +561,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_team_params import UserTeamParams
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -588,6 +610,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
@@ -605,6 +628,7 @@ Fetch all mods assigned to user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -612,7 +636,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_mod import UserMod
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -655,6 +680,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A collection of user mods |  -  |
@@ -670,6 +696,7 @@ Fetch all packs assigned to user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -677,7 +704,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_pack import UserPack
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -720,6 +748,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A collection of team packs |  -  |
@@ -735,6 +764,7 @@ Fetch all teams assigned to user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -742,7 +772,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.team_user import TeamUser
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -785,6 +816,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A collection of user teams |  -  |
@@ -800,6 +832,7 @@ Fetch all available users
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -807,7 +840,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user import User
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -846,6 +880,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A collection of users |  -  |
@@ -861,6 +896,7 @@ Update mod perms for user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -868,7 +904,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_mod_params import UserModParams
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -916,6 +953,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
@@ -933,6 +971,7 @@ Update pack perms for user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -940,7 +979,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_pack_params import UserPackParams
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -988,6 +1028,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
@@ -1005,6 +1046,7 @@ Update team perms for user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -1012,7 +1054,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user_team_params import UserTeamParams
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -1060,6 +1103,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
@@ -1077,6 +1121,7 @@ Fetch a specific user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -1084,7 +1129,8 @@ from kleister.api import user_api
 from kleister.model.general_error import GeneralError
 from kleister.model.user import User
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -1127,6 +1173,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The fetched user details |  -  |
@@ -1142,6 +1189,7 @@ Update a specific user
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -1150,7 +1198,8 @@ from kleister.model.general_error import GeneralError
 from kleister.model.user import User
 from kleister.model.validation_error import ValidationError
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -1162,7 +1211,6 @@ with kleister.ApiClient() as api_client:
     api_instance = user_api.UserApi(api_client)
     user_id = "user_id_example" # str | A user UUID or slug
     user = User(
-        id="id_example",
         slug="slug_example",
         username="username_example",
         password="password_example",
@@ -1205,6 +1253,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The updated user details |  -  |

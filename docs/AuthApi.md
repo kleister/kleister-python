@@ -16,6 +16,7 @@ Authenticate an user by credentials
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -24,7 +25,8 @@ from kleister.model.auth_token import AuthToken
 from kleister.model.general_error import GeneralError
 from kleister.model.auth_login import AuthLogin
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -70,6 +72,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A generated token with expire |  -  |
@@ -85,6 +88,7 @@ Refresh an auth token before it expires
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -92,7 +96,8 @@ from kleister.api import auth_api
 from kleister.model.auth_token import AuthToken
 from kleister.model.general_error import GeneralError
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -131,6 +136,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A refreshed token with expire |  -  |
@@ -146,6 +152,7 @@ Verify validity for an authentication token
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -153,7 +160,8 @@ from kleister.api import auth_api
 from kleister.model.general_error import GeneralError
 from kleister.model.auth_verify import AuthVerify
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -196,6 +204,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Meta data of the provided token |  -  |

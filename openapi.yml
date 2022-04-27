@@ -1,4 +1,8 @@
-packageName: 'kleister'
-projectName: 'kleister'
-packageVersion: '1.0.0-alpha1'
-packageUrl: 'https://github.com/kleister/kleister-python'
+---
+library: urllib3
+packageName: kleister
+packageUrl: https://github.com/kleister/kleister-python
+packageVersion: 1.0.0-alpha1
+projectName: kleister
+
+...

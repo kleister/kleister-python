@@ -1,5 +1,4 @@
 .gitignore
-.gitlab-ci.yml
 README.md
 docs/AuthApi.md
 docs/AuthLogin.md
@@ -96,10 +95,8 @@ kleister/model/version.py
 kleister/model/version_build_params.py
 kleister/model_utils.py
 kleister/models/__init__.py
-kleister/models/__init__.py
 kleister/rest.py
 requirements.txt
-setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py

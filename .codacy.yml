@@ -2,9 +2,9 @@
 exclude_paths:
   - .github/**
   - changelog/**
+  - hack/**
   - docs/**
 
   - CHANGELOG.md
-  - README.md
 
 ...

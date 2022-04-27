@@ -19,6 +19,7 @@ Assign a build to a Forge version
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -28,7 +29,8 @@ from kleister.model.build import Build
 from kleister.model.forge_build_params import ForgeBuildParams
 from kleister.model.validation_error import ValidationError
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -76,6 +78,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A collection of assigned builds |  -  |
@@ -93,6 +96,7 @@ Unlink a build from a Forge version
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -102,7 +106,8 @@ from kleister.model.build import Build
 from kleister.model.forge_build_params import ForgeBuildParams
 from kleister.model.validation_error import ValidationError
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -150,6 +155,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A collection of assigned builds |  -  |
@@ -167,6 +173,7 @@ Fetch the builds assigned to a Forge version
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -174,7 +181,8 @@ from kleister.api import forge_api
 from kleister.model.general_error import GeneralError
 from kleister.model.build import Build
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -217,6 +225,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A collection of assigned builds |  -  |
@@ -232,6 +241,7 @@ Fetch the available Forge versions
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -239,7 +249,8 @@ from kleister.api import forge_api
 from kleister.model.general_error import GeneralError
 from kleister.model.forge import Forge
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -278,6 +289,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A collection of Forge versions |  -  |
@@ -293,6 +305,7 @@ Search for available Forge versions
 
 ### Example
 
+
 ```python
 import time
 import kleister
@@ -300,7 +313,8 @@ from kleister.api import forge_api
 from kleister.model.general_error import GeneralError
 from kleister.model.forge import Forge
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -343,6 +357,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A collection of Forge versions |  -  |
@@ -358,13 +373,15 @@ Update the available Forge versions
 
 ### Example
 
+
 ```python
 import time
 import kleister
 from kleister.api import forge_api
 from kleister.model.general_error import GeneralError
 from pprint import pprint
-
+# Defining the host is optional and defaults to http://try.kleister.tech/api/v1
+# See configuration.py for a list of all supported configuration parameters.
 configuration = kleister.Configuration(
     host = "http://try.kleister.tech/api/v1"
 )
@@ -403,6 +420,7 @@ No authorization required
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |

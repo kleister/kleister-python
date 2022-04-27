@@ -1,4 +1,4 @@
+setup.cfg
+git_push.sh
 .gitlab-ci.yml
 .travis.yml
-git_push.sh
-setup.cfg

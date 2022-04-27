@@ -6,18 +6,21 @@ from pprint import pprint
 {{#apiInfo}}
 {{#apis}}
 {{#-first}}
-from {{apiPackage}} import {{classVarName}}
+from {{apiPackage}} import {{classFilename}}
 {{#imports}}
 {{{import}}}
 {{/imports}}
 {{#operations}}
 {{#operation}}
 {{#-first}}
+
 {{> python_doc_auth_partial}}
 
 with {{{packageName}}}.ApiClient(configuration) as api_client:
-    api_instance = {{classVarName}}.{{{classname}}}(api_client)
-    {{#allParams}}{{paramName}} = {{{example}}} # {{{dataType}}} | {{{description}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
+    # Create an instance of the API class
+    api_instance = {{classFilename}}.{{{classname}}}(api_client)
+    {{#allParams}}
+    {{paramName}} = {{{example}}} # {{{dataType}}} | {{{description}}}{{^required}} (optional){{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
     {{/allParams}}
 
     try:
@@ -38,48 +41,44 @@ with {{{packageName}}}.ApiClient(configuration) as api_client:
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{#summary}}{{summary}}{{/summary}}
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{summary}}
 {{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
-
 ## Documentation for models
 
-{{#models}}{{#model}} - [{{{classname}}}]({{modelDocPath}}{{{classname}}}.md)
+{{#models}}{{#model}}-   [{{{classname}}}]({{modelDocPath}}{{{classname}}}.md)
 {{/model}}{{/models}}
-
 ## Documentation for authorization
-
 {{^authMethods}}
  All endpoints do not require authorization.
 {{/authMethods}}
 {{#authMethods}}
 {{#last}} Authentication schemes defined for the API:{{/last}}
-## {{{name}}}
+### {{{name}}}
 
 {{#isApiKey}}
-- **Type**: API key
-- **API key parameter name**: {{{keyParamName}}}
-- **Location**: {{#isKeyInQuery}}URL query string{{/isKeyInQuery}}{{#isKeyInHeader}}HTTP header{{/isKeyInHeader}}
+-   **Type**: API key
+-   **API key parameter name**: {{{keyParamName}}}
+-   **Location**: {{#isKeyInQuery}}URL query string{{/isKeyInQuery}}{{#isKeyInHeader}}HTTP header{{/isKeyInHeader}}
 {{/isApiKey}}
 {{#isBasic}}
 {{#isBasicBasic}}
-- **Type**: HTTP basic authentication
+-   **Type**: HTTP basic authentication
 {{/isBasicBasic}}
 {{#isBasicBearer}}
-- **Type**: Bearer authentication{{#bearerFormat}} ({{{.}}}){{/bearerFormat}}
+-   **Type**: Bearer authentication{{#bearerFormat}} ({{{.}}}){{/bearerFormat}}
 {{/isBasicBearer}}
 {{#isHttpSignature}}
-- **Type**: HTTP signature authentication
+-   **Type**: HTTP signature authentication
 {{/isHttpSignature}}
 {{/isBasic}}
 {{#isOAuth}}
-- **Type**: OAuth
-- **Flow**: {{{flow}}}
-- **Authorization URL**: {{{authorizationUrl}}}
-- **Scopes**: {{^scopes}}N/A{{/scopes}}
-{{#scopes}} - **{{{scope}}}**: {{{description}}}
+-   **Type**: OAuth
+-   **Flow**: {{{flow}}}
+-   **Authorization URL**: {{{authorizationUrl}}}
+-   **Scopes**: {{^scopes}}N/A{{/scopes}}
+{{#scopes}}-   **{{{scope}}}**: {{{description}}}
 {{/scopes}}
 {{/isOAuth}}
-
 {{/authMethods}}
 
 ## Security

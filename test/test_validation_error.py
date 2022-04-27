@@ -13,8 +13,7 @@ import unittest
 
 import kleister
 from kleister.model.validation_error_errors import ValidationErrorErrors
-
-globals()["ValidationErrorErrors"] = ValidationErrorErrors
+globals()['ValidationErrorErrors'] = ValidationErrorErrors
 from kleister.model.validation_error import ValidationError
 
 
@@ -34,5 +33,5 @@ class TestValidationError(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

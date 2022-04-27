@@ -19,7 +19,7 @@ from kleister.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types,
+    validate_and_convert_types
 )
 from kleister.model.general_error import GeneralError
 from kleister.model.team_user import TeamUser
@@ -43,1612 +43,2245 @@ class UserApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-
-        def __append_user_to_mod(self, user_id, user_mod, **kwargs):
-            """Assign a mod to user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.append_user_to_mod(user_id, user_mod, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-                user_mod (UserModParams): The user mod data to assign
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            kwargs["user_mod"] = user_mod
-            return self.call_with_http_info(**kwargs)
-
-        self.append_user_to_mod = _Endpoint(
+        self.append_user_to_mod_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/mods",
-                "operation_id": "append_user_to_mod",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/mods',
+                'operation_id': 'append_user_to_mod',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
-                    "user_mod",
+                'all': [
+                    'user_id',
+                    'user_mod',
                 ],
-                "required": [
-                    "user_id",
-                    "user_mod",
+                'required': [
+                    'user_id',
+                    'user_mod',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
-                    "user_mod": (UserModParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
-                    "user_mod": "body",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
+                    'user_mod':
+                        (UserModParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                    'user_mod': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__append_user_to_mod,
+            api_client=api_client
         )
-
-        def __append_user_to_pack(self, user_id, user_pack, **kwargs):
-            """Assign a pack to user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.append_user_to_pack(user_id, user_pack, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-                user_pack (UserPackParams): The user pack data to assign
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            kwargs["user_pack"] = user_pack
-            return self.call_with_http_info(**kwargs)
-
-        self.append_user_to_pack = _Endpoint(
+        self.append_user_to_pack_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/packs",
-                "operation_id": "append_user_to_pack",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/packs',
+                'operation_id': 'append_user_to_pack',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
-                    "user_pack",
+                'all': [
+                    'user_id',
+                    'user_pack',
                 ],
-                "required": [
-                    "user_id",
-                    "user_pack",
+                'required': [
+                    'user_id',
+                    'user_pack',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
-                    "user_pack": (UserPackParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
-                    "user_pack": "body",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
+                    'user_pack':
+                        (UserPackParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                    'user_pack': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__append_user_to_pack,
+            api_client=api_client
         )
-
-        def __append_user_to_team(self, user_id, user_team, **kwargs):
-            """Assign a team to user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.append_user_to_team(user_id, user_team, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-                user_team (UserTeamParams): The user team data to assign
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            kwargs["user_team"] = user_team
-            return self.call_with_http_info(**kwargs)
-
-        self.append_user_to_team = _Endpoint(
+        self.append_user_to_team_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/teams",
-                "operation_id": "append_user_to_team",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/teams',
+                'operation_id': 'append_user_to_team',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
-                    "user_team",
+                'all': [
+                    'user_id',
+                    'user_team',
                 ],
-                "required": [
-                    "user_id",
-                    "user_team",
+                'required': [
+                    'user_id',
+                    'user_team',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
-                    "user_team": (UserTeamParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
-                    "user_team": "body",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
+                    'user_team':
+                        (UserTeamParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                    'user_team': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__append_user_to_team,
+            api_client=api_client
         )
-
-        def __create_user(self, user, **kwargs):
-            """Create a new user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.create_user(user, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user (User): The user data to create
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                User
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user"] = user
-            return self.call_with_http_info(**kwargs)
-
-        self.create_user = _Endpoint(
+        self.create_user_endpoint = _Endpoint(
             settings={
-                "response_type": (User,),
-                "auth": [],
-                "endpoint_path": "/users",
-                "operation_id": "create_user",
-                "http_method": "POST",
-                "servers": None,
+                'response_type': (User,),
+                'auth': [],
+                'endpoint_path': '/users',
+                'operation_id': 'create_user',
+                'http_method': 'POST',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user",
+                'all': [
+                    'user',
                 ],
-                "required": [
-                    "user",
+                'required': [
+                    'user',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user": (User,),
+                'validations': {
                 },
-                "attribute_map": {},
-                "location_map": {
-                    "user": "body",
+                'allowed_values': {
                 },
-                "collection_format_map": {},
+                'openapi_types': {
+                    'user':
+                        (User,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'user': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__create_user,
+            api_client=api_client
         )
-
-        def __delete_user(self, user_id, **kwargs):
-            """Delete a specific user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_user(user_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_user = _Endpoint(
+        self.delete_user_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}",
-                "operation_id": "delete_user",
-                "http_method": "DELETE",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}',
+                'operation_id': 'delete_user',
+                'http_method': 'DELETE',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
+                'all': [
+                    'user_id',
                 ],
-                "required": [
-                    "user_id",
+                'required': [
+                    'user_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__delete_user,
+            api_client=api_client
         )
-
-        def __delete_user_from_mod(self, user_id, user_mod, **kwargs):
-            """Remove a mod from user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_user_from_mod(user_id, user_mod, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-                user_mod (UserModParams): The user mod data to delete
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            kwargs["user_mod"] = user_mod
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_user_from_mod = _Endpoint(
+        self.delete_user_from_mod_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/mods",
-                "operation_id": "delete_user_from_mod",
-                "http_method": "DELETE",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/mods',
+                'operation_id': 'delete_user_from_mod',
+                'http_method': 'DELETE',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
-                    "user_mod",
+                'all': [
+                    'user_id',
+                    'user_mod',
                 ],
-                "required": [
-                    "user_id",
-                    "user_mod",
+                'required': [
+                    'user_id',
+                    'user_mod',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
-                    "user_mod": (UserModParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
-                    "user_mod": "body",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
+                    'user_mod':
+                        (UserModParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                    'user_mod': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__delete_user_from_mod,
+            api_client=api_client
         )
-
-        def __delete_user_from_pack(self, user_id, user_pack, **kwargs):
-            """Remove a pack from user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_user_from_pack(user_id, user_pack, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-                user_pack (UserPackParams): The user pack data to delete
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            kwargs["user_pack"] = user_pack
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_user_from_pack = _Endpoint(
+        self.delete_user_from_pack_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/packs",
-                "operation_id": "delete_user_from_pack",
-                "http_method": "DELETE",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/packs',
+                'operation_id': 'delete_user_from_pack',
+                'http_method': 'DELETE',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
-                    "user_pack",
+                'all': [
+                    'user_id',
+                    'user_pack',
                 ],
-                "required": [
-                    "user_id",
-                    "user_pack",
+                'required': [
+                    'user_id',
+                    'user_pack',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
-                    "user_pack": (UserPackParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
-                    "user_pack": "body",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
+                    'user_pack':
+                        (UserPackParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                    'user_pack': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__delete_user_from_pack,
+            api_client=api_client
         )
-
-        def __delete_user_from_team(self, user_id, user_team, **kwargs):
-            """Remove a team from user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_user_from_team(user_id, user_team, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-                user_team (UserTeamParams): The user team data to delete
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            kwargs["user_team"] = user_team
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_user_from_team = _Endpoint(
+        self.delete_user_from_team_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/teams",
-                "operation_id": "delete_user_from_team",
-                "http_method": "DELETE",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/teams',
+                'operation_id': 'delete_user_from_team',
+                'http_method': 'DELETE',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
-                    "user_team",
+                'all': [
+                    'user_id',
+                    'user_team',
                 ],
-                "required": [
-                    "user_id",
-                    "user_team",
+                'required': [
+                    'user_id',
+                    'user_team',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
-                    "user_team": (UserTeamParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
-                    "user_team": "body",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
+                    'user_team':
+                        (UserTeamParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                    'user_team': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__delete_user_from_team,
+            api_client=api_client
         )
-
-        def __list_user_mods(self, user_id, **kwargs):
-            """Fetch all mods assigned to user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.list_user_mods(user_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [UserMod]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            return self.call_with_http_info(**kwargs)
-
-        self.list_user_mods = _Endpoint(
+        self.list_user_mods_endpoint = _Endpoint(
             settings={
-                "response_type": ([UserMod],),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/mods",
-                "operation_id": "list_user_mods",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': ([UserMod],),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/mods',
+                'operation_id': 'list_user_mods',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
+                'all': [
+                    'user_id',
                 ],
-                "required": [
-                    "user_id",
+                'required': [
+                    'user_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__list_user_mods,
+            api_client=api_client
         )
-
-        def __list_user_packs(self, user_id, **kwargs):
-            """Fetch all packs assigned to user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.list_user_packs(user_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [UserPack]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            return self.call_with_http_info(**kwargs)
-
-        self.list_user_packs = _Endpoint(
+        self.list_user_packs_endpoint = _Endpoint(
             settings={
-                "response_type": ([UserPack],),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/packs",
-                "operation_id": "list_user_packs",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': ([UserPack],),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/packs',
+                'operation_id': 'list_user_packs',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
+                'all': [
+                    'user_id',
                 ],
-                "required": [
-                    "user_id",
+                'required': [
+                    'user_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__list_user_packs,
+            api_client=api_client
         )
-
-        def __list_user_teams(self, user_id, **kwargs):
-            """Fetch all teams assigned to user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.list_user_teams(user_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [TeamUser]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            return self.call_with_http_info(**kwargs)
-
-        self.list_user_teams = _Endpoint(
+        self.list_user_teams_endpoint = _Endpoint(
             settings={
-                "response_type": ([TeamUser],),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/teams",
-                "operation_id": "list_user_teams",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': ([TeamUser],),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/teams',
+                'operation_id': 'list_user_teams',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
+                'all': [
+                    'user_id',
                 ],
-                "required": [
-                    "user_id",
+                'required': [
+                    'user_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__list_user_teams,
+            api_client=api_client
         )
-
-        def __list_users(self, **kwargs):
-            """Fetch all available users  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.list_users(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [User]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            return self.call_with_http_info(**kwargs)
-
-        self.list_users = _Endpoint(
+        self.list_users_endpoint = _Endpoint(
             settings={
-                "response_type": ([User],),
-                "auth": [],
-                "endpoint_path": "/users",
-                "operation_id": "list_users",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': ([User],),
+                'auth': [],
+                'endpoint_path': '/users',
+                'operation_id': 'list_users',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [],
-                "required": [],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {},
-                "attribute_map": {},
-                "location_map": {},
-                "collection_format_map": {},
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__list_users,
+            api_client=api_client
         )
-
-        def __permit_user_mod(self, user_id, user_mod, **kwargs):
-            """Update mod perms for user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.permit_user_mod(user_id, user_mod, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-                user_mod (UserModParams): The user mod data to update
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            kwargs["user_mod"] = user_mod
-            return self.call_with_http_info(**kwargs)
-
-        self.permit_user_mod = _Endpoint(
+        self.permit_user_mod_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/mods",
-                "operation_id": "permit_user_mod",
-                "http_method": "PUT",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/mods',
+                'operation_id': 'permit_user_mod',
+                'http_method': 'PUT',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
-                    "user_mod",
+                'all': [
+                    'user_id',
+                    'user_mod',
                 ],
-                "required": [
-                    "user_id",
-                    "user_mod",
+                'required': [
+                    'user_id',
+                    'user_mod',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
-                    "user_mod": (UserModParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
-                    "user_mod": "body",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
+                    'user_mod':
+                        (UserModParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                    'user_mod': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__permit_user_mod,
+            api_client=api_client
         )
-
-        def __permit_user_pack(self, user_id, user_pack, **kwargs):
-            """Update pack perms for user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.permit_user_pack(user_id, user_pack, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-                user_pack (UserPackParams): The user pack data to update
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            kwargs["user_pack"] = user_pack
-            return self.call_with_http_info(**kwargs)
-
-        self.permit_user_pack = _Endpoint(
+        self.permit_user_pack_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/packs",
-                "operation_id": "permit_user_pack",
-                "http_method": "PUT",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/packs',
+                'operation_id': 'permit_user_pack',
+                'http_method': 'PUT',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
-                    "user_pack",
+                'all': [
+                    'user_id',
+                    'user_pack',
                 ],
-                "required": [
-                    "user_id",
-                    "user_pack",
+                'required': [
+                    'user_id',
+                    'user_pack',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
-                    "user_pack": (UserPackParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
-                    "user_pack": "body",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
+                    'user_pack':
+                        (UserPackParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                    'user_pack': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__permit_user_pack,
+            api_client=api_client
         )
-
-        def __permit_user_team(self, user_id, user_team, **kwargs):
-            """Update team perms for user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.permit_user_team(user_id, user_team, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-                user_team (UserTeamParams): The user team data to update
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GeneralError
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            kwargs["user_team"] = user_team
-            return self.call_with_http_info(**kwargs)
-
-        self.permit_user_team = _Endpoint(
+        self.permit_user_team_endpoint = _Endpoint(
             settings={
-                "response_type": (GeneralError,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}/teams",
-                "operation_id": "permit_user_team",
-                "http_method": "PUT",
-                "servers": None,
+                'response_type': (GeneralError,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}/teams',
+                'operation_id': 'permit_user_team',
+                'http_method': 'PUT',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
-                    "user_team",
+                'all': [
+                    'user_id',
+                    'user_team',
                 ],
-                "required": [
-                    "user_id",
-                    "user_team",
+                'required': [
+                    'user_id',
+                    'user_team',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
-                    "user_team": (UserTeamParams,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
-                    "user_team": "body",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
+                    'user_team':
+                        (UserTeamParams,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                    'user_team': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__permit_user_team,
+            api_client=api_client
         )
-
-        def __show_user(self, user_id, **kwargs):
-            """Fetch a specific user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.show_user(user_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                User
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            return self.call_with_http_info(**kwargs)
-
-        self.show_user = _Endpoint(
+        self.show_user_endpoint = _Endpoint(
             settings={
-                "response_type": (User,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}",
-                "operation_id": "show_user",
-                "http_method": "GET",
-                "servers": None,
+                'response_type': (User,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}',
+                'operation_id': 'show_user',
+                'http_method': 'GET',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
+                'all': [
+                    'user_id',
                 ],
-                "required": [
-                    "user_id",
+                'required': [
+                    'user_id',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": [],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
             },
-            api_client=api_client,
-            callable=__show_user,
+            api_client=api_client
         )
-
-        def __update_user(self, user_id, user, **kwargs):
-            """Update a specific user  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.update_user(user_id, user, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                user_id (str): A user UUID or slug
-                user (User): The user data to update
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                User
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs["async_req"] = kwargs.get("async_req", False)
-            kwargs["_return_http_data_only"] = kwargs.get(
-                "_return_http_data_only", True
-            )
-            kwargs["_preload_content"] = kwargs.get("_preload_content", True)
-            kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
-            kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
-            kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
-            kwargs["_host_index"] = kwargs.get("_host_index")
-            kwargs["user_id"] = user_id
-            kwargs["user"] = user
-            return self.call_with_http_info(**kwargs)
-
-        self.update_user = _Endpoint(
+        self.update_user_endpoint = _Endpoint(
             settings={
-                "response_type": (User,),
-                "auth": [],
-                "endpoint_path": "/users/{user_id}",
-                "operation_id": "update_user",
-                "http_method": "PUT",
-                "servers": None,
+                'response_type': (User,),
+                'auth': [],
+                'endpoint_path': '/users/{user_id}',
+                'operation_id': 'update_user',
+                'http_method': 'PUT',
+                'servers': None,
             },
             params_map={
-                "all": [
-                    "user_id",
-                    "user",
+                'all': [
+                    'user_id',
+                    'user',
                 ],
-                "required": [
-                    "user_id",
-                    "user",
+                'required': [
+                    'user_id',
+                    'user',
                 ],
-                "nullable": [],
-                "enum": [],
-                "validation": [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
             },
             root_map={
-                "validations": {},
-                "allowed_values": {},
-                "openapi_types": {
-                    "user_id": (str,),
-                    "user": (User,),
+                'validations': {
                 },
-                "attribute_map": {
-                    "user_id": "user_id",
+                'allowed_values': {
                 },
-                "location_map": {
-                    "user_id": "path",
-                    "user": "body",
+                'openapi_types': {
+                    'user_id':
+                        (str,),
+                    'user':
+                        (User,),
                 },
-                "collection_format_map": {},
+                'attribute_map': {
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'user_id': 'path',
+                    'user': 'body',
+                },
+                'collection_format_map': {
+                }
             },
             headers_map={
-                "accept": ["application/json"],
-                "content_type": ["application/json"],
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
-            api_client=api_client,
-            callable=__update_user,
+            api_client=api_client
         )
+
+    def append_user_to_mod(
+        self,
+        user_id,
+        user_mod,
+        **kwargs
+    ):
+        """Assign a mod to user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.append_user_to_mod(user_id, user_mod, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+            user_mod (UserModParams): The user mod data to assign
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        kwargs['user_mod'] = \
+            user_mod
+        return self.append_user_to_mod_endpoint.call_with_http_info(**kwargs)
+
+    def append_user_to_pack(
+        self,
+        user_id,
+        user_pack,
+        **kwargs
+    ):
+        """Assign a pack to user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.append_user_to_pack(user_id, user_pack, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+            user_pack (UserPackParams): The user pack data to assign
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        kwargs['user_pack'] = \
+            user_pack
+        return self.append_user_to_pack_endpoint.call_with_http_info(**kwargs)
+
+    def append_user_to_team(
+        self,
+        user_id,
+        user_team,
+        **kwargs
+    ):
+        """Assign a team to user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.append_user_to_team(user_id, user_team, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+            user_team (UserTeamParams): The user team data to assign
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        kwargs['user_team'] = \
+            user_team
+        return self.append_user_to_team_endpoint.call_with_http_info(**kwargs)
+
+    def create_user(
+        self,
+        user,
+        **kwargs
+    ):
+        """Create a new user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_user(user, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user (User): The user data to create
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            User
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user'] = \
+            user
+        return self.create_user_endpoint.call_with_http_info(**kwargs)
+
+    def delete_user(
+        self,
+        user_id,
+        **kwargs
+    ):
+        """Delete a specific user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_user(user_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        return self.delete_user_endpoint.call_with_http_info(**kwargs)
+
+    def delete_user_from_mod(
+        self,
+        user_id,
+        user_mod,
+        **kwargs
+    ):
+        """Remove a mod from user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_user_from_mod(user_id, user_mod, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+            user_mod (UserModParams): The user mod data to delete
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        kwargs['user_mod'] = \
+            user_mod
+        return self.delete_user_from_mod_endpoint.call_with_http_info(**kwargs)
+
+    def delete_user_from_pack(
+        self,
+        user_id,
+        user_pack,
+        **kwargs
+    ):
+        """Remove a pack from user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_user_from_pack(user_id, user_pack, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+            user_pack (UserPackParams): The user pack data to delete
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        kwargs['user_pack'] = \
+            user_pack
+        return self.delete_user_from_pack_endpoint.call_with_http_info(**kwargs)
+
+    def delete_user_from_team(
+        self,
+        user_id,
+        user_team,
+        **kwargs
+    ):
+        """Remove a team from user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_user_from_team(user_id, user_team, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+            user_team (UserTeamParams): The user team data to delete
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        kwargs['user_team'] = \
+            user_team
+        return self.delete_user_from_team_endpoint.call_with_http_info(**kwargs)
+
+    def list_user_mods(
+        self,
+        user_id,
+        **kwargs
+    ):
+        """Fetch all mods assigned to user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_user_mods(user_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [UserMod]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        return self.list_user_mods_endpoint.call_with_http_info(**kwargs)
+
+    def list_user_packs(
+        self,
+        user_id,
+        **kwargs
+    ):
+        """Fetch all packs assigned to user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_user_packs(user_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [UserPack]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        return self.list_user_packs_endpoint.call_with_http_info(**kwargs)
+
+    def list_user_teams(
+        self,
+        user_id,
+        **kwargs
+    ):
+        """Fetch all teams assigned to user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_user_teams(user_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [TeamUser]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        return self.list_user_teams_endpoint.call_with_http_info(**kwargs)
+
+    def list_users(
+        self,
+        **kwargs
+    ):
+        """Fetch all available users  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_users(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [User]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        return self.list_users_endpoint.call_with_http_info(**kwargs)
+
+    def permit_user_mod(
+        self,
+        user_id,
+        user_mod,
+        **kwargs
+    ):
+        """Update mod perms for user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.permit_user_mod(user_id, user_mod, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+            user_mod (UserModParams): The user mod data to update
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        kwargs['user_mod'] = \
+            user_mod
+        return self.permit_user_mod_endpoint.call_with_http_info(**kwargs)
+
+    def permit_user_pack(
+        self,
+        user_id,
+        user_pack,
+        **kwargs
+    ):
+        """Update pack perms for user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.permit_user_pack(user_id, user_pack, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+            user_pack (UserPackParams): The user pack data to update
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        kwargs['user_pack'] = \
+            user_pack
+        return self.permit_user_pack_endpoint.call_with_http_info(**kwargs)
+
+    def permit_user_team(
+        self,
+        user_id,
+        user_team,
+        **kwargs
+    ):
+        """Update team perms for user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.permit_user_team(user_id, user_team, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+            user_team (UserTeamParams): The user team data to update
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GeneralError
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        kwargs['user_team'] = \
+            user_team
+        return self.permit_user_team_endpoint.call_with_http_info(**kwargs)
+
+    def show_user(
+        self,
+        user_id,
+        **kwargs
+    ):
+        """Fetch a specific user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.show_user(user_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            User
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        return self.show_user_endpoint.call_with_http_info(**kwargs)
+
+    def update_user(
+        self,
+        user_id,
+        user,
+        **kwargs
+    ):
+        """Update a specific user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_user(user_id, user, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            user_id (str): A user UUID or slug
+            user (User): The user data to update
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            User
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user_id'] = \
+            user_id
+        kwargs['user'] = \
+            user
+        return self.update_user_endpoint.call_with_http_info(**kwargs)
+
