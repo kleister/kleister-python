@@ -3,7 +3,7 @@ repository:
   name: kleister-python
   description: "Kleister: SDK for Python"
   homepage: https://kleister.eu
-  topics: kleister, minecraft, sdk, openapi, python
+  topics: kleister, minecraft, sdk, client, grpc, python
 
   private: false
   has_issues: true
