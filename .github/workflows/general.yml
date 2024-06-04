@@ -15,7 +15,29 @@ jobs:
 
     steps:
       - name: Checkout source
-        id: source
         uses: actions/checkout@v4
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install generator
+        run: npm install @openapitools/openapi-generator-cli -g
+
+      - name: Run generate
+        run: bash hack/generate-client.sh
+
+      - name: Install requirements
+        run: pip install poetry -qq
+
+      - name: Run install
+        run: poetry install
+
+      - name: Run test
+        run: poetry run pytest
+
+      - name: Run build
+        run: poetry build
 
 ...
