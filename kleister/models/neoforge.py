@@ -30,10 +30,9 @@ class Neoforge(BaseModel):
     """ # noqa: E501
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
-    minecraft: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "name", "minecraft", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["id", "name", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,11 +84,6 @@ class Neoforge(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
-        # set to None if minecraft (nullable) is None
-        # and model_fields_set contains the field
-        if self.minecraft is None and "minecraft" in self.model_fields_set:
-            _dict['minecraft'] = None
-
         return _dict
 
     @classmethod
@@ -104,7 +98,6 @@ class Neoforge(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "minecraft": obj.get("minecraft"),
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at")
         })

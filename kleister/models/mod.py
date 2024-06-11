@@ -39,10 +39,7 @@ class Mod(BaseModel):
     public: Optional[StrictBool] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    versions: Optional[List[Version]] = None
-    users: Optional[List[UserMod]] = None
-    teams: Optional[List[TeamMod]] = None
-    __properties: ClassVar[List[str]] = ["id", "slug", "name", "side", "description", "author", "website", "donate", "public", "created_at", "updated_at", "versions", "users", "teams"]
+    __properties: ClassVar[List[str]] = ["id", "slug", "name", "side", "description", "author", "website", "donate", "public", "created_at", "updated_at"]
 
     @field_validator('side')
     def side_validate_enum(cls, value):
@@ -87,17 +84,11 @@ class Mod(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "created_at",
             "updated_at",
-            "versions",
-            "users",
-            "teams",
         ])
 
         _dict = self.model_dump(
@@ -105,27 +96,6 @@ class Mod(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in versions (list)
-        _items = []
-        if self.versions:
-            for _item in self.versions:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['versions'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in users (list)
-        _items = []
-        if self.users:
-            for _item in self.users:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['users'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in teams (list)
-        _items = []
-        if self.teams:
-            for _item in self.teams:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['teams'] = _items
         # set to None if slug (nullable) is None
         # and model_fields_set contains the field
         if self.slug is None and "slug" in self.model_fields_set:
@@ -166,21 +136,6 @@ class Mod(BaseModel):
         if self.public is None and "public" in self.model_fields_set:
             _dict['public'] = None
 
-        # set to None if versions (nullable) is None
-        # and model_fields_set contains the field
-        if self.versions is None and "versions" in self.model_fields_set:
-            _dict['versions'] = None
-
-        # set to None if users (nullable) is None
-        # and model_fields_set contains the field
-        if self.users is None and "users" in self.model_fields_set:
-            _dict['users'] = None
-
-        # set to None if teams (nullable) is None
-        # and model_fields_set contains the field
-        if self.teams is None and "teams" in self.model_fields_set:
-            _dict['teams'] = None
-
         return _dict
 
     @classmethod
@@ -203,16 +158,8 @@ class Mod(BaseModel):
             "donate": obj.get("donate"),
             "public": obj.get("public"),
             "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at"),
-            "versions": [Version.from_dict(_item) for _item in obj["versions"]] if obj.get("versions") is not None else None,
-            "users": [UserMod.from_dict(_item) for _item in obj["users"]] if obj.get("users") is not None else None,
-            "teams": [TeamMod.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None
+            "updated_at": obj.get("updated_at")
         })
         return _obj
 
-from kleister.models.team_mod import TeamMod
-from kleister.models.user_mod import UserMod
-from kleister.models.version import Version
-# TODO: Rewrite to not use raise_errors
-Mod.model_rebuild(raise_errors=False)
 

@@ -21,6 +21,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from kleister.models.mod import Mod
+from kleister.models.team import Team
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -118,8 +120,4 @@ class TeamMod(BaseModel):
         })
         return _obj
 
-from kleister.models.mod import Mod
-from kleister.models.team import Team
-# TODO: Rewrite to not use raise_errors
-TeamMod.model_rebuild(raise_errors=False)
 

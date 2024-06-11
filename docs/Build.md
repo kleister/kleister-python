@@ -7,7 +7,6 @@ Model to represent build
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] [readonly] 
-**pack_id** | **str** |  | [optional] 
 **pack** | [**Pack**](Pack.md) |  | [optional] 
 **minecraft_id** | **str** |  | [optional] 
 **minecraft** | [**Minecraft**](Minecraft.md) |  | [optional] 
@@ -23,10 +22,11 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **java** | **str** |  | [optional] 
 **memory** | **str** |  | [optional] 
+**latest** | **bool** |  | [optional] 
+**recommended** | **bool** |  | [optional] 
 **public** | **bool** |  | [optional] 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
-**versions** | [**List[BuildVersion]**](BuildVersion.md) |  | [optional] [readonly] 
 
 ## Example
 

@@ -917,7 +917,7 @@ with kleister.ApiClient(configuration) as api_client:
     api_instance = kleister.TeamApi(api_client)
     team_id = 'team_id_example' # str | A team identifier or slug
     search = 'search_example' # str | Search query (optional)
-    sort = 'modname' # str | Sorting column (optional) (default to 'modname')
+    sort = 'name' # str | Sorting column (optional) (default to 'name')
     order = 'asc' # str | Sorting order (optional) (default to 'asc')
     limit = 100 # int | Paging limit (optional) (default to 100)
     offset = 0 # int | Paging offset (optional) (default to 0)
@@ -940,7 +940,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team identifier or slug | 
  **search** | **str**| Search query | [optional] 
- **sort** | **str**| Sorting column | [optional] [default to &#39;modname&#39;]
+ **sort** | **str**| Sorting column | [optional] [default to &#39;name&#39;]
  **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
  **limit** | **int**| Paging limit | [optional] [default to 100]
  **offset** | **int**| Paging offset | [optional] [default to 0]
@@ -1028,7 +1028,7 @@ with kleister.ApiClient(configuration) as api_client:
     api_instance = kleister.TeamApi(api_client)
     team_id = 'team_id_example' # str | A team identifier or slug
     search = 'search_example' # str | Search query (optional)
-    sort = 'packname' # str | Sorting column (optional) (default to 'packname')
+    sort = 'name' # str | Sorting column (optional) (default to 'name')
     order = 'asc' # str | Sorting order (optional) (default to 'asc')
     limit = 100 # int | Paging limit (optional) (default to 100)
     offset = 0 # int | Paging offset (optional) (default to 0)
@@ -1051,7 +1051,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| A team identifier or slug | 
  **search** | **str**| Search query | [optional] 
- **sort** | **str**| Sorting column | [optional] [default to &#39;packname&#39;]
+ **sort** | **str**| Sorting column | [optional] [default to &#39;name&#39;]
  **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
  **limit** | **int**| Paging limit | [optional] [default to 100]
  **offset** | **int**| Paging offset | [optional] [default to 0]

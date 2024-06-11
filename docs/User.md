@@ -17,9 +17,6 @@ Name | Type | Description | Notes
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 **auths** | [**List[UserAuth]**](UserAuth.md) |  | [optional] [readonly] 
-**teams** | [**List[UserTeam]**](UserTeam.md) |  | [optional] [readonly] 
-**packs** | [**List[UserPack]**](UserPack.md) |  | [optional] [readonly] 
-**mods** | [**List[UserMod]**](UserMod.md) |  | [optional] [readonly] 
 
 ## Example
 

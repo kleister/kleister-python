@@ -21,6 +21,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from kleister.models.mod import Mod
+from kleister.models.version_file import VersionFile
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,15 +32,13 @@ class Version(BaseModel):
     """ # noqa: E501
     id: Optional[StrictStr] = None
     file: Optional[VersionFile] = None
-    mod_id: Optional[StrictStr] = None
     mod: Optional[Mod] = None
     slug: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     public: Optional[StrictBool] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    builds: Optional[List[BuildVersion]] = None
-    __properties: ClassVar[List[str]] = ["id", "file", "mod_id", "mod", "slug", "name", "public", "created_at", "updated_at", "builds"]
+    __properties: ClassVar[List[str]] = ["id", "file", "mod", "slug", "name", "public", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,13 +73,11 @@ class Version(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "created_at",
             "updated_at",
-            "builds",
         ])
 
         _dict = self.model_dump(
@@ -93,13 +91,6 @@ class Version(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of mod
         if self.mod:
             _dict['mod'] = self.mod.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in builds (list)
-        _items = []
-        if self.builds:
-            for _item in self.builds:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['builds'] = _items
         # set to None if slug (nullable) is None
         # and model_fields_set contains the field
         if self.slug is None and "slug" in self.model_fields_set:
@@ -115,11 +106,6 @@ class Version(BaseModel):
         if self.public is None and "public" in self.model_fields_set:
             _dict['public'] = None
 
-        # set to None if builds (nullable) is None
-        # and model_fields_set contains the field
-        if self.builds is None and "builds" in self.model_fields_set:
-            _dict['builds'] = None
-
         return _dict
 
     @classmethod
@@ -134,20 +120,13 @@ class Version(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "file": VersionFile.from_dict(obj["file"]) if obj.get("file") is not None else None,
-            "mod_id": obj.get("mod_id"),
             "mod": Mod.from_dict(obj["mod"]) if obj.get("mod") is not None else None,
             "slug": obj.get("slug"),
             "name": obj.get("name"),
             "public": obj.get("public"),
             "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at"),
-            "builds": [BuildVersion.from_dict(_item) for _item in obj["builds"]] if obj.get("builds") is not None else None
+            "updated_at": obj.get("updated_at")
         })
         return _obj
 
-from kleister.models.build_version import BuildVersion
-from kleister.models.mod import Mod
-from kleister.models.version_file import VersionFile
-# TODO: Rewrite to not use raise_errors
-Version.model_rebuild(raise_errors=False)
 

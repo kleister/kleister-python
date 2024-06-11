@@ -27,7 +27,6 @@ from kleister.models.mod_user_params import ModUserParams
 from kleister.models.mod_users import ModUsers
 from kleister.models.mods import Mods
 from kleister.models.notification import Notification
-from kleister.models.user import User
 from kleister.models.version import Version
 from kleister.models.version_build_params import VersionBuildParams
 from kleister.models.version_builds import VersionBuilds
@@ -985,7 +984,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> User:
+    ) -> Mod:
         """Create a new mod
 
 
@@ -1022,7 +1021,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "User",
+            '200': "Mod",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -1054,7 +1053,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[User]:
+    ) -> ApiResponse[Mod]:
         """Create a new mod
 
 
@@ -1091,7 +1090,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "User",
+            '200': "Mod",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -1160,7 +1159,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "User",
+            '200': "Mod",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",

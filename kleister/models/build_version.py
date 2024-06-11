@@ -21,6 +21,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from kleister.models.build import Build
+from kleister.models.version import Version
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -106,8 +108,4 @@ class BuildVersion(BaseModel):
         })
         return _obj
 
-from kleister.models.build import Build
-from kleister.models.version import Version
-# TODO: Rewrite to not use raise_errors
-BuildVersion.model_rebuild(raise_errors=False)
 

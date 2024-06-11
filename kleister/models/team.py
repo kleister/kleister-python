@@ -33,10 +33,7 @@ class Team(BaseModel):
     name: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    users: Optional[List[UserTeam]] = None
-    packs: Optional[List[TeamPack]] = None
-    mods: Optional[List[TeamMod]] = None
-    __properties: ClassVar[List[str]] = ["id", "slug", "name", "created_at", "updated_at", "users", "packs", "mods"]
+    __properties: ClassVar[List[str]] = ["id", "slug", "name", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,17 +68,11 @@ class Team(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "created_at",
             "updated_at",
-            "users",
-            "packs",
-            "mods",
         ])
 
         _dict = self.model_dump(
@@ -89,27 +80,6 @@ class Team(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in users (list)
-        _items = []
-        if self.users:
-            for _item in self.users:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['users'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in packs (list)
-        _items = []
-        if self.packs:
-            for _item in self.packs:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['packs'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in mods (list)
-        _items = []
-        if self.mods:
-            for _item in self.mods:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['mods'] = _items
         # set to None if slug (nullable) is None
         # and model_fields_set contains the field
         if self.slug is None and "slug" in self.model_fields_set:
@@ -119,21 +89,6 @@ class Team(BaseModel):
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
-
-        # set to None if users (nullable) is None
-        # and model_fields_set contains the field
-        if self.users is None and "users" in self.model_fields_set:
-            _dict['users'] = None
-
-        # set to None if packs (nullable) is None
-        # and model_fields_set contains the field
-        if self.packs is None and "packs" in self.model_fields_set:
-            _dict['packs'] = None
-
-        # set to None if mods (nullable) is None
-        # and model_fields_set contains the field
-        if self.mods is None and "mods" in self.model_fields_set:
-            _dict['mods'] = None
 
         return _dict
 
@@ -151,16 +106,8 @@ class Team(BaseModel):
             "slug": obj.get("slug"),
             "name": obj.get("name"),
             "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at"),
-            "users": [UserTeam.from_dict(_item) for _item in obj["users"]] if obj.get("users") is not None else None,
-            "packs": [TeamPack.from_dict(_item) for _item in obj["packs"]] if obj.get("packs") is not None else None,
-            "mods": [TeamMod.from_dict(_item) for _item in obj["mods"]] if obj.get("mods") is not None else None
+            "updated_at": obj.get("updated_at")
         })
         return _obj
 
-from kleister.models.team_mod import TeamMod
-from kleister.models.team_pack import TeamPack
-from kleister.models.user_team import UserTeam
-# TODO: Rewrite to not use raise_errors
-Team.model_rebuild(raise_errors=False)
 

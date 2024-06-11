@@ -17,9 +17,6 @@ Name | Type | Description | Notes
 **public** | **bool** |  | [optional] 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
-**versions** | [**List[Version]**](Version.md) |  | [optional] [readonly] 
-**users** | [**List[UserMod]**](UserMod.md) |  | [optional] [readonly] 
-**teams** | [**List[TeamMod]**](TeamMod.md) |  | [optional] [readonly] 
 
 ## Example
 

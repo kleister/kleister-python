@@ -10,19 +10,12 @@ Name | Type | Description | Notes
 **icon** | [**PackIcon**](PackIcon.md) |  | [optional] 
 **logo** | [**PackLogo**](PackLogo.md) |  | [optional] 
 **back** | [**PackBack**](PackBack.md) |  | [optional] 
-**recommended_id** | **str** |  | [optional] 
-**recommended** | [**Build**](Build.md) |  | [optional] 
-**latest_id** | **str** |  | [optional] 
-**latest** | [**Build**](Build.md) |  | [optional] 
 **slug** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **website** | **str** |  | [optional] 
 **public** | **bool** |  | [optional] 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
-**builds** | [**List[Build]**](Build.md) |  | [optional] [readonly] 
-**users** | [**List[UserPack]**](UserPack.md) |  | [optional] [readonly] 
-**teams** | [**List[TeamPack]**](TeamPack.md) |  | [optional] [readonly] 
 
 ## Example
 

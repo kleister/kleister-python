@@ -29,8 +29,6 @@ class PackBack(BaseModel):
     Model to represent pack background
     """ # noqa: E501
     id: Optional[StrictStr] = None
-    pack_id: Optional[StrictStr] = None
-    pack: Optional[Pack] = None
     slug: Optional[StrictStr] = None
     content_type: Optional[StrictStr] = None
     md5: Optional[StrictStr] = None
@@ -39,7 +37,7 @@ class PackBack(BaseModel):
     upload: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "pack_id", "pack", "slug", "content_type", "md5", "path", "url", "upload", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["id", "slug", "content_type", "md5", "path", "url", "upload", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,9 +84,6 @@ class PackBack(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of pack
-        if self.pack:
-            _dict['pack'] = self.pack.to_dict()
         # set to None if slug (nullable) is None
         # and model_fields_set contains the field
         if self.slug is None and "slug" in self.model_fields_set:
@@ -132,8 +127,6 @@ class PackBack(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "pack_id": obj.get("pack_id"),
-            "pack": Pack.from_dict(obj["pack"]) if obj.get("pack") is not None else None,
             "slug": obj.get("slug"),
             "content_type": obj.get("content_type"),
             "md5": obj.get("md5"),
@@ -145,7 +138,4 @@ class PackBack(BaseModel):
         })
         return _obj
 
-from kleister.models.pack import Pack
-# TODO: Rewrite to not use raise_errors
-PackBack.model_rebuild(raise_errors=False)
 

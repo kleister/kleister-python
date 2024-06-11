@@ -29,8 +29,6 @@ class VersionFile(BaseModel):
     Model to represent version file
     """ # noqa: E501
     id: Optional[StrictStr] = None
-    version_id: Optional[StrictStr] = None
-    version: Optional[Version] = None
     slug: Optional[StrictStr] = None
     content_type: Optional[StrictStr] = None
     md5: Optional[StrictStr] = None
@@ -39,7 +37,7 @@ class VersionFile(BaseModel):
     upload: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "version_id", "version", "slug", "content_type", "md5", "path", "url", "upload", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["id", "slug", "content_type", "md5", "path", "url", "upload", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,9 +84,6 @@ class VersionFile(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of version
-        if self.version:
-            _dict['version'] = self.version.to_dict()
         # set to None if slug (nullable) is None
         # and model_fields_set contains the field
         if self.slug is None and "slug" in self.model_fields_set:
@@ -132,8 +127,6 @@ class VersionFile(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "version_id": obj.get("version_id"),
-            "version": Version.from_dict(obj["version"]) if obj.get("version") is not None else None,
             "slug": obj.get("slug"),
             "content_type": obj.get("content_type"),
             "md5": obj.get("md5"),
@@ -145,7 +138,4 @@ class VersionFile(BaseModel):
         })
         return _obj
 
-from kleister.models.version import Version
-# TODO: Rewrite to not use raise_errors
-VersionFile.model_rebuild(raise_errors=False)
 

@@ -22,6 +22,7 @@ from typing import Optional
 from typing_extensions import Annotated
 from kleister.models.build import Build
 from kleister.models.build_version_params import BuildVersionParams
+from kleister.models.build_versions import BuildVersions
 from kleister.models.builds import Builds
 from kleister.models.notification import Notification
 from kleister.models.pack import Pack
@@ -30,7 +31,6 @@ from kleister.models.pack_teams import PackTeams
 from kleister.models.pack_user_params import PackUserParams
 from kleister.models.pack_users import PackUsers
 from kleister.models.packs import Packs
-from kleister.models.user_teams import UserTeams
 
 from kleister.api_client import ApiClient, RequestSerialized
 from kleister.api_response import ApiResponse
@@ -3032,7 +3032,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UserTeams:
+    ) -> BuildVersions:
         """Fetch all versions attached to build
 
 
@@ -3087,7 +3087,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UserTeams",
+            '200': "BuildVersions",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3125,7 +3125,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UserTeams]:
+    ) -> ApiResponse[BuildVersions]:
         """Fetch all versions attached to build
 
 
@@ -3180,7 +3180,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UserTeams",
+            '200': "BuildVersions",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3273,7 +3273,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UserTeams",
+            '200': "BuildVersions",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",

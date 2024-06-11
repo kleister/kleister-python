@@ -7,8 +7,6 @@ Model to represent pack icon
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] [readonly] 
-**pack_id** | **str** |  | [optional] 
-**pack** | [**Pack**](Pack.md) |  | [optional] 
 **slug** | **str** |  | [optional] 
 **content_type** | **str** |  | [optional] 
 **md5** | **str** |  | [optional] 

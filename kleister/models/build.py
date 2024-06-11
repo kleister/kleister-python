@@ -25,6 +25,7 @@ from kleister.models.fabric import Fabric
 from kleister.models.forge import Forge
 from kleister.models.minecraft import Minecraft
 from kleister.models.neoforge import Neoforge
+from kleister.models.pack import Pack
 from kleister.models.quilt import Quilt
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +35,6 @@ class Build(BaseModel):
     Model to represent build
     """ # noqa: E501
     id: Optional[StrictStr] = None
-    pack_id: Optional[StrictStr] = None
     pack: Optional[Pack] = None
     minecraft_id: Optional[StrictStr] = None
     minecraft: Optional[Minecraft] = None
@@ -50,11 +50,12 @@ class Build(BaseModel):
     name: Optional[StrictStr] = None
     java: Optional[StrictStr] = None
     memory: Optional[StrictStr] = None
+    latest: Optional[StrictBool] = None
+    recommended: Optional[StrictBool] = None
     public: Optional[StrictBool] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    versions: Optional[List[BuildVersion]] = None
-    __properties: ClassVar[List[str]] = ["id", "pack_id", "pack", "minecraft_id", "minecraft", "forge_id", "forge", "neoforge_id", "neoforge", "quilt_id", "quilt", "fabric_id", "fabric", "slug", "name", "java", "memory", "public", "created_at", "updated_at", "versions"]
+    __properties: ClassVar[List[str]] = ["id", "pack", "minecraft_id", "minecraft", "forge_id", "forge", "neoforge_id", "neoforge", "quilt_id", "quilt", "fabric_id", "fabric", "slug", "name", "java", "memory", "latest", "recommended", "public", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,13 +90,11 @@ class Build(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "created_at",
             "updated_at",
-            "versions",
         ])
 
         _dict = self.model_dump(
@@ -121,13 +120,6 @@ class Build(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of fabric
         if self.fabric:
             _dict['fabric'] = self.fabric.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in versions (list)
-        _items = []
-        if self.versions:
-            for _item in self.versions:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['versions'] = _items
         # set to None if minecraft_id (nullable) is None
         # and model_fields_set contains the field
         if self.minecraft_id is None and "minecraft_id" in self.model_fields_set:
@@ -173,15 +165,20 @@ class Build(BaseModel):
         if self.memory is None and "memory" in self.model_fields_set:
             _dict['memory'] = None
 
+        # set to None if latest (nullable) is None
+        # and model_fields_set contains the field
+        if self.latest is None and "latest" in self.model_fields_set:
+            _dict['latest'] = None
+
+        # set to None if recommended (nullable) is None
+        # and model_fields_set contains the field
+        if self.recommended is None and "recommended" in self.model_fields_set:
+            _dict['recommended'] = None
+
         # set to None if public (nullable) is None
         # and model_fields_set contains the field
         if self.public is None and "public" in self.model_fields_set:
             _dict['public'] = None
-
-        # set to None if versions (nullable) is None
-        # and model_fields_set contains the field
-        if self.versions is None and "versions" in self.model_fields_set:
-            _dict['versions'] = None
 
         return _dict
 
@@ -196,7 +193,6 @@ class Build(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "pack_id": obj.get("pack_id"),
             "pack": Pack.from_dict(obj["pack"]) if obj.get("pack") is not None else None,
             "minecraft_id": obj.get("minecraft_id"),
             "minecraft": Minecraft.from_dict(obj["minecraft"]) if obj.get("minecraft") is not None else None,
@@ -212,15 +208,12 @@ class Build(BaseModel):
             "name": obj.get("name"),
             "java": obj.get("java"),
             "memory": obj.get("memory"),
+            "latest": obj.get("latest"),
+            "recommended": obj.get("recommended"),
             "public": obj.get("public"),
             "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at"),
-            "versions": [BuildVersion.from_dict(_item) for _item in obj["versions"]] if obj.get("versions") is not None else None
+            "updated_at": obj.get("updated_at")
         })
         return _obj
 
-from kleister.models.build_version import BuildVersion
-from kleister.models.pack import Pack
-# TODO: Rewrite to not use raise_errors
-Build.model_rebuild(raise_errors=False)
 

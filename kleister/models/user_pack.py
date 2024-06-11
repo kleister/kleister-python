@@ -21,6 +21,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from kleister.models.pack import Pack
+from kleister.models.user import User
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -118,8 +120,4 @@ class UserPack(BaseModel):
         })
         return _obj
 
-from kleister.models.pack import Pack
-from kleister.models.user import User
-# TODO: Rewrite to not use raise_errors
-UserPack.model_rebuild(raise_errors=False)
 

@@ -21,6 +21,9 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from kleister.models.pack_back import PackBack
+from kleister.models.pack_icon import PackIcon
+from kleister.models.pack_logo import PackLogo
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,20 +35,13 @@ class Pack(BaseModel):
     icon: Optional[PackIcon] = None
     logo: Optional[PackLogo] = None
     back: Optional[PackBack] = None
-    recommended_id: Optional[StrictStr] = None
-    recommended: Optional[Build] = None
-    latest_id: Optional[StrictStr] = None
-    latest: Optional[Build] = None
     slug: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     website: Optional[StrictStr] = None
     public: Optional[StrictBool] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    builds: Optional[List[Build]] = None
-    users: Optional[List[UserPack]] = None
-    teams: Optional[List[TeamPack]] = None
-    __properties: ClassVar[List[str]] = ["id", "icon", "logo", "back", "recommended_id", "recommended", "latest_id", "latest", "slug", "name", "website", "public", "created_at", "updated_at", "builds", "users", "teams"]
+    __properties: ClassVar[List[str]] = ["id", "icon", "logo", "back", "slug", "name", "website", "public", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,17 +76,11 @@ class Pack(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "created_at",
             "updated_at",
-            "builds",
-            "users",
-            "teams",
         ])
 
         _dict = self.model_dump(
@@ -107,43 +97,6 @@ class Pack(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of back
         if self.back:
             _dict['back'] = self.back.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of recommended
-        if self.recommended:
-            _dict['recommended'] = self.recommended.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of latest
-        if self.latest:
-            _dict['latest'] = self.latest.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in builds (list)
-        _items = []
-        if self.builds:
-            for _item in self.builds:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['builds'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in users (list)
-        _items = []
-        if self.users:
-            for _item in self.users:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['users'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in teams (list)
-        _items = []
-        if self.teams:
-            for _item in self.teams:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['teams'] = _items
-        # set to None if recommended_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.recommended_id is None and "recommended_id" in self.model_fields_set:
-            _dict['recommended_id'] = None
-
-        # set to None if latest_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.latest_id is None and "latest_id" in self.model_fields_set:
-            _dict['latest_id'] = None
-
         # set to None if slug (nullable) is None
         # and model_fields_set contains the field
         if self.slug is None and "slug" in self.model_fields_set:
@@ -164,21 +117,6 @@ class Pack(BaseModel):
         if self.public is None and "public" in self.model_fields_set:
             _dict['public'] = None
 
-        # set to None if builds (nullable) is None
-        # and model_fields_set contains the field
-        if self.builds is None and "builds" in self.model_fields_set:
-            _dict['builds'] = None
-
-        # set to None if users (nullable) is None
-        # and model_fields_set contains the field
-        if self.users is None and "users" in self.model_fields_set:
-            _dict['users'] = None
-
-        # set to None if teams (nullable) is None
-        # and model_fields_set contains the field
-        if self.teams is None and "teams" in self.model_fields_set:
-            _dict['teams'] = None
-
         return _dict
 
     @classmethod
@@ -195,28 +133,13 @@ class Pack(BaseModel):
             "icon": PackIcon.from_dict(obj["icon"]) if obj.get("icon") is not None else None,
             "logo": PackLogo.from_dict(obj["logo"]) if obj.get("logo") is not None else None,
             "back": PackBack.from_dict(obj["back"]) if obj.get("back") is not None else None,
-            "recommended_id": obj.get("recommended_id"),
-            "recommended": Build.from_dict(obj["recommended"]) if obj.get("recommended") is not None else None,
-            "latest_id": obj.get("latest_id"),
-            "latest": Build.from_dict(obj["latest"]) if obj.get("latest") is not None else None,
             "slug": obj.get("slug"),
             "name": obj.get("name"),
             "website": obj.get("website"),
             "public": obj.get("public"),
             "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at"),
-            "builds": [Build.from_dict(_item) for _item in obj["builds"]] if obj.get("builds") is not None else None,
-            "users": [UserPack.from_dict(_item) for _item in obj["users"]] if obj.get("users") is not None else None,
-            "teams": [TeamPack.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None
+            "updated_at": obj.get("updated_at")
         })
         return _obj
 
-from kleister.models.build import Build
-from kleister.models.pack_back import PackBack
-from kleister.models.pack_icon import PackIcon
-from kleister.models.pack_logo import PackLogo
-from kleister.models.team_pack import TeamPack
-from kleister.models.user_pack import UserPack
-# TODO: Rewrite to not use raise_errors
-Pack.model_rebuild(raise_errors=False)
 

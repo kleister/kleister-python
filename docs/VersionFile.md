@@ -7,8 +7,6 @@ Model to represent version file
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] [readonly] 
-**version_id** | **str** |  | [optional] 
-**version** | [**Version**](Version.md) |  | [optional] 
 **slug** | **str** |  | [optional] 
 **content_type** | **str** |  | [optional] 
 **md5** | **str** |  | [optional] 

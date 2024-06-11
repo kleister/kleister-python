@@ -280,7 +280,7 @@ with kleister.ApiClient(configuration) as api_client:
     api_instance = kleister.MinecraftApi(api_client)
     minecraft_id = 'minecraft_id_example' # str | A minecraft identifier or slug
     search = 'search_example' # str | Search query (optional)
-    sort = 'name' # str | Sorting column (optional) (default to 'name')
+    sort = 'build_name' # str | Sorting column (optional) (default to 'build_name')
     order = 'asc' # str | Sorting order (optional) (default to 'asc')
     limit = 100 # int | Paging limit (optional) (default to 100)
     offset = 0 # int | Paging offset (optional) (default to 0)
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **minecraft_id** | **str**| A minecraft identifier or slug | 
  **search** | **str**| Search query | [optional] 
- **sort** | **str**| Sorting column | [optional] [default to &#39;name&#39;]
+ **sort** | **str**| Sorting column | [optional] [default to &#39;build_name&#39;]
  **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
  **limit** | **int**| Paging limit | [optional] [default to 100]
  **offset** | **int**| Paging offset | [optional] [default to 0]

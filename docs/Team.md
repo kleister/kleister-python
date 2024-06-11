@@ -11,9 +11,6 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
-**users** | [**List[UserTeam]**](UserTeam.md) |  | [optional] [readonly] 
-**packs** | [**List[TeamPack]**](TeamPack.md) |  | [optional] [readonly] 
-**mods** | [**List[TeamMod]**](TeamMod.md) |  | [optional] [readonly] 
 
 ## Example
 

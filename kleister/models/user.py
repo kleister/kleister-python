@@ -40,10 +40,7 @@ class User(BaseModel):
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
     auths: Optional[List[UserAuth]] = None
-    teams: Optional[List[UserTeam]] = None
-    packs: Optional[List[UserPack]] = None
-    mods: Optional[List[UserMod]] = None
-    __properties: ClassVar[List[str]] = ["id", "username", "password", "email", "fullname", "profile", "admin", "active", "created_at", "updated_at", "auths", "teams", "packs", "mods"]
+    __properties: ClassVar[List[str]] = ["id", "username", "password", "email", "fullname", "profile", "admin", "active", "created_at", "updated_at", "auths"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,18 +76,12 @@ class User(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "created_at",
             "updated_at",
             "auths",
-            "teams",
-            "packs",
-            "mods",
         ])
 
         _dict = self.model_dump(
@@ -105,27 +96,6 @@ class User(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['auths'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in teams (list)
-        _items = []
-        if self.teams:
-            for _item in self.teams:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['teams'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in packs (list)
-        _items = []
-        if self.packs:
-            for _item in self.packs:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['packs'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in mods (list)
-        _items = []
-        if self.mods:
-            for _item in self.mods:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['mods'] = _items
         # set to None if username (nullable) is None
         # and model_fields_set contains the field
         if self.username is None and "username" in self.model_fields_set:
@@ -166,21 +136,6 @@ class User(BaseModel):
         if self.auths is None and "auths" in self.model_fields_set:
             _dict['auths'] = None
 
-        # set to None if teams (nullable) is None
-        # and model_fields_set contains the field
-        if self.teams is None and "teams" in self.model_fields_set:
-            _dict['teams'] = None
-
-        # set to None if packs (nullable) is None
-        # and model_fields_set contains the field
-        if self.packs is None and "packs" in self.model_fields_set:
-            _dict['packs'] = None
-
-        # set to None if mods (nullable) is None
-        # and model_fields_set contains the field
-        if self.mods is None and "mods" in self.model_fields_set:
-            _dict['mods'] = None
-
         return _dict
 
     @classmethod
@@ -203,16 +158,8 @@ class User(BaseModel):
             "active": obj.get("active"),
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),
-            "auths": [UserAuth.from_dict(_item) for _item in obj["auths"]] if obj.get("auths") is not None else None,
-            "teams": [UserTeam.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None,
-            "packs": [UserPack.from_dict(_item) for _item in obj["packs"]] if obj.get("packs") is not None else None,
-            "mods": [UserMod.from_dict(_item) for _item in obj["mods"]] if obj.get("mods") is not None else None
+            "auths": [UserAuth.from_dict(_item) for _item in obj["auths"]] if obj.get("auths") is not None else None
         })
         return _obj
 
-from kleister.models.user_mod import UserMod
-from kleister.models.user_pack import UserPack
-from kleister.models.user_team import UserTeam
-# TODO: Rewrite to not use raise_errors
-User.model_rebuild(raise_errors=False)
 

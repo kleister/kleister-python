@@ -1076,7 +1076,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_build_versions**
-> UserTeams list_build_versions(pack_id, build_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> BuildVersions list_build_versions(pack_id, build_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all versions attached to build
 
@@ -1089,7 +1089,7 @@ Fetch all versions attached to build
 
 ```python
 import kleister
-from kleister.models.user_teams import UserTeams
+from kleister.models.build_versions import BuildVersions
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1165,7 +1165,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserTeams**](UserTeams.md)
+[**BuildVersions**](BuildVersions.md)
 
 ### Authorization
 

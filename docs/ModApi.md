@@ -348,7 +348,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_mod**
-> User create_mod(mod)
+> Mod create_mod(mod)
 
 Create a new mod
 
@@ -362,7 +362,6 @@ Create a new mod
 ```python
 import kleister
 from kleister.models.mod import Mod
-from kleister.models.user import User
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -426,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**User**](User.md)
+[**Mod**](Mod.md)
 
 ### Authorization
 
