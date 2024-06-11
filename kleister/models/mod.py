@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -40,16 +40,6 @@ class Mod(BaseModel):
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["id", "slug", "name", "side", "description", "author", "website", "donate", "public", "created_at", "updated_at"]
-
-    @field_validator('side')
-    def side_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['both', 'server', 'client']):
-            raise ValueError("must be one of enum values ('both', 'server', 'client')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
