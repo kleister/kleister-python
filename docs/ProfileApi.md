@@ -208,6 +208,10 @@ Update your own profile information
 
 ### Example
 
+* Api Key Authentication (Cookie):
+* Basic Authentication (Basic):
+* Api Key Authentication (Header):
+* Bearer Authentication (Bearer):
 
 ```python
 import kleister
@@ -221,6 +225,33 @@ configuration = kleister.Configuration(
     host = "https://try.kleister.eu/api/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Cookie
+configuration.api_key['Cookie'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Cookie'] = 'Bearer'
+
+# Configure HTTP basic authorization: Basic
+configuration = kleister.Configuration(
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
+)
+
+# Configure API key authorization: Header
+configuration.api_key['Header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Header'] = 'Bearer'
+
+# Configure Bearer authorization: Bearer
+configuration = kleister.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with kleister.ApiClient(configuration) as api_client:
@@ -252,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
