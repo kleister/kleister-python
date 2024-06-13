@@ -794,6 +794,10 @@ class ProfileApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'Cookie', 
+            'Basic', 
+            'Header', 
+            'Bearer'
         ]
 
         return self.api_client.param_serialize(
