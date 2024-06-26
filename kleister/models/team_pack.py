@@ -45,8 +45,8 @@ class TeamPack(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['team', 'admin', 'owner']):
-            raise ValueError("must be one of enum values ('team', 'admin', 'owner')")
+        if value not in set(['user', 'admin', 'owner']):
+            raise ValueError("must be one of enum values ('user', 'admin', 'owner')")
         return value
 
     model_config = ConfigDict(
