@@ -28,7 +28,7 @@ class TeamModParams(BaseModel):
     Parameters to attach or unlink team mod
     """ # noqa: E501
     mod: StrictStr
-    perm: Optional[StrictStr] = 'team'
+    perm: Optional[StrictStr] = 'user'
     __properties: ClassVar[List[str]] = ["mod", "perm"]
 
     @field_validator('perm')
@@ -93,7 +93,7 @@ class TeamModParams(BaseModel):
 
         _obj = cls.model_validate({
             "mod": obj.get("mod"),
-            "perm": obj.get("perm") if obj.get("perm") is not None else 'team'
+            "perm": obj.get("perm") if obj.get("perm") is not None else 'user'
         })
         return _obj
 

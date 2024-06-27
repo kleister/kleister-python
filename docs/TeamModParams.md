@@ -7,7 +7,7 @@ Parameters to attach or unlink team mod
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **mod** | **str** |  | 
-**perm** | **str** |  | [optional] [default to 'team']
+**perm** | **str** |  | [optional] [default to 'user']
 
 ## Example
 
