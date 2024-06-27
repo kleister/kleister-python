@@ -34,7 +34,7 @@ class TeamPack(BaseModel):
     team: Optional[Team] = None
     pack_id: StrictStr
     pack: Optional[Pack] = None
-    perm: Optional[StrictStr] = 'team'
+    perm: Optional[StrictStr] = 'user'
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["team_id", "team", "pack_id", "pack", "perm", "created_at", "updated_at"]
@@ -114,7 +114,7 @@ class TeamPack(BaseModel):
             "team": Team.from_dict(obj["team"]) if obj.get("team") is not None else None,
             "pack_id": obj.get("pack_id"),
             "pack": Pack.from_dict(obj["pack"]) if obj.get("pack") is not None else None,
-            "perm": obj.get("perm") if obj.get("perm") is not None else 'team',
+            "perm": obj.get("perm") if obj.get("perm") is not None else 'user',
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at")
         })

@@ -28,7 +28,7 @@ class TeamPackParams(BaseModel):
     Parameters to attach or unlink team pack
     """ # noqa: E501
     pack: StrictStr
-    perm: Optional[StrictStr] = 'team'
+    perm: Optional[StrictStr] = 'user'
     __properties: ClassVar[List[str]] = ["pack", "perm"]
 
     @field_validator('perm')
@@ -93,7 +93,7 @@ class TeamPackParams(BaseModel):
 
         _obj = cls.model_validate({
             "pack": obj.get("pack"),
-            "perm": obj.get("perm") if obj.get("perm") is not None else 'team'
+            "perm": obj.get("perm") if obj.get("perm") is not None else 'user'
         })
         return _obj
 

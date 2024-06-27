@@ -7,7 +7,7 @@ Parameters to attach or unlink team pack
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pack** | **str** |  | 
-**perm** | **str** |  | [optional] [default to 'team']
+**perm** | **str** |  | [optional] [default to 'user']
 
 ## Example
 

@@ -34,7 +34,7 @@ class TeamMod(BaseModel):
     team: Optional[Team] = None
     mod_id: StrictStr
     mod: Optional[Mod] = None
-    perm: Optional[StrictStr] = 'team'
+    perm: Optional[StrictStr] = 'user'
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["team_id", "team", "mod_id", "mod", "perm", "created_at", "updated_at"]
@@ -114,7 +114,7 @@ class TeamMod(BaseModel):
             "team": Team.from_dict(obj["team"]) if obj.get("team") is not None else None,
             "mod_id": obj.get("mod_id"),
             "mod": Mod.from_dict(obj["mod"]) if obj.get("mod") is not None else None,
-            "perm": obj.get("perm") if obj.get("perm") is not None else 'team',
+            "perm": obj.get("perm") if obj.get("perm") is not None else 'user',
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at")
         })

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **team** | [**Team**](Team.md) |  | [optional] 
 **pack_id** | **str** |  | 
 **pack** | [**Pack**](Pack.md) |  | [optional] 
-**perm** | **str** |  | [optional] [default to 'team']
+**perm** | **str** |  | [optional] [default to 'user']
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 
