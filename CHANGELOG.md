@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/kleister/kleister-python/compare/v1.1.0...v1.2.0) (2024-07-01)
+
+
+### Features
+
+* automated openapi client update ([7f6f0fd](https://github.com/kleister/kleister-python/commit/7f6f0fd47444e1b4f7a779a4bc6c5ff64b400ed6))
+
+
+### Bugfixes
+
+* use right values for perm enum ([1ac7cca](https://github.com/kleister/kleister-python/commit/1ac7ccaaa6855abda1a3d7b8370de48060058df4))
+
 ## [1.1.0](https://github.com/kleister/kleister-python/compare/v1.0.0...v1.1.0) (2024-06-17)
 
 
