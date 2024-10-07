@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/kleister/kleister-python/compare/v1.2.0...v1.3.0) (2024-10-07)
+
+
+### Features
+
+* upgrade all deps and raise python version to 3.9 ([9fa9d14](https://github.com/kleister/kleister-python/commit/9fa9d14ca529ae111f9ad85afe8dae3ed8594779))
+
+
+### Bugfixes
+
+* **deps:** update dependency build to v1.2.2.post1 ([e6ee56f](https://github.com/kleister/kleister-python/commit/e6ee56f410b585aa5c182d1ff2160409bf8a9584))
+
 ## [1.2.0](https://github.com/kleister/kleister-python/compare/v1.1.0...v1.2.0) (2024-07-01)
 
 
