@@ -56,6 +56,8 @@ from kleister.models.pack_user_params import PackUserParams
 from kleister.models.pack_users import PackUsers
 from kleister.models.packs import Packs
 from kleister.models.profile import Profile
+from kleister.models.provider import Provider
+from kleister.models.providers import Providers
 from kleister.models.quilt import Quilt
 from kleister.models.quilt_build_params import QuiltBuildParams
 from kleister.models.quilt_builds import QuiltBuilds
