@@ -49,6 +49,8 @@ docs/PackUsers.md
 docs/Packs.md
 docs/Profile.md
 docs/ProfileApi.md
+docs/Provider.md
+docs/Providers.md
 docs/Quilt.md
 docs/QuiltApi.md
 docs/QuiltBuildParams.md
@@ -143,6 +145,8 @@ kleister/models/pack_user_params.py
 kleister/models/pack_users.py
 kleister/models/packs.py
 kleister/models/profile.py
+kleister/models/provider.py
+kleister/models/providers.py
 kleister/models/quilt.py
 kleister/models/quilt_build_params.py
 kleister/models/quilt_builds.py
@@ -178,3 +182,5 @@ kleister/models/versions.py
 kleister/py.typed
 kleister/rest.py
 test/__init__.py
+test/test_provider.py
+test/test_providers.py
