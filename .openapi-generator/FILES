@@ -182,5 +182,3 @@ kleister/models/versions.py
 kleister/py.typed
 kleister/rest.py
 test/__init__.py
-test/test_provider.py
-test/test_providers.py
