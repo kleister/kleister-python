@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0](https://github.com/kleister/kleister-python/compare/v1.3.0...v1.4.0) (2024-10-25)
+
+
+### Features
+
+* automated openapi client update ([d5efca1](https://github.com/kleister/kleister-python/commit/d5efca18bf1c432b933529e3c95b1ff7bb5d2732))
+* automated openapi client update ([1eaa889](https://github.com/kleister/kleister-python/commit/1eaa88952903f39205aac728553d8cbde8487efe))
+
 ## [1.3.0](https://github.com/kleister/kleister-python/compare/v1.2.0...v1.3.0) (2024-10-07)
 
 
