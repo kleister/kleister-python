@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.1](https://github.com/kleister/kleister-python/compare/v1.5.0...v1.5.1) (2024-12-02)
+
+
+### Bugfixes
+
+* **deps:** update dependency pydantic to v2.10.2 ([#73](https://github.com/kleister/kleister-python/issues/73)) ([923134d](https://github.com/kleister/kleister-python/commit/923134d72573090e4fa555e08682561fa9c1e6fb))
+* **deps:** update dependency pytest to v8.3.4 ([#74](https://github.com/kleister/kleister-python/issues/74)) ([4c798b1](https://github.com/kleister/kleister-python/commit/4c798b18038d720a3a87e440a6816ef6d31bef33))
+
 ## [1.5.0](https://github.com/kleister/kleister-python/compare/v1.4.0...v1.5.0) (2024-11-25)
 
 
