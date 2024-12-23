@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.6.0](https://github.com/kleister/kleister-python/compare/v1.5.2...v1.6.0) (2024-12-23)
+
+
+### Features
+
+* **deps:** update dependency urllib3 to v2.3.0 ([#78](https://github.com/kleister/kleister-python/issues/78)) ([63a4b61](https://github.com/kleister/kleister-python/commit/63a4b61981eb0e48e333238a0b071c2000ea6898))
+
+
+### Bugfixes
+
+* **deps:** update dependency pydantic to v2.10.4 ([#77](https://github.com/kleister/kleister-python/issues/77)) ([8946d4e](https://github.com/kleister/kleister-python/commit/8946d4ec7444db1b5b5b21c372368ec54151c66f))
+
 ## [1.5.2](https://github.com/kleister/kleister-python/compare/v1.5.1...v1.5.2) (2024-12-09)
 
 
