@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.3](https://github.com/kleister/kleister-python/compare/v1.6.2...v1.6.3) (2025-03-03)
+
+
+### Bugfixes
+
+* **deps:** update dependency pytest to v8.3.5 ([#81](https://github.com/kleister/kleister-python/issues/81)) ([e52d43e](https://github.com/kleister/kleister-python/commit/e52d43ed94dd4ccc9af22ff74f500252066c183b))
+
 ## [1.6.2](https://github.com/kleister/kleister-python/compare/v1.6.1...v1.6.2) (2025-01-27)
 
 
