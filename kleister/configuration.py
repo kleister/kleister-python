@@ -419,15 +419,6 @@ conf = kleister.Configuration(
                 'key': 'Authorization',
                 'value': self.get_basic_auth_token()
             }
-        if 'Cookie' in self.api_key:
-            auth['Cookie'] = {
-                'type': 'api_key',
-                'in': 'header',
-                'key': 'Cookie',
-                'value': self.get_api_key_with_prefix(
-                    'Cookie',
-                ),
-            }
         return auth
 
     def to_debug_report(self):
