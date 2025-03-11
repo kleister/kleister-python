@@ -33,12 +33,11 @@ class Version(BaseModel):
     id: Optional[StrictStr] = None
     file: Optional[VersionFile] = None
     mod: Optional[Mod] = None
-    slug: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     public: Optional[StrictBool] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "file", "mod", "slug", "name", "public", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["id", "file", "mod", "name", "public", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,11 +90,6 @@ class Version(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of mod
         if self.mod:
             _dict['mod'] = self.mod.to_dict()
-        # set to None if slug (nullable) is None
-        # and model_fields_set contains the field
-        if self.slug is None and "slug" in self.model_fields_set:
-            _dict['slug'] = None
-
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -121,7 +115,6 @@ class Version(BaseModel):
             "id": obj.get("id"),
             "file": VersionFile.from_dict(obj["file"]) if obj.get("file") is not None else None,
             "mod": Mod.from_dict(obj["mod"]) if obj.get("mod") is not None else None,
-            "slug": obj.get("slug"),
             "name": obj.get("name"),
             "public": obj.get("public"),
             "created_at": obj.get("created_at"),

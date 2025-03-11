@@ -46,7 +46,6 @@ class Build(BaseModel):
     quilt: Optional[Quilt] = None
     fabric_id: Optional[StrictStr] = None
     fabric: Optional[Fabric] = None
-    slug: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     java: Optional[StrictStr] = None
     memory: Optional[StrictStr] = None
@@ -55,7 +54,7 @@ class Build(BaseModel):
     public: Optional[StrictBool] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "pack", "minecraft_id", "minecraft", "forge_id", "forge", "neoforge_id", "neoforge", "quilt_id", "quilt", "fabric_id", "fabric", "slug", "name", "java", "memory", "latest", "recommended", "public", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["id", "pack", "minecraft_id", "minecraft", "forge_id", "forge", "neoforge_id", "neoforge", "quilt_id", "quilt", "fabric_id", "fabric", "name", "java", "memory", "latest", "recommended", "public", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -145,11 +144,6 @@ class Build(BaseModel):
         if self.fabric_id is None and "fabric_id" in self.model_fields_set:
             _dict['fabric_id'] = None
 
-        # set to None if slug (nullable) is None
-        # and model_fields_set contains the field
-        if self.slug is None and "slug" in self.model_fields_set:
-            _dict['slug'] = None
-
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -204,7 +198,6 @@ class Build(BaseModel):
             "quilt": Quilt.from_dict(obj["quilt"]) if obj.get("quilt") is not None else None,
             "fabric_id": obj.get("fabric_id"),
             "fabric": Fabric.from_dict(obj["fabric"]) if obj.get("fabric") is not None else None,
-            "slug": obj.get("slug"),
             "name": obj.get("name"),
             "java": obj.get("java"),
             "memory": obj.get("memory"),
