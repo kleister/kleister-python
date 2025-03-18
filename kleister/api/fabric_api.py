@@ -20,9 +20,9 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
-from kleister.models.fabric_build_params import FabricBuildParams
-from kleister.models.fabric_builds import FabricBuilds
-from kleister.models.fabrics import Fabrics
+from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
+from kleister.models.list_fabric_builds200_response import ListFabricBuilds200Response
+from kleister.models.list_fabrics200_response import ListFabrics200Response
 from kleister.models.notification import Notification
 
 from kleister.api_client import ApiClient, RequestSerialized
@@ -47,7 +47,7 @@ class FabricApi:
     def attach_fabric_to_build(
         self,
         fabric_id: Annotated[StrictStr, Field(description="A fabric identifier or slug")],
-        fabric_build_params: Annotated[FabricBuildParams, Field(description="The build data to attach")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The fabric build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -66,8 +66,8 @@ class FabricApi:
 
         :param fabric_id: A fabric identifier or slug (required)
         :type fabric_id: str
-        :param fabric_build_params: The build data to attach (required)
-        :type fabric_build_params: FabricBuildParams
+        :param attach_minecraft_to_build_request: The fabric build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -92,7 +92,7 @@ class FabricApi:
 
         _param = self._attach_fabric_to_build_serialize(
             fabric_id=fabric_id,
-            fabric_build_params=fabric_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -101,6 +101,7 @@ class FabricApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -122,7 +123,7 @@ class FabricApi:
     def attach_fabric_to_build_with_http_info(
         self,
         fabric_id: Annotated[StrictStr, Field(description="A fabric identifier or slug")],
-        fabric_build_params: Annotated[FabricBuildParams, Field(description="The build data to attach")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The fabric build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -141,8 +142,8 @@ class FabricApi:
 
         :param fabric_id: A fabric identifier or slug (required)
         :type fabric_id: str
-        :param fabric_build_params: The build data to attach (required)
-        :type fabric_build_params: FabricBuildParams
+        :param attach_minecraft_to_build_request: The fabric build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -167,7 +168,7 @@ class FabricApi:
 
         _param = self._attach_fabric_to_build_serialize(
             fabric_id=fabric_id,
-            fabric_build_params=fabric_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -176,6 +177,7 @@ class FabricApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -197,7 +199,7 @@ class FabricApi:
     def attach_fabric_to_build_without_preload_content(
         self,
         fabric_id: Annotated[StrictStr, Field(description="A fabric identifier or slug")],
-        fabric_build_params: Annotated[FabricBuildParams, Field(description="The build data to attach")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The fabric build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -216,8 +218,8 @@ class FabricApi:
 
         :param fabric_id: A fabric identifier or slug (required)
         :type fabric_id: str
-        :param fabric_build_params: The build data to attach (required)
-        :type fabric_build_params: FabricBuildParams
+        :param attach_minecraft_to_build_request: The fabric build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -242,7 +244,7 @@ class FabricApi:
 
         _param = self._attach_fabric_to_build_serialize(
             fabric_id=fabric_id,
-            fabric_build_params=fabric_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -251,6 +253,7 @@ class FabricApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -267,7 +270,7 @@ class FabricApi:
     def _attach_fabric_to_build_serialize(
         self,
         fabric_id,
-        fabric_build_params,
+        attach_minecraft_to_build_request,
         _request_auth,
         _content_type,
         _headers,
@@ -293,8 +296,8 @@ class FabricApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if fabric_build_params is not None:
-            _body_params = fabric_build_params
+        if attach_minecraft_to_build_request is not None:
+            _body_params = attach_minecraft_to_build_request
 
 
         # set the HTTP header `Accept`
@@ -320,7 +323,6 @@ class FabricApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -348,7 +350,7 @@ class FabricApi:
     def delete_fabric_from_build(
         self,
         fabric_id: Annotated[StrictStr, Field(description="A fabric identifier or slug")],
-        fabric_build_params: Annotated[FabricBuildParams, Field(description="The build data to unlink")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The fabric build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -367,8 +369,8 @@ class FabricApi:
 
         :param fabric_id: A fabric identifier or slug (required)
         :type fabric_id: str
-        :param fabric_build_params: The build data to unlink (required)
-        :type fabric_build_params: FabricBuildParams
+        :param attach_minecraft_to_build_request: The fabric build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -393,7 +395,7 @@ class FabricApi:
 
         _param = self._delete_fabric_from_build_serialize(
             fabric_id=fabric_id,
-            fabric_build_params=fabric_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -402,6 +404,7 @@ class FabricApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -422,7 +425,7 @@ class FabricApi:
     def delete_fabric_from_build_with_http_info(
         self,
         fabric_id: Annotated[StrictStr, Field(description="A fabric identifier or slug")],
-        fabric_build_params: Annotated[FabricBuildParams, Field(description="The build data to unlink")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The fabric build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -441,8 +444,8 @@ class FabricApi:
 
         :param fabric_id: A fabric identifier or slug (required)
         :type fabric_id: str
-        :param fabric_build_params: The build data to unlink (required)
-        :type fabric_build_params: FabricBuildParams
+        :param attach_minecraft_to_build_request: The fabric build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -467,7 +470,7 @@ class FabricApi:
 
         _param = self._delete_fabric_from_build_serialize(
             fabric_id=fabric_id,
-            fabric_build_params=fabric_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -476,6 +479,7 @@ class FabricApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -496,7 +500,7 @@ class FabricApi:
     def delete_fabric_from_build_without_preload_content(
         self,
         fabric_id: Annotated[StrictStr, Field(description="A fabric identifier or slug")],
-        fabric_build_params: Annotated[FabricBuildParams, Field(description="The build data to unlink")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The fabric build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -515,8 +519,8 @@ class FabricApi:
 
         :param fabric_id: A fabric identifier or slug (required)
         :type fabric_id: str
-        :param fabric_build_params: The build data to unlink (required)
-        :type fabric_build_params: FabricBuildParams
+        :param attach_minecraft_to_build_request: The fabric build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -541,7 +545,7 @@ class FabricApi:
 
         _param = self._delete_fabric_from_build_serialize(
             fabric_id=fabric_id,
-            fabric_build_params=fabric_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -550,6 +554,7 @@ class FabricApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -565,7 +570,7 @@ class FabricApi:
     def _delete_fabric_from_build_serialize(
         self,
         fabric_id,
-        fabric_build_params,
+        attach_minecraft_to_build_request,
         _request_auth,
         _content_type,
         _headers,
@@ -591,8 +596,8 @@ class FabricApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if fabric_build_params is not None:
-            _body_params = fabric_build_params
+        if attach_minecraft_to_build_request is not None:
+            _body_params = attach_minecraft_to_build_request
 
 
         # set the HTTP header `Accept`
@@ -618,7 +623,6 @@ class FabricApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -663,7 +667,7 @@ class FabricApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> FabricBuilds:
+    ) -> ListFabricBuilds200Response:
         """Fetch the builds attached to a Fabric version
 
 
@@ -715,7 +719,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "FabricBuilds",
+            '200': "ListFabricBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -752,7 +756,7 @@ class FabricApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[FabricBuilds]:
+    ) -> ApiResponse[ListFabricBuilds200Response]:
         """Fetch the builds attached to a Fabric version
 
 
@@ -804,7 +808,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "FabricBuilds",
+            '200': "ListFabricBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -893,7 +897,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "FabricBuilds",
+            '200': "ListFabricBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -970,7 +974,6 @@ class FabricApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1010,7 +1013,7 @@ class FabricApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Fabrics:
+    ) -> ListFabrics200Response:
         """Fetch the available Fabric versions
 
 
@@ -1047,7 +1050,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Fabrics",
+            '200': "ListFabrics200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1078,7 +1081,7 @@ class FabricApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Fabrics]:
+    ) -> ApiResponse[ListFabrics200Response]:
         """Fetch the available Fabric versions
 
 
@@ -1115,7 +1118,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Fabrics",
+            '200': "ListFabrics200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1183,7 +1186,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Fabrics",
+            '200': "ListFabrics200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1236,7 +1239,6 @@ class FabricApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1488,7 +1490,6 @@ class FabricApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
