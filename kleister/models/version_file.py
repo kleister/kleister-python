@@ -28,16 +28,14 @@ class VersionFile(BaseModel):
     """
     Model to represent version file
     """ # noqa: E501
-    id: Optional[StrictStr] = None
     slug: Optional[StrictStr] = None
     content_type: Optional[StrictStr] = None
     md5: Optional[StrictStr] = None
     path: Optional[StrictStr] = None
     url: Optional[StrictStr] = None
-    upload: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "slug", "content_type", "md5", "path", "url", "upload", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["slug", "content_type", "md5", "path", "url", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,10 +69,8 @@ class VersionFile(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "id",
             "created_at",
             "updated_at",
         ])
@@ -109,11 +105,6 @@ class VersionFile(BaseModel):
         if self.url is None and "url" in self.model_fields_set:
             _dict['url'] = None
 
-        # set to None if upload (nullable) is None
-        # and model_fields_set contains the field
-        if self.upload is None and "upload" in self.model_fields_set:
-            _dict['upload'] = None
-
         return _dict
 
     @classmethod
@@ -126,13 +117,11 @@ class VersionFile(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
             "slug": obj.get("slug"),
             "content_type": obj.get("content_type"),
             "md5": obj.get("md5"),
             "path": obj.get("path"),
             "url": obj.get("url"),
-            "upload": obj.get("upload"),
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at")
         })

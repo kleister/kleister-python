@@ -6,7 +6,7 @@ Model to represent user
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] [readonly] 
+**id** | **str** |  | [optional] 
 **username** | **str** |  | [optional] 
 **password** | **str** |  | [optional] 
 **email** | **str** |  | [optional] 

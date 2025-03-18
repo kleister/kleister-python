@@ -6,13 +6,11 @@ Model to represent version file
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] [readonly] 
 **slug** | **str** |  | [optional] 
 **content_type** | **str** |  | [optional] 
 **md5** | **str** |  | [optional] 
 **path** | **str** |  | [optional] 
 **url** | **str** |  | [optional] 
-**upload** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 
