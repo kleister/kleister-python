@@ -27,17 +27,17 @@ class TestAuthApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_external_callback(self) -> None:
-        """Test case for external_callback
+    def test_callback_provider(self) -> None:
+        """Test case for callback_provider
 
-        Callback for external authentication
+        Callback to parse the defined provider
         """
         pass
 
-    def test_external_initialize(self) -> None:
-        """Test case for external_initialize
+    def test_list_providers(self) -> None:
+        """Test case for list_providers
 
-        Initialize the external authentication
+        Fetch the available auth providers
         """
         pass
 
@@ -48,10 +48,24 @@ class TestAuthApi(unittest.TestCase):
         """
         pass
 
+    def test_redirect_auth(self) -> None:
+        """Test case for redirect_auth
+
+        Retrieve real token after redirect
+        """
+        pass
+
     def test_refresh_auth(self) -> None:
         """Test case for refresh_auth
 
         Refresh an auth token before it expires
+        """
+        pass
+
+    def test_request_provider(self) -> None:
+        """Test case for request_provider
+
+        Request the redirect to defined provider
         """
         pass
 

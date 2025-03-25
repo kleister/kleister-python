@@ -28,7 +28,7 @@ class TestVersion(unittest.TestCase):
 
     def make_instance(self, include_optional) -> Version:
         """Test Version
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Version`
@@ -38,20 +38,23 @@ class TestVersion(unittest.TestCase):
             return Version(
                 id = '',
                 file = kleister.models.version_file.Version File(
-                    id = '', 
                     slug = '', 
                     content_type = '', 
                     md5 = '', 
                     path = '', 
                     url = '', 
-                    upload = '', 
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 mod = kleister.models.mod.Mod(
                     id = '', 
+                    avatar = kleister.models.mod_avatar.Mod Avatar(
+                        slug = '', 
+                        url = '', 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
                     slug = '', 
                     name = '', 
-                    side = 'both', 
+                    side = '', 
                     description = '', 
                     author = '', 
                     website = '', 
@@ -59,7 +62,6 @@ class TestVersion(unittest.TestCase):
                     public = True, 
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
-                slug = '',
                 name = '',
                 public = True,
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

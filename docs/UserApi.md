@@ -4,33 +4,32 @@ All URIs are relative to *https://try.kleister.eu/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**attach_user_to_group**](UserApi.md#attach_user_to_group) | **POST** /users/{user_id}/groups | Attach a group to user
 [**attach_user_to_mod**](UserApi.md#attach_user_to_mod) | **POST** /users/{user_id}/mods | Attach a mod to user
 [**attach_user_to_pack**](UserApi.md#attach_user_to_pack) | **POST** /users/{user_id}/packs | Attach a pack to user
-[**attach_user_to_team**](UserApi.md#attach_user_to_team) | **POST** /users/{user_id}/teams | Attach a team to user
 [**create_user**](UserApi.md#create_user) | **POST** /users | Create a new user
 [**delete_user**](UserApi.md#delete_user) | **DELETE** /users/{user_id} | Delete a specific user
+[**delete_user_from_group**](UserApi.md#delete_user_from_group) | **DELETE** /users/{user_id}/groups | Unlink a group from user
 [**delete_user_from_mod**](UserApi.md#delete_user_from_mod) | **DELETE** /users/{user_id}/mods | Unlink a mod from user
 [**delete_user_from_pack**](UserApi.md#delete_user_from_pack) | **DELETE** /users/{user_id}/packs | Unlink a pack from user
-[**delete_user_from_team**](UserApi.md#delete_user_from_team) | **DELETE** /users/{user_id}/teams | Unlink a team from user
+[**list_user_groups**](UserApi.md#list_user_groups) | **GET** /users/{user_id}/groups | Fetch all groups attached to user
 [**list_user_mods**](UserApi.md#list_user_mods) | **GET** /users/{user_id}/mods | Fetch all mods attached to user
 [**list_user_packs**](UserApi.md#list_user_packs) | **GET** /users/{user_id}/packs | Fetch all packs attached to user
-[**list_user_teams**](UserApi.md#list_user_teams) | **GET** /users/{user_id}/teams | Fetch all teams attached to user
 [**list_users**](UserApi.md#list_users) | **GET** /users | Fetch all available users
+[**permit_user_group**](UserApi.md#permit_user_group) | **PUT** /users/{user_id}/groups | Update group perms for user
 [**permit_user_mod**](UserApi.md#permit_user_mod) | **PUT** /users/{user_id}/mods | Update mod perms for user
 [**permit_user_pack**](UserApi.md#permit_user_pack) | **PUT** /users/{user_id}/packs | Update pack perms for user
-[**permit_user_team**](UserApi.md#permit_user_team) | **PUT** /users/{user_id}/teams | Update team perms for user
 [**show_user**](UserApi.md#show_user) | **GET** /users/{user_id} | Fetch a specific user
 [**update_user**](UserApi.md#update_user) | **PUT** /users/{user_id} | Update a specific user
 
 
-# **attach_user_to_mod**
-> Notification attach_user_to_mod(user_id, user_mod_params)
+# **attach_user_to_group**
+> Notification attach_user_to_group(user_id, permit_pack_group_request)
 
-Attach a mod to user
+Attach a group to user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
@@ -38,7 +37,7 @@ Attach a mod to user
 ```python
 import kleister
 from kleister.models.notification import Notification
-from kleister.models.user_mod_params import UserModParams
+from kleister.models.permit_pack_group_request import PermitPackGroupRequest
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -52,12 +51,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -81,11 +74,110 @@ with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.UserApi(api_client)
     user_id = 'user_id_example' # str | A user identifier or slug
-    user_mod_params = kleister.UserModParams() # UserModParams | The user mod data to attach
+    permit_pack_group_request = kleister.PermitPackGroupRequest() # PermitPackGroupRequest | The user group data to permit
+
+    try:
+        # Attach a group to user
+        api_response = api_instance.attach_user_to_group(user_id, permit_pack_group_request)
+        print("The response of UserApi->attach_user_to_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->attach_user_to_group: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| A user identifier or slug | 
+ **permit_pack_group_request** | [**PermitPackGroupRequest**](PermitPackGroupRequest.md)| The user group data to permit | 
+
+### Return type
+
+[**Notification**](Notification.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
+**403** | User is not authorized |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is already attached |  -  |
+**422** | Failed to validate request |  -  |
+**500** | Some internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **attach_user_to_mod**
+> Notification attach_user_to_mod(user_id, permit_group_mod_request)
+
+Attach a mod to user
+
+### Example
+
+* Basic Authentication (Basic):
+* Api Key Authentication (Header):
+* Bearer Authentication (Bearer):
+
+```python
+import kleister
+from kleister.models.notification import Notification
+from kleister.models.permit_group_mod_request import PermitGroupModRequest
+from kleister.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://try.kleister.eu/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kleister.Configuration(
+    host = "https://try.kleister.eu/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: Basic
+configuration = kleister.Configuration(
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
+)
+
+# Configure API key authorization: Header
+configuration.api_key['Header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Header'] = 'Bearer'
+
+# Configure Bearer authorization: Bearer
+configuration = kleister.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kleister.UserApi(api_client)
+    user_id = 'user_id_example' # str | A user identifier or slug
+    permit_group_mod_request = kleister.PermitGroupModRequest() # PermitGroupModRequest | The user mod data to permit
 
     try:
         # Attach a mod to user
-        api_response = api_instance.attach_user_to_mod(user_id, user_mod_params)
+        api_response = api_instance.attach_user_to_mod(user_id, permit_group_mod_request)
         print("The response of UserApi->attach_user_to_mod:\n")
         pprint(api_response)
     except Exception as e:
@@ -100,7 +192,7 @@ with kleister.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user identifier or slug | 
- **user_mod_params** | [**UserModParams**](UserModParams.md)| The user mod data to attach | 
+ **permit_group_mod_request** | [**PermitGroupModRequest**](PermitGroupModRequest.md)| The user mod data to permit | 
 
 ### Return type
 
@@ -108,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -120,23 +212,22 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
-**404** | User or mod not found |  -  |
-**412** | Mod is already attached |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is already attached |  -  |
 **422** | Failed to validate request |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **attach_user_to_pack**
-> Notification attach_user_to_pack(user_id, user_pack_params)
+> Notification attach_user_to_pack(user_id, permit_group_pack_request)
 
 Attach a pack to user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
@@ -144,7 +235,7 @@ Attach a pack to user
 ```python
 import kleister
 from kleister.models.notification import Notification
-from kleister.models.user_pack_params import UserPackParams
+from kleister.models.permit_group_pack_request import PermitGroupPackRequest
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -158,12 +249,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -187,11 +272,11 @@ with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.UserApi(api_client)
     user_id = 'user_id_example' # str | A user identifier or slug
-    user_pack_params = kleister.UserPackParams() # UserPackParams | The user pack data to attach
+    permit_group_pack_request = kleister.PermitGroupPackRequest() # PermitGroupPackRequest | The user pack data to permit
 
     try:
         # Attach a pack to user
-        api_response = api_instance.attach_user_to_pack(user_id, user_pack_params)
+        api_response = api_instance.attach_user_to_pack(user_id, permit_group_pack_request)
         print("The response of UserApi->attach_user_to_pack:\n")
         pprint(api_response)
     except Exception as e:
@@ -206,7 +291,7 @@ with kleister.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user identifier or slug | 
- **user_pack_params** | [**UserPackParams**](UserPackParams.md)| The user pack data to attach | 
+ **permit_group_pack_request** | [**PermitGroupPackRequest**](PermitGroupPackRequest.md)| The user pack data to permit | 
 
 ### Return type
 
@@ -214,7 +299,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -226,135 +311,29 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
-**404** | User or pack not found |  -  |
-**412** | Pack is already attached |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is already attached |  -  |
 **422** | Failed to validate request |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **attach_user_to_team**
-> Notification attach_user_to_team(user_id, user_team_params)
-
-Attach a team to user
-
-### Example
-
-* Api Key Authentication (Cookie):
-* Basic Authentication (Basic):
-* Api Key Authentication (Header):
-* Bearer Authentication (Bearer):
-
-```python
-import kleister
-from kleister.models.notification import Notification
-from kleister.models.user_team_params import UserTeamParams
-from kleister.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://try.kleister.eu/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = kleister.Configuration(
-    host = "https://try.kleister.eu/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
-
-# Configure HTTP basic authorization: Basic
-configuration = kleister.Configuration(
-    username = os.environ["USERNAME"],
-    password = os.environ["PASSWORD"]
-)
-
-# Configure API key authorization: Header
-configuration.api_key['Header'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Header'] = 'Bearer'
-
-# Configure Bearer authorization: Bearer
-configuration = kleister.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with kleister.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = kleister.UserApi(api_client)
-    user_id = 'user_id_example' # str | A user identifier or slug
-    user_team_params = kleister.UserTeamParams() # UserTeamParams | The user team data to attach
-
-    try:
-        # Attach a team to user
-        api_response = api_instance.attach_user_to_team(user_id, user_team_params)
-        print("The response of UserApi->attach_user_to_team:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->attach_user_to_team: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **str**| A user identifier or slug | 
- **user_team_params** | [**UserTeamParams**](UserTeamParams.md)| The user team data to attach | 
-
-### Return type
-
-[**Notification**](Notification.md)
-
-### Authorization
-
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Plain success message |  -  |
-**403** | User is not authorized |  -  |
-**404** | User or team not found |  -  |
-**412** | Team is already attached |  -  |
-**422** | Failed to validate request |  -  |
-**500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_user**
-> User create_user(user)
+> User create_user(create_user_request)
 
 Create a new user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
+from kleister.models.create_user_request import CreateUserRequest
 from kleister.models.user import User
 from kleister.rest import ApiException
 from pprint import pprint
@@ -370,12 +349,6 @@ configuration = kleister.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
-
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
     username = os.environ["USERNAME"],
@@ -397,11 +370,11 @@ configuration = kleister.Configuration(
 with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.UserApi(api_client)
-    user = kleister.User() # User | The user data to create
+    create_user_request = kleister.CreateUserRequest() # CreateUserRequest | The user data to create
 
     try:
         # Create a new user
-        api_response = api_instance.create_user(user)
+        api_response = api_instance.create_user(create_user_request)
         print("The response of UserApi->create_user:\n")
         pprint(api_response)
     except Exception as e:
@@ -415,7 +388,7 @@ with kleister.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | [**User**](User.md)| The user data to create | 
+ **create_user_request** | [**CreateUserRequest**](CreateUserRequest.md)| The user data to create | 
 
 ### Return type
 
@@ -423,7 +396,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -434,11 +407,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The created user data |  -  |
+**200** | The details for an user |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
 **422** | Failed to validate request |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -449,7 +422,6 @@ Delete a specific user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
@@ -470,12 +442,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -524,7 +490,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -537,29 +503,27 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
 **403** | User is not authorized |  -  |
-**404** | User not found |  -  |
-**400** | Failed to delete the user |  -  |
+**404** | Resource not found |  -  |
+**400** | Failed to execute action for resource |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_user_from_mod**
-> Notification delete_user_from_mod(user_id, user_mod_params)
+# **delete_user_from_group**
+> Notification delete_user_from_group(user_id, delete_pack_from_group_request)
 
-Unlink a mod from user
+Unlink a group from user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
+from kleister.models.delete_pack_from_group_request import DeletePackFromGroupRequest
 from kleister.models.notification import Notification
-from kleister.models.user_mod_params import UserModParams
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -573,12 +537,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -602,11 +560,109 @@ with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.UserApi(api_client)
     user_id = 'user_id_example' # str | A user identifier or slug
-    user_mod_params = kleister.UserModParams() # UserModParams | The user mod data to unlink
+    delete_pack_from_group_request = kleister.DeletePackFromGroupRequest() # DeletePackFromGroupRequest | The user group data to unlink
+
+    try:
+        # Unlink a group from user
+        api_response = api_instance.delete_user_from_group(user_id, delete_pack_from_group_request)
+        print("The response of UserApi->delete_user_from_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->delete_user_from_group: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| A user identifier or slug | 
+ **delete_pack_from_group_request** | [**DeletePackFromGroupRequest**](DeletePackFromGroupRequest.md)| The user group data to unlink | 
+
+### Return type
+
+[**Notification**](Notification.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
+**403** | User is not authorized |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is not attached |  -  |
+**500** | Some internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_user_from_mod**
+> Notification delete_user_from_mod(user_id, delete_group_from_mod_request)
+
+Unlink a mod from user
+
+### Example
+
+* Basic Authentication (Basic):
+* Api Key Authentication (Header):
+* Bearer Authentication (Bearer):
+
+```python
+import kleister
+from kleister.models.delete_group_from_mod_request import DeleteGroupFromModRequest
+from kleister.models.notification import Notification
+from kleister.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://try.kleister.eu/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kleister.Configuration(
+    host = "https://try.kleister.eu/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: Basic
+configuration = kleister.Configuration(
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
+)
+
+# Configure API key authorization: Header
+configuration.api_key['Header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Header'] = 'Bearer'
+
+# Configure Bearer authorization: Bearer
+configuration = kleister.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kleister.UserApi(api_client)
+    user_id = 'user_id_example' # str | A user identifier or slug
+    delete_group_from_mod_request = kleister.DeleteGroupFromModRequest() # DeleteGroupFromModRequest | The user mod data to unlink
 
     try:
         # Unlink a mod from user
-        api_response = api_instance.delete_user_from_mod(user_id, user_mod_params)
+        api_response = api_instance.delete_user_from_mod(user_id, delete_group_from_mod_request)
         print("The response of UserApi->delete_user_from_mod:\n")
         pprint(api_response)
     except Exception as e:
@@ -621,7 +677,7 @@ with kleister.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user identifier or slug | 
- **user_mod_params** | [**UserModParams**](UserModParams.md)| The user mod data to unlink | 
+ **delete_group_from_mod_request** | [**DeleteGroupFromModRequest**](DeleteGroupFromModRequest.md)| The user mod data to unlink | 
 
 ### Return type
 
@@ -629,7 +685,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -641,30 +697,29 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
-**404** | User or mod not found |  -  |
-**412** | Mod is not attached |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is not attached |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_user_from_pack**
-> Notification delete_user_from_pack(user_id, user_pack_params)
+> Notification delete_user_from_pack(user_id, delete_group_from_pack_request)
 
 Unlink a pack from user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
+from kleister.models.delete_group_from_pack_request import DeleteGroupFromPackRequest
 from kleister.models.notification import Notification
-from kleister.models.user_pack_params import UserPackParams
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -678,12 +733,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -707,11 +756,11 @@ with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.UserApi(api_client)
     user_id = 'user_id_example' # str | A user identifier or slug
-    user_pack_params = kleister.UserPackParams() # UserPackParams | The user pack data to unlink
+    delete_group_from_pack_request = kleister.DeleteGroupFromPackRequest() # DeleteGroupFromPackRequest | The user pack data to unlink
 
     try:
         # Unlink a pack from user
-        api_response = api_instance.delete_user_from_pack(user_id, user_pack_params)
+        api_response = api_instance.delete_user_from_pack(user_id, delete_group_from_pack_request)
         print("The response of UserApi->delete_user_from_pack:\n")
         pprint(api_response)
     except Exception as e:
@@ -726,7 +775,7 @@ with kleister.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user identifier or slug | 
- **user_pack_params** | [**UserPackParams**](UserPackParams.md)| The user pack data to unlink | 
+ **delete_group_from_pack_request** | [**DeleteGroupFromPackRequest**](DeleteGroupFromPackRequest.md)| The user pack data to unlink | 
 
 ### Return type
 
@@ -734,7 +783,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -746,30 +795,28 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
-**404** | User or pack not found |  -  |
-**412** | Pack is not attached |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is not attached |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_user_from_team**
-> Notification delete_user_from_team(user_id, user_team_params)
+# **list_user_groups**
+> ListUserGroups200Response list_user_groups(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
-Unlink a team from user
+Fetch all groups attached to user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
-from kleister.models.notification import Notification
-from kleister.models.user_team_params import UserTeamParams
+from kleister.models.list_user_groups200_response import ListUserGroups200Response
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -783,116 +830,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
-
-# Configure HTTP basic authorization: Basic
-configuration = kleister.Configuration(
-    username = os.environ["USERNAME"],
-    password = os.environ["PASSWORD"]
-)
-
-# Configure API key authorization: Header
-configuration.api_key['Header'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Header'] = 'Bearer'
-
-# Configure Bearer authorization: Bearer
-configuration = kleister.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with kleister.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = kleister.UserApi(api_client)
-    user_id = 'user_id_example' # str | A user identifier or slug
-    user_team_params = kleister.UserTeamParams() # UserTeamParams | The user team data to unlink
-
-    try:
-        # Unlink a team from user
-        api_response = api_instance.delete_user_from_team(user_id, user_team_params)
-        print("The response of UserApi->delete_user_from_team:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->delete_user_from_team: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **str**| A user identifier or slug | 
- **user_team_params** | [**UserTeamParams**](UserTeamParams.md)| The user team data to unlink | 
-
-### Return type
-
-[**Notification**](Notification.md)
-
-### Authorization
-
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Plain success message |  -  |
-**403** | User is not authorized |  -  |
-**404** | User or team not found |  -  |
-**412** | Team is not attached |  -  |
-**500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_user_mods**
-> UserMods list_user_mods(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
-
-Fetch all mods attached to user
-
-### Example
-
-* Api Key Authentication (Cookie):
-* Basic Authentication (Basic):
-* Api Key Authentication (Header):
-* Bearer Authentication (Bearer):
-
-```python
-import kleister
-from kleister.models.user_mods import UserMods
-from kleister.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://try.kleister.eu/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = kleister.Configuration(
-    host = "https://try.kleister.eu/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -917,10 +854,113 @@ with kleister.ApiClient(configuration) as api_client:
     api_instance = kleister.UserApi(api_client)
     user_id = 'user_id_example' # str | A user identifier or slug
     search = 'search_example' # str | Search query (optional)
-    sort = 'name' # str | Sorting column (optional) (default to 'name')
-    order = 'asc' # str | Sorting order (optional) (default to 'asc')
-    limit = 56 # int | Paging limit (optional)
-    offset = 56 # int | Paging offset (optional)
+    sort = 'sort_example' # str | Sorting column (optional)
+    order = asc # str | Sorting order (optional) (default to asc)
+    limit = 100 # int | Paging limit (optional) (default to 100)
+    offset = 0 # int | Paging offset (optional) (default to 0)
+
+    try:
+        # Fetch all groups attached to user
+        api_response = api_instance.list_user_groups(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+        print("The response of UserApi->list_user_groups:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->list_user_groups: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| A user identifier or slug | 
+ **search** | **str**| Search query | [optional] 
+ **sort** | **str**| Sorting column | [optional] 
+ **order** | **str**| Sorting order | [optional] [default to asc]
+ **limit** | **int**| Paging limit | [optional] [default to 100]
+ **offset** | **int**| Paging offset | [optional] [default to 0]
+
+### Return type
+
+[**ListUserGroups200Response**](ListUserGroups200Response.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A collection of user groups |  -  |
+**403** | User is not authorized |  -  |
+**404** | Resource not found |  -  |
+**500** | Some internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_user_mods**
+> ListUserMods200Response list_user_mods(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+
+Fetch all mods attached to user
+
+### Example
+
+* Basic Authentication (Basic):
+* Api Key Authentication (Header):
+* Bearer Authentication (Bearer):
+
+```python
+import kleister
+from kleister.models.list_user_mods200_response import ListUserMods200Response
+from kleister.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://try.kleister.eu/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kleister.Configuration(
+    host = "https://try.kleister.eu/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: Basic
+configuration = kleister.Configuration(
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
+)
+
+# Configure API key authorization: Header
+configuration.api_key['Header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Header'] = 'Bearer'
+
+# Configure Bearer authorization: Bearer
+configuration = kleister.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kleister.UserApi(api_client)
+    user_id = 'user_id_example' # str | A user identifier or slug
+    search = 'search_example' # str | Search query (optional)
+    sort = 'sort_example' # str | Sorting column (optional)
+    order = asc # str | Sorting order (optional) (default to asc)
+    limit = 100 # int | Paging limit (optional) (default to 100)
+    offset = 0 # int | Paging offset (optional) (default to 0)
 
     try:
         # Fetch all mods attached to user
@@ -940,18 +980,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user identifier or slug | 
  **search** | **str**| Search query | [optional] 
- **sort** | **str**| Sorting column | [optional] [default to &#39;name&#39;]
- **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
- **limit** | **int**| Paging limit | [optional] 
- **offset** | **int**| Paging offset | [optional] 
+ **sort** | **str**| Sorting column | [optional] 
+ **order** | **str**| Sorting order | [optional] [default to asc]
+ **limit** | **int**| Paging limit | [optional] [default to 100]
+ **offset** | **int**| Paging offset | [optional] [default to 0]
 
 ### Return type
 
-[**UserMods**](UserMods.md)
+[**ListUserMods200Response**](ListUserMods200Response.md)
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -964,27 +1004,25 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | A collection of user mods |  -  |
 **403** | User is not authorized |  -  |
-**404** | User not found |  -  |
+**404** | Resource not found |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_user_packs**
-> UserPacks list_user_packs(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> ListUserPacks200Response list_user_packs(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all packs attached to user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
-from kleister.models.user_packs import UserPacks
+from kleister.models.list_user_packs200_response import ListUserPacks200Response
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -998,12 +1036,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -1028,10 +1060,10 @@ with kleister.ApiClient(configuration) as api_client:
     api_instance = kleister.UserApi(api_client)
     user_id = 'user_id_example' # str | A user identifier or slug
     search = 'search_example' # str | Search query (optional)
-    sort = 'name' # str | Sorting column (optional) (default to 'name')
-    order = 'asc' # str | Sorting order (optional) (default to 'asc')
-    limit = 56 # int | Paging limit (optional)
-    offset = 56 # int | Paging offset (optional)
+    sort = 'sort_example' # str | Sorting column (optional)
+    order = asc # str | Sorting order (optional) (default to asc)
+    limit = 100 # int | Paging limit (optional) (default to 100)
+    offset = 0 # int | Paging offset (optional) (default to 0)
 
     try:
         # Fetch all packs attached to user
@@ -1051,18 +1083,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user identifier or slug | 
  **search** | **str**| Search query | [optional] 
- **sort** | **str**| Sorting column | [optional] [default to &#39;name&#39;]
- **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
- **limit** | **int**| Paging limit | [optional] 
- **offset** | **int**| Paging offset | [optional] 
+ **sort** | **str**| Sorting column | [optional] 
+ **order** | **str**| Sorting order | [optional] [default to asc]
+ **limit** | **int**| Paging limit | [optional] [default to 100]
+ **offset** | **int**| Paging offset | [optional] [default to 0]
 
 ### Return type
 
-[**UserPacks**](UserPacks.md)
+[**ListUserPacks200Response**](ListUserPacks200Response.md)
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1075,138 +1107,25 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | A collection of user packs |  -  |
 **403** | User is not authorized |  -  |
-**404** | User not found |  -  |
+**404** | Resource not found |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_user_teams**
-> UserTeams list_user_teams(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
-
-Fetch all teams attached to user
-
-### Example
-
-* Api Key Authentication (Cookie):
-* Basic Authentication (Basic):
-* Api Key Authentication (Header):
-* Bearer Authentication (Bearer):
-
-```python
-import kleister
-from kleister.models.user_teams import UserTeams
-from kleister.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://try.kleister.eu/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = kleister.Configuration(
-    host = "https://try.kleister.eu/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
-
-# Configure HTTP basic authorization: Basic
-configuration = kleister.Configuration(
-    username = os.environ["USERNAME"],
-    password = os.environ["PASSWORD"]
-)
-
-# Configure API key authorization: Header
-configuration.api_key['Header'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Header'] = 'Bearer'
-
-# Configure Bearer authorization: Bearer
-configuration = kleister.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with kleister.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = kleister.UserApi(api_client)
-    user_id = 'user_id_example' # str | A user identifier or slug
-    search = 'search_example' # str | Search query (optional)
-    sort = 'name' # str | Sorting column (optional) (default to 'name')
-    order = 'asc' # str | Sorting order (optional) (default to 'asc')
-    limit = 56 # int | Paging limit (optional)
-    offset = 56 # int | Paging offset (optional)
-
-    try:
-        # Fetch all teams attached to user
-        api_response = api_instance.list_user_teams(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
-        print("The response of UserApi->list_user_teams:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->list_user_teams: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **str**| A user identifier or slug | 
- **search** | **str**| Search query | [optional] 
- **sort** | **str**| Sorting column | [optional] [default to &#39;name&#39;]
- **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
- **limit** | **int**| Paging limit | [optional] 
- **offset** | **int**| Paging offset | [optional] 
-
-### Return type
-
-[**UserTeams**](UserTeams.md)
-
-### Authorization
-
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A collection of user teams |  -  |
-**403** | User is not authorized |  -  |
-**404** | User not found |  -  |
-**500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_users**
-> Users list_users(search=search, sort=sort, order=order, limit=limit, offset=offset)
+> ListUsers200Response list_users(search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all available users
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
-from kleister.models.users import Users
+from kleister.models.list_users200_response import ListUsers200Response
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1220,12 +1139,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -1249,8 +1162,8 @@ with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.UserApi(api_client)
     search = 'search_example' # str | Search query (optional)
-    sort = 'username' # str | Sorting column (optional) (default to 'username')
-    order = 'asc' # str | Sorting order (optional) (default to 'asc')
+    sort = 'sort_example' # str | Sorting column (optional)
+    order = asc # str | Sorting order (optional) (default to asc)
     limit = 100 # int | Paging limit (optional) (default to 100)
     offset = 0 # int | Paging offset (optional) (default to 0)
 
@@ -1271,18 +1184,18 @@ with kleister.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **search** | **str**| Search query | [optional] 
- **sort** | **str**| Sorting column | [optional] [default to &#39;username&#39;]
- **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
+ **sort** | **str**| Sorting column | [optional] 
+ **order** | **str**| Sorting order | [optional] [default to asc]
  **limit** | **int**| Paging limit | [optional] [default to 100]
  **offset** | **int**| Paging offset | [optional] [default to 0]
 
 ### Return type
 
-[**Users**](Users.md)
+[**ListUsers200Response**](ListUsers200Response.md)
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1296,18 +1209,16 @@ Name | Type | Description  | Notes
 **200** | A collection of users |  -  |
 **403** | User is not authorized |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **permit_user_mod**
-> Notification permit_user_mod(user_id, user_mod_params)
+# **permit_user_group**
+> Notification permit_user_group(user_id, permit_pack_group_request)
 
-Update mod perms for user
+Update group perms for user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
@@ -1315,7 +1226,7 @@ Update mod perms for user
 ```python
 import kleister
 from kleister.models.notification import Notification
-from kleister.models.user_mod_params import UserModParams
+from kleister.models.permit_pack_group_request import PermitPackGroupRequest
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1329,12 +1240,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -1358,11 +1263,110 @@ with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.UserApi(api_client)
     user_id = 'user_id_example' # str | A user identifier or slug
-    user_mod_params = kleister.UserModParams() # UserModParams | The user mod data to update
+    permit_pack_group_request = kleister.PermitPackGroupRequest() # PermitPackGroupRequest | The user group data to permit
+
+    try:
+        # Update group perms for user
+        api_response = api_instance.permit_user_group(user_id, permit_pack_group_request)
+        print("The response of UserApi->permit_user_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->permit_user_group: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| A user identifier or slug | 
+ **permit_pack_group_request** | [**PermitPackGroupRequest**](PermitPackGroupRequest.md)| The user group data to permit | 
+
+### Return type
+
+[**Notification**](Notification.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
+**403** | User is not authorized |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is not attached |  -  |
+**422** | Failed to validate request |  -  |
+**500** | Some internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **permit_user_mod**
+> Notification permit_user_mod(user_id, permit_group_mod_request)
+
+Update mod perms for user
+
+### Example
+
+* Basic Authentication (Basic):
+* Api Key Authentication (Header):
+* Bearer Authentication (Bearer):
+
+```python
+import kleister
+from kleister.models.notification import Notification
+from kleister.models.permit_group_mod_request import PermitGroupModRequest
+from kleister.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://try.kleister.eu/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kleister.Configuration(
+    host = "https://try.kleister.eu/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure HTTP basic authorization: Basic
+configuration = kleister.Configuration(
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
+)
+
+# Configure API key authorization: Header
+configuration.api_key['Header'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Header'] = 'Bearer'
+
+# Configure Bearer authorization: Bearer
+configuration = kleister.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with kleister.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kleister.UserApi(api_client)
+    user_id = 'user_id_example' # str | A user identifier or slug
+    permit_group_mod_request = kleister.PermitGroupModRequest() # PermitGroupModRequest | The user mod data to permit
 
     try:
         # Update mod perms for user
-        api_response = api_instance.permit_user_mod(user_id, user_mod_params)
+        api_response = api_instance.permit_user_mod(user_id, permit_group_mod_request)
         print("The response of UserApi->permit_user_mod:\n")
         pprint(api_response)
     except Exception as e:
@@ -1377,7 +1381,7 @@ with kleister.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user identifier or slug | 
- **user_mod_params** | [**UserModParams**](UserModParams.md)| The user mod data to update | 
+ **permit_group_mod_request** | [**PermitGroupModRequest**](PermitGroupModRequest.md)| The user mod data to permit | 
 
 ### Return type
 
@@ -1385,7 +1389,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1397,23 +1401,22 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
-**404** | User or mod not found |  -  |
-**412** | Mod is not attached |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is not attached |  -  |
 **422** | Failed to validate request |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **permit_user_pack**
-> Notification permit_user_pack(user_id, user_pack_params)
+> Notification permit_user_pack(user_id, permit_group_pack_request)
 
 Update pack perms for user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
@@ -1421,7 +1424,7 @@ Update pack perms for user
 ```python
 import kleister
 from kleister.models.notification import Notification
-from kleister.models.user_pack_params import UserPackParams
+from kleister.models.permit_group_pack_request import PermitGroupPackRequest
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1435,12 +1438,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -1464,11 +1461,11 @@ with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.UserApi(api_client)
     user_id = 'user_id_example' # str | A user identifier or slug
-    user_pack_params = kleister.UserPackParams() # UserPackParams | The user pack data to update
+    permit_group_pack_request = kleister.PermitGroupPackRequest() # PermitGroupPackRequest | The user pack data to permit
 
     try:
         # Update pack perms for user
-        api_response = api_instance.permit_user_pack(user_id, user_pack_params)
+        api_response = api_instance.permit_user_pack(user_id, permit_group_pack_request)
         print("The response of UserApi->permit_user_pack:\n")
         pprint(api_response)
     except Exception as e:
@@ -1483,7 +1480,7 @@ with kleister.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user identifier or slug | 
- **user_pack_params** | [**UserPackParams**](UserPackParams.md)| The user pack data to update | 
+ **permit_group_pack_request** | [**PermitGroupPackRequest**](PermitGroupPackRequest.md)| The user pack data to permit | 
 
 ### Return type
 
@@ -1491,7 +1488,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1503,118 +1500,12 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
-**404** | User or pack not found |  -  |
-**412** | Pack is not attached |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is not attached |  -  |
 **422** | Failed to validate request |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **permit_user_team**
-> Notification permit_user_team(user_id, user_team_params)
-
-Update team perms for user
-
-### Example
-
-* Api Key Authentication (Cookie):
-* Basic Authentication (Basic):
-* Api Key Authentication (Header):
-* Bearer Authentication (Bearer):
-
-```python
-import kleister
-from kleister.models.notification import Notification
-from kleister.models.user_team_params import UserTeamParams
-from kleister.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://try.kleister.eu/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = kleister.Configuration(
-    host = "https://try.kleister.eu/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
-
-# Configure HTTP basic authorization: Basic
-configuration = kleister.Configuration(
-    username = os.environ["USERNAME"],
-    password = os.environ["PASSWORD"]
-)
-
-# Configure API key authorization: Header
-configuration.api_key['Header'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Header'] = 'Bearer'
-
-# Configure Bearer authorization: Bearer
-configuration = kleister.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with kleister.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = kleister.UserApi(api_client)
-    user_id = 'user_id_example' # str | A user identifier or slug
-    user_team_params = kleister.UserTeamParams() # UserTeamParams | The user team data to update
-
-    try:
-        # Update team perms for user
-        api_response = api_instance.permit_user_team(user_id, user_team_params)
-        print("The response of UserApi->permit_user_team:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->permit_user_team: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user_id** | **str**| A user identifier or slug | 
- **user_team_params** | [**UserTeamParams**](UserTeamParams.md)| The user team data to update | 
-
-### Return type
-
-[**Notification**](Notification.md)
-
-### Authorization
-
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Plain success message |  -  |
-**403** | User is not authorized |  -  |
-**404** | User or team not found |  -  |
-**412** | Team is not attached |  -  |
-**422** | Failed to validate request |  -  |
-**500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1625,7 +1516,6 @@ Fetch a specific user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
@@ -1646,12 +1536,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -1700,7 +1584,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1711,28 +1595,27 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The fetched user details |  -  |
+**200** | The details for an user |  -  |
 **403** | User is not authorized |  -  |
-**404** | User not found |  -  |
+**404** | Resource not found |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_user**
-> User update_user(user_id, user)
+> User update_user(user_id, update_user_request)
 
 Update a specific user
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
+from kleister.models.update_user_request import UpdateUserRequest
 from kleister.models.user import User
 from kleister.rest import ApiException
 from pprint import pprint
@@ -1747,12 +1630,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -1776,11 +1653,11 @@ with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.UserApi(api_client)
     user_id = 'user_id_example' # str | A user identifier or slug
-    user = kleister.User() # User | The user data to update
+    update_user_request = kleister.UpdateUserRequest() # UpdateUserRequest | The user data to update
 
     try:
         # Update a specific user
-        api_response = api_instance.update_user(user_id, user)
+        api_response = api_instance.update_user(user_id, update_user_request)
         print("The response of UserApi->update_user:\n")
         pprint(api_response)
     except Exception as e:
@@ -1795,7 +1672,7 @@ with kleister.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| A user identifier or slug | 
- **user** | [**User**](User.md)| The user data to update | 
+ **update_user_request** | [**UpdateUserRequest**](UpdateUserRequest.md)| The user data to update | 
 
 ### Return type
 
@@ -1803,7 +1680,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1814,12 +1691,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The updated user details |  -  |
+**200** | The details for an user |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
-**404** | User not found |  -  |
+**404** | Resource not found |  -  |
 **422** | Failed to validate request |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

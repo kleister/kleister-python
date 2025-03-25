@@ -21,9 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from kleister.models.pack_back import PackBack
-from kleister.models.pack_icon import PackIcon
-from kleister.models.pack_logo import PackLogo
+from kleister.models.pack_avatar import PackAvatar
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,16 +30,14 @@ class Pack(BaseModel):
     Model to represent pack
     """ # noqa: E501
     id: Optional[StrictStr] = None
-    icon: Optional[PackIcon] = None
-    logo: Optional[PackLogo] = None
-    back: Optional[PackBack] = None
+    avatar: Optional[PackAvatar] = None
     slug: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     website: Optional[StrictStr] = None
     public: Optional[StrictBool] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "icon", "logo", "back", "slug", "name", "website", "public", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["id", "avatar", "slug", "name", "website", "public", "created_at", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,15 +84,9 @@ class Pack(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of icon
-        if self.icon:
-            _dict['icon'] = self.icon.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of logo
-        if self.logo:
-            _dict['logo'] = self.logo.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of back
-        if self.back:
-            _dict['back'] = self.back.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of avatar
+        if self.avatar:
+            _dict['avatar'] = self.avatar.to_dict()
         # set to None if slug (nullable) is None
         # and model_fields_set contains the field
         if self.slug is None and "slug" in self.model_fields_set:
@@ -130,9 +120,7 @@ class Pack(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "icon": PackIcon.from_dict(obj["icon"]) if obj.get("icon") is not None else None,
-            "logo": PackLogo.from_dict(obj["logo"]) if obj.get("logo") is not None else None,
-            "back": PackBack.from_dict(obj["back"]) if obj.get("back") is not None else None,
+            "avatar": PackAvatar.from_dict(obj["avatar"]) if obj.get("avatar") is not None else None,
             "slug": obj.get("slug"),
             "name": obj.get("name"),
             "website": obj.get("website"),

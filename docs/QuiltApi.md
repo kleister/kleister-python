@@ -12,21 +12,20 @@ Method | HTTP request | Description
 
 
 # **attach_quilt_to_build**
-> Notification attach_quilt_to_build(quilt_id, quilt_build_params)
+> Notification attach_quilt_to_build(quilt_id, attach_minecraft_to_build_request)
 
 Attach a build to a Quilt version
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
+from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
 from kleister.models.notification import Notification
-from kleister.models.quilt_build_params import QuiltBuildParams
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -40,12 +39,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -69,11 +62,11 @@ with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.QuiltApi(api_client)
     quilt_id = 'quilt_id_example' # str | A quilt identifier or slug
-    quilt_build_params = kleister.QuiltBuildParams() # QuiltBuildParams | The build data to attach
+    attach_minecraft_to_build_request = kleister.AttachMinecraftToBuildRequest() # AttachMinecraftToBuildRequest | The quilt build data to create or update
 
     try:
         # Attach a build to a Quilt version
-        api_response = api_instance.attach_quilt_to_build(quilt_id, quilt_build_params)
+        api_response = api_instance.attach_quilt_to_build(quilt_id, attach_minecraft_to_build_request)
         print("The response of QuiltApi->attach_quilt_to_build:\n")
         pprint(api_response)
     except Exception as e:
@@ -88,7 +81,7 @@ with kleister.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **quilt_id** | **str**| A quilt identifier or slug | 
- **quilt_build_params** | [**QuiltBuildParams**](QuiltBuildParams.md)| The build data to attach | 
+ **attach_minecraft_to_build_request** | [**AttachMinecraftToBuildRequest**](AttachMinecraftToBuildRequest.md)| The quilt build data to create or update | 
 
 ### Return type
 
@@ -96,7 +89,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -108,31 +101,30 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
-**404** | Quilt or build not found |  -  |
-**412** | Build is already attached |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is already attached |  -  |
 **422** | Failed to validate request |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_quilt_from_build**
-> Notification delete_quilt_from_build(quilt_id, quilt_build_params)
+> Notification delete_quilt_from_build(quilt_id, attach_minecraft_to_build_request)
 
 Unlink a build from a Quilt version
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
+from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
 from kleister.models.notification import Notification
-from kleister.models.quilt_build_params import QuiltBuildParams
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -146,12 +138,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -175,11 +161,11 @@ with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.QuiltApi(api_client)
     quilt_id = 'quilt_id_example' # str | A quilt identifier or slug
-    quilt_build_params = kleister.QuiltBuildParams() # QuiltBuildParams | The build data to unlink
+    attach_minecraft_to_build_request = kleister.AttachMinecraftToBuildRequest() # AttachMinecraftToBuildRequest | The quilt build data to create or update
 
     try:
         # Unlink a build from a Quilt version
-        api_response = api_instance.delete_quilt_from_build(quilt_id, quilt_build_params)
+        api_response = api_instance.delete_quilt_from_build(quilt_id, attach_minecraft_to_build_request)
         print("The response of QuiltApi->delete_quilt_from_build:\n")
         pprint(api_response)
     except Exception as e:
@@ -194,7 +180,7 @@ with kleister.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **quilt_id** | **str**| A quilt identifier or slug | 
- **quilt_build_params** | [**QuiltBuildParams**](QuiltBuildParams.md)| The build data to unlink | 
+ **attach_minecraft_to_build_request** | [**AttachMinecraftToBuildRequest**](AttachMinecraftToBuildRequest.md)| The quilt build data to create or update | 
 
 ### Return type
 
@@ -202,7 +188,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -214,29 +200,28 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
-**404** | Quilt or build not found |  -  |
-**412** | Build is not attached |  -  |
+**404** | Resource not found |  -  |
+**412** | Resource is not attached |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_quilt_builds**
-> QuiltBuilds list_quilt_builds(quilt_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> ListQuiltBuilds200Response list_quilt_builds(quilt_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch the builds attached to a Quilt version
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
-from kleister.models.quilt_builds import QuiltBuilds
+from kleister.models.list_quilt_builds200_response import ListQuiltBuilds200Response
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -250,12 +235,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -280,8 +259,8 @@ with kleister.ApiClient(configuration) as api_client:
     api_instance = kleister.QuiltApi(api_client)
     quilt_id = 'quilt_id_example' # str | A quilt identifier or slug
     search = 'search_example' # str | Search query (optional)
-    sort = 'build_name' # str | Sorting column (optional) (default to 'build_name')
-    order = 'asc' # str | Sorting order (optional) (default to 'asc')
+    sort = 'sort_example' # str | Sorting column (optional)
+    order = asc # str | Sorting order (optional) (default to asc)
     limit = 100 # int | Paging limit (optional) (default to 100)
     offset = 0 # int | Paging offset (optional) (default to 0)
 
@@ -303,18 +282,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **quilt_id** | **str**| A quilt identifier or slug | 
  **search** | **str**| Search query | [optional] 
- **sort** | **str**| Sorting column | [optional] [default to &#39;build_name&#39;]
- **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
+ **sort** | **str**| Sorting column | [optional] 
+ **order** | **str**| Sorting order | [optional] [default to asc]
  **limit** | **int**| Paging limit | [optional] [default to 100]
  **offset** | **int**| Paging offset | [optional] [default to 0]
 
 ### Return type
 
-[**QuiltBuilds**](QuiltBuilds.md)
+[**ListQuiltBuilds200Response**](ListQuiltBuilds200Response.md)
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -325,29 +304,27 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A collection of attached builds |  -  |
+**200** | A collection of quilt builds |  -  |
 **403** | User is not authorized |  -  |
-**404** | Quilt or build not found |  -  |
+**404** | Resource not found |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_quilts**
-> Quilts list_quilts(search=search)
+> ListQuilts200Response list_quilts(search=search)
 
 Fetch the available Quilt versions
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
 
 ```python
 import kleister
-from kleister.models.quilts import Quilts
+from kleister.models.list_quilts200_response import ListQuilts200Response
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -361,12 +338,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -411,11 +382,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Quilts**](Quilts.md)
+[**ListQuilts200Response**](ListQuilts200Response.md)
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -426,10 +397,9 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A collection of quilt versions |  -  |
+**200** | A collection of quilts |  -  |
 **403** | User is not authorized |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -440,7 +410,6 @@ Update the available Quilt versions
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
@@ -461,12 +430,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -511,7 +474,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -523,10 +486,9 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Plain success message |  -  |
-**503** | If remote source is not available |  -  |
+**503** | Remote source is nit available |  -  |
 **403** | User is not authorized |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

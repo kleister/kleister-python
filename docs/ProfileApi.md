@@ -16,7 +16,6 @@ Fetch profile details of the personal account
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
@@ -37,12 +36,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -87,7 +80,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -101,7 +94,6 @@ This endpoint does not need any parameter.
 **200** | The current profile details |  -  |
 **403** | User is not authorized |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -112,7 +104,6 @@ Retrieve an unlimited auth token
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
@@ -133,12 +124,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -183,7 +168,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -197,18 +182,16 @@ This endpoint does not need any parameter.
 **200** | Generated token never expiring |  -  |
 **403** | User is not authorized |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_profile**
-> Profile update_profile(profile)
+> Profile update_profile(update_profile_request)
 
 Update your own profile information
 
 ### Example
 
-* Api Key Authentication (Cookie):
 * Basic Authentication (Basic):
 * Api Key Authentication (Header):
 * Bearer Authentication (Bearer):
@@ -216,6 +199,7 @@ Update your own profile information
 ```python
 import kleister
 from kleister.models.profile import Profile
+from kleister.models.update_profile_request import UpdateProfileRequest
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -229,12 +213,6 @@ configuration = kleister.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: Cookie
-configuration.api_key['Cookie'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Cookie'] = 'Bearer'
 
 # Configure HTTP basic authorization: Basic
 configuration = kleister.Configuration(
@@ -257,11 +235,11 @@ configuration = kleister.Configuration(
 with kleister.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kleister.ProfileApi(api_client)
-    profile = kleister.Profile() # Profile | The profile data to update
+    update_profile_request = kleister.UpdateProfileRequest() # UpdateProfileRequest | The profile data to update
 
     try:
         # Update your own profile information
-        api_response = api_instance.update_profile(profile)
+        api_response = api_instance.update_profile(update_profile_request)
         print("The response of ProfileApi->update_profile:\n")
         pprint(api_response)
     except Exception as e:
@@ -275,7 +253,7 @@ with kleister.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **profile** | [**Profile**](Profile.md)| The profile data to update | 
+ **update_profile_request** | [**UpdateProfileRequest**](UpdateProfileRequest.md)| The profile data to update | 
 
 ### Return type
 
@@ -283,7 +261,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Cookie](../README.md#Cookie), [Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
+[Basic](../README.md#Basic), [Header](../README.md#Header), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -294,11 +272,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The updated profile details |  -  |
+**200** | The current profile details |  -  |
+**400** | Failed to parse request |  -  |
 **403** | User is not authorized |  -  |
 **422** | Failed to validate request |  -  |
 **500** | Some internal server error |  -  |
-**0** | Some error unrelated to the handler |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
