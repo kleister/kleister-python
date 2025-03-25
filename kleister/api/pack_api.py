@@ -20,17 +20,21 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
+from kleister.models.attach_build_to_version_request import AttachBuildToVersionRequest
 from kleister.models.build import Build
-from kleister.models.build_version_params import BuildVersionParams
-from kleister.models.build_versions import BuildVersions
-from kleister.models.builds import Builds
+from kleister.models.create_build_request import CreateBuildRequest
+from kleister.models.create_pack_request import CreatePackRequest
+from kleister.models.delete_pack_from_group_request import DeletePackFromGroupRequest
+from kleister.models.delete_pack_from_user_request import DeletePackFromUserRequest
+from kleister.models.list_build_versions200_response import ListBuildVersions200Response
+from kleister.models.list_builds200_response import ListBuilds200Response
+from kleister.models.list_pack_groups200_response import ListPackGroups200Response
+from kleister.models.list_pack_users200_response import ListPackUsers200Response
+from kleister.models.list_packs200_response import ListPacks200Response
 from kleister.models.notification import Notification
 from kleister.models.pack import Pack
-from kleister.models.pack_team_params import PackTeamParams
-from kleister.models.pack_teams import PackTeams
-from kleister.models.pack_user_params import PackUserParams
-from kleister.models.pack_users import PackUsers
-from kleister.models.packs import Packs
+from kleister.models.permit_pack_group_request import PermitPackGroupRequest
+from kleister.models.permit_pack_user_request import PermitPackUserRequest
 
 from kleister.api_client import ApiClient, RequestSerialized
 from kleister.api_response import ApiResponse
@@ -55,7 +59,7 @@ class PackApi:
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         build_id: Annotated[StrictStr, Field(description="A build identifier or slug")],
-        build_version_params: Annotated[BuildVersionParams, Field(description="The build version data to attach")],
+        attach_build_to_version_request: Annotated[AttachBuildToVersionRequest, Field(description="The build version data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -76,8 +80,8 @@ class PackApi:
         :type pack_id: str
         :param build_id: A build identifier or slug (required)
         :type build_id: str
-        :param build_version_params: The build version data to attach (required)
-        :type build_version_params: BuildVersionParams
+        :param attach_build_to_version_request: The build version data to create or delete (required)
+        :type attach_build_to_version_request: AttachBuildToVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -103,7 +107,7 @@ class PackApi:
         _param = self._attach_build_to_version_serialize(
             pack_id=pack_id,
             build_id=build_id,
-            build_version_params=build_version_params,
+            attach_build_to_version_request=attach_build_to_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -112,6 +116,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -134,7 +139,7 @@ class PackApi:
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         build_id: Annotated[StrictStr, Field(description="A build identifier or slug")],
-        build_version_params: Annotated[BuildVersionParams, Field(description="The build version data to attach")],
+        attach_build_to_version_request: Annotated[AttachBuildToVersionRequest, Field(description="The build version data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -155,8 +160,8 @@ class PackApi:
         :type pack_id: str
         :param build_id: A build identifier or slug (required)
         :type build_id: str
-        :param build_version_params: The build version data to attach (required)
-        :type build_version_params: BuildVersionParams
+        :param attach_build_to_version_request: The build version data to create or delete (required)
+        :type attach_build_to_version_request: AttachBuildToVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -182,7 +187,7 @@ class PackApi:
         _param = self._attach_build_to_version_serialize(
             pack_id=pack_id,
             build_id=build_id,
-            build_version_params=build_version_params,
+            attach_build_to_version_request=attach_build_to_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -191,6 +196,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -213,7 +219,7 @@ class PackApi:
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         build_id: Annotated[StrictStr, Field(description="A build identifier or slug")],
-        build_version_params: Annotated[BuildVersionParams, Field(description="The build version data to attach")],
+        attach_build_to_version_request: Annotated[AttachBuildToVersionRequest, Field(description="The build version data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -234,8 +240,8 @@ class PackApi:
         :type pack_id: str
         :param build_id: A build identifier or slug (required)
         :type build_id: str
-        :param build_version_params: The build version data to attach (required)
-        :type build_version_params: BuildVersionParams
+        :param attach_build_to_version_request: The build version data to create or delete (required)
+        :type attach_build_to_version_request: AttachBuildToVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -261,7 +267,7 @@ class PackApi:
         _param = self._attach_build_to_version_serialize(
             pack_id=pack_id,
             build_id=build_id,
-            build_version_params=build_version_params,
+            attach_build_to_version_request=attach_build_to_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -270,6 +276,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -287,7 +294,7 @@ class PackApi:
         self,
         pack_id,
         build_id,
-        build_version_params,
+        attach_build_to_version_request,
         _request_auth,
         _content_type,
         _headers,
@@ -303,7 +310,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -315,16 +324,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if build_version_params is not None:
-            _body_params = build_version_params
+        if attach_build_to_version_request is not None:
+            _body_params = attach_build_to_version_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -342,7 +352,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -367,10 +376,10 @@ class PackApi:
 
 
     @validate_call
-    def attach_pack_to_team(
+    def attach_pack_to_group(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_team_params: Annotated[PackTeamParams, Field(description="The team data to attach")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The pack group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -384,13 +393,13 @@ class PackApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Notification:
-        """Attach a team to pack
+        """Attach a group to pack
 
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_team_params: The team data to attach (required)
-        :type pack_team_params: PackTeamParams
+        :param permit_pack_group_request: The pack group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -413,9 +422,9 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._attach_pack_to_team_serialize(
+        _param = self._attach_pack_to_group_serialize(
             pack_id=pack_id,
-            pack_team_params=pack_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -424,6 +433,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -442,10 +452,10 @@ class PackApi:
 
 
     @validate_call
-    def attach_pack_to_team_with_http_info(
+    def attach_pack_to_group_with_http_info(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_team_params: Annotated[PackTeamParams, Field(description="The team data to attach")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The pack group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -459,13 +469,13 @@ class PackApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Notification]:
-        """Attach a team to pack
+        """Attach a group to pack
 
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_team_params: The team data to attach (required)
-        :type pack_team_params: PackTeamParams
+        :param permit_pack_group_request: The pack group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -488,9 +498,9 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._attach_pack_to_team_serialize(
+        _param = self._attach_pack_to_group_serialize(
             pack_id=pack_id,
-            pack_team_params=pack_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -499,6 +509,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -517,10 +528,10 @@ class PackApi:
 
 
     @validate_call
-    def attach_pack_to_team_without_preload_content(
+    def attach_pack_to_group_without_preload_content(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_team_params: Annotated[PackTeamParams, Field(description="The team data to attach")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The pack group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -534,13 +545,13 @@ class PackApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Attach a team to pack
+        """Attach a group to pack
 
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_team_params: The team data to attach (required)
-        :type pack_team_params: PackTeamParams
+        :param permit_pack_group_request: The pack group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -563,9 +574,9 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._attach_pack_to_team_serialize(
+        _param = self._attach_pack_to_group_serialize(
             pack_id=pack_id,
-            pack_team_params=pack_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -574,6 +585,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -587,10 +599,10 @@ class PackApi:
         return response_data.response
 
 
-    def _attach_pack_to_team_serialize(
+    def _attach_pack_to_group_serialize(
         self,
         pack_id,
-        pack_team_params,
+        permit_pack_group_request,
         _request_auth,
         _content_type,
         _headers,
@@ -606,7 +618,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -616,16 +630,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if pack_team_params is not None:
-            _body_params = pack_team_params
+        if permit_pack_group_request is not None:
+            _body_params = permit_pack_group_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -643,7 +658,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -651,7 +665,7 @@ class PackApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/packs/{pack_id}/teams',
+            resource_path='/packs/{pack_id}/groups',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -671,7 +685,7 @@ class PackApi:
     def attach_pack_to_user(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_user_params: Annotated[PackUserParams, Field(description="The user data to attach")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The pack user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -690,8 +704,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_user_params: The user data to attach (required)
-        :type pack_user_params: PackUserParams
+        :param permit_pack_user_request: The pack user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -716,7 +730,7 @@ class PackApi:
 
         _param = self._attach_pack_to_user_serialize(
             pack_id=pack_id,
-            pack_user_params=pack_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -725,6 +739,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -746,7 +761,7 @@ class PackApi:
     def attach_pack_to_user_with_http_info(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_user_params: Annotated[PackUserParams, Field(description="The user data to attach")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The pack user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -765,8 +780,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_user_params: The user data to attach (required)
-        :type pack_user_params: PackUserParams
+        :param permit_pack_user_request: The pack user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -791,7 +806,7 @@ class PackApi:
 
         _param = self._attach_pack_to_user_serialize(
             pack_id=pack_id,
-            pack_user_params=pack_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -800,6 +815,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -821,7 +837,7 @@ class PackApi:
     def attach_pack_to_user_without_preload_content(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_user_params: Annotated[PackUserParams, Field(description="The user data to attach")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The pack user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -840,8 +856,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_user_params: The user data to attach (required)
-        :type pack_user_params: PackUserParams
+        :param permit_pack_user_request: The pack user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -866,7 +882,7 @@ class PackApi:
 
         _param = self._attach_pack_to_user_serialize(
             pack_id=pack_id,
-            pack_user_params=pack_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -875,6 +891,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -891,7 +908,7 @@ class PackApi:
     def _attach_pack_to_user_serialize(
         self,
         pack_id,
-        pack_user_params,
+        permit_pack_user_request,
         _request_auth,
         _content_type,
         _headers,
@@ -907,7 +924,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -917,16 +936,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if pack_user_params is not None:
-            _body_params = pack_user_params
+        if permit_pack_user_request is not None:
+            _body_params = permit_pack_user_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -944,7 +964,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -972,7 +991,7 @@ class PackApi:
     def create_build(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        build: Annotated[Build, Field(description="The build data to create")],
+        create_build_request: Annotated[CreateBuildRequest, Field(description="The build data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -991,8 +1010,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param build: The build data to create (required)
-        :type build: Build
+        :param create_build_request: The build data to create (required)
+        :type create_build_request: CreateBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1017,7 +1036,7 @@ class PackApi:
 
         _param = self._create_build_serialize(
             pack_id=pack_id,
-            build=build,
+            create_build_request=create_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1026,6 +1045,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Build",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -1046,7 +1066,7 @@ class PackApi:
     def create_build_with_http_info(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        build: Annotated[Build, Field(description="The build data to create")],
+        create_build_request: Annotated[CreateBuildRequest, Field(description="The build data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1065,8 +1085,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param build: The build data to create (required)
-        :type build: Build
+        :param create_build_request: The build data to create (required)
+        :type create_build_request: CreateBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1091,7 +1111,7 @@ class PackApi:
 
         _param = self._create_build_serialize(
             pack_id=pack_id,
-            build=build,
+            create_build_request=create_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1100,6 +1120,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Build",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -1120,7 +1141,7 @@ class PackApi:
     def create_build_without_preload_content(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        build: Annotated[Build, Field(description="The build data to create")],
+        create_build_request: Annotated[CreateBuildRequest, Field(description="The build data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1139,8 +1160,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param build: The build data to create (required)
-        :type build: Build
+        :param create_build_request: The build data to create (required)
+        :type create_build_request: CreateBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1165,7 +1186,7 @@ class PackApi:
 
         _param = self._create_build_serialize(
             pack_id=pack_id,
-            build=build,
+            create_build_request=create_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1174,6 +1195,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Build",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -1189,7 +1211,7 @@ class PackApi:
     def _create_build_serialize(
         self,
         pack_id,
-        build,
+        create_build_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1205,7 +1227,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1215,16 +1239,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if build is not None:
-            _body_params = build
+        if create_build_request is not None:
+            _body_params = create_build_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -1242,7 +1267,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1269,7 +1293,7 @@ class PackApi:
     @validate_call
     def create_pack(
         self,
-        pack: Annotated[Pack, Field(description="The pack data to create")],
+        create_pack_request: Annotated[CreatePackRequest, Field(description="The pack data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1286,8 +1310,8 @@ class PackApi:
         """Create a new pack
 
 
-        :param pack: The pack data to create (required)
-        :type pack: Pack
+        :param create_pack_request: The pack data to create (required)
+        :type create_pack_request: CreatePackRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1311,7 +1335,7 @@ class PackApi:
         """ # noqa: E501
 
         _param = self._create_pack_serialize(
-            pack=pack,
+            create_pack_request=create_pack_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1320,6 +1344,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Pack",
+            '400': "Notification",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -1338,7 +1363,7 @@ class PackApi:
     @validate_call
     def create_pack_with_http_info(
         self,
-        pack: Annotated[Pack, Field(description="The pack data to create")],
+        create_pack_request: Annotated[CreatePackRequest, Field(description="The pack data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1355,8 +1380,8 @@ class PackApi:
         """Create a new pack
 
 
-        :param pack: The pack data to create (required)
-        :type pack: Pack
+        :param create_pack_request: The pack data to create (required)
+        :type create_pack_request: CreatePackRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1380,7 +1405,7 @@ class PackApi:
         """ # noqa: E501
 
         _param = self._create_pack_serialize(
-            pack=pack,
+            create_pack_request=create_pack_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1389,6 +1414,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Pack",
+            '400': "Notification",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -1407,7 +1433,7 @@ class PackApi:
     @validate_call
     def create_pack_without_preload_content(
         self,
-        pack: Annotated[Pack, Field(description="The pack data to create")],
+        create_pack_request: Annotated[CreatePackRequest, Field(description="The pack data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1424,8 +1450,8 @@ class PackApi:
         """Create a new pack
 
 
-        :param pack: The pack data to create (required)
-        :type pack: Pack
+        :param create_pack_request: The pack data to create (required)
+        :type create_pack_request: CreatePackRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1449,7 +1475,7 @@ class PackApi:
         """ # noqa: E501
 
         _param = self._create_pack_serialize(
-            pack=pack,
+            create_pack_request=create_pack_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1458,6 +1484,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Pack",
+            '400': "Notification",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -1471,7 +1498,7 @@ class PackApi:
 
     def _create_pack_serialize(
         self,
-        pack,
+        create_pack_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1487,7 +1514,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1495,16 +1524,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if pack is not None:
-            _body_params = pack
+        if create_pack_request is not None:
+            _body_params = create_pack_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -1522,7 +1552,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1783,7 +1812,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1798,16 +1829,16 @@ class PackApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1836,7 +1867,7 @@ class PackApi:
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         build_id: Annotated[StrictStr, Field(description="A build identifier or slug")],
-        build_version_params: Annotated[BuildVersionParams, Field(description="The build version data to unlink")],
+        attach_build_to_version_request: Annotated[AttachBuildToVersionRequest, Field(description="The build version data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1857,8 +1888,8 @@ class PackApi:
         :type pack_id: str
         :param build_id: A build identifier or slug (required)
         :type build_id: str
-        :param build_version_params: The build version data to unlink (required)
-        :type build_version_params: BuildVersionParams
+        :param attach_build_to_version_request: The build version data to create or delete (required)
+        :type attach_build_to_version_request: AttachBuildToVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1884,7 +1915,7 @@ class PackApi:
         _param = self._delete_build_from_version_serialize(
             pack_id=pack_id,
             build_id=build_id,
-            build_version_params=build_version_params,
+            attach_build_to_version_request=attach_build_to_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1893,6 +1924,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -1914,7 +1946,7 @@ class PackApi:
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         build_id: Annotated[StrictStr, Field(description="A build identifier or slug")],
-        build_version_params: Annotated[BuildVersionParams, Field(description="The build version data to unlink")],
+        attach_build_to_version_request: Annotated[AttachBuildToVersionRequest, Field(description="The build version data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1935,8 +1967,8 @@ class PackApi:
         :type pack_id: str
         :param build_id: A build identifier or slug (required)
         :type build_id: str
-        :param build_version_params: The build version data to unlink (required)
-        :type build_version_params: BuildVersionParams
+        :param attach_build_to_version_request: The build version data to create or delete (required)
+        :type attach_build_to_version_request: AttachBuildToVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1962,7 +1994,7 @@ class PackApi:
         _param = self._delete_build_from_version_serialize(
             pack_id=pack_id,
             build_id=build_id,
-            build_version_params=build_version_params,
+            attach_build_to_version_request=attach_build_to_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1971,6 +2003,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -1992,7 +2025,7 @@ class PackApi:
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         build_id: Annotated[StrictStr, Field(description="A build identifier or slug")],
-        build_version_params: Annotated[BuildVersionParams, Field(description="The build version data to unlink")],
+        attach_build_to_version_request: Annotated[AttachBuildToVersionRequest, Field(description="The build version data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2013,8 +2046,8 @@ class PackApi:
         :type pack_id: str
         :param build_id: A build identifier or slug (required)
         :type build_id: str
-        :param build_version_params: The build version data to unlink (required)
-        :type build_version_params: BuildVersionParams
+        :param attach_build_to_version_request: The build version data to create or delete (required)
+        :type attach_build_to_version_request: AttachBuildToVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2040,7 +2073,7 @@ class PackApi:
         _param = self._delete_build_from_version_serialize(
             pack_id=pack_id,
             build_id=build_id,
-            build_version_params=build_version_params,
+            attach_build_to_version_request=attach_build_to_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2049,6 +2082,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2065,7 +2099,7 @@ class PackApi:
         self,
         pack_id,
         build_id,
-        build_version_params,
+        attach_build_to_version_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2081,7 +2115,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2093,16 +2129,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if build_version_params is not None:
-            _body_params = build_version_params
+        if attach_build_to_version_request is not None:
+            _body_params = attach_build_to_version_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -2120,7 +2157,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -2368,7 +2404,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2381,16 +2419,16 @@ class PackApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -2415,10 +2453,10 @@ class PackApi:
 
 
     @validate_call
-    def delete_pack_from_team(
+    def delete_pack_from_group(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_team_params: Annotated[PackTeamParams, Field(description="The pack team data to unlink")],
+        delete_pack_from_group_request: Annotated[DeletePackFromGroupRequest, Field(description="The pack group data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2432,13 +2470,13 @@ class PackApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Notification:
-        """Unlink a team from pack
+        """Unlink a group from pack
 
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_team_params: The pack team data to unlink (required)
-        :type pack_team_params: PackTeamParams
+        :param delete_pack_from_group_request: The pack group data to unlink (required)
+        :type delete_pack_from_group_request: DeletePackFromGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2461,9 +2499,9 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_pack_from_team_serialize(
+        _param = self._delete_pack_from_group_serialize(
             pack_id=pack_id,
-            pack_team_params=pack_team_params,
+            delete_pack_from_group_request=delete_pack_from_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2472,6 +2510,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2489,10 +2528,10 @@ class PackApi:
 
 
     @validate_call
-    def delete_pack_from_team_with_http_info(
+    def delete_pack_from_group_with_http_info(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_team_params: Annotated[PackTeamParams, Field(description="The pack team data to unlink")],
+        delete_pack_from_group_request: Annotated[DeletePackFromGroupRequest, Field(description="The pack group data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2506,13 +2545,13 @@ class PackApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Notification]:
-        """Unlink a team from pack
+        """Unlink a group from pack
 
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_team_params: The pack team data to unlink (required)
-        :type pack_team_params: PackTeamParams
+        :param delete_pack_from_group_request: The pack group data to unlink (required)
+        :type delete_pack_from_group_request: DeletePackFromGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2535,9 +2574,9 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_pack_from_team_serialize(
+        _param = self._delete_pack_from_group_serialize(
             pack_id=pack_id,
-            pack_team_params=pack_team_params,
+            delete_pack_from_group_request=delete_pack_from_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2546,6 +2585,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2563,10 +2603,10 @@ class PackApi:
 
 
     @validate_call
-    def delete_pack_from_team_without_preload_content(
+    def delete_pack_from_group_without_preload_content(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_team_params: Annotated[PackTeamParams, Field(description="The pack team data to unlink")],
+        delete_pack_from_group_request: Annotated[DeletePackFromGroupRequest, Field(description="The pack group data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2580,13 +2620,13 @@ class PackApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Unlink a team from pack
+        """Unlink a group from pack
 
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_team_params: The pack team data to unlink (required)
-        :type pack_team_params: PackTeamParams
+        :param delete_pack_from_group_request: The pack group data to unlink (required)
+        :type delete_pack_from_group_request: DeletePackFromGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2609,9 +2649,9 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_pack_from_team_serialize(
+        _param = self._delete_pack_from_group_serialize(
             pack_id=pack_id,
-            pack_team_params=pack_team_params,
+            delete_pack_from_group_request=delete_pack_from_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2620,6 +2660,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2632,10 +2673,10 @@ class PackApi:
         return response_data.response
 
 
-    def _delete_pack_from_team_serialize(
+    def _delete_pack_from_group_serialize(
         self,
         pack_id,
-        pack_team_params,
+        delete_pack_from_group_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2651,7 +2692,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2661,16 +2704,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if pack_team_params is not None:
-            _body_params = pack_team_params
+        if delete_pack_from_group_request is not None:
+            _body_params = delete_pack_from_group_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -2688,7 +2732,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -2696,7 +2739,7 @@ class PackApi:
 
         return self.api_client.param_serialize(
             method='DELETE',
-            resource_path='/packs/{pack_id}/teams',
+            resource_path='/packs/{pack_id}/groups',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2716,7 +2759,7 @@ class PackApi:
     def delete_pack_from_user(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_user_params: Annotated[PackUserParams, Field(description="The pack user data to unlink")],
+        delete_pack_from_user_request: Annotated[DeletePackFromUserRequest, Field(description="The pack user data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2735,8 +2778,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_user_params: The pack user data to unlink (required)
-        :type pack_user_params: PackUserParams
+        :param delete_pack_from_user_request: The pack user data to unlink (required)
+        :type delete_pack_from_user_request: DeletePackFromUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2761,7 +2804,7 @@ class PackApi:
 
         _param = self._delete_pack_from_user_serialize(
             pack_id=pack_id,
-            pack_user_params=pack_user_params,
+            delete_pack_from_user_request=delete_pack_from_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2770,6 +2813,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2790,7 +2834,7 @@ class PackApi:
     def delete_pack_from_user_with_http_info(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_user_params: Annotated[PackUserParams, Field(description="The pack user data to unlink")],
+        delete_pack_from_user_request: Annotated[DeletePackFromUserRequest, Field(description="The pack user data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2809,8 +2853,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_user_params: The pack user data to unlink (required)
-        :type pack_user_params: PackUserParams
+        :param delete_pack_from_user_request: The pack user data to unlink (required)
+        :type delete_pack_from_user_request: DeletePackFromUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2835,7 +2879,7 @@ class PackApi:
 
         _param = self._delete_pack_from_user_serialize(
             pack_id=pack_id,
-            pack_user_params=pack_user_params,
+            delete_pack_from_user_request=delete_pack_from_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2844,6 +2888,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2864,7 +2909,7 @@ class PackApi:
     def delete_pack_from_user_without_preload_content(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_user_params: Annotated[PackUserParams, Field(description="The pack user data to unlink")],
+        delete_pack_from_user_request: Annotated[DeletePackFromUserRequest, Field(description="The pack user data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2883,8 +2928,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_user_params: The pack user data to unlink (required)
-        :type pack_user_params: PackUserParams
+        :param delete_pack_from_user_request: The pack user data to unlink (required)
+        :type delete_pack_from_user_request: DeletePackFromUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2909,7 +2954,7 @@ class PackApi:
 
         _param = self._delete_pack_from_user_serialize(
             pack_id=pack_id,
-            pack_user_params=pack_user_params,
+            delete_pack_from_user_request=delete_pack_from_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2918,6 +2963,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2933,7 +2979,7 @@ class PackApi:
     def _delete_pack_from_user_serialize(
         self,
         pack_id,
-        pack_user_params,
+        delete_pack_from_user_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2949,7 +2995,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2959,16 +3007,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if pack_user_params is not None:
-            _body_params = pack_user_params
+        if delete_pack_from_user_request is not None:
+            _body_params = delete_pack_from_user_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -2986,7 +3035,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -3032,7 +3080,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> BuildVersions:
+    ) -> ListBuildVersions200Response:
         """Fetch all versions attached to build
 
 
@@ -3087,7 +3135,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BuildVersions",
+            '200': "ListBuildVersions200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3125,7 +3173,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[BuildVersions]:
+    ) -> ApiResponse[ListBuildVersions200Response]:
         """Fetch all versions attached to build
 
 
@@ -3180,7 +3228,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BuildVersions",
+            '200': "ListBuildVersions200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3273,7 +3321,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BuildVersions",
+            '200': "ListBuildVersions200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3309,7 +3357,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -3344,16 +3394,16 @@ class PackApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -3398,7 +3448,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Builds:
+    ) -> ListBuilds200Response:
         """Fetch all available builds for a pack
 
 
@@ -3450,7 +3500,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Builds",
+            '200': "ListBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3487,7 +3537,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Builds]:
+    ) -> ApiResponse[ListBuilds200Response]:
         """Fetch all available builds for a pack
 
 
@@ -3539,7 +3589,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Builds",
+            '200': "ListBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3628,7 +3678,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Builds",
+            '200': "ListBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3663,7 +3713,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -3696,16 +3748,16 @@ class PackApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -3730,7 +3782,7 @@ class PackApi:
 
 
     @validate_call
-    def list_pack_teams(
+    def list_pack_groups(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         search: Annotated[Optional[StrictStr], Field(description="Search query")] = None,
@@ -3750,8 +3802,8 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PackTeams:
-        """Fetch all teams attached to pack
+    ) -> ListPackGroups200Response:
+        """Fetch all groups attached to pack
 
 
         :param pack_id: A pack identifier or slug (required)
@@ -3788,7 +3840,7 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._list_pack_teams_serialize(
+        _param = self._list_pack_groups_serialize(
             pack_id=pack_id,
             search=search,
             sort=sort,
@@ -3802,7 +3854,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PackTeams",
+            '200': "ListPackGroups200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3819,7 +3871,7 @@ class PackApi:
 
 
     @validate_call
-    def list_pack_teams_with_http_info(
+    def list_pack_groups_with_http_info(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         search: Annotated[Optional[StrictStr], Field(description="Search query")] = None,
@@ -3839,8 +3891,8 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PackTeams]:
-        """Fetch all teams attached to pack
+    ) -> ApiResponse[ListPackGroups200Response]:
+        """Fetch all groups attached to pack
 
 
         :param pack_id: A pack identifier or slug (required)
@@ -3877,7 +3929,7 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._list_pack_teams_serialize(
+        _param = self._list_pack_groups_serialize(
             pack_id=pack_id,
             search=search,
             sort=sort,
@@ -3891,7 +3943,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PackTeams",
+            '200': "ListPackGroups200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3908,7 +3960,7 @@ class PackApi:
 
 
     @validate_call
-    def list_pack_teams_without_preload_content(
+    def list_pack_groups_without_preload_content(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         search: Annotated[Optional[StrictStr], Field(description="Search query")] = None,
@@ -3929,7 +3981,7 @@ class PackApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Fetch all teams attached to pack
+        """Fetch all groups attached to pack
 
 
         :param pack_id: A pack identifier or slug (required)
@@ -3966,7 +4018,7 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._list_pack_teams_serialize(
+        _param = self._list_pack_groups_serialize(
             pack_id=pack_id,
             search=search,
             sort=sort,
@@ -3980,7 +4032,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PackTeams",
+            '200': "ListPackGroups200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3992,7 +4044,7 @@ class PackApi:
         return response_data.response
 
 
-    def _list_pack_teams_serialize(
+    def _list_pack_groups_serialize(
         self,
         pack_id,
         search,
@@ -4015,7 +4067,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -4048,16 +4102,16 @@ class PackApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -4065,7 +4119,7 @@ class PackApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/packs/{pack_id}/teams',
+            resource_path='/packs/{pack_id}/groups',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -4102,7 +4156,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PackUsers:
+    ) -> ListPackUsers200Response:
         """Fetch all users attached to pack
 
 
@@ -4154,7 +4208,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PackUsers",
+            '200': "ListPackUsers200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4191,7 +4245,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PackUsers]:
+    ) -> ApiResponse[ListPackUsers200Response]:
         """Fetch all users attached to pack
 
 
@@ -4243,7 +4297,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PackUsers",
+            '200': "ListPackUsers200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4332,7 +4386,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PackUsers",
+            '200': "ListPackUsers200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4367,7 +4421,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -4400,16 +4456,16 @@ class PackApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -4453,7 +4509,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Packs:
+    ) -> ListPacks200Response:
         """Fetch all available packs
 
 
@@ -4502,7 +4558,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Packs",
+            '200': "ListPacks200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -4537,7 +4593,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Packs]:
+    ) -> ApiResponse[ListPacks200Response]:
         """Fetch all available packs
 
 
@@ -4586,7 +4642,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Packs",
+            '200': "ListPacks200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -4670,7 +4726,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Packs",
+            '200': "ListPacks200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -4703,7 +4759,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -4734,16 +4792,16 @@ class PackApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -4768,10 +4826,10 @@ class PackApi:
 
 
     @validate_call
-    def permit_pack_team(
+    def permit_pack_group(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_team_params: Annotated[PackTeamParams, Field(description="The team data to update")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The pack group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4785,13 +4843,13 @@ class PackApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Notification:
-        """Update team perms for pack
+        """Update group perms for pack
 
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_team_params: The team data to update (required)
-        :type pack_team_params: PackTeamParams
+        :param permit_pack_group_request: The pack group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4814,9 +4872,9 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._permit_pack_team_serialize(
+        _param = self._permit_pack_group_serialize(
             pack_id=pack_id,
-            pack_team_params=pack_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4825,6 +4883,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -4843,10 +4902,10 @@ class PackApi:
 
 
     @validate_call
-    def permit_pack_team_with_http_info(
+    def permit_pack_group_with_http_info(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_team_params: Annotated[PackTeamParams, Field(description="The team data to update")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The pack group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4860,13 +4919,13 @@ class PackApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Notification]:
-        """Update team perms for pack
+        """Update group perms for pack
 
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_team_params: The team data to update (required)
-        :type pack_team_params: PackTeamParams
+        :param permit_pack_group_request: The pack group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4889,9 +4948,9 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._permit_pack_team_serialize(
+        _param = self._permit_pack_group_serialize(
             pack_id=pack_id,
-            pack_team_params=pack_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4900,6 +4959,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -4918,10 +4978,10 @@ class PackApi:
 
 
     @validate_call
-    def permit_pack_team_without_preload_content(
+    def permit_pack_group_without_preload_content(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_team_params: Annotated[PackTeamParams, Field(description="The team data to update")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The pack group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4935,13 +4995,13 @@ class PackApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Update team perms for pack
+        """Update group perms for pack
 
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_team_params: The team data to update (required)
-        :type pack_team_params: PackTeamParams
+        :param permit_pack_group_request: The pack group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4964,9 +5024,9 @@ class PackApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._permit_pack_team_serialize(
+        _param = self._permit_pack_group_serialize(
             pack_id=pack_id,
-            pack_team_params=pack_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4975,6 +5035,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -4988,10 +5049,10 @@ class PackApi:
         return response_data.response
 
 
-    def _permit_pack_team_serialize(
+    def _permit_pack_group_serialize(
         self,
         pack_id,
-        pack_team_params,
+        permit_pack_group_request,
         _request_auth,
         _content_type,
         _headers,
@@ -5007,7 +5068,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -5017,16 +5080,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if pack_team_params is not None:
-            _body_params = pack_team_params
+        if permit_pack_group_request is not None:
+            _body_params = permit_pack_group_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -5044,7 +5108,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -5052,7 +5115,7 @@ class PackApi:
 
         return self.api_client.param_serialize(
             method='PUT',
-            resource_path='/packs/{pack_id}/teams',
+            resource_path='/packs/{pack_id}/groups',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -5072,7 +5135,7 @@ class PackApi:
     def permit_pack_user(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_user_params: Annotated[PackUserParams, Field(description="The user data to update")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The pack user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5091,8 +5154,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_user_params: The user data to update (required)
-        :type pack_user_params: PackUserParams
+        :param permit_pack_user_request: The pack user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5117,7 +5180,7 @@ class PackApi:
 
         _param = self._permit_pack_user_serialize(
             pack_id=pack_id,
-            pack_user_params=pack_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5126,6 +5189,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -5147,7 +5211,7 @@ class PackApi:
     def permit_pack_user_with_http_info(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_user_params: Annotated[PackUserParams, Field(description="The user data to update")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The pack user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5166,8 +5230,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_user_params: The user data to update (required)
-        :type pack_user_params: PackUserParams
+        :param permit_pack_user_request: The pack user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5192,7 +5256,7 @@ class PackApi:
 
         _param = self._permit_pack_user_serialize(
             pack_id=pack_id,
-            pack_user_params=pack_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5201,6 +5265,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -5222,7 +5287,7 @@ class PackApi:
     def permit_pack_user_without_preload_content(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack_user_params: Annotated[PackUserParams, Field(description="The user data to update")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The pack user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5241,8 +5306,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack_user_params: The user data to update (required)
-        :type pack_user_params: PackUserParams
+        :param permit_pack_user_request: The pack user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5267,7 +5332,7 @@ class PackApi:
 
         _param = self._permit_pack_user_serialize(
             pack_id=pack_id,
-            pack_user_params=pack_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5276,6 +5341,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -5292,7 +5358,7 @@ class PackApi:
     def _permit_pack_user_serialize(
         self,
         pack_id,
-        pack_user_params,
+        permit_pack_user_request,
         _request_auth,
         _content_type,
         _headers,
@@ -5308,7 +5374,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -5318,16 +5386,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if pack_user_params is not None:
-            _body_params = pack_user_params
+        if permit_pack_user_request is not None:
+            _body_params = permit_pack_user_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -5345,7 +5414,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -5603,7 +5671,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -5618,16 +5688,16 @@ class PackApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -5872,7 +5942,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -5885,16 +5957,16 @@ class PackApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -5923,7 +5995,7 @@ class PackApi:
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         build_id: Annotated[StrictStr, Field(description="A build identifier or slug")],
-        build: Annotated[Build, Field(description="The build data to update")],
+        create_build_request: Annotated[CreateBuildRequest, Field(description="The build data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5944,8 +6016,8 @@ class PackApi:
         :type pack_id: str
         :param build_id: A build identifier or slug (required)
         :type build_id: str
-        :param build: The build data to update (required)
-        :type build: Build
+        :param create_build_request: The build data to update (required)
+        :type create_build_request: CreateBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5971,7 +6043,7 @@ class PackApi:
         _param = self._update_build_serialize(
             pack_id=pack_id,
             build_id=build_id,
-            build=build,
+            create_build_request=create_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5980,6 +6052,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Build",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6001,7 +6074,7 @@ class PackApi:
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         build_id: Annotated[StrictStr, Field(description="A build identifier or slug")],
-        build: Annotated[Build, Field(description="The build data to update")],
+        create_build_request: Annotated[CreateBuildRequest, Field(description="The build data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6022,8 +6095,8 @@ class PackApi:
         :type pack_id: str
         :param build_id: A build identifier or slug (required)
         :type build_id: str
-        :param build: The build data to update (required)
-        :type build: Build
+        :param create_build_request: The build data to update (required)
+        :type create_build_request: CreateBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6049,7 +6122,7 @@ class PackApi:
         _param = self._update_build_serialize(
             pack_id=pack_id,
             build_id=build_id,
-            build=build,
+            create_build_request=create_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6058,6 +6131,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Build",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6079,7 +6153,7 @@ class PackApi:
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
         build_id: Annotated[StrictStr, Field(description="A build identifier or slug")],
-        build: Annotated[Build, Field(description="The build data to update")],
+        create_build_request: Annotated[CreateBuildRequest, Field(description="The build data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6100,8 +6174,8 @@ class PackApi:
         :type pack_id: str
         :param build_id: A build identifier or slug (required)
         :type build_id: str
-        :param build: The build data to update (required)
-        :type build: Build
+        :param create_build_request: The build data to update (required)
+        :type create_build_request: CreateBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6127,7 +6201,7 @@ class PackApi:
         _param = self._update_build_serialize(
             pack_id=pack_id,
             build_id=build_id,
-            build=build,
+            create_build_request=create_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6136,6 +6210,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Build",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6152,7 +6227,7 @@ class PackApi:
         self,
         pack_id,
         build_id,
-        build,
+        create_build_request,
         _request_auth,
         _content_type,
         _headers,
@@ -6168,7 +6243,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -6180,16 +6257,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if build is not None:
-            _body_params = build
+        if create_build_request is not None:
+            _body_params = create_build_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -6207,7 +6285,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -6235,7 +6312,7 @@ class PackApi:
     def update_pack(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack: Annotated[Pack, Field(description="The pack data to update")],
+        create_pack_request: Annotated[CreatePackRequest, Field(description="The pack data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6254,8 +6331,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack: The pack data to update (required)
-        :type pack: Pack
+        :param create_pack_request: The pack data to update (required)
+        :type create_pack_request: CreatePackRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6280,7 +6357,7 @@ class PackApi:
 
         _param = self._update_pack_serialize(
             pack_id=pack_id,
-            pack=pack,
+            create_pack_request=create_pack_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6289,6 +6366,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Pack",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6309,7 +6387,7 @@ class PackApi:
     def update_pack_with_http_info(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack: Annotated[Pack, Field(description="The pack data to update")],
+        create_pack_request: Annotated[CreatePackRequest, Field(description="The pack data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6328,8 +6406,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack: The pack data to update (required)
-        :type pack: Pack
+        :param create_pack_request: The pack data to update (required)
+        :type create_pack_request: CreatePackRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6354,7 +6432,7 @@ class PackApi:
 
         _param = self._update_pack_serialize(
             pack_id=pack_id,
-            pack=pack,
+            create_pack_request=create_pack_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6363,6 +6441,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Pack",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6383,7 +6462,7 @@ class PackApi:
     def update_pack_without_preload_content(
         self,
         pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
-        pack: Annotated[Pack, Field(description="The pack data to update")],
+        create_pack_request: Annotated[CreatePackRequest, Field(description="The pack data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6402,8 +6481,8 @@ class PackApi:
 
         :param pack_id: A pack identifier or slug (required)
         :type pack_id: str
-        :param pack: The pack data to update (required)
-        :type pack: Pack
+        :param create_pack_request: The pack data to update (required)
+        :type create_pack_request: CreatePackRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6428,7 +6507,7 @@ class PackApi:
 
         _param = self._update_pack_serialize(
             pack_id=pack_id,
-            pack=pack,
+            create_pack_request=create_pack_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6437,6 +6516,7 @@ class PackApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Pack",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6452,7 +6532,7 @@ class PackApi:
     def _update_pack_serialize(
         self,
         pack_id,
-        pack,
+        create_pack_request,
         _request_auth,
         _content_type,
         _headers,
@@ -6468,7 +6548,9 @@ class PackApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -6478,16 +6560,17 @@ class PackApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if pack is not None:
-            _body_params = pack
+        if create_pack_request is not None:
+            _body_params = create_pack_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -6505,7 +6588,6 @@ class PackApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'

@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **quilt** | [**Quilt**](Quilt.md) |  | [optional] 
 **fabric_id** | **str** |  | [optional] 
 **fabric** | [**Fabric**](Fabric.md) |  | [optional] 
-**slug** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **java** | **str** |  | [optional] 
 **memory** | **str** |  | [optional] 

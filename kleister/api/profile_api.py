@@ -21,6 +21,7 @@ from pydantic import Field
 from typing_extensions import Annotated
 from kleister.models.auth_token import AuthToken
 from kleister.models.profile import Profile
+from kleister.models.update_profile_request import UpdateProfileRequest
 
 from kleister.api_client import ApiClient, RequestSerialized
 from kleister.api_response import ApiResponse
@@ -245,7 +246,9 @@ class ProfileApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -256,16 +259,16 @@ class ProfileApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -494,7 +497,9 @@ class ProfileApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -505,16 +510,16 @@ class ProfileApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -541,7 +546,7 @@ class ProfileApi:
     @validate_call
     def update_profile(
         self,
-        profile: Annotated[Profile, Field(description="The profile data to update")],
+        update_profile_request: Annotated[UpdateProfileRequest, Field(description="The profile data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -558,8 +563,8 @@ class ProfileApi:
         """Update your own profile information
 
 
-        :param profile: The profile data to update (required)
-        :type profile: Profile
+        :param update_profile_request: The profile data to update (required)
+        :type update_profile_request: UpdateProfileRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -583,7 +588,7 @@ class ProfileApi:
         """ # noqa: E501
 
         _param = self._update_profile_serialize(
-            profile=profile,
+            update_profile_request=update_profile_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -592,6 +597,7 @@ class ProfileApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Profile",
+            '400': "Notification",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -610,7 +616,7 @@ class ProfileApi:
     @validate_call
     def update_profile_with_http_info(
         self,
-        profile: Annotated[Profile, Field(description="The profile data to update")],
+        update_profile_request: Annotated[UpdateProfileRequest, Field(description="The profile data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -627,8 +633,8 @@ class ProfileApi:
         """Update your own profile information
 
 
-        :param profile: The profile data to update (required)
-        :type profile: Profile
+        :param update_profile_request: The profile data to update (required)
+        :type update_profile_request: UpdateProfileRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -652,7 +658,7 @@ class ProfileApi:
         """ # noqa: E501
 
         _param = self._update_profile_serialize(
-            profile=profile,
+            update_profile_request=update_profile_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -661,6 +667,7 @@ class ProfileApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Profile",
+            '400': "Notification",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -679,7 +686,7 @@ class ProfileApi:
     @validate_call
     def update_profile_without_preload_content(
         self,
-        profile: Annotated[Profile, Field(description="The profile data to update")],
+        update_profile_request: Annotated[UpdateProfileRequest, Field(description="The profile data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -696,8 +703,8 @@ class ProfileApi:
         """Update your own profile information
 
 
-        :param profile: The profile data to update (required)
-        :type profile: Profile
+        :param update_profile_request: The profile data to update (required)
+        :type update_profile_request: UpdateProfileRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -721,7 +728,7 @@ class ProfileApi:
         """ # noqa: E501
 
         _param = self._update_profile_serialize(
-            profile=profile,
+            update_profile_request=update_profile_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -730,6 +737,7 @@ class ProfileApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Profile",
+            '400': "Notification",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -743,7 +751,7 @@ class ProfileApi:
 
     def _update_profile_serialize(
         self,
-        profile,
+        update_profile_request,
         _request_auth,
         _content_type,
         _headers,
@@ -759,7 +767,9 @@ class ProfileApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -767,16 +777,17 @@ class ProfileApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if profile is not None:
-            _body_params = profile
+        if update_profile_request is not None:
+            _body_params = update_profile_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -794,7 +805,6 @@ class ProfileApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'

@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **id** | **str** |  | [optional] [readonly] 
 **file** | [**VersionFile**](VersionFile.md) |  | [optional] 
 **mod** | [**Mod**](Mod.md) |  | [optional] 
-**slug** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **public** | **bool** |  | [optional] 
 **created_at** | **datetime** |  | [optional] [readonly] 

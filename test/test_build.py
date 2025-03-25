@@ -28,7 +28,7 @@ class TestBuild(unittest.TestCase):
 
     def make_instance(self, include_optional) -> Build:
         """Test Build
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Build`
@@ -39,34 +39,9 @@ class TestBuild(unittest.TestCase):
                 id = '',
                 pack = kleister.models.pack.Pack(
                     id = '', 
-                    icon = kleister.models.pack_icon.Pack Icon(
-                        id = '', 
+                    avatar = kleister.models.pack_avatar.Pack Avatar(
                         slug = '', 
-                        content_type = '', 
-                        md5 = '', 
-                        path = '', 
                         url = '', 
-                        upload = '', 
-                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
-                    logo = kleister.models.pack_logo.Pack Logo(
-                        id = '', 
-                        slug = '', 
-                        content_type = '', 
-                        md5 = '', 
-                        path = '', 
-                        url = '', 
-                        upload = '', 
-                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
-                    back = kleister.models.pack_background.Pack Background(
-                        id = '', 
-                        slug = '', 
-                        content_type = '', 
-                        md5 = '', 
-                        path = '', 
-                        url = '', 
-                        upload = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
                     slug = '', 
@@ -107,7 +82,6 @@ class TestBuild(unittest.TestCase):
                     name = '', 
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
-                slug = '',
                 name = '',
                 java = '',
                 memory = '',

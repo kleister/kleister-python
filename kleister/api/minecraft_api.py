@@ -20,9 +20,9 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
-from kleister.models.minecraft_build_params import MinecraftBuildParams
-from kleister.models.minecraft_builds import MinecraftBuilds
-from kleister.models.minecrafts import Minecrafts
+from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
+from kleister.models.list_minecraft_builds200_response import ListMinecraftBuilds200Response
+from kleister.models.list_minecrafts200_response import ListMinecrafts200Response
 from kleister.models.notification import Notification
 
 from kleister.api_client import ApiClient, RequestSerialized
@@ -47,7 +47,7 @@ class MinecraftApi:
     def attach_minecraft_to_build(
         self,
         minecraft_id: Annotated[StrictStr, Field(description="A minecraft identifier or slug")],
-        minecraft_build_params: Annotated[MinecraftBuildParams, Field(description="The build data to attach")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The minecraft build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -66,8 +66,8 @@ class MinecraftApi:
 
         :param minecraft_id: A minecraft identifier or slug (required)
         :type minecraft_id: str
-        :param minecraft_build_params: The build data to attach (required)
-        :type minecraft_build_params: MinecraftBuildParams
+        :param attach_minecraft_to_build_request: The minecraft build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -92,7 +92,7 @@ class MinecraftApi:
 
         _param = self._attach_minecraft_to_build_serialize(
             minecraft_id=minecraft_id,
-            minecraft_build_params=minecraft_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -101,6 +101,7 @@ class MinecraftApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -122,7 +123,7 @@ class MinecraftApi:
     def attach_minecraft_to_build_with_http_info(
         self,
         minecraft_id: Annotated[StrictStr, Field(description="A minecraft identifier or slug")],
-        minecraft_build_params: Annotated[MinecraftBuildParams, Field(description="The build data to attach")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The minecraft build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -141,8 +142,8 @@ class MinecraftApi:
 
         :param minecraft_id: A minecraft identifier or slug (required)
         :type minecraft_id: str
-        :param minecraft_build_params: The build data to attach (required)
-        :type minecraft_build_params: MinecraftBuildParams
+        :param attach_minecraft_to_build_request: The minecraft build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -167,7 +168,7 @@ class MinecraftApi:
 
         _param = self._attach_minecraft_to_build_serialize(
             minecraft_id=minecraft_id,
-            minecraft_build_params=minecraft_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -176,6 +177,7 @@ class MinecraftApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -197,7 +199,7 @@ class MinecraftApi:
     def attach_minecraft_to_build_without_preload_content(
         self,
         minecraft_id: Annotated[StrictStr, Field(description="A minecraft identifier or slug")],
-        minecraft_build_params: Annotated[MinecraftBuildParams, Field(description="The build data to attach")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The minecraft build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -216,8 +218,8 @@ class MinecraftApi:
 
         :param minecraft_id: A minecraft identifier or slug (required)
         :type minecraft_id: str
-        :param minecraft_build_params: The build data to attach (required)
-        :type minecraft_build_params: MinecraftBuildParams
+        :param attach_minecraft_to_build_request: The minecraft build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -242,7 +244,7 @@ class MinecraftApi:
 
         _param = self._attach_minecraft_to_build_serialize(
             minecraft_id=minecraft_id,
-            minecraft_build_params=minecraft_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -251,6 +253,7 @@ class MinecraftApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -267,7 +270,7 @@ class MinecraftApi:
     def _attach_minecraft_to_build_serialize(
         self,
         minecraft_id,
-        minecraft_build_params,
+        attach_minecraft_to_build_request,
         _request_auth,
         _content_type,
         _headers,
@@ -283,7 +286,9 @@ class MinecraftApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -293,16 +298,17 @@ class MinecraftApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if minecraft_build_params is not None:
-            _body_params = minecraft_build_params
+        if attach_minecraft_to_build_request is not None:
+            _body_params = attach_minecraft_to_build_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -320,7 +326,6 @@ class MinecraftApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -348,7 +353,7 @@ class MinecraftApi:
     def delete_minecraft_from_build(
         self,
         minecraft_id: Annotated[StrictStr, Field(description="A minecraft identifier or slug")],
-        minecraft_build_params: Annotated[MinecraftBuildParams, Field(description="The build data to unlink")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The minecraft build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -367,8 +372,8 @@ class MinecraftApi:
 
         :param minecraft_id: A minecraft identifier or slug (required)
         :type minecraft_id: str
-        :param minecraft_build_params: The build data to unlink (required)
-        :type minecraft_build_params: MinecraftBuildParams
+        :param attach_minecraft_to_build_request: The minecraft build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -393,7 +398,7 @@ class MinecraftApi:
 
         _param = self._delete_minecraft_from_build_serialize(
             minecraft_id=minecraft_id,
-            minecraft_build_params=minecraft_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -402,6 +407,7 @@ class MinecraftApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -422,7 +428,7 @@ class MinecraftApi:
     def delete_minecraft_from_build_with_http_info(
         self,
         minecraft_id: Annotated[StrictStr, Field(description="A minecraft identifier or slug")],
-        minecraft_build_params: Annotated[MinecraftBuildParams, Field(description="The build data to unlink")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The minecraft build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -441,8 +447,8 @@ class MinecraftApi:
 
         :param minecraft_id: A minecraft identifier or slug (required)
         :type minecraft_id: str
-        :param minecraft_build_params: The build data to unlink (required)
-        :type minecraft_build_params: MinecraftBuildParams
+        :param attach_minecraft_to_build_request: The minecraft build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -467,7 +473,7 @@ class MinecraftApi:
 
         _param = self._delete_minecraft_from_build_serialize(
             minecraft_id=minecraft_id,
-            minecraft_build_params=minecraft_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -476,6 +482,7 @@ class MinecraftApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -496,7 +503,7 @@ class MinecraftApi:
     def delete_minecraft_from_build_without_preload_content(
         self,
         minecraft_id: Annotated[StrictStr, Field(description="A minecraft identifier or slug")],
-        minecraft_build_params: Annotated[MinecraftBuildParams, Field(description="The build data to unlink")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The minecraft build data to create or update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -515,8 +522,8 @@ class MinecraftApi:
 
         :param minecraft_id: A minecraft identifier or slug (required)
         :type minecraft_id: str
-        :param minecraft_build_params: The build data to unlink (required)
-        :type minecraft_build_params: MinecraftBuildParams
+        :param attach_minecraft_to_build_request: The minecraft build data to create or update (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -541,7 +548,7 @@ class MinecraftApi:
 
         _param = self._delete_minecraft_from_build_serialize(
             minecraft_id=minecraft_id,
-            minecraft_build_params=minecraft_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -550,6 +557,7 @@ class MinecraftApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -565,7 +573,7 @@ class MinecraftApi:
     def _delete_minecraft_from_build_serialize(
         self,
         minecraft_id,
-        minecraft_build_params,
+        attach_minecraft_to_build_request,
         _request_auth,
         _content_type,
         _headers,
@@ -581,7 +589,9 @@ class MinecraftApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -591,16 +601,17 @@ class MinecraftApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if minecraft_build_params is not None:
-            _body_params = minecraft_build_params
+        if attach_minecraft_to_build_request is not None:
+            _body_params = attach_minecraft_to_build_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -618,7 +629,6 @@ class MinecraftApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -663,7 +673,7 @@ class MinecraftApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> MinecraftBuilds:
+    ) -> ListMinecraftBuilds200Response:
         """Fetch the builds attached to a Minecraft version
 
 
@@ -715,7 +725,7 @@ class MinecraftApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MinecraftBuilds",
+            '200': "ListMinecraftBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -752,7 +762,7 @@ class MinecraftApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[MinecraftBuilds]:
+    ) -> ApiResponse[ListMinecraftBuilds200Response]:
         """Fetch the builds attached to a Minecraft version
 
 
@@ -804,7 +814,7 @@ class MinecraftApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MinecraftBuilds",
+            '200': "ListMinecraftBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -893,7 +903,7 @@ class MinecraftApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MinecraftBuilds",
+            '200': "ListMinecraftBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -928,7 +938,9 @@ class MinecraftApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -961,16 +973,16 @@ class MinecraftApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1010,7 +1022,7 @@ class MinecraftApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Minecrafts:
+    ) -> ListMinecrafts200Response:
         """Fetch the available Minecraft versions
 
 
@@ -1047,7 +1059,7 @@ class MinecraftApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Minecrafts",
+            '200': "ListMinecrafts200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1078,7 +1090,7 @@ class MinecraftApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Minecrafts]:
+    ) -> ApiResponse[ListMinecrafts200Response]:
         """Fetch the available Minecraft versions
 
 
@@ -1115,7 +1127,7 @@ class MinecraftApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Minecrafts",
+            '200': "ListMinecrafts200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1183,7 +1195,7 @@ class MinecraftApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Minecrafts",
+            '200': "ListMinecrafts200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1212,7 +1224,9 @@ class MinecraftApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1227,16 +1241,16 @@ class MinecraftApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1468,7 +1482,9 @@ class MinecraftApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1479,16 +1495,16 @@ class MinecraftApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'

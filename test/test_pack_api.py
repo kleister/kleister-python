@@ -34,10 +34,10 @@ class TestPackApi(unittest.TestCase):
         """
         pass
 
-    def test_attach_pack_to_team(self) -> None:
-        """Test case for attach_pack_to_team
+    def test_attach_pack_to_group(self) -> None:
+        """Test case for attach_pack_to_group
 
-        Attach a team to pack
+        Attach a group to pack
         """
         pass
 
@@ -83,10 +83,10 @@ class TestPackApi(unittest.TestCase):
         """
         pass
 
-    def test_delete_pack_from_team(self) -> None:
-        """Test case for delete_pack_from_team
+    def test_delete_pack_from_group(self) -> None:
+        """Test case for delete_pack_from_group
 
-        Unlink a team from pack
+        Unlink a group from pack
         """
         pass
 
@@ -111,10 +111,10 @@ class TestPackApi(unittest.TestCase):
         """
         pass
 
-    def test_list_pack_teams(self) -> None:
-        """Test case for list_pack_teams
+    def test_list_pack_groups(self) -> None:
+        """Test case for list_pack_groups
 
-        Fetch all teams attached to pack
+        Fetch all groups attached to pack
         """
         pass
 
@@ -132,10 +132,10 @@ class TestPackApi(unittest.TestCase):
         """
         pass
 
-    def test_permit_pack_team(self) -> None:
-        """Test case for permit_pack_team
+    def test_permit_pack_group(self) -> None:
+        """Test case for permit_pack_group
 
-        Update team perms for pack
+        Update group perms for pack
         """
         pass
 

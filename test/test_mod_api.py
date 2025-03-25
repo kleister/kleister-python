@@ -27,10 +27,10 @@ class TestModApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_attach_mod_to_team(self) -> None:
-        """Test case for attach_mod_to_team
+    def test_attach_mod_to_group(self) -> None:
+        """Test case for attach_mod_to_group
 
-        Attach a team to mod
+        Attach a group to mod
         """
         pass
 
@@ -55,6 +55,20 @@ class TestModApi(unittest.TestCase):
         """
         pass
 
+    def test_create_mod_avatar(self) -> None:
+        """Test case for create_mod_avatar
+
+        Upload an avatar for the defined mod
+        """
+        pass
+
+    def test_create_pack_avatar(self) -> None:
+        """Test case for create_pack_avatar
+
+        Upload an avatar for the defined pack
+        """
+        pass
+
     def test_create_version(self) -> None:
         """Test case for create_version
 
@@ -69,10 +83,17 @@ class TestModApi(unittest.TestCase):
         """
         pass
 
-    def test_delete_mod_from_team(self) -> None:
-        """Test case for delete_mod_from_team
+    def test_delete_mod_avatar(self) -> None:
+        """Test case for delete_mod_avatar
 
-        Unlink a team from mod
+        Delete the avatar for the defined mod
+        """
+        pass
+
+    def test_delete_mod_from_group(self) -> None:
+        """Test case for delete_mod_from_group
+
+        Unlink a group from mod
         """
         pass
 
@@ -80,6 +101,13 @@ class TestModApi(unittest.TestCase):
         """Test case for delete_mod_from_user
 
         Unlink a user from mod
+        """
+        pass
+
+    def test_delete_pack_avatar(self) -> None:
+        """Test case for delete_pack_avatar
+
+        Delete the avatar for the defined pack
         """
         pass
 
@@ -97,10 +125,10 @@ class TestModApi(unittest.TestCase):
         """
         pass
 
-    def test_list_mod_teams(self) -> None:
-        """Test case for list_mod_teams
+    def test_list_mod_groups(self) -> None:
+        """Test case for list_mod_groups
 
-        Fetch all teams attached to mod
+        Fetch all groups attached to mod
         """
         pass
 
@@ -132,10 +160,10 @@ class TestModApi(unittest.TestCase):
         """
         pass
 
-    def test_permit_mod_team(self) -> None:
-        """Test case for permit_mod_team
+    def test_permit_mod_group(self) -> None:
+        """Test case for permit_mod_group
 
-        Update team perms for mod
+        Update group perms for mod
         """
         pass
 

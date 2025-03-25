@@ -28,7 +28,7 @@ class TestProfile(unittest.TestCase):
 
     def make_instance(self, include_optional) -> Profile:
         """Test Profile
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Profile`
@@ -53,8 +53,8 @@ class TestProfile(unittest.TestCase):
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
-                teams = [
-                    kleister.models.user_team.User Team(
+                groups = [
+                    kleister.models.user_group.User Group(
                         user_id = '', 
                         user = kleister.models.user.User(
                             id = '', 
@@ -74,75 +74,11 @@ class TestProfile(unittest.TestCase):
                                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                                 ], ), 
-                        team_id = '', 
-                        team = kleister.models.team.Team(
+                        group_id = '', 
+                        group = kleister.models.group.Group(
                             id = '', 
                             slug = '', 
                             name = '', 
-                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
-                        perm = 'user', 
-                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                    ],
-                packs = [
-                    kleister.models.user_pack.User Pack(
-                        user_id = '', 
-                        user = kleister.models.user.User(
-                            id = '', 
-                            username = '', 
-                            password = '', 
-                            email = '', 
-                            fullname = '', 
-                            profile = '', 
-                            admin = True, 
-                            active = True, 
-                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            auths = [
-                                kleister.models.user_auth.User Auth(
-                                    provider = '', 
-                                    ref = '', 
-                                    created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                                ], ), 
-                        pack_id = '', 
-                        pack = kleister.models.pack.Pack(
-                            id = '', 
-                            icon = kleister.models.pack_icon.Pack Icon(
-                                id = '', 
-                                slug = '', 
-                                content_type = '', 
-                                md5 = '', 
-                                path = '', 
-                                url = '', 
-                                upload = '', 
-                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
-                            logo = kleister.models.pack_logo.Pack Logo(
-                                id = '', 
-                                slug = '', 
-                                content_type = '', 
-                                md5 = '', 
-                                path = '', 
-                                url = '', 
-                                upload = '', 
-                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
-                            back = kleister.models.pack_background.Pack Background(
-                                id = '', 
-                                slug = '', 
-                                content_type = '', 
-                                md5 = '', 
-                                path = '', 
-                                url = '', 
-                                upload = '', 
-                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
-                            slug = '', 
-                            name = '', 
-                            website = '', 
-                            public = True, 
                             created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
                         perm = 'user', 
@@ -173,13 +109,57 @@ class TestProfile(unittest.TestCase):
                         mod_id = '', 
                         mod = kleister.models.mod.Mod(
                             id = '', 
+                            avatar = kleister.models.mod_avatar.Mod Avatar(
+                                slug = '', 
+                                url = '', 
+                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
                             slug = '', 
                             name = '', 
-                            side = 'both', 
+                            side = '', 
                             description = '', 
                             author = '', 
                             website = '', 
                             donate = '', 
+                            public = True, 
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
+                        perm = 'user', 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                    ],
+                packs = [
+                    kleister.models.user_pack.User Pack(
+                        user_id = '', 
+                        user = kleister.models.user.User(
+                            id = '', 
+                            username = '', 
+                            password = '', 
+                            email = '', 
+                            fullname = '', 
+                            profile = '', 
+                            admin = True, 
+                            active = True, 
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            auths = [
+                                kleister.models.user_auth.User Auth(
+                                    provider = '', 
+                                    ref = '', 
+                                    created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                                ], ), 
+                        pack_id = '', 
+                        pack = kleister.models.pack.Pack(
+                            id = '', 
+                            avatar = kleister.models.pack_avatar.Pack Avatar(
+                                slug = '', 
+                                url = '', 
+                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
+                            slug = '', 
+                            name = '', 
+                            website = '', 
                             public = True, 
                             created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 

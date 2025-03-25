@@ -20,11 +20,11 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
-from kleister.models.auth_login import AuthLogin
 from kleister.models.auth_token import AuthToken
 from kleister.models.auth_verify import AuthVerify
-from kleister.models.notification import Notification
-from kleister.models.providers import Providers
+from kleister.models.list_providers200_response import ListProviders200Response
+from kleister.models.login_auth_request import LoginAuthRequest
+from kleister.models.redirect_auth_request import RedirectAuthRequest
 
 from kleister.api_client import ApiClient, RequestSerialized
 from kleister.api_response import ApiResponse
@@ -45,7 +45,7 @@ class AuthApi:
 
 
     @validate_call
-    def external_callback(
+    def callback_provider(
         self,
         provider: Annotated[StrictStr, Field(description="An identifier for the auth provider")],
         state: Annotated[Optional[StrictStr], Field(description="Auth state")] = None,
@@ -62,8 +62,8 @@ class AuthApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Notification:
-        """Callback for external authentication
+    ) -> None:
+        """Callback to parse the defined provider
 
 
         :param provider: An identifier for the auth provider (required)
@@ -94,7 +94,7 @@ class AuthApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._external_callback_serialize(
+        _param = self._callback_provider_serialize(
             provider=provider,
             state=state,
             code=code,
@@ -105,9 +105,10 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '307': None,
-            '404': "Notification",
-            '412': "Notification",
+            '308': "str",
+            '412': "str",
+            '404': "str",
+            '500': "str",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -121,7 +122,7 @@ class AuthApi:
 
 
     @validate_call
-    def external_callback_with_http_info(
+    def callback_provider_with_http_info(
         self,
         provider: Annotated[StrictStr, Field(description="An identifier for the auth provider")],
         state: Annotated[Optional[StrictStr], Field(description="Auth state")] = None,
@@ -138,8 +139,8 @@ class AuthApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Notification]:
-        """Callback for external authentication
+    ) -> ApiResponse[None]:
+        """Callback to parse the defined provider
 
 
         :param provider: An identifier for the auth provider (required)
@@ -170,7 +171,7 @@ class AuthApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._external_callback_serialize(
+        _param = self._callback_provider_serialize(
             provider=provider,
             state=state,
             code=code,
@@ -181,9 +182,10 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '307': None,
-            '404': "Notification",
-            '412': "Notification",
+            '308': "str",
+            '412': "str",
+            '404': "str",
+            '500': "str",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -197,7 +199,7 @@ class AuthApi:
 
 
     @validate_call
-    def external_callback_without_preload_content(
+    def callback_provider_without_preload_content(
         self,
         provider: Annotated[StrictStr, Field(description="An identifier for the auth provider")],
         state: Annotated[Optional[StrictStr], Field(description="Auth state")] = None,
@@ -215,7 +217,7 @@ class AuthApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Callback for external authentication
+        """Callback to parse the defined provider
 
 
         :param provider: An identifier for the auth provider (required)
@@ -246,7 +248,7 @@ class AuthApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._external_callback_serialize(
+        _param = self._callback_provider_serialize(
             provider=provider,
             state=state,
             code=code,
@@ -257,9 +259,10 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '307': None,
-            '404': "Notification",
-            '412': "Notification",
+            '308': "str",
+            '412': "str",
+            '404': "str",
+            '500': "str",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -268,7 +271,7 @@ class AuthApi:
         return response_data.response
 
 
-    def _external_callback_serialize(
+    def _callback_provider_serialize(
         self,
         provider,
         state,
@@ -288,7 +291,9 @@ class AuthApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -309,11 +314,12 @@ class AuthApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/html'
+                ]
+            )
 
 
         # authentication setting
@@ -339,284 +345,7 @@ class AuthApi:
 
 
     @validate_call
-    def external_initialize(
-        self,
-        provider: Annotated[StrictStr, Field(description="An identifier for the auth provider")],
-        state: Annotated[Optional[StrictStr], Field(description="Auth state")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Notification:
-        """Initialize the external authentication
-
-
-        :param provider: An identifier for the auth provider (required)
-        :type provider: str
-        :param state: Auth state
-        :type state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._external_initialize_serialize(
-            provider=provider,
-            state=state,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '307': None,
-            '404': "Notification",
-            '412': "Notification",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def external_initialize_with_http_info(
-        self,
-        provider: Annotated[StrictStr, Field(description="An identifier for the auth provider")],
-        state: Annotated[Optional[StrictStr], Field(description="Auth state")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Notification]:
-        """Initialize the external authentication
-
-
-        :param provider: An identifier for the auth provider (required)
-        :type provider: str
-        :param state: Auth state
-        :type state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._external_initialize_serialize(
-            provider=provider,
-            state=state,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '307': None,
-            '404': "Notification",
-            '412': "Notification",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def external_initialize_without_preload_content(
-        self,
-        provider: Annotated[StrictStr, Field(description="An identifier for the auth provider")],
-        state: Annotated[Optional[StrictStr], Field(description="Auth state")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Initialize the external authentication
-
-
-        :param provider: An identifier for the auth provider (required)
-        :type provider: str
-        :param state: Auth state
-        :type state: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._external_initialize_serialize(
-            provider=provider,
-            state=state,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '307': None,
-            '404': "Notification",
-            '412': "Notification",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _external_initialize_serialize(
-        self,
-        provider,
-        state,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if provider is not None:
-            _path_params['provider'] = provider
-        # process the query parameters
-        if state is not None:
-            
-            _query_params.append(('state', state))
-            
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/auth/{provider}/initialize',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def external_providers(
+    def list_providers(
         self,
         _request_timeout: Union[
             None,
@@ -630,7 +359,7 @@ class AuthApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Providers:
+    ) -> ListProviders200Response:
         """Fetch the available auth providers
 
 
@@ -656,7 +385,7 @@ class AuthApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._external_providers_serialize(
+        _param = self._list_providers_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -664,8 +393,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Providers",
-            '500': "Notification",
+            '200': "ListProviders200Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -679,7 +407,7 @@ class AuthApi:
 
 
     @validate_call
-    def external_providers_with_http_info(
+    def list_providers_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -693,7 +421,7 @@ class AuthApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Providers]:
+    ) -> ApiResponse[ListProviders200Response]:
         """Fetch the available auth providers
 
 
@@ -719,7 +447,7 @@ class AuthApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._external_providers_serialize(
+        _param = self._list_providers_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -727,8 +455,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Providers",
-            '500': "Notification",
+            '200': "ListProviders200Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -742,7 +469,7 @@ class AuthApi:
 
 
     @validate_call
-    def external_providers_without_preload_content(
+    def list_providers_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -782,7 +509,7 @@ class AuthApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._external_providers_serialize(
+        _param = self._list_providers_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -790,8 +517,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Providers",
-            '500': "Notification",
+            '200': "ListProviders200Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -800,7 +526,7 @@ class AuthApi:
         return response_data.response
 
 
-    def _external_providers_serialize(
+    def _list_providers_serialize(
         self,
         _request_auth,
         _content_type,
@@ -817,7 +543,9 @@ class AuthApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -828,11 +556,12 @@ class AuthApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
@@ -860,7 +589,7 @@ class AuthApi:
     @validate_call
     def login_auth(
         self,
-        auth_login: Annotated[AuthLogin, Field(description="The credentials to authenticate")],
+        login_auth_request: Annotated[LoginAuthRequest, Field(description="The credentials to authenticate")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -877,8 +606,8 @@ class AuthApi:
         """Authenticate an user by credentials
 
 
-        :param auth_login: The credentials to authenticate (required)
-        :type auth_login: AuthLogin
+        :param login_auth_request: The credentials to authenticate (required)
+        :type login_auth_request: LoginAuthRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -902,7 +631,7 @@ class AuthApi:
         """ # noqa: E501
 
         _param = self._login_auth_serialize(
-            auth_login=auth_login,
+            login_auth_request=login_auth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -911,6 +640,7 @@ class AuthApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AuthToken",
+            '400': "Notification",
             '401': "Notification",
             '500': "Notification",
         }
@@ -928,7 +658,7 @@ class AuthApi:
     @validate_call
     def login_auth_with_http_info(
         self,
-        auth_login: Annotated[AuthLogin, Field(description="The credentials to authenticate")],
+        login_auth_request: Annotated[LoginAuthRequest, Field(description="The credentials to authenticate")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -945,8 +675,8 @@ class AuthApi:
         """Authenticate an user by credentials
 
 
-        :param auth_login: The credentials to authenticate (required)
-        :type auth_login: AuthLogin
+        :param login_auth_request: The credentials to authenticate (required)
+        :type login_auth_request: LoginAuthRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -970,7 +700,7 @@ class AuthApi:
         """ # noqa: E501
 
         _param = self._login_auth_serialize(
-            auth_login=auth_login,
+            login_auth_request=login_auth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -979,6 +709,7 @@ class AuthApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AuthToken",
+            '400': "Notification",
             '401': "Notification",
             '500': "Notification",
         }
@@ -996,7 +727,7 @@ class AuthApi:
     @validate_call
     def login_auth_without_preload_content(
         self,
-        auth_login: Annotated[AuthLogin, Field(description="The credentials to authenticate")],
+        login_auth_request: Annotated[LoginAuthRequest, Field(description="The credentials to authenticate")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1013,8 +744,8 @@ class AuthApi:
         """Authenticate an user by credentials
 
 
-        :param auth_login: The credentials to authenticate (required)
-        :type auth_login: AuthLogin
+        :param login_auth_request: The credentials to authenticate (required)
+        :type login_auth_request: LoginAuthRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1038,7 +769,7 @@ class AuthApi:
         """ # noqa: E501
 
         _param = self._login_auth_serialize(
-            auth_login=auth_login,
+            login_auth_request=login_auth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1047,6 +778,7 @@ class AuthApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AuthToken",
+            '400': "Notification",
             '401': "Notification",
             '500': "Notification",
         }
@@ -1059,7 +791,7 @@ class AuthApi:
 
     def _login_auth_serialize(
         self,
-        auth_login,
+        login_auth_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1075,7 +807,9 @@ class AuthApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1083,16 +817,17 @@ class AuthApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if auth_login is not None:
-            _body_params = auth_login
+        if login_auth_request is not None:
+            _body_params = login_auth_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -1115,6 +850,285 @@ class AuthApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/auth/login',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def redirect_auth(
+        self,
+        redirect_auth_request: Annotated[RedirectAuthRequest, Field(description="The redirect token to authenticate")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AuthToken:
+        """Retrieve real token after redirect
+
+
+        :param redirect_auth_request: The redirect token to authenticate (required)
+        :type redirect_auth_request: RedirectAuthRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._redirect_auth_serialize(
+            redirect_auth_request=redirect_auth_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AuthToken",
+            '400': "Notification",
+            '401': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def redirect_auth_with_http_info(
+        self,
+        redirect_auth_request: Annotated[RedirectAuthRequest, Field(description="The redirect token to authenticate")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AuthToken]:
+        """Retrieve real token after redirect
+
+
+        :param redirect_auth_request: The redirect token to authenticate (required)
+        :type redirect_auth_request: RedirectAuthRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._redirect_auth_serialize(
+            redirect_auth_request=redirect_auth_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AuthToken",
+            '400': "Notification",
+            '401': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def redirect_auth_without_preload_content(
+        self,
+        redirect_auth_request: Annotated[RedirectAuthRequest, Field(description="The redirect token to authenticate")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Retrieve real token after redirect
+
+
+        :param redirect_auth_request: The redirect token to authenticate (required)
+        :type redirect_auth_request: RedirectAuthRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._redirect_auth_serialize(
+            redirect_auth_request=redirect_auth_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AuthToken",
+            '400': "Notification",
+            '401': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _redirect_auth_serialize(
+        self,
+        redirect_auth_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if redirect_auth_request is not None:
+            _body_params = redirect_auth_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/auth/redirect',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1335,7 +1349,9 @@ class AuthApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1346,16 +1362,16 @@ class AuthApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1364,6 +1380,269 @@ class AuthApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/auth/refresh',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def request_provider(
+        self,
+        provider: Annotated[StrictStr, Field(description="An identifier for the auth provider")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Request the redirect to defined provider
+
+
+        :param provider: An identifier for the auth provider (required)
+        :type provider: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._request_provider_serialize(
+            provider=provider,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '308': "str",
+            '404': "str",
+            '500': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def request_provider_with_http_info(
+        self,
+        provider: Annotated[StrictStr, Field(description="An identifier for the auth provider")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Request the redirect to defined provider
+
+
+        :param provider: An identifier for the auth provider (required)
+        :type provider: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._request_provider_serialize(
+            provider=provider,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '308': "str",
+            '404': "str",
+            '500': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def request_provider_without_preload_content(
+        self,
+        provider: Annotated[StrictStr, Field(description="An identifier for the auth provider")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Request the redirect to defined provider
+
+
+        :param provider: An identifier for the auth provider (required)
+        :type provider: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._request_provider_serialize(
+            provider=provider,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '308': "str",
+            '404': "str",
+            '500': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _request_provider_serialize(
+        self,
+        provider,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if provider is not None:
+            _path_params['provider'] = provider
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/html'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/auth/{provider}/request',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1584,7 +1863,9 @@ class AuthApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1595,16 +1876,16 @@ class AuthApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'

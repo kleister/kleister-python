@@ -17,20 +17,26 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import Optional
+from pydantic import Field, StrictBytes, StrictInt, StrictStr, field_validator
+from typing import Optional, Tuple, Union
 from typing_extensions import Annotated
+from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
+from kleister.models.create_mod_request import CreateModRequest
+from kleister.models.create_version_request import CreateVersionRequest
+from kleister.models.delete_pack_from_group_request import DeletePackFromGroupRequest
+from kleister.models.delete_pack_from_user_request import DeletePackFromUserRequest
+from kleister.models.list_mod_groups200_response import ListModGroups200Response
+from kleister.models.list_mod_users200_response import ListModUsers200Response
+from kleister.models.list_mods200_response import ListMods200Response
+from kleister.models.list_version_builds200_response import ListVersionBuilds200Response
+from kleister.models.list_versions200_response import ListVersions200Response
 from kleister.models.mod import Mod
-from kleister.models.mod_team_params import ModTeamParams
-from kleister.models.mod_teams import ModTeams
-from kleister.models.mod_user_params import ModUserParams
-from kleister.models.mod_users import ModUsers
-from kleister.models.mods import Mods
+from kleister.models.mod_avatar import ModAvatar
 from kleister.models.notification import Notification
+from kleister.models.pack_avatar import PackAvatar
+from kleister.models.permit_pack_group_request import PermitPackGroupRequest
+from kleister.models.permit_pack_user_request import PermitPackUserRequest
 from kleister.models.version import Version
-from kleister.models.version_build_params import VersionBuildParams
-from kleister.models.version_builds import VersionBuilds
-from kleister.models.versions import Versions
 
 from kleister.api_client import ApiClient, RequestSerialized
 from kleister.api_response import ApiResponse
@@ -51,10 +57,10 @@ class ModApi:
 
 
     @validate_call
-    def attach_mod_to_team(
+    def attach_mod_to_group(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_team_params: Annotated[ModTeamParams, Field(description="The team data to attach")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The mod group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -68,13 +74,13 @@ class ModApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Notification:
-        """Attach a team to mod
+        """Attach a group to mod
 
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_team_params: The team data to attach (required)
-        :type mod_team_params: ModTeamParams
+        :param permit_pack_group_request: The mod group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -97,9 +103,9 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._attach_mod_to_team_serialize(
+        _param = self._attach_mod_to_group_serialize(
             mod_id=mod_id,
-            mod_team_params=mod_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -108,6 +114,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -126,10 +133,10 @@ class ModApi:
 
 
     @validate_call
-    def attach_mod_to_team_with_http_info(
+    def attach_mod_to_group_with_http_info(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_team_params: Annotated[ModTeamParams, Field(description="The team data to attach")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The mod group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -143,13 +150,13 @@ class ModApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Notification]:
-        """Attach a team to mod
+        """Attach a group to mod
 
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_team_params: The team data to attach (required)
-        :type mod_team_params: ModTeamParams
+        :param permit_pack_group_request: The mod group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -172,9 +179,9 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._attach_mod_to_team_serialize(
+        _param = self._attach_mod_to_group_serialize(
             mod_id=mod_id,
-            mod_team_params=mod_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -183,6 +190,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -201,10 +209,10 @@ class ModApi:
 
 
     @validate_call
-    def attach_mod_to_team_without_preload_content(
+    def attach_mod_to_group_without_preload_content(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_team_params: Annotated[ModTeamParams, Field(description="The team data to attach")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The mod group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -218,13 +226,13 @@ class ModApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Attach a team to mod
+        """Attach a group to mod
 
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_team_params: The team data to attach (required)
-        :type mod_team_params: ModTeamParams
+        :param permit_pack_group_request: The mod group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -247,9 +255,9 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._attach_mod_to_team_serialize(
+        _param = self._attach_mod_to_group_serialize(
             mod_id=mod_id,
-            mod_team_params=mod_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -258,6 +266,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -271,10 +280,10 @@ class ModApi:
         return response_data.response
 
 
-    def _attach_mod_to_team_serialize(
+    def _attach_mod_to_group_serialize(
         self,
         mod_id,
-        mod_team_params,
+        permit_pack_group_request,
         _request_auth,
         _content_type,
         _headers,
@@ -290,7 +299,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -300,16 +311,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if mod_team_params is not None:
-            _body_params = mod_team_params
+        if permit_pack_group_request is not None:
+            _body_params = permit_pack_group_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -327,7 +339,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -335,7 +346,7 @@ class ModApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/mods/{mod_id}/teams',
+            resource_path='/mods/{mod_id}/groups',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -355,7 +366,7 @@ class ModApi:
     def attach_mod_to_user(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_user_params: Annotated[ModUserParams, Field(description="The user data to attach")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The mod user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -374,8 +385,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_user_params: The user data to attach (required)
-        :type mod_user_params: ModUserParams
+        :param permit_pack_user_request: The mod user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -400,7 +411,7 @@ class ModApi:
 
         _param = self._attach_mod_to_user_serialize(
             mod_id=mod_id,
-            mod_user_params=mod_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -409,6 +420,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -430,7 +442,7 @@ class ModApi:
     def attach_mod_to_user_with_http_info(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_user_params: Annotated[ModUserParams, Field(description="The user data to attach")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The mod user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -449,8 +461,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_user_params: The user data to attach (required)
-        :type mod_user_params: ModUserParams
+        :param permit_pack_user_request: The mod user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -475,7 +487,7 @@ class ModApi:
 
         _param = self._attach_mod_to_user_serialize(
             mod_id=mod_id,
-            mod_user_params=mod_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -484,6 +496,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -505,7 +518,7 @@ class ModApi:
     def attach_mod_to_user_without_preload_content(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_user_params: Annotated[ModUserParams, Field(description="The user data to attach")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The mod user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -524,8 +537,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_user_params: The user data to attach (required)
-        :type mod_user_params: ModUserParams
+        :param permit_pack_user_request: The mod user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -550,7 +563,7 @@ class ModApi:
 
         _param = self._attach_mod_to_user_serialize(
             mod_id=mod_id,
-            mod_user_params=mod_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -559,6 +572,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -575,7 +589,7 @@ class ModApi:
     def _attach_mod_to_user_serialize(
         self,
         mod_id,
-        mod_user_params,
+        permit_pack_user_request,
         _request_auth,
         _content_type,
         _headers,
@@ -591,7 +605,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -601,16 +617,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if mod_user_params is not None:
-            _body_params = mod_user_params
+        if permit_pack_user_request is not None:
+            _body_params = permit_pack_user_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -628,7 +645,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -657,7 +673,7 @@ class ModApi:
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         version_id: Annotated[StrictStr, Field(description="A version identifier or slug")],
-        version_build_params: Annotated[VersionBuildParams, Field(description="The version build data to attach")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The version build data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -678,8 +694,8 @@ class ModApi:
         :type mod_id: str
         :param version_id: A version identifier or slug (required)
         :type version_id: str
-        :param version_build_params: The version build data to attach (required)
-        :type version_build_params: VersionBuildParams
+        :param attach_minecraft_to_build_request: The version build data to create or delete (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -705,7 +721,7 @@ class ModApi:
         _param = self._attach_version_to_build_serialize(
             mod_id=mod_id,
             version_id=version_id,
-            version_build_params=version_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -714,6 +730,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -736,7 +753,7 @@ class ModApi:
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         version_id: Annotated[StrictStr, Field(description="A version identifier or slug")],
-        version_build_params: Annotated[VersionBuildParams, Field(description="The version build data to attach")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The version build data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -757,8 +774,8 @@ class ModApi:
         :type mod_id: str
         :param version_id: A version identifier or slug (required)
         :type version_id: str
-        :param version_build_params: The version build data to attach (required)
-        :type version_build_params: VersionBuildParams
+        :param attach_minecraft_to_build_request: The version build data to create or delete (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -784,7 +801,7 @@ class ModApi:
         _param = self._attach_version_to_build_serialize(
             mod_id=mod_id,
             version_id=version_id,
-            version_build_params=version_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -793,6 +810,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -815,7 +833,7 @@ class ModApi:
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         version_id: Annotated[StrictStr, Field(description="A version identifier or slug")],
-        version_build_params: Annotated[VersionBuildParams, Field(description="The version build data to attach")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The version build data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -836,8 +854,8 @@ class ModApi:
         :type mod_id: str
         :param version_id: A version identifier or slug (required)
         :type version_id: str
-        :param version_build_params: The version build data to attach (required)
-        :type version_build_params: VersionBuildParams
+        :param attach_minecraft_to_build_request: The version build data to create or delete (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -863,7 +881,7 @@ class ModApi:
         _param = self._attach_version_to_build_serialize(
             mod_id=mod_id,
             version_id=version_id,
-            version_build_params=version_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -872,6 +890,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -889,7 +908,7 @@ class ModApi:
         self,
         mod_id,
         version_id,
-        version_build_params,
+        attach_minecraft_to_build_request,
         _request_auth,
         _content_type,
         _headers,
@@ -905,7 +924,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -917,16 +938,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if version_build_params is not None:
-            _body_params = version_build_params
+        if attach_minecraft_to_build_request is not None:
+            _body_params = attach_minecraft_to_build_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -944,7 +966,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -971,7 +992,7 @@ class ModApi:
     @validate_call
     def create_mod(
         self,
-        mod: Annotated[Mod, Field(description="The mod data to create")],
+        create_mod_request: Annotated[CreateModRequest, Field(description="The mod data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -988,8 +1009,8 @@ class ModApi:
         """Create a new mod
 
 
-        :param mod: The mod data to create (required)
-        :type mod: Mod
+        :param create_mod_request: The mod data to create (required)
+        :type create_mod_request: CreateModRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1013,7 +1034,7 @@ class ModApi:
         """ # noqa: E501
 
         _param = self._create_mod_serialize(
-            mod=mod,
+            create_mod_request=create_mod_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1022,6 +1043,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Mod",
+            '400': "Notification",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -1040,7 +1062,7 @@ class ModApi:
     @validate_call
     def create_mod_with_http_info(
         self,
-        mod: Annotated[Mod, Field(description="The mod data to create")],
+        create_mod_request: Annotated[CreateModRequest, Field(description="The mod data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1057,8 +1079,8 @@ class ModApi:
         """Create a new mod
 
 
-        :param mod: The mod data to create (required)
-        :type mod: Mod
+        :param create_mod_request: The mod data to create (required)
+        :type create_mod_request: CreateModRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1082,7 +1104,7 @@ class ModApi:
         """ # noqa: E501
 
         _param = self._create_mod_serialize(
-            mod=mod,
+            create_mod_request=create_mod_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1091,6 +1113,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Mod",
+            '400': "Notification",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -1109,7 +1132,7 @@ class ModApi:
     @validate_call
     def create_mod_without_preload_content(
         self,
-        mod: Annotated[Mod, Field(description="The mod data to create")],
+        create_mod_request: Annotated[CreateModRequest, Field(description="The mod data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1126,8 +1149,8 @@ class ModApi:
         """Create a new mod
 
 
-        :param mod: The mod data to create (required)
-        :type mod: Mod
+        :param create_mod_request: The mod data to create (required)
+        :type create_mod_request: CreateModRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1151,7 +1174,7 @@ class ModApi:
         """ # noqa: E501
 
         _param = self._create_mod_serialize(
-            mod=mod,
+            create_mod_request=create_mod_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1160,6 +1183,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Mod",
+            '400': "Notification",
             '403': "Notification",
             '422': "Notification",
             '500': "Notification",
@@ -1173,7 +1197,7 @@ class ModApi:
 
     def _create_mod_serialize(
         self,
-        mod,
+        create_mod_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1189,7 +1213,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1197,16 +1223,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if mod is not None:
-            _body_params = mod
+        if create_mod_request is not None:
+            _body_params = create_mod_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -1224,7 +1251,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1249,10 +1275,616 @@ class ModApi:
 
 
     @validate_call
+    def create_mod_avatar(
+        self,
+        mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
+        file: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ModAvatar:
+        """Upload an avatar for the defined mod
+
+
+        :param mod_id: A mod identifier or slug (required)
+        :type mod_id: str
+        :param file:
+        :type file: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_mod_avatar_serialize(
+            mod_id=mod_id,
+            file=file,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ModAvatar",
+            '400': "Notification",
+            '403': "Notification",
+            '404': "Notification",
+            '422': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_mod_avatar_with_http_info(
+        self,
+        mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
+        file: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ModAvatar]:
+        """Upload an avatar for the defined mod
+
+
+        :param mod_id: A mod identifier or slug (required)
+        :type mod_id: str
+        :param file:
+        :type file: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_mod_avatar_serialize(
+            mod_id=mod_id,
+            file=file,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ModAvatar",
+            '400': "Notification",
+            '403': "Notification",
+            '404': "Notification",
+            '422': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_mod_avatar_without_preload_content(
+        self,
+        mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
+        file: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Upload an avatar for the defined mod
+
+
+        :param mod_id: A mod identifier or slug (required)
+        :type mod_id: str
+        :param file:
+        :type file: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_mod_avatar_serialize(
+            mod_id=mod_id,
+            file=file,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ModAvatar",
+            '400': "Notification",
+            '403': "Notification",
+            '404': "Notification",
+            '422': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_mod_avatar_serialize(
+        self,
+        mod_id,
+        file,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if mod_id is not None:
+            _path_params['mod_id'] = mod_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        if file is not None:
+            _files['file'] = file
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'multipart/form-data'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Basic', 
+            'Header', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/mods/{mod_id}/avatar',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def create_pack_avatar(
+        self,
+        pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
+        file: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PackAvatar:
+        """Upload an avatar for the defined pack
+
+
+        :param pack_id: A pack identifier or slug (required)
+        :type pack_id: str
+        :param file:
+        :type file: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_pack_avatar_serialize(
+            pack_id=pack_id,
+            file=file,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PackAvatar",
+            '400': "Notification",
+            '403': "Notification",
+            '404': "Notification",
+            '422': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_pack_avatar_with_http_info(
+        self,
+        pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
+        file: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PackAvatar]:
+        """Upload an avatar for the defined pack
+
+
+        :param pack_id: A pack identifier or slug (required)
+        :type pack_id: str
+        :param file:
+        :type file: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_pack_avatar_serialize(
+            pack_id=pack_id,
+            file=file,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PackAvatar",
+            '400': "Notification",
+            '403': "Notification",
+            '404': "Notification",
+            '422': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_pack_avatar_without_preload_content(
+        self,
+        pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
+        file: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Upload an avatar for the defined pack
+
+
+        :param pack_id: A pack identifier or slug (required)
+        :type pack_id: str
+        :param file:
+        :type file: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_pack_avatar_serialize(
+            pack_id=pack_id,
+            file=file,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PackAvatar",
+            '400': "Notification",
+            '403': "Notification",
+            '404': "Notification",
+            '422': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_pack_avatar_serialize(
+        self,
+        pack_id,
+        file,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if pack_id is not None:
+            _path_params['pack_id'] = pack_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        if file is not None:
+            _files['file'] = file
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'multipart/form-data'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Basic', 
+            'Header', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/packs/{pack_id}/avatar',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_version(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        version: Annotated[Version, Field(description="The version data to create")],
+        create_version_request: Annotated[CreateVersionRequest, Field(description="The version data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1271,8 +1903,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param version: The version data to create (required)
-        :type version: Version
+        :param create_version_request: The version data to create (required)
+        :type create_version_request: CreateVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1297,7 +1929,7 @@ class ModApi:
 
         _param = self._create_version_serialize(
             mod_id=mod_id,
-            version=version,
+            create_version_request=create_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1306,6 +1938,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Version",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -1326,7 +1959,7 @@ class ModApi:
     def create_version_with_http_info(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        version: Annotated[Version, Field(description="The version data to create")],
+        create_version_request: Annotated[CreateVersionRequest, Field(description="The version data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1345,8 +1978,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param version: The version data to create (required)
-        :type version: Version
+        :param create_version_request: The version data to create (required)
+        :type create_version_request: CreateVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1371,7 +2004,7 @@ class ModApi:
 
         _param = self._create_version_serialize(
             mod_id=mod_id,
-            version=version,
+            create_version_request=create_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1380,6 +2013,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Version",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -1400,7 +2034,7 @@ class ModApi:
     def create_version_without_preload_content(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        version: Annotated[Version, Field(description="The version data to create")],
+        create_version_request: Annotated[CreateVersionRequest, Field(description="The version data to create")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1419,8 +2053,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param version: The version data to create (required)
-        :type version: Version
+        :param create_version_request: The version data to create (required)
+        :type create_version_request: CreateVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1445,7 +2079,7 @@ class ModApi:
 
         _param = self._create_version_serialize(
             mod_id=mod_id,
-            version=version,
+            create_version_request=create_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1454,6 +2088,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Version",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -1469,7 +2104,7 @@ class ModApi:
     def _create_version_serialize(
         self,
         mod_id,
-        version,
+        create_version_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1485,7 +2120,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1495,16 +2132,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if version is not None:
-            _body_params = version
+        if create_version_request is not None:
+            _body_params = create_version_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -1522,7 +2160,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1770,7 +2407,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1783,16 +2422,16 @@ class ModApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -1817,10 +2456,9 @@ class ModApi:
 
 
     @validate_call
-    def delete_mod_from_team(
+    def delete_mod_avatar(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_team_params: Annotated[ModTeamParams, Field(description="The mod team data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1833,14 +2471,12 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Notification:
-        """Unlink a team from mod
+    ) -> ModAvatar:
+        """Delete the avatar for the defined mod
 
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_team_params: The mod team data to unlink (required)
-        :type mod_team_params: ModTeamParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1863,9 +2499,284 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_mod_from_team_serialize(
+        _param = self._delete_mod_avatar_serialize(
             mod_id=mod_id,
-            mod_team_params=mod_team_params,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ModAvatar",
+            '403': "Notification",
+            '404': "Notification",
+            '400': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_mod_avatar_with_http_info(
+        self,
+        mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ModAvatar]:
+        """Delete the avatar for the defined mod
+
+
+        :param mod_id: A mod identifier or slug (required)
+        :type mod_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_mod_avatar_serialize(
+            mod_id=mod_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ModAvatar",
+            '403': "Notification",
+            '404': "Notification",
+            '400': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_mod_avatar_without_preload_content(
+        self,
+        mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete the avatar for the defined mod
+
+
+        :param mod_id: A mod identifier or slug (required)
+        :type mod_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_mod_avatar_serialize(
+            mod_id=mod_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ModAvatar",
+            '403': "Notification",
+            '404': "Notification",
+            '400': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_mod_avatar_serialize(
+        self,
+        mod_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if mod_id is not None:
+            _path_params['mod_id'] = mod_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Basic', 
+            'Header', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/mods/{mod_id}/avatar',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_mod_from_group(
+        self,
+        mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
+        delete_pack_from_group_request: Annotated[DeletePackFromGroupRequest, Field(description="The mod group data to unlink")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Notification:
+        """Unlink a group from mod
+
+
+        :param mod_id: A mod identifier or slug (required)
+        :type mod_id: str
+        :param delete_pack_from_group_request: The mod group data to unlink (required)
+        :type delete_pack_from_group_request: DeletePackFromGroupRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_mod_from_group_serialize(
+            mod_id=mod_id,
+            delete_pack_from_group_request=delete_pack_from_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1874,6 +2785,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -1891,10 +2803,10 @@ class ModApi:
 
 
     @validate_call
-    def delete_mod_from_team_with_http_info(
+    def delete_mod_from_group_with_http_info(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_team_params: Annotated[ModTeamParams, Field(description="The mod team data to unlink")],
+        delete_pack_from_group_request: Annotated[DeletePackFromGroupRequest, Field(description="The mod group data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1908,13 +2820,13 @@ class ModApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Notification]:
-        """Unlink a team from mod
+        """Unlink a group from mod
 
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_team_params: The mod team data to unlink (required)
-        :type mod_team_params: ModTeamParams
+        :param delete_pack_from_group_request: The mod group data to unlink (required)
+        :type delete_pack_from_group_request: DeletePackFromGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1937,9 +2849,9 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_mod_from_team_serialize(
+        _param = self._delete_mod_from_group_serialize(
             mod_id=mod_id,
-            mod_team_params=mod_team_params,
+            delete_pack_from_group_request=delete_pack_from_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1948,6 +2860,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -1965,10 +2878,10 @@ class ModApi:
 
 
     @validate_call
-    def delete_mod_from_team_without_preload_content(
+    def delete_mod_from_group_without_preload_content(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_team_params: Annotated[ModTeamParams, Field(description="The mod team data to unlink")],
+        delete_pack_from_group_request: Annotated[DeletePackFromGroupRequest, Field(description="The mod group data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1982,13 +2895,13 @@ class ModApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Unlink a team from mod
+        """Unlink a group from mod
 
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_team_params: The mod team data to unlink (required)
-        :type mod_team_params: ModTeamParams
+        :param delete_pack_from_group_request: The mod group data to unlink (required)
+        :type delete_pack_from_group_request: DeletePackFromGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2011,9 +2924,9 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_mod_from_team_serialize(
+        _param = self._delete_mod_from_group_serialize(
             mod_id=mod_id,
-            mod_team_params=mod_team_params,
+            delete_pack_from_group_request=delete_pack_from_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2022,6 +2935,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2034,10 +2948,10 @@ class ModApi:
         return response_data.response
 
 
-    def _delete_mod_from_team_serialize(
+    def _delete_mod_from_group_serialize(
         self,
         mod_id,
-        mod_team_params,
+        delete_pack_from_group_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2053,7 +2967,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2063,16 +2979,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if mod_team_params is not None:
-            _body_params = mod_team_params
+        if delete_pack_from_group_request is not None:
+            _body_params = delete_pack_from_group_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -2090,7 +3007,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -2098,7 +3014,7 @@ class ModApi:
 
         return self.api_client.param_serialize(
             method='DELETE',
-            resource_path='/mods/{mod_id}/teams',
+            resource_path='/mods/{mod_id}/groups',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2118,7 +3034,7 @@ class ModApi:
     def delete_mod_from_user(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_user_params: Annotated[ModUserParams, Field(description="The mod user data to unlink")],
+        delete_pack_from_user_request: Annotated[DeletePackFromUserRequest, Field(description="The mod user data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2137,8 +3053,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_user_params: The mod user data to unlink (required)
-        :type mod_user_params: ModUserParams
+        :param delete_pack_from_user_request: The mod user data to unlink (required)
+        :type delete_pack_from_user_request: DeletePackFromUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2163,7 +3079,7 @@ class ModApi:
 
         _param = self._delete_mod_from_user_serialize(
             mod_id=mod_id,
-            mod_user_params=mod_user_params,
+            delete_pack_from_user_request=delete_pack_from_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2172,6 +3088,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2192,7 +3109,7 @@ class ModApi:
     def delete_mod_from_user_with_http_info(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_user_params: Annotated[ModUserParams, Field(description="The mod user data to unlink")],
+        delete_pack_from_user_request: Annotated[DeletePackFromUserRequest, Field(description="The mod user data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2211,8 +3128,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_user_params: The mod user data to unlink (required)
-        :type mod_user_params: ModUserParams
+        :param delete_pack_from_user_request: The mod user data to unlink (required)
+        :type delete_pack_from_user_request: DeletePackFromUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2237,7 +3154,7 @@ class ModApi:
 
         _param = self._delete_mod_from_user_serialize(
             mod_id=mod_id,
-            mod_user_params=mod_user_params,
+            delete_pack_from_user_request=delete_pack_from_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2246,6 +3163,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2266,7 +3184,7 @@ class ModApi:
     def delete_mod_from_user_without_preload_content(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_user_params: Annotated[ModUserParams, Field(description="The mod user data to unlink")],
+        delete_pack_from_user_request: Annotated[DeletePackFromUserRequest, Field(description="The mod user data to unlink")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2285,8 +3203,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_user_params: The mod user data to unlink (required)
-        :type mod_user_params: ModUserParams
+        :param delete_pack_from_user_request: The mod user data to unlink (required)
+        :type delete_pack_from_user_request: DeletePackFromUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2311,7 +3229,7 @@ class ModApi:
 
         _param = self._delete_mod_from_user_serialize(
             mod_id=mod_id,
-            mod_user_params=mod_user_params,
+            delete_pack_from_user_request=delete_pack_from_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2320,6 +3238,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2335,7 +3254,7 @@ class ModApi:
     def _delete_mod_from_user_serialize(
         self,
         mod_id,
-        mod_user_params,
+        delete_pack_from_user_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2351,7 +3270,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2361,16 +3282,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if mod_user_params is not None:
-            _body_params = mod_user_params
+        if delete_pack_from_user_request is not None:
+            _body_params = delete_pack_from_user_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -2388,7 +3310,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -2397,6 +3318,278 @@ class ModApi:
         return self.api_client.param_serialize(
             method='DELETE',
             resource_path='/mods/{mod_id}/users',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_pack_avatar(
+        self,
+        pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PackAvatar:
+        """Delete the avatar for the defined pack
+
+
+        :param pack_id: A pack identifier or slug (required)
+        :type pack_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_pack_avatar_serialize(
+            pack_id=pack_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PackAvatar",
+            '403': "Notification",
+            '404': "Notification",
+            '400': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_pack_avatar_with_http_info(
+        self,
+        pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PackAvatar]:
+        """Delete the avatar for the defined pack
+
+
+        :param pack_id: A pack identifier or slug (required)
+        :type pack_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_pack_avatar_serialize(
+            pack_id=pack_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PackAvatar",
+            '403': "Notification",
+            '404': "Notification",
+            '400': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_pack_avatar_without_preload_content(
+        self,
+        pack_id: Annotated[StrictStr, Field(description="A pack identifier or slug")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete the avatar for the defined pack
+
+
+        :param pack_id: A pack identifier or slug (required)
+        :type pack_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_pack_avatar_serialize(
+            pack_id=pack_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PackAvatar",
+            '403': "Notification",
+            '404': "Notification",
+            '400': "Notification",
+            '500': "Notification",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_pack_avatar_serialize(
+        self,
+        pack_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if pack_id is not None:
+            _path_params['pack_id'] = pack_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Basic', 
+            'Header', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/packs/{pack_id}/avatar',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2649,7 +3842,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2664,16 +3859,16 @@ class ModApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -2702,7 +3897,7 @@ class ModApi:
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         version_id: Annotated[StrictStr, Field(description="A version identifier or slug")],
-        version_build_params: Annotated[VersionBuildParams, Field(description="The version build data to unlink")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The version build data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2723,8 +3918,8 @@ class ModApi:
         :type mod_id: str
         :param version_id: A version identifier or slug (required)
         :type version_id: str
-        :param version_build_params: The version build data to unlink (required)
-        :type version_build_params: VersionBuildParams
+        :param attach_minecraft_to_build_request: The version build data to create or delete (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2750,7 +3945,7 @@ class ModApi:
         _param = self._delete_version_from_build_serialize(
             mod_id=mod_id,
             version_id=version_id,
-            version_build_params=version_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2759,6 +3954,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2780,7 +3976,7 @@ class ModApi:
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         version_id: Annotated[StrictStr, Field(description="A version identifier or slug")],
-        version_build_params: Annotated[VersionBuildParams, Field(description="The version build data to unlink")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The version build data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2801,8 +3997,8 @@ class ModApi:
         :type mod_id: str
         :param version_id: A version identifier or slug (required)
         :type version_id: str
-        :param version_build_params: The version build data to unlink (required)
-        :type version_build_params: VersionBuildParams
+        :param attach_minecraft_to_build_request: The version build data to create or delete (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2828,7 +4024,7 @@ class ModApi:
         _param = self._delete_version_from_build_serialize(
             mod_id=mod_id,
             version_id=version_id,
-            version_build_params=version_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2837,6 +4033,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2858,7 +4055,7 @@ class ModApi:
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         version_id: Annotated[StrictStr, Field(description="A version identifier or slug")],
-        version_build_params: Annotated[VersionBuildParams, Field(description="The version build data to unlink")],
+        attach_minecraft_to_build_request: Annotated[AttachMinecraftToBuildRequest, Field(description="The version build data to create or delete")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2879,8 +4076,8 @@ class ModApi:
         :type mod_id: str
         :param version_id: A version identifier or slug (required)
         :type version_id: str
-        :param version_build_params: The version build data to unlink (required)
-        :type version_build_params: VersionBuildParams
+        :param attach_minecraft_to_build_request: The version build data to create or delete (required)
+        :type attach_minecraft_to_build_request: AttachMinecraftToBuildRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2906,7 +4103,7 @@ class ModApi:
         _param = self._delete_version_from_build_serialize(
             mod_id=mod_id,
             version_id=version_id,
-            version_build_params=version_build_params,
+            attach_minecraft_to_build_request=attach_minecraft_to_build_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2915,6 +4112,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -2931,7 +4129,7 @@ class ModApi:
         self,
         mod_id,
         version_id,
-        version_build_params,
+        attach_minecraft_to_build_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2947,7 +4145,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2959,16 +4159,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if version_build_params is not None:
-            _body_params = version_build_params
+        if attach_minecraft_to_build_request is not None:
+            _body_params = attach_minecraft_to_build_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -2986,7 +4187,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -3011,7 +4211,7 @@ class ModApi:
 
 
     @validate_call
-    def list_mod_teams(
+    def list_mod_groups(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         search: Annotated[Optional[StrictStr], Field(description="Search query")] = None,
@@ -3031,8 +4231,8 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ModTeams:
-        """Fetch all teams attached to mod
+    ) -> ListModGroups200Response:
+        """Fetch all groups attached to mod
 
 
         :param mod_id: A mod identifier or slug (required)
@@ -3069,7 +4269,7 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._list_mod_teams_serialize(
+        _param = self._list_mod_groups_serialize(
             mod_id=mod_id,
             search=search,
             sort=sort,
@@ -3083,7 +4283,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ModTeams",
+            '200': "ListModGroups200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3100,7 +4300,7 @@ class ModApi:
 
 
     @validate_call
-    def list_mod_teams_with_http_info(
+    def list_mod_groups_with_http_info(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         search: Annotated[Optional[StrictStr], Field(description="Search query")] = None,
@@ -3120,8 +4320,8 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ModTeams]:
-        """Fetch all teams attached to mod
+    ) -> ApiResponse[ListModGroups200Response]:
+        """Fetch all groups attached to mod
 
 
         :param mod_id: A mod identifier or slug (required)
@@ -3158,7 +4358,7 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._list_mod_teams_serialize(
+        _param = self._list_mod_groups_serialize(
             mod_id=mod_id,
             search=search,
             sort=sort,
@@ -3172,7 +4372,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ModTeams",
+            '200': "ListModGroups200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3189,7 +4389,7 @@ class ModApi:
 
 
     @validate_call
-    def list_mod_teams_without_preload_content(
+    def list_mod_groups_without_preload_content(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         search: Annotated[Optional[StrictStr], Field(description="Search query")] = None,
@@ -3210,7 +4410,7 @@ class ModApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Fetch all teams attached to mod
+        """Fetch all groups attached to mod
 
 
         :param mod_id: A mod identifier or slug (required)
@@ -3247,7 +4447,7 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._list_mod_teams_serialize(
+        _param = self._list_mod_groups_serialize(
             mod_id=mod_id,
             search=search,
             sort=sort,
@@ -3261,7 +4461,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ModTeams",
+            '200': "ListModGroups200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3273,7 +4473,7 @@ class ModApi:
         return response_data.response
 
 
-    def _list_mod_teams_serialize(
+    def _list_mod_groups_serialize(
         self,
         mod_id,
         search,
@@ -3296,7 +4496,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -3329,16 +4531,16 @@ class ModApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -3346,7 +4548,7 @@ class ModApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/mods/{mod_id}/teams',
+            resource_path='/mods/{mod_id}/groups',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3383,7 +4585,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ModUsers:
+    ) -> ListModUsers200Response:
         """Fetch all users attached to mod
 
 
@@ -3435,7 +4637,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ModUsers",
+            '200': "ListModUsers200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3472,7 +4674,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ModUsers]:
+    ) -> ApiResponse[ListModUsers200Response]:
         """Fetch all users attached to mod
 
 
@@ -3524,7 +4726,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ModUsers",
+            '200': "ListModUsers200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3613,7 +4815,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ModUsers",
+            '200': "ListModUsers200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3648,7 +4850,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -3681,16 +4885,16 @@ class ModApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -3734,7 +4938,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Mods:
+    ) -> ListMods200Response:
         """Fetch all available mods
 
 
@@ -3783,7 +4987,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Mods",
+            '200': "ListMods200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -3818,7 +5022,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Mods]:
+    ) -> ApiResponse[ListMods200Response]:
         """Fetch all available mods
 
 
@@ -3867,7 +5071,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Mods",
+            '200': "ListMods200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -3951,7 +5155,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Mods",
+            '200': "ListMods200Response",
             '403': "Notification",
             '500': "Notification",
         }
@@ -3984,7 +5188,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -4015,16 +5221,16 @@ class ModApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -4070,7 +5276,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> VersionBuilds:
+    ) -> ListVersionBuilds200Response:
         """Fetch all builds attached to version
 
 
@@ -4125,7 +5331,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VersionBuilds",
+            '200': "ListVersionBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4163,7 +5369,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[VersionBuilds]:
+    ) -> ApiResponse[ListVersionBuilds200Response]:
         """Fetch all builds attached to version
 
 
@@ -4218,7 +5424,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VersionBuilds",
+            '200': "ListVersionBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4311,7 +5517,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VersionBuilds",
+            '200': "ListVersionBuilds200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4347,7 +5553,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -4382,16 +5590,16 @@ class ModApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -4436,7 +5644,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Versions:
+    ) -> ListVersions200Response:
         """Fetch all available versions for a mod
 
 
@@ -4488,7 +5696,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Versions",
+            '200': "ListVersions200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4525,7 +5733,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Versions]:
+    ) -> ApiResponse[ListVersions200Response]:
         """Fetch all available versions for a mod
 
 
@@ -4577,7 +5785,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Versions",
+            '200': "ListVersions200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4666,7 +5874,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Versions",
+            '200': "ListVersions200Response",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4701,7 +5909,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -4734,16 +5944,16 @@ class ModApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -4768,10 +5978,10 @@ class ModApi:
 
 
     @validate_call
-    def permit_mod_team(
+    def permit_mod_group(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_team_params: Annotated[ModTeamParams, Field(description="The team data to update")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The mod group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4785,13 +5995,13 @@ class ModApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Notification:
-        """Update team perms for mod
+        """Update group perms for mod
 
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_team_params: The team data to update (required)
-        :type mod_team_params: ModTeamParams
+        :param permit_pack_group_request: The mod group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4814,9 +6024,9 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._permit_mod_team_serialize(
+        _param = self._permit_mod_group_serialize(
             mod_id=mod_id,
-            mod_team_params=mod_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4825,6 +6035,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -4843,10 +6054,10 @@ class ModApi:
 
 
     @validate_call
-    def permit_mod_team_with_http_info(
+    def permit_mod_group_with_http_info(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_team_params: Annotated[ModTeamParams, Field(description="The team data to update")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The mod group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4860,13 +6071,13 @@ class ModApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Notification]:
-        """Update team perms for mod
+        """Update group perms for mod
 
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_team_params: The team data to update (required)
-        :type mod_team_params: ModTeamParams
+        :param permit_pack_group_request: The mod group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4889,9 +6100,9 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._permit_mod_team_serialize(
+        _param = self._permit_mod_group_serialize(
             mod_id=mod_id,
-            mod_team_params=mod_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4900,6 +6111,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -4918,10 +6130,10 @@ class ModApi:
 
 
     @validate_call
-    def permit_mod_team_without_preload_content(
+    def permit_mod_group_without_preload_content(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_team_params: Annotated[ModTeamParams, Field(description="The team data to update")],
+        permit_pack_group_request: Annotated[PermitPackGroupRequest, Field(description="The mod group data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4935,13 +6147,13 @@ class ModApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Update team perms for mod
+        """Update group perms for mod
 
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_team_params: The team data to update (required)
-        :type mod_team_params: ModTeamParams
+        :param permit_pack_group_request: The mod group data to permit (required)
+        :type permit_pack_group_request: PermitPackGroupRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4964,9 +6176,9 @@ class ModApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._permit_mod_team_serialize(
+        _param = self._permit_mod_group_serialize(
             mod_id=mod_id,
-            mod_team_params=mod_team_params,
+            permit_pack_group_request=permit_pack_group_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4975,6 +6187,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -4988,10 +6201,10 @@ class ModApi:
         return response_data.response
 
 
-    def _permit_mod_team_serialize(
+    def _permit_mod_group_serialize(
         self,
         mod_id,
-        mod_team_params,
+        permit_pack_group_request,
         _request_auth,
         _content_type,
         _headers,
@@ -5007,7 +6220,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -5017,16 +6232,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if mod_team_params is not None:
-            _body_params = mod_team_params
+        if permit_pack_group_request is not None:
+            _body_params = permit_pack_group_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -5044,7 +6260,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -5052,7 +6267,7 @@ class ModApi:
 
         return self.api_client.param_serialize(
             method='PUT',
-            resource_path='/mods/{mod_id}/teams',
+            resource_path='/mods/{mod_id}/groups',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -5072,7 +6287,7 @@ class ModApi:
     def permit_mod_user(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_user_params: Annotated[ModUserParams, Field(description="The user data to update")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The mod user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5091,8 +6306,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_user_params: The user data to update (required)
-        :type mod_user_params: ModUserParams
+        :param permit_pack_user_request: The mod user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5117,7 +6332,7 @@ class ModApi:
 
         _param = self._permit_mod_user_serialize(
             mod_id=mod_id,
-            mod_user_params=mod_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5126,6 +6341,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -5147,7 +6363,7 @@ class ModApi:
     def permit_mod_user_with_http_info(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_user_params: Annotated[ModUserParams, Field(description="The user data to update")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The mod user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5166,8 +6382,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_user_params: The user data to update (required)
-        :type mod_user_params: ModUserParams
+        :param permit_pack_user_request: The mod user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5192,7 +6408,7 @@ class ModApi:
 
         _param = self._permit_mod_user_serialize(
             mod_id=mod_id,
-            mod_user_params=mod_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5201,6 +6417,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -5222,7 +6439,7 @@ class ModApi:
     def permit_mod_user_without_preload_content(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod_user_params: Annotated[ModUserParams, Field(description="The user data to update")],
+        permit_pack_user_request: Annotated[PermitPackUserRequest, Field(description="The mod user data to permit")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5241,8 +6458,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod_user_params: The user data to update (required)
-        :type mod_user_params: ModUserParams
+        :param permit_pack_user_request: The mod user data to permit (required)
+        :type permit_pack_user_request: PermitPackUserRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5267,7 +6484,7 @@ class ModApi:
 
         _param = self._permit_mod_user_serialize(
             mod_id=mod_id,
-            mod_user_params=mod_user_params,
+            permit_pack_user_request=permit_pack_user_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5276,6 +6493,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Notification",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '412': "Notification",
@@ -5292,7 +6510,7 @@ class ModApi:
     def _permit_mod_user_serialize(
         self,
         mod_id,
-        mod_user_params,
+        permit_pack_user_request,
         _request_auth,
         _content_type,
         _headers,
@@ -5308,7 +6526,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -5318,16 +6538,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if mod_user_params is not None:
-            _body_params = mod_user_params
+        if permit_pack_user_request is not None:
+            _body_params = permit_pack_user_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -5345,7 +6566,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -5590,7 +6810,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -5603,16 +6825,16 @@ class ModApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -5870,7 +7092,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -5885,16 +7109,16 @@ class ModApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -5922,7 +7146,7 @@ class ModApi:
     def update_mod(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod: Annotated[Mod, Field(description="The mod data to update")],
+        create_mod_request: Annotated[CreateModRequest, Field(description="The mod data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5941,8 +7165,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod: The mod data to update (required)
-        :type mod: Mod
+        :param create_mod_request: The mod data to update (required)
+        :type create_mod_request: CreateModRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5967,7 +7191,7 @@ class ModApi:
 
         _param = self._update_mod_serialize(
             mod_id=mod_id,
-            mod=mod,
+            create_mod_request=create_mod_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5976,6 +7200,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Mod",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -5996,7 +7221,7 @@ class ModApi:
     def update_mod_with_http_info(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod: Annotated[Mod, Field(description="The mod data to update")],
+        create_mod_request: Annotated[CreateModRequest, Field(description="The mod data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6015,8 +7240,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod: The mod data to update (required)
-        :type mod: Mod
+        :param create_mod_request: The mod data to update (required)
+        :type create_mod_request: CreateModRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6041,7 +7266,7 @@ class ModApi:
 
         _param = self._update_mod_serialize(
             mod_id=mod_id,
-            mod=mod,
+            create_mod_request=create_mod_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6050,6 +7275,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Mod",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6070,7 +7296,7 @@ class ModApi:
     def update_mod_without_preload_content(
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
-        mod: Annotated[Mod, Field(description="The mod data to update")],
+        create_mod_request: Annotated[CreateModRequest, Field(description="The mod data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6089,8 +7315,8 @@ class ModApi:
 
         :param mod_id: A mod identifier or slug (required)
         :type mod_id: str
-        :param mod: The mod data to update (required)
-        :type mod: Mod
+        :param create_mod_request: The mod data to update (required)
+        :type create_mod_request: CreateModRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6115,7 +7341,7 @@ class ModApi:
 
         _param = self._update_mod_serialize(
             mod_id=mod_id,
-            mod=mod,
+            create_mod_request=create_mod_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6124,6 +7350,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Mod",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6139,7 +7366,7 @@ class ModApi:
     def _update_mod_serialize(
         self,
         mod_id,
-        mod,
+        create_mod_request,
         _request_auth,
         _content_type,
         _headers,
@@ -6155,7 +7382,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -6165,16 +7394,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if mod is not None:
-            _body_params = mod
+        if create_mod_request is not None:
+            _body_params = create_mod_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -6192,7 +7422,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'
@@ -6221,7 +7450,7 @@ class ModApi:
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         version_id: Annotated[StrictStr, Field(description="A version identifier or slug")],
-        version: Annotated[Version, Field(description="The version data to update")],
+        create_version_request: Annotated[CreateVersionRequest, Field(description="The version data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6242,8 +7471,8 @@ class ModApi:
         :type mod_id: str
         :param version_id: A version identifier or slug (required)
         :type version_id: str
-        :param version: The version data to update (required)
-        :type version: Version
+        :param create_version_request: The version data to update (required)
+        :type create_version_request: CreateVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6269,7 +7498,7 @@ class ModApi:
         _param = self._update_version_serialize(
             mod_id=mod_id,
             version_id=version_id,
-            version=version,
+            create_version_request=create_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6278,6 +7507,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Version",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6299,7 +7529,7 @@ class ModApi:
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         version_id: Annotated[StrictStr, Field(description="A version identifier or slug")],
-        version: Annotated[Version, Field(description="The version data to update")],
+        create_version_request: Annotated[CreateVersionRequest, Field(description="The version data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6320,8 +7550,8 @@ class ModApi:
         :type mod_id: str
         :param version_id: A version identifier or slug (required)
         :type version_id: str
-        :param version: The version data to update (required)
-        :type version: Version
+        :param create_version_request: The version data to update (required)
+        :type create_version_request: CreateVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6347,7 +7577,7 @@ class ModApi:
         _param = self._update_version_serialize(
             mod_id=mod_id,
             version_id=version_id,
-            version=version,
+            create_version_request=create_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6356,6 +7586,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Version",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6377,7 +7608,7 @@ class ModApi:
         self,
         mod_id: Annotated[StrictStr, Field(description="A mod identifier or slug")],
         version_id: Annotated[StrictStr, Field(description="A version identifier or slug")],
-        version: Annotated[Version, Field(description="The version data to update")],
+        create_version_request: Annotated[CreateVersionRequest, Field(description="The version data to update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6398,8 +7629,8 @@ class ModApi:
         :type mod_id: str
         :param version_id: A version identifier or slug (required)
         :type version_id: str
-        :param version: The version data to update (required)
-        :type version: Version
+        :param create_version_request: The version data to update (required)
+        :type create_version_request: CreateVersionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6425,7 +7656,7 @@ class ModApi:
         _param = self._update_version_serialize(
             mod_id=mod_id,
             version_id=version_id,
-            version=version,
+            create_version_request=create_version_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6434,6 +7665,7 @@ class ModApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Version",
+            '400': "Notification",
             '403': "Notification",
             '404': "Notification",
             '422': "Notification",
@@ -6450,7 +7682,7 @@ class ModApi:
         self,
         mod_id,
         version_id,
-        version,
+        create_version_request,
         _request_auth,
         _content_type,
         _headers,
@@ -6466,7 +7698,9 @@ class ModApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -6478,16 +7712,17 @@ class ModApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if version is not None:
-            _body_params = version
+        if create_version_request is not None:
+            _body_params = create_version_request
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -6505,7 +7740,6 @@ class ModApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Cookie', 
             'Basic', 
             'Header', 
             'Bearer'

@@ -7,9 +7,7 @@ Model to represent pack
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] [readonly] 
-**icon** | [**PackIcon**](PackIcon.md) |  | [optional] 
-**logo** | [**PackLogo**](PackLogo.md) |  | [optional] 
-**back** | [**PackBack**](PackBack.md) |  | [optional] 
+**avatar** | [**PackAvatar**](PackAvatar.md) |  | [optional] 
 **slug** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **website** | **str** |  | [optional] 

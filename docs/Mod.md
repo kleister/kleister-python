@@ -7,6 +7,7 @@ Model to represent mod
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] [readonly] 
+**avatar** | [**ModAvatar**](ModAvatar.md) |  | [optional] 
 **slug** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **side** | **str** |  | [optional] 
