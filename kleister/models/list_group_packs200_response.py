@@ -81,9 +81,9 @@ class ListGroupPacks200Response(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in packs (list)
         _items = []
         if self.packs:
-            for _item_packs in self.packs:
-                if _item_packs:
-                    _items.append(_item_packs.to_dict())
+            for _item in self.packs:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['packs'] = _items
         return _dict
 

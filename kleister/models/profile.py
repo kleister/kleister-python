@@ -106,30 +106,30 @@ class Profile(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in auths (list)
         _items = []
         if self.auths:
-            for _item_auths in self.auths:
-                if _item_auths:
-                    _items.append(_item_auths.to_dict())
+            for _item in self.auths:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['auths'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in groups (list)
         _items = []
         if self.groups:
-            for _item_groups in self.groups:
-                if _item_groups:
-                    _items.append(_item_groups.to_dict())
+            for _item in self.groups:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['groups'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in mods (list)
         _items = []
         if self.mods:
-            for _item_mods in self.mods:
-                if _item_mods:
-                    _items.append(_item_mods.to_dict())
+            for _item in self.mods:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['mods'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in packs (list)
         _items = []
         if self.packs:
-            for _item_packs in self.packs:
-                if _item_packs:
-                    _items.append(_item_packs.to_dict())
+            for _item in self.packs:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['packs'] = _items
         # set to None if username (nullable) is None
         # and model_fields_set contains the field
