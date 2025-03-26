@@ -260,7 +260,7 @@ with kleister.ApiClient(configuration) as api_client:
     quilt_id = 'quilt_id_example' # str | A quilt identifier or slug
     search = 'search_example' # str | Search query (optional)
     sort = 'sort_example' # str | Sorting column (optional)
-    order = asc # str | Sorting order (optional) (default to asc)
+    order = 'asc' # str | Sorting order (optional) (default to 'asc')
     limit = 100 # int | Paging limit (optional) (default to 100)
     offset = 0 # int | Paging offset (optional) (default to 0)
 
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
  **quilt_id** | **str**| A quilt identifier or slug | 
  **search** | **str**| Search query | [optional] 
  **sort** | **str**| Sorting column | [optional] 
- **order** | **str**| Sorting order | [optional] [default to asc]
+ **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
  **limit** | **int**| Paging limit | [optional] [default to 100]
  **offset** | **int**| Paging offset | [optional] [default to 0]
 

@@ -81,9 +81,9 @@ class ListGroupMods200Response(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in mods (list)
         _items = []
         if self.mods:
-            for _item_mods in self.mods:
-                if _item_mods:
-                    _items.append(_item_mods.to_dict())
+            for _item in self.mods:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['mods'] = _items
         return _dict
 
