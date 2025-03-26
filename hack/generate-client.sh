@@ -9,7 +9,7 @@ else
 fi
 
 SPEC_VERSION="1.0.0-alpha1"
-SPEC_DOWNLOAD=${SPEC:-https://dl.kleister.eu/openapi/${SPEC_VERSION}.yml}
+SPEC_DOWNLOAD=${SPEC:-https://dl.kleister.eu/openapi/${SPEC_VERSION}.yaml}
 
 
 pushd "${ROOT}" >/dev/null
