@@ -855,7 +855,7 @@ with kleister.ApiClient(configuration) as api_client:
     user_id = 'user_id_example' # str | A user identifier or slug
     search = 'search_example' # str | Search query (optional)
     sort = 'sort_example' # str | Sorting column (optional)
-    order = 'asc' # str | Sorting order (optional) (default to 'asc')
+    order = asc # str | Sorting order (optional) (default to asc)
     limit = 100 # int | Paging limit (optional) (default to 100)
     offset = 0 # int | Paging offset (optional) (default to 0)
 
@@ -878,7 +878,7 @@ Name | Type | Description  | Notes
  **user_id** | **str**| A user identifier or slug | 
  **search** | **str**| Search query | [optional] 
  **sort** | **str**| Sorting column | [optional] 
- **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
+ **order** | **str**| Sorting order | [optional] [default to asc]
  **limit** | **int**| Paging limit | [optional] [default to 100]
  **offset** | **int**| Paging offset | [optional] [default to 0]
 
@@ -958,7 +958,7 @@ with kleister.ApiClient(configuration) as api_client:
     user_id = 'user_id_example' # str | A user identifier or slug
     search = 'search_example' # str | Search query (optional)
     sort = 'sort_example' # str | Sorting column (optional)
-    order = 'asc' # str | Sorting order (optional) (default to 'asc')
+    order = asc # str | Sorting order (optional) (default to asc)
     limit = 100 # int | Paging limit (optional) (default to 100)
     offset = 0 # int | Paging offset (optional) (default to 0)
 
@@ -981,7 +981,7 @@ Name | Type | Description  | Notes
  **user_id** | **str**| A user identifier or slug | 
  **search** | **str**| Search query | [optional] 
  **sort** | **str**| Sorting column | [optional] 
- **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
+ **order** | **str**| Sorting order | [optional] [default to asc]
  **limit** | **int**| Paging limit | [optional] [default to 100]
  **offset** | **int**| Paging offset | [optional] [default to 0]
 
@@ -1061,7 +1061,7 @@ with kleister.ApiClient(configuration) as api_client:
     user_id = 'user_id_example' # str | A user identifier or slug
     search = 'search_example' # str | Search query (optional)
     sort = 'sort_example' # str | Sorting column (optional)
-    order = 'asc' # str | Sorting order (optional) (default to 'asc')
+    order = asc # str | Sorting order (optional) (default to asc)
     limit = 100 # int | Paging limit (optional) (default to 100)
     offset = 0 # int | Paging offset (optional) (default to 0)
 
@@ -1084,7 +1084,7 @@ Name | Type | Description  | Notes
  **user_id** | **str**| A user identifier or slug | 
  **search** | **str**| Search query | [optional] 
  **sort** | **str**| Sorting column | [optional] 
- **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
+ **order** | **str**| Sorting order | [optional] [default to asc]
  **limit** | **int**| Paging limit | [optional] [default to 100]
  **offset** | **int**| Paging offset | [optional] [default to 0]
 
@@ -1163,7 +1163,7 @@ with kleister.ApiClient(configuration) as api_client:
     api_instance = kleister.UserApi(api_client)
     search = 'search_example' # str | Search query (optional)
     sort = 'sort_example' # str | Sorting column (optional)
-    order = 'asc' # str | Sorting order (optional) (default to 'asc')
+    order = asc # str | Sorting order (optional) (default to asc)
     limit = 100 # int | Paging limit (optional) (default to 100)
     offset = 0 # int | Paging offset (optional) (default to 0)
 
@@ -1185,7 +1185,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **search** | **str**| Search query | [optional] 
  **sort** | **str**| Sorting column | [optional] 
- **order** | **str**| Sorting order | [optional] [default to &#39;asc&#39;]
+ **order** | **str**| Sorting order | [optional] [default to asc]
  **limit** | **int**| Paging limit | [optional] [default to 100]
  **offset** | **int**| Paging offset | [optional] [default to 0]
 
