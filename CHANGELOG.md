@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.7.0](https://github.com/kleister/kleister-python/compare/v1.6.3...v1.7.0) (2025-03-31)
+
+
+### Features
+
+* automated openapi client update ([7132787](https://github.com/kleister/kleister-python/commit/71327878e2e9457cf37869150c346854907963bd))
+* automated openapi client update ([d2305ff](https://github.com/kleister/kleister-python/commit/d2305ff66776f2a029ec06a700db18e9324b1ad8))
+* **deps:** update dependency pydantic to v2.11.0 ([b7022b3](https://github.com/kleister/kleister-python/commit/b7022b3164baae9a9fdbea7500bfdfa75018492c))
+* **deps:** update dependency typing-extensions to v4.13.0 ([#85](https://github.com/kleister/kleister-python/issues/85)) ([4d21141](https://github.com/kleister/kleister-python/commit/4d211417b79c7e391d465b8c52aa282ee55d4660))
+
+
+### Bugfixes
+
+* **deps:** update dependency pydantic to v2.11.1 ([8ada323](https://github.com/kleister/kleister-python/commit/8ada323aa078b5eb16cc138cda105385352c8b3c))
+* use correct spec and update definition ([4d94613](https://github.com/kleister/kleister-python/commit/4d94613815232d5d2871df42262e58d92400b19b))
+* use correct spec and update definition ([0a71c06](https://github.com/kleister/kleister-python/commit/0a71c065d151d85b1b14937b83fd6920cabd2157))
+
 ## [1.6.3](https://github.com/kleister/kleister-python/compare/v1.6.2...v1.6.3) (2025-03-03)
 
 
