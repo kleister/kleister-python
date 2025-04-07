@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.1](https://github.com/kleister/kleister-python/compare/v1.7.0...v1.7.1) (2025-04-07)
+
+
+### Bugfixes
+
+* **deps:** update dependency pydantic to v2.11.2 ([#90](https://github.com/kleister/kleister-python/issues/90)) ([a606644](https://github.com/kleister/kleister-python/commit/a606644a64b0110920ff27d4147d1bb4c94c3157))
+* **deps:** update dependency typing-extensions to v4.13.1 ([#91](https://github.com/kleister/kleister-python/issues/91)) ([cc7de21](https://github.com/kleister/kleister-python/commit/cc7de2197297c9add5a8b72cb29d80a6c886dacc))
+
 ## [1.7.0](https://github.com/kleister/kleister-python/compare/v1.6.3...v1.7.0) (2025-03-31)
 
 
