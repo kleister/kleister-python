@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.8.0](https://github.com/kleister/kleister-python/compare/v1.7.1...v1.8.0) (2025-04-14)
+
+
+### Features
+
+* **deps:** update dependency urllib3 to v2.4.0 ([#94](https://github.com/kleister/kleister-python/issues/94)) ([321a591](https://github.com/kleister/kleister-python/commit/321a591be775de23f41ee1cf23812f009e61c0d0))
+
+
+### Bugfixes
+
+* **deps:** update dependency pydantic to v2.11.3 ([#92](https://github.com/kleister/kleister-python/issues/92)) ([679bd31](https://github.com/kleister/kleister-python/commit/679bd31918dd0d49a03902c9d785214f5607a40d))
+* **deps:** update dependency typing-extensions to v4.13.2 ([#93](https://github.com/kleister/kleister-python/issues/93)) ([9f9c184](https://github.com/kleister/kleister-python/commit/9f9c1846511be4fdb5db107fb0797ab7858a247b))
+
 ## [1.7.1](https://github.com/kleister/kleister-python/compare/v1.7.0...v1.7.1) (2025-04-07)
 
 
