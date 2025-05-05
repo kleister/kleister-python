@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.9.0](https://github.com/kleister/kleister-python/compare/v1.8.0...v1.9.0) (2025-05-05)
+
+
+### Features
+
+* automated openapi client update ([a9e8d83](https://github.com/kleister/kleister-python/commit/a9e8d83f8f775ceb051a1029bb8fa8786a920dab))
+
+
+### Bugfixes
+
+* **deps:** update dependency pydantic to v2.11.4 ([#96](https://github.com/kleister/kleister-python/issues/96)) ([0b01324](https://github.com/kleister/kleister-python/commit/0b01324a3e78db950afc7431daf1da72a3153500))
+
 ## [1.8.0](https://github.com/kleister/kleister-python/compare/v1.7.1...v1.8.0) (2025-04-14)
 
 
