@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.10.0](https://github.com/kleister/kleister-python/compare/v1.9.2...v1.10.0) (2025-06-09)
+
+
+### Features
+
+* **deps:** update dependency pytest to v8.4.0 ([#99](https://github.com/kleister/kleister-python/issues/99)) ([b9414ec](https://github.com/kleister/kleister-python/commit/b9414ec7f60d793d2f0d04007f9fe43d0f43c1ba))
+* **deps:** update dependency typing-extensions to v4.14.0 ([#100](https://github.com/kleister/kleister-python/issues/100)) ([758303e](https://github.com/kleister/kleister-python/commit/758303e24945e8937d04aab61c2655c9a2f7be3a))
+
 ## [1.9.2](https://github.com/kleister/kleister-python/compare/v1.9.1...v1.9.2) (2025-05-26)
 
 
