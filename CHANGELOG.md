@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.11.0](https://github.com/kleister/kleister-python/compare/v1.10.1...v1.11.0) (2025-06-23)
+
+
+### Features
+
+* **deps:** update dependency urllib3 to v2.5.0 ([#104](https://github.com/kleister/kleister-python/issues/104)) ([d726fc0](https://github.com/kleister/kleister-python/commit/d726fc0a889e2f9aa96b5c667bba232bc68516ce))
+
+
+### Bugfixes
+
+* **deps:** update dependency pytest to v8.4.1 ([#103](https://github.com/kleister/kleister-python/issues/103)) ([c191568](https://github.com/kleister/kleister-python/commit/c191568a0f86aa4e8953d8a757f1d0214391f815))
+
 ## [1.10.1](https://github.com/kleister/kleister-python/compare/v1.10.0...v1.10.1) (2025-06-16)
 
 
