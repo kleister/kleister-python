@@ -17,104 +17,204 @@
 
 __version__ = "1.11.0"
 
+# Define package exports
+__all__ = [
+    "AuthApi",
+    "FabricApi",
+    "ForgeApi",
+    "GroupApi",
+    "MinecraftApi",
+    "ModApi",
+    "NeoforgeApi",
+    "PackApi",
+    "ProfileApi",
+    "QuiltApi",
+    "UserApi",
+    "ApiResponse",
+    "ApiClient",
+    "Configuration",
+    "OpenApiException",
+    "ApiTypeError",
+    "ApiValueError",
+    "ApiKeyError",
+    "ApiAttributeError",
+    "ApiException",
+    "AttachBuildToVersionRequest",
+    "AttachMinecraftToBuildRequest",
+    "AuthToken",
+    "AuthVerify",
+    "Build",
+    "BuildVersion",
+    "CreateBuildRequest",
+    "CreateGroupRequest",
+    "CreateModRequest",
+    "CreatePackRequest",
+    "CreateUserRequest",
+    "CreateVersionRequest",
+    "DeleteGroupFromModRequest",
+    "DeleteGroupFromPackRequest",
+    "DeletePackFromGroupRequest",
+    "DeletePackFromUserRequest",
+    "Fabric",
+    "Forge",
+    "Group",
+    "GroupMod",
+    "GroupPack",
+    "InlineObject",
+    "InlineObject1",
+    "InlineObject10",
+    "InlineObject11",
+    "InlineObject12",
+    "InlineObject13",
+    "InlineObject14",
+    "InlineObject15",
+    "InlineObject16",
+    "InlineObject17",
+    "InlineObject18",
+    "InlineObject19",
+    "InlineObject2",
+    "InlineObject20",
+    "InlineObject21",
+    "InlineObject22",
+    "InlineObject23",
+    "InlineObject24",
+    "InlineObject25",
+    "InlineObject26",
+    "InlineObject27",
+    "InlineObject28",
+    "InlineObject3",
+    "InlineObject4",
+    "InlineObject5",
+    "InlineObject6",
+    "InlineObject7",
+    "InlineObject8",
+    "InlineObject9",
+    "LoginAuthRequest",
+    "Minecraft",
+    "Mod",
+    "ModAvatar",
+    "Neoforge",
+    "Notification",
+    "Pack",
+    "PackAvatar",
+    "PermitGroupModRequest",
+    "PermitGroupPackRequest",
+    "PermitPackGroupRequest",
+    "PermitPackUserRequest",
+    "Profile",
+    "Provider",
+    "Quilt",
+    "RedirectAuthRequest",
+    "UpdateProfileRequest",
+    "UpdateUserRequest",
+    "User",
+    "UserAuth",
+    "UserGroup",
+    "UserMod",
+    "UserPack",
+    "Validation",
+    "Version",
+    "VersionFile",
+]
+
 # import apis into sdk package
-from kleister.api.auth_api import AuthApi
-from kleister.api.fabric_api import FabricApi
-from kleister.api.forge_api import ForgeApi
-from kleister.api.group_api import GroupApi
-from kleister.api.minecraft_api import MinecraftApi
-from kleister.api.mod_api import ModApi
-from kleister.api.neoforge_api import NeoforgeApi
-from kleister.api.pack_api import PackApi
-from kleister.api.profile_api import ProfileApi
-from kleister.api.quilt_api import QuiltApi
-from kleister.api.user_api import UserApi
+from kleister.api.auth_api import AuthApi as AuthApi
+from kleister.api.fabric_api import FabricApi as FabricApi
+from kleister.api.forge_api import ForgeApi as ForgeApi
+from kleister.api.group_api import GroupApi as GroupApi
+from kleister.api.minecraft_api import MinecraftApi as MinecraftApi
+from kleister.api.mod_api import ModApi as ModApi
+from kleister.api.neoforge_api import NeoforgeApi as NeoforgeApi
+from kleister.api.pack_api import PackApi as PackApi
+from kleister.api.profile_api import ProfileApi as ProfileApi
+from kleister.api.quilt_api import QuiltApi as QuiltApi
+from kleister.api.user_api import UserApi as UserApi
 
 # import ApiClient
-from kleister.api_response import ApiResponse
-from kleister.api_client import ApiClient
-from kleister.configuration import Configuration
-from kleister.exceptions import OpenApiException
-from kleister.exceptions import ApiTypeError
-from kleister.exceptions import ApiValueError
-from kleister.exceptions import ApiKeyError
-from kleister.exceptions import ApiAttributeError
-from kleister.exceptions import ApiException
+from kleister.api_response import ApiResponse as ApiResponse
+from kleister.api_client import ApiClient as ApiClient
+from kleister.configuration import Configuration as Configuration
+from kleister.exceptions import OpenApiException as OpenApiException
+from kleister.exceptions import ApiTypeError as ApiTypeError
+from kleister.exceptions import ApiValueError as ApiValueError
+from kleister.exceptions import ApiKeyError as ApiKeyError
+from kleister.exceptions import ApiAttributeError as ApiAttributeError
+from kleister.exceptions import ApiException as ApiException
 
 # import models into sdk package
-from kleister.models.attach_build_to_version_request import AttachBuildToVersionRequest
-from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
-from kleister.models.auth_token import AuthToken
-from kleister.models.auth_verify import AuthVerify
-from kleister.models.build import Build
-from kleister.models.build_version import BuildVersion
-from kleister.models.create_build_request import CreateBuildRequest
-from kleister.models.create_group_request import CreateGroupRequest
-from kleister.models.create_mod_request import CreateModRequest
-from kleister.models.create_pack_request import CreatePackRequest
-from kleister.models.create_user_request import CreateUserRequest
-from kleister.models.create_version_request import CreateVersionRequest
-from kleister.models.delete_group_from_mod_request import DeleteGroupFromModRequest
-from kleister.models.delete_group_from_pack_request import DeleteGroupFromPackRequest
-from kleister.models.delete_pack_from_group_request import DeletePackFromGroupRequest
-from kleister.models.delete_pack_from_user_request import DeletePackFromUserRequest
-from kleister.models.fabric import Fabric
-from kleister.models.forge import Forge
-from kleister.models.group import Group
-from kleister.models.group_mod import GroupMod
-from kleister.models.group_pack import GroupPack
-from kleister.models.list_build_versions200_response import ListBuildVersions200Response
-from kleister.models.list_builds200_response import ListBuilds200Response
-from kleister.models.list_fabric_builds200_response import ListFabricBuilds200Response
-from kleister.models.list_fabrics200_response import ListFabrics200Response
-from kleister.models.list_forge_builds200_response import ListForgeBuilds200Response
-from kleister.models.list_forges200_response import ListForges200Response
-from kleister.models.list_group_mods200_response import ListGroupMods200Response
-from kleister.models.list_group_packs200_response import ListGroupPacks200Response
-from kleister.models.list_group_users200_response import ListGroupUsers200Response
-from kleister.models.list_groups200_response import ListGroups200Response
-from kleister.models.list_minecraft_builds200_response import ListMinecraftBuilds200Response
-from kleister.models.list_minecrafts200_response import ListMinecrafts200Response
-from kleister.models.list_mod_groups200_response import ListModGroups200Response
-from kleister.models.list_mod_users200_response import ListModUsers200Response
-from kleister.models.list_mods200_response import ListMods200Response
-from kleister.models.list_neoforge_builds200_response import ListNeoforgeBuilds200Response
-from kleister.models.list_neoforges200_response import ListNeoforges200Response
-from kleister.models.list_pack_groups200_response import ListPackGroups200Response
-from kleister.models.list_pack_users200_response import ListPackUsers200Response
-from kleister.models.list_packs200_response import ListPacks200Response
-from kleister.models.list_providers200_response import ListProviders200Response
-from kleister.models.list_quilt_builds200_response import ListQuiltBuilds200Response
-from kleister.models.list_quilts200_response import ListQuilts200Response
-from kleister.models.list_user_groups200_response import ListUserGroups200Response
-from kleister.models.list_user_mods200_response import ListUserMods200Response
-from kleister.models.list_user_packs200_response import ListUserPacks200Response
-from kleister.models.list_users200_response import ListUsers200Response
-from kleister.models.list_version_builds200_response import ListVersionBuilds200Response
-from kleister.models.list_versions200_response import ListVersions200Response
-from kleister.models.login_auth_request import LoginAuthRequest
-from kleister.models.minecraft import Minecraft
-from kleister.models.mod import Mod
-from kleister.models.mod_avatar import ModAvatar
-from kleister.models.neoforge import Neoforge
-from kleister.models.notification import Notification
-from kleister.models.pack import Pack
-from kleister.models.pack_avatar import PackAvatar
-from kleister.models.permit_group_mod_request import PermitGroupModRequest
-from kleister.models.permit_group_pack_request import PermitGroupPackRequest
-from kleister.models.permit_pack_group_request import PermitPackGroupRequest
-from kleister.models.permit_pack_user_request import PermitPackUserRequest
-from kleister.models.profile import Profile
-from kleister.models.provider import Provider
-from kleister.models.quilt import Quilt
-from kleister.models.redirect_auth_request import RedirectAuthRequest
-from kleister.models.update_profile_request import UpdateProfileRequest
-from kleister.models.update_user_request import UpdateUserRequest
-from kleister.models.user import User
-from kleister.models.user_auth import UserAuth
-from kleister.models.user_group import UserGroup
-from kleister.models.user_mod import UserMod
-from kleister.models.user_pack import UserPack
-from kleister.models.validation import Validation
-from kleister.models.version import Version
-from kleister.models.version_file import VersionFile
+from kleister.models.attach_build_to_version_request import AttachBuildToVersionRequest as AttachBuildToVersionRequest
+from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest as AttachMinecraftToBuildRequest
+from kleister.models.auth_token import AuthToken as AuthToken
+from kleister.models.auth_verify import AuthVerify as AuthVerify
+from kleister.models.build import Build as Build
+from kleister.models.build_version import BuildVersion as BuildVersion
+from kleister.models.create_build_request import CreateBuildRequest as CreateBuildRequest
+from kleister.models.create_group_request import CreateGroupRequest as CreateGroupRequest
+from kleister.models.create_mod_request import CreateModRequest as CreateModRequest
+from kleister.models.create_pack_request import CreatePackRequest as CreatePackRequest
+from kleister.models.create_user_request import CreateUserRequest as CreateUserRequest
+from kleister.models.create_version_request import CreateVersionRequest as CreateVersionRequest
+from kleister.models.delete_group_from_mod_request import DeleteGroupFromModRequest as DeleteGroupFromModRequest
+from kleister.models.delete_group_from_pack_request import DeleteGroupFromPackRequest as DeleteGroupFromPackRequest
+from kleister.models.delete_pack_from_group_request import DeletePackFromGroupRequest as DeletePackFromGroupRequest
+from kleister.models.delete_pack_from_user_request import DeletePackFromUserRequest as DeletePackFromUserRequest
+from kleister.models.fabric import Fabric as Fabric
+from kleister.models.forge import Forge as Forge
+from kleister.models.group import Group as Group
+from kleister.models.group_mod import GroupMod as GroupMod
+from kleister.models.group_pack import GroupPack as GroupPack
+from kleister.models.inline_object import InlineObject as InlineObject
+from kleister.models.inline_object1 import InlineObject1 as InlineObject1
+from kleister.models.inline_object10 import InlineObject10 as InlineObject10
+from kleister.models.inline_object11 import InlineObject11 as InlineObject11
+from kleister.models.inline_object12 import InlineObject12 as InlineObject12
+from kleister.models.inline_object13 import InlineObject13 as InlineObject13
+from kleister.models.inline_object14 import InlineObject14 as InlineObject14
+from kleister.models.inline_object15 import InlineObject15 as InlineObject15
+from kleister.models.inline_object16 import InlineObject16 as InlineObject16
+from kleister.models.inline_object17 import InlineObject17 as InlineObject17
+from kleister.models.inline_object18 import InlineObject18 as InlineObject18
+from kleister.models.inline_object19 import InlineObject19 as InlineObject19
+from kleister.models.inline_object2 import InlineObject2 as InlineObject2
+from kleister.models.inline_object20 import InlineObject20 as InlineObject20
+from kleister.models.inline_object21 import InlineObject21 as InlineObject21
+from kleister.models.inline_object22 import InlineObject22 as InlineObject22
+from kleister.models.inline_object23 import InlineObject23 as InlineObject23
+from kleister.models.inline_object24 import InlineObject24 as InlineObject24
+from kleister.models.inline_object25 import InlineObject25 as InlineObject25
+from kleister.models.inline_object26 import InlineObject26 as InlineObject26
+from kleister.models.inline_object27 import InlineObject27 as InlineObject27
+from kleister.models.inline_object28 import InlineObject28 as InlineObject28
+from kleister.models.inline_object3 import InlineObject3 as InlineObject3
+from kleister.models.inline_object4 import InlineObject4 as InlineObject4
+from kleister.models.inline_object5 import InlineObject5 as InlineObject5
+from kleister.models.inline_object6 import InlineObject6 as InlineObject6
+from kleister.models.inline_object7 import InlineObject7 as InlineObject7
+from kleister.models.inline_object8 import InlineObject8 as InlineObject8
+from kleister.models.inline_object9 import InlineObject9 as InlineObject9
+from kleister.models.login_auth_request import LoginAuthRequest as LoginAuthRequest
+from kleister.models.minecraft import Minecraft as Minecraft
+from kleister.models.mod import Mod as Mod
+from kleister.models.mod_avatar import ModAvatar as ModAvatar
+from kleister.models.neoforge import Neoforge as Neoforge
+from kleister.models.notification import Notification as Notification
+from kleister.models.pack import Pack as Pack
+from kleister.models.pack_avatar import PackAvatar as PackAvatar
+from kleister.models.permit_group_mod_request import PermitGroupModRequest as PermitGroupModRequest
+from kleister.models.permit_group_pack_request import PermitGroupPackRequest as PermitGroupPackRequest
+from kleister.models.permit_pack_group_request import PermitPackGroupRequest as PermitPackGroupRequest
+from kleister.models.permit_pack_user_request import PermitPackUserRequest as PermitPackUserRequest
+from kleister.models.profile import Profile as Profile
+from kleister.models.provider import Provider as Provider
+from kleister.models.quilt import Quilt as Quilt
+from kleister.models.redirect_auth_request import RedirectAuthRequest as RedirectAuthRequest
+from kleister.models.update_profile_request import UpdateProfileRequest as UpdateProfileRequest
+from kleister.models.update_user_request import UpdateUserRequest as UpdateUserRequest
+from kleister.models.user import User as User
+from kleister.models.user_auth import UserAuth as UserAuth
+from kleister.models.user_group import UserGroup as UserGroup
+from kleister.models.user_mod import UserMod as UserMod
+from kleister.models.user_pack import UserPack as UserPack
+from kleister.models.validation import Validation as Validation
+from kleister.models.version import Version as Version
+from kleister.models.version_file import VersionFile as VersionFile

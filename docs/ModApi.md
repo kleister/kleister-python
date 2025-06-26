@@ -1392,7 +1392,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_mod_groups**
-> ListModGroups200Response list_mod_groups(mod_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject13 list_mod_groups(mod_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all groups attached to mod
 
@@ -1404,7 +1404,7 @@ Fetch all groups attached to mod
 
 ```python
 import kleister
-from kleister.models.list_mod_groups200_response import ListModGroups200Response
+from kleister.models.inline_object13 import InlineObject13
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1472,7 +1472,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListModGroups200Response**](ListModGroups200Response.md)
+[**InlineObject13**](InlineObject13.md)
 
 ### Authorization
 
@@ -1495,7 +1495,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_mod_users**
-> ListModUsers200Response list_mod_users(mod_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject12 list_mod_users(mod_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all users attached to mod
 
@@ -1507,7 +1507,7 @@ Fetch all users attached to mod
 
 ```python
 import kleister
-from kleister.models.list_mod_users200_response import ListModUsers200Response
+from kleister.models.inline_object12 import InlineObject12
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1575,7 +1575,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListModUsers200Response**](ListModUsers200Response.md)
+[**InlineObject12**](InlineObject12.md)
 
 ### Authorization
 
@@ -1598,7 +1598,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_mods**
-> ListMods200Response list_mods(search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject11 list_mods(search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all available mods
 
@@ -1610,7 +1610,7 @@ Fetch all available mods
 
 ```python
 import kleister
-from kleister.models.list_mods200_response import ListMods200Response
+from kleister.models.inline_object11 import InlineObject11
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1676,7 +1676,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListMods200Response**](ListMods200Response.md)
+[**InlineObject11**](InlineObject11.md)
 
 ### Authorization
 
@@ -1698,7 +1698,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_version_builds**
-> ListVersionBuilds200Response list_version_builds(mod_id, version_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject15 list_version_builds(mod_id, version_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all builds attached to version
 
@@ -1710,7 +1710,7 @@ Fetch all builds attached to version
 
 ```python
 import kleister
-from kleister.models.list_version_builds200_response import ListVersionBuilds200Response
+from kleister.models.inline_object15 import InlineObject15
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1780,7 +1780,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListVersionBuilds200Response**](ListVersionBuilds200Response.md)
+[**InlineObject15**](InlineObject15.md)
 
 ### Authorization
 
@@ -1803,7 +1803,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_versions**
-> ListVersions200Response list_versions(mod_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject14 list_versions(mod_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all available versions for a mod
 
@@ -1815,7 +1815,7 @@ Fetch all available versions for a mod
 
 ```python
 import kleister
-from kleister.models.list_versions200_response import ListVersions200Response
+from kleister.models.inline_object14 import InlineObject14
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1883,7 +1883,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListVersions200Response**](ListVersions200Response.md)
+[**InlineObject14**](InlineObject14.md)
 
 ### Authorization
 

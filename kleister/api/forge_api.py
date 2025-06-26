@@ -21,8 +21,8 @@ from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
-from kleister.models.list_forge_builds200_response import ListForgeBuilds200Response
-from kleister.models.list_forges200_response import ListForges200Response
+from kleister.models.inline_object3 import InlineObject3
+from kleister.models.inline_object4 import InlineObject4
 from kleister.models.notification import Notification
 
 from kleister.api_client import ApiClient, RequestSerialized
@@ -673,7 +673,7 @@ class ForgeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListForgeBuilds200Response:
+    ) -> InlineObject4:
         """Fetch the builds attached to a Forge version
 
 
@@ -725,7 +725,7 @@ class ForgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListForgeBuilds200Response",
+            '200': "InlineObject4",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -762,7 +762,7 @@ class ForgeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListForgeBuilds200Response]:
+    ) -> ApiResponse[InlineObject4]:
         """Fetch the builds attached to a Forge version
 
 
@@ -814,7 +814,7 @@ class ForgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListForgeBuilds200Response",
+            '200': "InlineObject4",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -903,7 +903,7 @@ class ForgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListForgeBuilds200Response",
+            '200': "InlineObject4",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -1022,7 +1022,7 @@ class ForgeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListForges200Response:
+    ) -> InlineObject3:
         """Fetch the available Forge versions
 
 
@@ -1059,7 +1059,7 @@ class ForgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListForges200Response",
+            '200': "InlineObject3",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1090,7 +1090,7 @@ class ForgeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListForges200Response]:
+    ) -> ApiResponse[InlineObject3]:
         """Fetch the available Forge versions
 
 
@@ -1127,7 +1127,7 @@ class ForgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListForges200Response",
+            '200': "InlineObject3",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1195,7 +1195,7 @@ class ForgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListForges200Response",
+            '200': "InlineObject3",
             '403': "Notification",
             '500': "Notification",
         }

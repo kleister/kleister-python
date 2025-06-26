@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_fabric_builds**
-> ListFabricBuilds200Response list_fabric_builds(fabric_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject10 list_fabric_builds(fabric_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch the builds attached to a Fabric version
 
@@ -221,7 +221,7 @@ Fetch the builds attached to a Fabric version
 
 ```python
 import kleister
-from kleister.models.list_fabric_builds200_response import ListFabricBuilds200Response
+from kleister.models.inline_object10 import InlineObject10
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListFabricBuilds200Response**](ListFabricBuilds200Response.md)
+[**InlineObject10**](InlineObject10.md)
 
 ### Authorization
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_fabrics**
-> ListFabrics200Response list_fabrics(search=search)
+> InlineObject9 list_fabrics(search=search)
 
 Fetch the available Fabric versions
 
@@ -324,7 +324,7 @@ Fetch the available Fabric versions
 
 ```python
 import kleister
-from kleister.models.list_fabrics200_response import ListFabrics200Response
+from kleister.models.inline_object9 import InlineObject9
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListFabrics200Response**](ListFabrics200Response.md)
+[**InlineObject9**](InlineObject9.md)
 
 ### Authorization
 

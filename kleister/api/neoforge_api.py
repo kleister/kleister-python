@@ -21,8 +21,8 @@ from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
-from kleister.models.list_neoforge_builds200_response import ListNeoforgeBuilds200Response
-from kleister.models.list_neoforges200_response import ListNeoforges200Response
+from kleister.models.inline_object5 import InlineObject5
+from kleister.models.inline_object6 import InlineObject6
 from kleister.models.notification import Notification
 
 from kleister.api_client import ApiClient, RequestSerialized
@@ -673,7 +673,7 @@ class NeoforgeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListNeoforgeBuilds200Response:
+    ) -> InlineObject6:
         """Fetch the builds attached to a Neoforge version
 
 
@@ -725,7 +725,7 @@ class NeoforgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListNeoforgeBuilds200Response",
+            '200': "InlineObject6",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -762,7 +762,7 @@ class NeoforgeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListNeoforgeBuilds200Response]:
+    ) -> ApiResponse[InlineObject6]:
         """Fetch the builds attached to a Neoforge version
 
 
@@ -814,7 +814,7 @@ class NeoforgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListNeoforgeBuilds200Response",
+            '200': "InlineObject6",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -903,7 +903,7 @@ class NeoforgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListNeoforgeBuilds200Response",
+            '200': "InlineObject6",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -1022,7 +1022,7 @@ class NeoforgeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListNeoforges200Response:
+    ) -> InlineObject5:
         """Fetch the available Neoforge versions
 
 
@@ -1059,7 +1059,7 @@ class NeoforgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListNeoforges200Response",
+            '200': "InlineObject5",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1090,7 +1090,7 @@ class NeoforgeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListNeoforges200Response]:
+    ) -> ApiResponse[InlineObject5]:
         """Fetch the available Neoforge versions
 
 
@@ -1127,7 +1127,7 @@ class NeoforgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListNeoforges200Response",
+            '200': "InlineObject5",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1195,7 +1195,7 @@ class NeoforgeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListNeoforges200Response",
+            '200': "InlineObject5",
             '403': "Notification",
             '500': "Notification",
         }

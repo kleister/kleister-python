@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_minecraft_builds**
-> ListMinecraftBuilds200Response list_minecraft_builds(minecraft_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject2 list_minecraft_builds(minecraft_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch the builds attached to a Minecraft version
 
@@ -221,7 +221,7 @@ Fetch the builds attached to a Minecraft version
 
 ```python
 import kleister
-from kleister.models.list_minecraft_builds200_response import ListMinecraftBuilds200Response
+from kleister.models.inline_object2 import InlineObject2
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListMinecraftBuilds200Response**](ListMinecraftBuilds200Response.md)
+[**InlineObject2**](InlineObject2.md)
 
 ### Authorization
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_minecrafts**
-> ListMinecrafts200Response list_minecrafts(search=search)
+> InlineObject1 list_minecrafts(search=search)
 
 Fetch the available Minecraft versions
 
@@ -324,7 +324,7 @@ Fetch the available Minecraft versions
 
 ```python
 import kleister
-from kleister.models.list_minecrafts200_response import ListMinecrafts200Response
+from kleister.models.inline_object1 import InlineObject1
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListMinecrafts200Response**](ListMinecrafts200Response.md)
+[**InlineObject1**](InlineObject1.md)
 
 ### Authorization
 

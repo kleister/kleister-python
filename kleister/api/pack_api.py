@@ -26,11 +26,11 @@ from kleister.models.create_build_request import CreateBuildRequest
 from kleister.models.create_pack_request import CreatePackRequest
 from kleister.models.delete_pack_from_group_request import DeletePackFromGroupRequest
 from kleister.models.delete_pack_from_user_request import DeletePackFromUserRequest
-from kleister.models.list_build_versions200_response import ListBuildVersions200Response
-from kleister.models.list_builds200_response import ListBuilds200Response
-from kleister.models.list_pack_groups200_response import ListPackGroups200Response
-from kleister.models.list_pack_users200_response import ListPackUsers200Response
-from kleister.models.list_packs200_response import ListPacks200Response
+from kleister.models.inline_object16 import InlineObject16
+from kleister.models.inline_object17 import InlineObject17
+from kleister.models.inline_object18 import InlineObject18
+from kleister.models.inline_object19 import InlineObject19
+from kleister.models.inline_object20 import InlineObject20
 from kleister.models.notification import Notification
 from kleister.models.pack import Pack
 from kleister.models.permit_pack_group_request import PermitPackGroupRequest
@@ -3080,7 +3080,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListBuildVersions200Response:
+    ) -> InlineObject20:
         """Fetch all versions attached to build
 
 
@@ -3135,7 +3135,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListBuildVersions200Response",
+            '200': "InlineObject20",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3173,7 +3173,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListBuildVersions200Response]:
+    ) -> ApiResponse[InlineObject20]:
         """Fetch all versions attached to build
 
 
@@ -3228,7 +3228,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListBuildVersions200Response",
+            '200': "InlineObject20",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3321,7 +3321,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListBuildVersions200Response",
+            '200': "InlineObject20",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3448,7 +3448,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListBuilds200Response:
+    ) -> InlineObject19:
         """Fetch all available builds for a pack
 
 
@@ -3500,7 +3500,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListBuilds200Response",
+            '200': "InlineObject19",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3537,7 +3537,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListBuilds200Response]:
+    ) -> ApiResponse[InlineObject19]:
         """Fetch all available builds for a pack
 
 
@@ -3589,7 +3589,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListBuilds200Response",
+            '200': "InlineObject19",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3678,7 +3678,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListBuilds200Response",
+            '200': "InlineObject19",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3802,7 +3802,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListPackGroups200Response:
+    ) -> InlineObject18:
         """Fetch all groups attached to pack
 
 
@@ -3854,7 +3854,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListPackGroups200Response",
+            '200': "InlineObject18",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -3891,7 +3891,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListPackGroups200Response]:
+    ) -> ApiResponse[InlineObject18]:
         """Fetch all groups attached to pack
 
 
@@ -3943,7 +3943,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListPackGroups200Response",
+            '200': "InlineObject18",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4032,7 +4032,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListPackGroups200Response",
+            '200': "InlineObject18",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4156,7 +4156,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListPackUsers200Response:
+    ) -> InlineObject17:
         """Fetch all users attached to pack
 
 
@@ -4208,7 +4208,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListPackUsers200Response",
+            '200': "InlineObject17",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4245,7 +4245,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListPackUsers200Response]:
+    ) -> ApiResponse[InlineObject17]:
         """Fetch all users attached to pack
 
 
@@ -4297,7 +4297,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListPackUsers200Response",
+            '200': "InlineObject17",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4386,7 +4386,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListPackUsers200Response",
+            '200': "InlineObject17",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4509,7 +4509,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListPacks200Response:
+    ) -> InlineObject16:
         """Fetch all available packs
 
 
@@ -4558,7 +4558,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListPacks200Response",
+            '200': "InlineObject16",
             '403': "Notification",
             '500': "Notification",
         }
@@ -4593,7 +4593,7 @@ class PackApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListPacks200Response]:
+    ) -> ApiResponse[InlineObject16]:
         """Fetch all available packs
 
 
@@ -4642,7 +4642,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListPacks200Response",
+            '200': "InlineObject16",
             '403': "Notification",
             '500': "Notification",
         }
@@ -4726,7 +4726,7 @@ class PackApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListPacks200Response",
+            '200': "InlineObject16",
             '403': "Notification",
             '500': "Notification",
         }
