@@ -21,8 +21,8 @@ from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
-from kleister.models.list_fabric_builds200_response import ListFabricBuilds200Response
-from kleister.models.list_fabrics200_response import ListFabrics200Response
+from kleister.models.inline_object10 import InlineObject10
+from kleister.models.inline_object9 import InlineObject9
 from kleister.models.notification import Notification
 
 from kleister.api_client import ApiClient, RequestSerialized
@@ -673,7 +673,7 @@ class FabricApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListFabricBuilds200Response:
+    ) -> InlineObject10:
         """Fetch the builds attached to a Fabric version
 
 
@@ -725,7 +725,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListFabricBuilds200Response",
+            '200': "InlineObject10",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -762,7 +762,7 @@ class FabricApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListFabricBuilds200Response]:
+    ) -> ApiResponse[InlineObject10]:
         """Fetch the builds attached to a Fabric version
 
 
@@ -814,7 +814,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListFabricBuilds200Response",
+            '200': "InlineObject10",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -903,7 +903,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListFabricBuilds200Response",
+            '200': "InlineObject10",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -1022,7 +1022,7 @@ class FabricApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListFabrics200Response:
+    ) -> InlineObject9:
         """Fetch the available Fabric versions
 
 
@@ -1059,7 +1059,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListFabrics200Response",
+            '200': "InlineObject9",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1090,7 +1090,7 @@ class FabricApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListFabrics200Response]:
+    ) -> ApiResponse[InlineObject9]:
         """Fetch the available Fabric versions
 
 
@@ -1127,7 +1127,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListFabrics200Response",
+            '200': "InlineObject9",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1195,7 +1195,7 @@ class FabricApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListFabrics200Response",
+            '200': "InlineObject9",
             '403': "Notification",
             '500': "Notification",
         }

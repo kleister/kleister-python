@@ -21,8 +21,8 @@ from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
-from kleister.models.list_quilt_builds200_response import ListQuiltBuilds200Response
-from kleister.models.list_quilts200_response import ListQuilts200Response
+from kleister.models.inline_object7 import InlineObject7
+from kleister.models.inline_object8 import InlineObject8
 from kleister.models.notification import Notification
 
 from kleister.api_client import ApiClient, RequestSerialized
@@ -673,7 +673,7 @@ class QuiltApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListQuiltBuilds200Response:
+    ) -> InlineObject8:
         """Fetch the builds attached to a Quilt version
 
 
@@ -725,7 +725,7 @@ class QuiltApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListQuiltBuilds200Response",
+            '200': "InlineObject8",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -762,7 +762,7 @@ class QuiltApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListQuiltBuilds200Response]:
+    ) -> ApiResponse[InlineObject8]:
         """Fetch the builds attached to a Quilt version
 
 
@@ -814,7 +814,7 @@ class QuiltApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListQuiltBuilds200Response",
+            '200': "InlineObject8",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -903,7 +903,7 @@ class QuiltApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListQuiltBuilds200Response",
+            '200': "InlineObject8",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -1022,7 +1022,7 @@ class QuiltApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListQuilts200Response:
+    ) -> InlineObject7:
         """Fetch the available Quilt versions
 
 
@@ -1059,7 +1059,7 @@ class QuiltApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListQuilts200Response",
+            '200': "InlineObject7",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1090,7 +1090,7 @@ class QuiltApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListQuilts200Response]:
+    ) -> ApiResponse[InlineObject7]:
         """Fetch the available Quilt versions
 
 
@@ -1127,7 +1127,7 @@ class QuiltApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListQuilts200Response",
+            '200': "InlineObject7",
             '403': "Notification",
             '500': "Notification",
         }
@@ -1195,7 +1195,7 @@ class QuiltApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListQuilts200Response",
+            '200': "InlineObject7",
             '403': "Notification",
             '500': "Notification",
         }

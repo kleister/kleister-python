@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_forge_builds**
-> ListForgeBuilds200Response list_forge_builds(forge_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject4 list_forge_builds(forge_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch the builds attached to a Forge version
 
@@ -221,7 +221,7 @@ Fetch the builds attached to a Forge version
 
 ```python
 import kleister
-from kleister.models.list_forge_builds200_response import ListForgeBuilds200Response
+from kleister.models.inline_object4 import InlineObject4
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListForgeBuilds200Response**](ListForgeBuilds200Response.md)
+[**InlineObject4**](InlineObject4.md)
 
 ### Authorization
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_forges**
-> ListForges200Response list_forges(search=search)
+> InlineObject3 list_forges(search=search)
 
 Fetch the available Forge versions
 
@@ -324,7 +324,7 @@ Fetch the available Forge versions
 
 ```python
 import kleister
-from kleister.models.list_forges200_response import ListForges200Response
+from kleister.models.inline_object3 import InlineObject3
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListForges200Response**](ListForges200Response.md)
+[**InlineObject3**](InlineObject3.md)
 
 ### Authorization
 

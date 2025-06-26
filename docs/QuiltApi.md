@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_quilt_builds**
-> ListQuiltBuilds200Response list_quilt_builds(quilt_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject8 list_quilt_builds(quilt_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch the builds attached to a Quilt version
 
@@ -221,7 +221,7 @@ Fetch the builds attached to a Quilt version
 
 ```python
 import kleister
-from kleister.models.list_quilt_builds200_response import ListQuiltBuilds200Response
+from kleister.models.inline_object8 import InlineObject8
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListQuiltBuilds200Response**](ListQuiltBuilds200Response.md)
+[**InlineObject8**](InlineObject8.md)
 
 ### Authorization
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_quilts**
-> ListQuilts200Response list_quilts(search=search)
+> InlineObject7 list_quilts(search=search)
 
 Fetch the available Quilt versions
 
@@ -324,7 +324,7 @@ Fetch the available Quilt versions
 
 ```python
 import kleister
-from kleister.models.list_quilts200_response import ListQuilts200Response
+from kleister.models.inline_object7 import InlineObject7
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListQuilts200Response**](ListQuilts200Response.md)
+[**InlineObject7**](InlineObject7.md)
 
 ### Authorization
 
