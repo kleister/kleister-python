@@ -25,11 +25,11 @@ from kleister.models.create_mod_request import CreateModRequest
 from kleister.models.create_version_request import CreateVersionRequest
 from kleister.models.delete_pack_from_group_request import DeletePackFromGroupRequest
 from kleister.models.delete_pack_from_user_request import DeletePackFromUserRequest
-from kleister.models.list_mod_groups200_response import ListModGroups200Response
-from kleister.models.list_mod_users200_response import ListModUsers200Response
-from kleister.models.list_mods200_response import ListMods200Response
-from kleister.models.list_version_builds200_response import ListVersionBuilds200Response
-from kleister.models.list_versions200_response import ListVersions200Response
+from kleister.models.inline_object11 import InlineObject11
+from kleister.models.inline_object12 import InlineObject12
+from kleister.models.inline_object13 import InlineObject13
+from kleister.models.inline_object14 import InlineObject14
+from kleister.models.inline_object15 import InlineObject15
 from kleister.models.mod import Mod
 from kleister.models.mod_avatar import ModAvatar
 from kleister.models.notification import Notification
@@ -4231,7 +4231,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListModGroups200Response:
+    ) -> InlineObject13:
         """Fetch all groups attached to mod
 
 
@@ -4283,7 +4283,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListModGroups200Response",
+            '200': "InlineObject13",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4320,7 +4320,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListModGroups200Response]:
+    ) -> ApiResponse[InlineObject13]:
         """Fetch all groups attached to mod
 
 
@@ -4372,7 +4372,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListModGroups200Response",
+            '200': "InlineObject13",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4461,7 +4461,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListModGroups200Response",
+            '200': "InlineObject13",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4585,7 +4585,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListModUsers200Response:
+    ) -> InlineObject12:
         """Fetch all users attached to mod
 
 
@@ -4637,7 +4637,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListModUsers200Response",
+            '200': "InlineObject12",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4674,7 +4674,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListModUsers200Response]:
+    ) -> ApiResponse[InlineObject12]:
         """Fetch all users attached to mod
 
 
@@ -4726,7 +4726,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListModUsers200Response",
+            '200': "InlineObject12",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4815,7 +4815,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListModUsers200Response",
+            '200': "InlineObject12",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -4938,7 +4938,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListMods200Response:
+    ) -> InlineObject11:
         """Fetch all available mods
 
 
@@ -4987,7 +4987,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListMods200Response",
+            '200': "InlineObject11",
             '403': "Notification",
             '500': "Notification",
         }
@@ -5022,7 +5022,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListMods200Response]:
+    ) -> ApiResponse[InlineObject11]:
         """Fetch all available mods
 
 
@@ -5071,7 +5071,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListMods200Response",
+            '200': "InlineObject11",
             '403': "Notification",
             '500': "Notification",
         }
@@ -5155,7 +5155,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListMods200Response",
+            '200': "InlineObject11",
             '403': "Notification",
             '500': "Notification",
         }
@@ -5276,7 +5276,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListVersionBuilds200Response:
+    ) -> InlineObject15:
         """Fetch all builds attached to version
 
 
@@ -5331,7 +5331,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListVersionBuilds200Response",
+            '200': "InlineObject15",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -5369,7 +5369,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListVersionBuilds200Response]:
+    ) -> ApiResponse[InlineObject15]:
         """Fetch all builds attached to version
 
 
@@ -5424,7 +5424,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListVersionBuilds200Response",
+            '200': "InlineObject15",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -5517,7 +5517,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListVersionBuilds200Response",
+            '200': "InlineObject15",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -5644,7 +5644,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListVersions200Response:
+    ) -> InlineObject14:
         """Fetch all available versions for a mod
 
 
@@ -5696,7 +5696,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListVersions200Response",
+            '200': "InlineObject14",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -5733,7 +5733,7 @@ class ModApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListVersions200Response]:
+    ) -> ApiResponse[InlineObject14]:
         """Fetch all available versions for a mod
 
 
@@ -5785,7 +5785,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListVersions200Response",
+            '200': "InlineObject14",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",
@@ -5874,7 +5874,7 @@ class ModApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListVersions200Response",
+            '200': "InlineObject14",
             '403': "Notification",
             '404': "Notification",
             '500': "Notification",

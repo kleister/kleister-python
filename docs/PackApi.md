@@ -1006,7 +1006,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_build_versions**
-> ListBuildVersions200Response list_build_versions(pack_id, build_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject20 list_build_versions(pack_id, build_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all versions attached to build
 
@@ -1018,7 +1018,7 @@ Fetch all versions attached to build
 
 ```python
 import kleister
-from kleister.models.list_build_versions200_response import ListBuildVersions200Response
+from kleister.models.inline_object20 import InlineObject20
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1088,7 +1088,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListBuildVersions200Response**](ListBuildVersions200Response.md)
+[**InlineObject20**](InlineObject20.md)
 
 ### Authorization
 
@@ -1111,7 +1111,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_builds**
-> ListBuilds200Response list_builds(pack_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject19 list_builds(pack_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all available builds for a pack
 
@@ -1123,7 +1123,7 @@ Fetch all available builds for a pack
 
 ```python
 import kleister
-from kleister.models.list_builds200_response import ListBuilds200Response
+from kleister.models.inline_object19 import InlineObject19
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1191,7 +1191,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListBuilds200Response**](ListBuilds200Response.md)
+[**InlineObject19**](InlineObject19.md)
 
 ### Authorization
 
@@ -1214,7 +1214,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_pack_groups**
-> ListPackGroups200Response list_pack_groups(pack_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject18 list_pack_groups(pack_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all groups attached to pack
 
@@ -1226,7 +1226,7 @@ Fetch all groups attached to pack
 
 ```python
 import kleister
-from kleister.models.list_pack_groups200_response import ListPackGroups200Response
+from kleister.models.inline_object18 import InlineObject18
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1294,7 +1294,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListPackGroups200Response**](ListPackGroups200Response.md)
+[**InlineObject18**](InlineObject18.md)
 
 ### Authorization
 
@@ -1317,7 +1317,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_pack_users**
-> ListPackUsers200Response list_pack_users(pack_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject17 list_pack_users(pack_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all users attached to pack
 
@@ -1329,7 +1329,7 @@ Fetch all users attached to pack
 
 ```python
 import kleister
-from kleister.models.list_pack_users200_response import ListPackUsers200Response
+from kleister.models.inline_object17 import InlineObject17
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1397,7 +1397,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListPackUsers200Response**](ListPackUsers200Response.md)
+[**InlineObject17**](InlineObject17.md)
 
 ### Authorization
 
@@ -1420,7 +1420,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_packs**
-> ListPacks200Response list_packs(search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject16 list_packs(search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all available packs
 
@@ -1432,7 +1432,7 @@ Fetch all available packs
 
 ```python
 import kleister
-from kleister.models.list_packs200_response import ListPacks200Response
+from kleister.models.inline_object16 import InlineObject16
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1498,7 +1498,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListPacks200Response**](ListPacks200Response.md)
+[**InlineObject16**](InlineObject16.md)
 
 ### Authorization
 
