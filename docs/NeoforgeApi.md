@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_neoforge_builds**
-> ListNeoforgeBuilds200Response list_neoforge_builds(neoforge_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject6 list_neoforge_builds(neoforge_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch the builds attached to a Neoforge version
 
@@ -221,7 +221,7 @@ Fetch the builds attached to a Neoforge version
 
 ```python
 import kleister
-from kleister.models.list_neoforge_builds200_response import ListNeoforgeBuilds200Response
+from kleister.models.inline_object6 import InlineObject6
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListNeoforgeBuilds200Response**](ListNeoforgeBuilds200Response.md)
+[**InlineObject6**](InlineObject6.md)
 
 ### Authorization
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_neoforges**
-> ListNeoforges200Response list_neoforges(search=search)
+> InlineObject5 list_neoforges(search=search)
 
 Fetch the available Neoforge versions
 
@@ -324,7 +324,7 @@ Fetch the available Neoforge versions
 
 ```python
 import kleister
-from kleister.models.list_neoforges200_response import ListNeoforges200Response
+from kleister.models.inline_object5 import InlineObject5
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListNeoforges200Response**](ListNeoforges200Response.md)
+[**InlineObject5**](InlineObject5.md)
 
 ### Authorization
 

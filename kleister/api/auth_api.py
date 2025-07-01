@@ -22,7 +22,7 @@ from typing import Optional
 from typing_extensions import Annotated
 from kleister.models.auth_token import AuthToken
 from kleister.models.auth_verify import AuthVerify
-from kleister.models.list_providers200_response import ListProviders200Response
+from kleister.models.inline_object import InlineObject
 from kleister.models.login_auth_request import LoginAuthRequest
 from kleister.models.redirect_auth_request import RedirectAuthRequest
 
@@ -359,7 +359,7 @@ class AuthApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListProviders200Response:
+    ) -> InlineObject:
         """Fetch the available auth providers
 
 
@@ -393,7 +393,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListProviders200Response",
+            '200': "InlineObject",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -421,7 +421,7 @@ class AuthApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListProviders200Response]:
+    ) -> ApiResponse[InlineObject]:
         """Fetch the available auth providers
 
 
@@ -455,7 +455,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListProviders200Response",
+            '200': "InlineObject",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -517,7 +517,7 @@ class AuthApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ListProviders200Response",
+            '200': "InlineObject",
         }
         response_data = self.api_client.call_api(
             *_param,

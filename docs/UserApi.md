@@ -804,7 +804,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_user_groups**
-> ListUserGroups200Response list_user_groups(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject26 list_user_groups(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all groups attached to user
 
@@ -816,7 +816,7 @@ Fetch all groups attached to user
 
 ```python
 import kleister
-from kleister.models.list_user_groups200_response import ListUserGroups200Response
+from kleister.models.inline_object26 import InlineObject26
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -884,7 +884,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListUserGroups200Response**](ListUserGroups200Response.md)
+[**InlineObject26**](InlineObject26.md)
 
 ### Authorization
 
@@ -907,7 +907,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_user_mods**
-> ListUserMods200Response list_user_mods(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject27 list_user_mods(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all mods attached to user
 
@@ -919,7 +919,7 @@ Fetch all mods attached to user
 
 ```python
 import kleister
-from kleister.models.list_user_mods200_response import ListUserMods200Response
+from kleister.models.inline_object27 import InlineObject27
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -987,7 +987,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListUserMods200Response**](ListUserMods200Response.md)
+[**InlineObject27**](InlineObject27.md)
 
 ### Authorization
 
@@ -1010,7 +1010,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_user_packs**
-> ListUserPacks200Response list_user_packs(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject28 list_user_packs(user_id, search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all packs attached to user
 
@@ -1022,7 +1022,7 @@ Fetch all packs attached to user
 
 ```python
 import kleister
-from kleister.models.list_user_packs200_response import ListUserPacks200Response
+from kleister.models.inline_object28 import InlineObject28
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1090,7 +1090,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListUserPacks200Response**](ListUserPacks200Response.md)
+[**InlineObject28**](InlineObject28.md)
 
 ### Authorization
 
@@ -1113,7 +1113,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_users**
-> ListUsers200Response list_users(search=search, sort=sort, order=order, limit=limit, offset=offset)
+> InlineObject25 list_users(search=search, sort=sort, order=order, limit=limit, offset=offset)
 
 Fetch all available users
 
@@ -1125,7 +1125,7 @@ Fetch all available users
 
 ```python
 import kleister
-from kleister.models.list_users200_response import ListUsers200Response
+from kleister.models.inline_object25 import InlineObject25
 from kleister.rest import ApiException
 from pprint import pprint
 
@@ -1191,7 +1191,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListUsers200Response**](ListUsers200Response.md)
+[**InlineObject25**](InlineObject25.md)
 
 ### Authorization
 
