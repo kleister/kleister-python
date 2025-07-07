@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.12.0](https://github.com/kleister/kleister-python/compare/v1.11.0...v1.12.0) (2025-07-07)
+
+
+### Features
+
+* upgrade all definitions ([fa83f9e](https://github.com/kleister/kleister-python/commit/fa83f9e3e9864f05eeb3be60f391a3113fdce04c))
+
+
+### Bugfixes
+
+* **deps:** update dependency typing-extensions to v4.14.1 ([#111](https://github.com/kleister/kleister-python/issues/111)) ([b46cd33](https://github.com/kleister/kleister-python/commit/b46cd33df4e2d9703c0d7e68d3b67171730245cd))
+* downgrade python to 3.12 ([b763731](https://github.com/kleister/kleister-python/commit/b76373172bc2265eba776ce2fdf942bbf74cd96b))
+* get all tests working again ([11ce87a](https://github.com/kleister/kleister-python/commit/11ce87aafc5026476ed169ec495e1e1864f8eb43))
+
 ## [1.11.0](https://github.com/kleister/kleister-python/compare/v1.10.1...v1.11.0) (2025-06-23)
 
 
