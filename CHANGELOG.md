@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.0](https://github.com/kleister/kleister-python/compare/v1.12.1...v1.13.0) (2025-08-04)
+
+
+### Features
+
+* **deps:** update dependency build to v1.3.0 ([#113](https://github.com/kleister/kleister-python/issues/113)) ([5ac6619](https://github.com/kleister/kleister-python/commit/5ac661973056082ea0a4d314da96a5d87b753c40))
+
 ## [1.12.1](https://github.com/kleister/kleister-python/compare/v1.12.0...v1.12.1) (2025-07-14)
 
 
