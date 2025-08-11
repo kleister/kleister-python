@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.1](https://github.com/kleister/kleister-python/compare/v1.13.0...v1.13.1) (2025-08-11)
+
+
+### Bugfixes
+
+* **deps:** update dependency types-python-dateutil to v2.9.0.20250809 ([#114](https://github.com/kleister/kleister-python/issues/114)) ([9c0d983](https://github.com/kleister/kleister-python/commit/9c0d983e9370976b099d59f50d41a5718e3becb6))
+
 ## [1.13.0](https://github.com/kleister/kleister-python/compare/v1.12.1...v1.13.0) (2025-08-04)
 
 
