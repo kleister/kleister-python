@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.0](https://github.com/kleister/kleister-python/compare/v1.13.2...v1.14.0) (2025-09-01)
+
+
+### Features
+
+* **deps:** update dependency typing-extensions to v4.15.0 ([#117](https://github.com/kleister/kleister-python/issues/117)) ([4bf172b](https://github.com/kleister/kleister-python/commit/4bf172b12531855c8f2ddf39f2f2096b40982970))
+
 ## [1.13.2](https://github.com/kleister/kleister-python/compare/v1.13.1...v1.13.2) (2025-08-25)
 
 
