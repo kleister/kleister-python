@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.1](https://github.com/kleister/kleister-python/compare/v1.14.0...v1.14.1) (2025-09-08)
+
+
+### Bugfixes
+
+* **deps:** update dependency pytest to v8.4.2 ([#120](https://github.com/kleister/kleister-python/issues/120)) ([9f75ba5](https://github.com/kleister/kleister-python/commit/9f75ba599c97249e66327902fcf8945951076a85))
+
 ## [1.14.0](https://github.com/kleister/kleister-python/compare/v1.13.2...v1.14.0) (2025-09-01)
 
 

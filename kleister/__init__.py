@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.14.0"
+__version__ = "1.14.1"
 
 # import apis into sdk package
 from kleister.api.auth_api import AuthApi
