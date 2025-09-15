@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.2](https://github.com/kleister/kleister-python/compare/v1.14.1...v1.14.2) (2025-09-15)
+
+
+### Bugfixes
+
+* **deps:** update dependency pydantic to v2.11.9 ([#121](https://github.com/kleister/kleister-python/issues/121)) ([66e507b](https://github.com/kleister/kleister-python/commit/66e507bf135e1814a0aad1db28a861b01e8cdd83))
+
 ## [1.14.1](https://github.com/kleister/kleister-python/compare/v1.14.0...v1.14.1) (2025-09-08)
 
 
