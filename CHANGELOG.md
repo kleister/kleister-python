@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.15.0](https://github.com/kleister/kleister-python/compare/v1.14.3...v1.15.0) (2025-10-13)
+
+
+### Features
+
+* **deps:** update dependency pydantic to v2.12.0 ([#124](https://github.com/kleister/kleister-python/issues/124)) ([552a56b](https://github.com/kleister/kleister-python/commit/552a56ba0f3f4c51eac25ccd6ac0bdccc84102f9))
+
+
+### Bugfixes
+
+* **deps:** update dependency types-python-dateutil to v2.9.0.20251008 ([#125](https://github.com/kleister/kleister-python/issues/125)) ([c345cb3](https://github.com/kleister/kleister-python/commit/c345cb3a214722753a2dfc9d9c5c6e4d60ab0173))
+
 ## [1.14.3](https://github.com/kleister/kleister-python/compare/v1.14.2...v1.14.3) (2025-10-06)
 
 
