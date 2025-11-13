@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from kleister.models.attach_build_to_version_request import AttachBuildToVersionRequest
 from kleister.models.attach_minecraft_to_build_request import AttachMinecraftToBuildRequest
@@ -91,3 +90,4 @@ from kleister.models.user_pack import UserPack
 from kleister.models.validation import Validation
 from kleister.models.version import Version
 from kleister.models.version_file import VersionFile
+

@@ -13,7 +13,7 @@ For more information, please visit [https://kleister.eu](https://kleister.eu)
 
 ## Requirements
 
-Python 3.9+
+Python 3.10+
 
 ## Installation
 
