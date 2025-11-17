@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.0.0](https://github.com/kleister/kleister-python/compare/v1.15.2...v2.0.0) (2025-11-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* increase minimum python version to 3.10
+
+### Features
+
+* automated openapi client update ([8fe14dd](https://github.com/kleister/kleister-python/commit/8fe14dde0d6bb4b75d7257ea4bd3d9b5002df343))
+* automated openapi client update ([89af27d](https://github.com/kleister/kleister-python/commit/89af27d3b4bf79c5faa58c423d2e0e6492cb3867))
+* increase minimum python version to 3.10 ([a8e71ae](https://github.com/kleister/kleister-python/commit/a8e71aebab6a7ff68b89fc4c732fbe2713101fb6))
+* **major:** update dependency pytest to v9 ([#135](https://github.com/kleister/kleister-python/issues/135)) ([395bde8](https://github.com/kleister/kleister-python/commit/395bde834463846faddf1c0b040340398086d1c8))
+
+
+### Bugfixes
+
+* **patch:** update dependency pytest to v9.0.1 ([#137](https://github.com/kleister/kleister-python/issues/137)) ([944bf13](https://github.com/kleister/kleister-python/commit/944bf1315ffc37bc385f0a82e51cedd863b67a53))
+* **patch:** update dependency types-python-dateutil to v2.9.0.20251115 ([#139](https://github.com/kleister/kleister-python/issues/139)) ([803c3e5](https://github.com/kleister/kleister-python/commit/803c3e5154171638b9f5c96e70ef3f75da48afee))
+
 ## [1.15.2](https://github.com/kleister/kleister-python/compare/v1.15.1...v1.15.2) (2025-11-10)
 
 
