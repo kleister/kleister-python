@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/kleister/kleister-python/compare/v2.0.1...v2.0.2) (2025-12-08)
+
+
+### Bugfixes
+
+* **patch:** update dependency pytest to v9.0.2 ([#152](https://github.com/kleister/kleister-python/issues/152)) ([343a5bb](https://github.com/kleister/kleister-python/commit/343a5bbc3b8a1451184004a308c7d142268aa821))
+
 ## [2.0.1](https://github.com/kleister/kleister-python/compare/v2.0.0...v2.0.1) (2025-12-01)
 
 
