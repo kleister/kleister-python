@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.3](https://github.com/kleister/kleister-python/compare/v2.0.2...v2.0.3) (2025-12-15)
+
+
+### Bugfixes
+
+* **patch:** update dependency urllib3 to v2.6.1 ([#148](https://github.com/kleister/kleister-python/issues/148)) ([62390a2](https://github.com/kleister/kleister-python/commit/62390a266873aff4cafa4b3d9f30c24f328f013f))
+* **patch:** update dependency urllib3 to v2.6.2 ([#155](https://github.com/kleister/kleister-python/issues/155)) ([af7da93](https://github.com/kleister/kleister-python/commit/af7da9363e83724426f3bbd9b168223cee7ddc0b))
+
 ## [2.0.2](https://github.com/kleister/kleister-python/compare/v2.0.1...v2.0.2) (2025-12-08)
 
 
