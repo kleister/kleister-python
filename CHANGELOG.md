@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.1.0](https://github.com/kleister/kleister-python/compare/v2.0.3...v2.1.0) (2026-01-12)
+
+### Dependencies
+
+* **minor:** update dependency build to v1.4.0 ([#158](https://github.com/kleister/kleister-python/issues/158)) ([b5f34ae](https://github.com/kleister/kleister-python/commit/b5f34ae46b9941892f4acf50a6793937856bb93b))
+* **patch:** update dependency urllib3 to v2.6.3 ([#157](https://github.com/kleister/kleister-python/issues/157)) ([db5215e](https://github.com/kleister/kleister-python/commit/db5215eed3a2f85d5b531e5394d8e44e68f2bc6a))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([3299a0a](https://github.com/kleister/kleister-python/commit/3299a0ab9f1e76b0a2c2f31b3fc775f66b20d096))
+* **flake:** updated lockfile [skip ci] ([011c683](https://github.com/kleister/kleister-python/commit/011c6837bc3a63114c339a8d74de4662ec2e0ced))
+* **flake:** updated lockfile [skip ci] ([a4cc99b](https://github.com/kleister/kleister-python/commit/a4cc99bbff45c22eedb9675e31320d4f2f632e4b))
+* **flake:** updated lockfile [skip ci] ([85363aa](https://github.com/kleister/kleister-python/commit/85363aa230ba9de37d365ff0fde4af704e603bcd))
+
 ## [2.0.3](https://github.com/kleister/kleister-python/compare/v2.0.2...v2.0.3) (2025-12-15)
 
 
