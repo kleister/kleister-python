@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.1.2](https://github.com/kleister/kleister-python/compare/v2.1.1...v2.1.2) (2026-03-09)
+
+### Dependencies
+
+* **deps:** lock file maintenance ([89e55cb](https://github.com/kleister/kleister-python/commit/89e55cb344610975c3ebf203e7aee91f8d6277d3))
+* **patch:** update dependency types-python-dateutil to v2.9.0.20260302 ([#162](https://github.com/kleister/kleister-python/issues/162)) ([1d53cd2](https://github.com/kleister/kleister-python/commit/1d53cd2f2cdcb4b080d42c2f866c09252bd1e0c5))
+* **patch:** update dependency types-python-dateutil to v2.9.0.20260305 ([#163](https://github.com/kleister/kleister-python/issues/163)) ([ba7108a](https://github.com/kleister/kleister-python/commit/ba7108a594fc3b90164f0fd3621a4a4322c7eda4))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([32426e3](https://github.com/kleister/kleister-python/commit/32426e397b5acff46c8849c9e2bd5fe5d10f2ae2))
+* **flake:** updated lockfile [skip ci] ([3e8fd16](https://github.com/kleister/kleister-python/commit/3e8fd169bdb826998a7fc77038bf468cbdad366f))
+* **flake:** updated lockfile [skip ci] ([00756b4](https://github.com/kleister/kleister-python/commit/00756b4068211b2c713ebcbdcf364ab2886dfa66))
+* **flake:** updated lockfile [skip ci] ([18db855](https://github.com/kleister/kleister-python/commit/18db85591e299f3d33403c56695b562f75771f23))
+* **flake:** updated lockfile [skip ci] ([d677fe8](https://github.com/kleister/kleister-python/commit/d677fe83d054d89632323878b8bf43da4a73d315))
+* **flake:** updated lockfile [skip ci] ([13ee408](https://github.com/kleister/kleister-python/commit/13ee4089f496535a21872fee3f77d3d099aba287))
+* replace nixfmt package ([cee4248](https://github.com/kleister/kleister-python/commit/cee424864c2efb4f961ad91f14f235b21ac6a992))
+
 ## [2.1.1](https://github.com/kleister/kleister-python/compare/v2.1.0...v2.1.1) (2026-01-26)
 
 ### Dependencies
