@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.2.0](https://github.com/kleister/kleister-python/compare/v2.1.6...v2.2.0) (2026-04-20)
+
+### Dependencies
+
+* **minor:** update dependency pydantic to v2.13.0 ([#176](https://github.com/kleister/kleister-python/issues/176)) ([7759b09](https://github.com/kleister/kleister-python/commit/7759b09283353a650a6485d961f3d6a2a818cb6a))
+* **patch:** update dependency pydantic to v2.13.1 ([#177](https://github.com/kleister/kleister-python/issues/177)) ([e6ee70c](https://github.com/kleister/kleister-python/commit/e6ee70c761d2391b536a1f089685bf1f2b09824d))
+* **patch:** update dependency pydantic to v2.13.2 ([#178](https://github.com/kleister/kleister-python/issues/178)) ([6494142](https://github.com/kleister/kleister-python/commit/649414255903a62b093f32eedb084ab9705cca46))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([25e4340](https://github.com/kleister/kleister-python/commit/25e4340092eb2a001070c42a6c2dbd46e1b0b1e8))
+* **locks:** lock file maintenance ([#179](https://github.com/kleister/kleister-python/issues/179)) ([87974a0](https://github.com/kleister/kleister-python/commit/87974a0aaeeb3ed24fa0e1e849d26f3f975db76b))
+
 ## [2.1.6](https://github.com/kleister/kleister-python/compare/v2.1.5...v2.1.6) (2026-04-13)
 
 ### Dependencies
