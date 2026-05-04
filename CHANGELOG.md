@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.3.0](https://github.com/kleister/kleister-python/compare/v2.2.1...v2.3.0) (2026-05-04)
+
+### Dependencies
+
+* **minor:** update dependency build to v1.5.0 ([#183](https://github.com/kleister/kleister-python/issues/183)) ([5ccec9d](https://github.com/kleister/kleister-python/commit/5ccec9d38be19f38194d79f19c2f6b87c8a476ab))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([bbb5ec8](https://github.com/kleister/kleister-python/commit/bbb5ec87af5df9d5b1458cd565359d3bfc04e409))
+
 ## [2.2.1](https://github.com/kleister/kleister-python/compare/v2.2.0...v2.2.1) (2026-04-27)
 
 ### Dependencies
