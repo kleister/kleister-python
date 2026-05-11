@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.4.0](https://github.com/kleister/kleister-python/compare/v2.3.0...v2.4.0) (2026-05-11)
+
+### Dependencies
+
+* **minor:** update dependency urllib3 to v2.7.0 ([#185](https://github.com/kleister/kleister-python/issues/185)) ([ad9ff25](https://github.com/kleister/kleister-python/commit/ad9ff2539b85e8e1bd9d5560110ae30b4620dfe0))
+* **patch:** update dependency pydantic to v2.13.4 ([#184](https://github.com/kleister/kleister-python/issues/184)) ([7f6c795](https://github.com/kleister/kleister-python/commit/7f6c7951deea511989bead2df2623efcd3ba2280))
+* **patch:** update dependency types-python-dateutil to v2.9.0.20260508 ([#186](https://github.com/kleister/kleister-python/issues/186)) ([4e9cf70](https://github.com/kleister/kleister-python/commit/4e9cf707868f67468df09f4e4b12d14e1af0b9e0))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([db38c7b](https://github.com/kleister/kleister-python/commit/db38c7bf1aa13ccdfd800f62fc9e118894e9922e))
+
 ## [2.3.0](https://github.com/kleister/kleister-python/compare/v2.2.1...v2.3.0) (2026-05-04)
 
 ### Dependencies
