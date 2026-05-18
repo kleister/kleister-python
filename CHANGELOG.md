@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.4.1](https://github.com/kleister/kleister-python/compare/v2.4.0...v2.4.1) (2026-05-18)
+
+### Dependencies
+
+* **patch:** update dependency types-python-dateutil to v2.9.0.20260518 ([#187](https://github.com/kleister/kleister-python/issues/187)) ([23ae21a](https://github.com/kleister/kleister-python/commit/23ae21ae1e41aa460b5c565229901102201ea446))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([e9d2a9a](https://github.com/kleister/kleister-python/commit/e9d2a9aa9ff893d01cdb4322c5783f9debcc7042))
+
 ## [2.4.0](https://github.com/kleister/kleister-python/compare/v2.3.0...v2.4.0) (2026-05-11)
 
 ### Dependencies
