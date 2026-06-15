@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.5.0](https://github.com/kleister/kleister-python/compare/v2.4.1...v2.5.0) (2026-06-15)
+
+### Dependencies
+
+* **minor:** update dependency pytest to v9.1.0 ([#189](https://github.com/kleister/kleister-python/issues/189)) ([14d33e0](https://github.com/kleister/kleister-python/commit/14d33e0a8a85cded635eb5dadecc7ff97db67e05))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([845020b](https://github.com/kleister/kleister-python/commit/845020b7c9d3429fa9905fc4b3e09750e88ebf24))
+* **flake:** updated lockfile [skip ci] ([b9c53da](https://github.com/kleister/kleister-python/commit/b9c53daf1d2b1618d3cf952c258a6feba094003a))
+* **flake:** updated lockfile [skip ci] ([b24b1bb](https://github.com/kleister/kleister-python/commit/b24b1bb303da30eccba3263f6add3c83d0942bb3))
+* **flake:** updated lockfile [skip ci] ([05bb08d](https://github.com/kleister/kleister-python/commit/05bb08d05fc28bfcc1c202cb00fd928b852e67c7))
+* **locks:** lock file maintenance ([#188](https://github.com/kleister/kleister-python/issues/188)) ([42b880b](https://github.com/kleister/kleister-python/commit/42b880bf74a5dd7ed513db5fb0c8a4d86924b672))
+
 ## [2.4.1](https://github.com/kleister/kleister-python/compare/v2.4.0...v2.4.1) (2026-05-18)
 
 ### Dependencies

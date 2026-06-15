@@ -2,7 +2,7 @@
 library: urllib3
 packageName: kleister
 packageUrl: https://github.com/kleister/kleister-python
-packageVersion: 2.4.1
+packageVersion: 2.5.0
 projectName: kleister
 
 ...
