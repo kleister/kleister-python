@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.7.1](https://github.com/kleister/kleister-python/compare/v2.7.0...v2.7.1) (2026-08-17)
+
+### Dependencies
+
+* **patch:** update dependency pre-commit to v4.6.2 ([#202](https://github.com/kleister/kleister-python/issues/202)) ([3583c8d](https://github.com/kleister/kleister-python/commit/3583c8d55aa3b307ec36e43cafb82d0b00c50604))
+
 ## [2.7.0](https://github.com/kleister/kleister-python/compare/v2.6.2...v2.7.0) (2026-08-10)
 
 ### Features
