@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.8.1](https://github.com/kleister/kleister-python/compare/v2.8.0...v2.8.1) (2026-09-14)
+
+### Dependencies
+
+* **mise:** update dependency prek to v0.5.3 ([#211](https://github.com/kleister/kleister-python/issues/211)) ([81c5b19](https://github.com/kleister/kleister-python/commit/81c5b1901e1408f0ad95da4cd0535552e87001f2))
+* **patch:** update dependency build to v1.6.1 ([#210](https://github.com/kleister/kleister-python/issues/210)) ([3d6879d](https://github.com/kleister/kleister-python/commit/3d6879d7e0fc82ed2200203a97969bdb29abf0fa))
+* **patch:** update dependency poetry to v2.4.3 ([#209](https://github.com/kleister/kleister-python/issues/209)) ([349c349](https://github.com/kleister/kleister-python/commit/349c349b16846c63731665c89fc86f8ed72027ae))
+
 ## [2.8.0](https://github.com/kleister/kleister-python/compare/v2.7.1...v2.8.0) (2026-08-31)
 
 ### Dependencies
