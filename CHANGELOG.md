@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.9.0](https://github.com/kleister/kleister-python/compare/v2.8.1...v2.9.0) (2026-09-21)
+
+### Dependencies
+
+* **minor:** update dependency urllib3 to v2.8.0 ([#212](https://github.com/kleister/kleister-python/issues/212)) ([4e3212d](https://github.com/kleister/kleister-python/commit/4e3212d1560b1357458c8d01f0457ddeecae6715))
+* **mise:** update dependency poetry to v2.5.0 ([#213](https://github.com/kleister/kleister-python/issues/213)) ([feabc25](https://github.com/kleister/kleister-python/commit/feabc258426016549854fbf9c318eff09bb2da46))
+* **mise:** update dependency poetry to v2.5.1 ([#214](https://github.com/kleister/kleister-python/issues/214)) ([92c8af8](https://github.com/kleister/kleister-python/commit/92c8af86977036b9ec069c8b3546aa4cdd09b08c))
+
 ## [2.8.1](https://github.com/kleister/kleister-python/compare/v2.8.0...v2.8.1) (2026-09-14)
 
 ### Dependencies
