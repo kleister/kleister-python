@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.10.0](https://github.com/kleister/kleister-python/compare/v2.9.0...v2.10.0) (2026-10-12)
+
+### Dependencies
+
+* **minor:** update dependency pydantic to v2.14.0 ([#221](https://github.com/kleister/kleister-python/issues/221)) ([7d27b61](https://github.com/kleister/kleister-python/commit/7d27b61ebcca2ece2ec5cb802d5748e40ca67097))
+* **mise:** update dependency prek to v0.5.4 ([#216](https://github.com/kleister/kleister-python/issues/216)) ([80b198b](https://github.com/kleister/kleister-python/commit/80b198b4dd4a3218f60dada29a6e7315ee01b8ae))
+* **mise:** update dependency prek to v0.5.5 ([#220](https://github.com/kleister/kleister-python/issues/220)) ([5dab445](https://github.com/kleister/kleister-python/commit/5dab4450840b9366e8362af03dba6a6ff3809e6a))
+* **mise:** update dependency python to v3.14.8 ([#218](https://github.com/kleister/kleister-python/issues/218)) ([bce7803](https://github.com/kleister/kleister-python/commit/bce780304c3172f40c5bb7abc4a40f229521ac77))
+* **mise:** update dependency python to v3.15.0 ([#222](https://github.com/kleister/kleister-python/issues/222)) ([83a4770](https://github.com/kleister/kleister-python/commit/83a4770defc68dee30100b10ae9ee13c3a9ff63d))
+* **patch:** update dependency pydantic to v2.14.1 ([#223](https://github.com/kleister/kleister-python/issues/223)) ([4284140](https://github.com/kleister/kleister-python/commit/42841408fda6d1e3bf247dfd1f9c56bf7f8d93ed))
+
 ## [2.9.0](https://github.com/kleister/kleister-python/compare/v2.8.1...v2.9.0) (2026-09-21)
 
 ### Dependencies
