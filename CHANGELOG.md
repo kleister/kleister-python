@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.1.0](https://github.com/kleister/kleister-python/compare/v3.0.0...v3.1.0) (2026-11-02)
+
+### Dependencies
+
+* **minor:** update dependency pytest to v9.2.0 ([#233](https://github.com/kleister/kleister-python/issues/233)) ([833b047](https://github.com/kleister/kleister-python/commit/833b047f17f9b5664ce9725b6e372c94580fe6af))
+* **mise:** update dependency prek to v0.5.9 ([#237](https://github.com/kleister/kleister-python/issues/237)) ([5fffbcf](https://github.com/kleister/kleister-python/commit/5fffbcfd5c2f871b72574f9cddddb39622062b3d))
+* **mise:** update dependency python to v3.15.2 ([#232](https://github.com/kleister/kleister-python/issues/232)) ([f243634](https://github.com/kleister/kleister-python/commit/f243634f2f681653eea6c0ce22c7009a058e6949))
+* **mise:** update node.js to v26 ([#234](https://github.com/kleister/kleister-python/issues/234)) ([c17926a](https://github.com/kleister/kleister-python/commit/c17926adfd4d5e203ffca2a727b437bb2315f900))
+* **patch:** update dependency pydantic to v2.14.2 ([#236](https://github.com/kleister/kleister-python/issues/236)) ([9ab467e](https://github.com/kleister/kleister-python/commit/9ab467e7e358769330e6f29615463e937d079b0d))
+* **patch:** update dependency types-python-dateutil to v2.9.0.20261029 ([#235](https://github.com/kleister/kleister-python/issues/235)) ([ee317fe](https://github.com/kleister/kleister-python/commit/ee317fe27de5aabfb4701bdce5e9e575bbb18379))
+
 ## [3.0.0](https://github.com/kleister/kleister-python/compare/v2.10.0...v3.0.0) (2026-10-26)
 
 ### Dependencies
