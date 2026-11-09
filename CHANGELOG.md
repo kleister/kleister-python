@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.1](https://github.com/kleister/kleister-python/compare/v3.1.0...v3.1.1) (2026-11-09)
+
+### Dependencies
+
+* **mise:** update dependency prek to v0.5.10 ([#239](https://github.com/kleister/kleister-python/issues/239)) ([8808c00](https://github.com/kleister/kleister-python/commit/8808c00d9ffe90d29fdf80d51042bf35e427a915))
+* **patch:** update dependency pydantic to v2.14.3 ([#241](https://github.com/kleister/kleister-python/issues/241)) ([06f8941](https://github.com/kleister/kleister-python/commit/06f89410a8261a218e66253f9dc426f2658d5dcd))
+* **patch:** update dependency types-python-dateutil to v2.9.0.20261104 ([#240](https://github.com/kleister/kleister-python/issues/240)) ([f942632](https://github.com/kleister/kleister-python/commit/f942632ad89d01d1b685392ed072b42cbbbf1c5b))
+
 ## [3.1.0](https://github.com/kleister/kleister-python/compare/v3.0.0...v3.1.0) (2026-11-02)
 
 ### Dependencies
