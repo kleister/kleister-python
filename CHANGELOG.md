@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.1.2](https://github.com/kleister/kleister-python/compare/v3.1.1...v3.1.2) (2026-11-23)
+
+* automated release update [skip ci] ([4937d70](https://github.com/kleister/kleister-python/commit/4937d706efbef3bae83baf16dfbd448d015cee4c))
+* **locks:** lock file maintenance ([#248](https://github.com/kleister/kleister-python/issues/248)) ([54a78d6](https://github.com/kleister/kleister-python/commit/54a78d64b452be8a86a6c3ea3915c20ece3c6c5a))
+
+### Dependencies
+
+* **mise:** update dependency poetry to v2.5.2 ([#246](https://github.com/kleister/kleister-python/issues/246)) ([ca22a37](https://github.com/kleister/kleister-python/commit/ca22a37d073c1f630ce28a4450066c355b952024))
+* **mise:** update dependency prek to v0.5.11 ([#243](https://github.com/kleister/kleister-python/issues/243)) ([96db5ea](https://github.com/kleister/kleister-python/commit/96db5ea1fc5d583af98d1ca131aded3bc33c1983))
+* **patch:** update dependency pydantic to v2.14.4 ([#245](https://github.com/kleister/kleister-python/issues/245)) ([9cc9ad3](https://github.com/kleister/kleister-python/commit/9cc9ad3151b58907ad56de026888d26402e9328f))
+* **patch:** update dependency types-python-dateutil to v2.9.0.20261116 ([#244](https://github.com/kleister/kleister-python/issues/244)) ([d5ebb24](https://github.com/kleister/kleister-python/commit/d5ebb24004233eb75065b3e502950b11beef8c67))
+* **patch:** update dependency types-python-dateutil to v2.9.0.20261122 ([#247](https://github.com/kleister/kleister-python/issues/247)) ([4d405b0](https://github.com/kleister/kleister-python/commit/4d405b015acb3eec3bb250bdcfc22d9cc0f2663b))
+
 ## [3.1.1](https://github.com/kleister/kleister-python/compare/v3.1.0...v3.1.1) (2026-11-09)
 
 ### Dependencies
